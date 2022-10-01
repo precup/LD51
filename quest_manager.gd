@@ -24,11 +24,11 @@ var quest_reward_type_weights : Dictionary = {
   QuestGlobals.RewardType.REWARD_OTHER: 30,
 }
 const quest_scn = preload("res://quest.tscn")
-var quest_container = $"/root/ui/quest_container"
+@onready var quest_container = $"/root/root/ui/quest_container"
 
 # Pulls a rarity based on weights
 func _get_next_quest_rarity():
-  var total = quest_rarity_weights.values.reduce(func(i,accum): return accum + i)
+  var total = quest_rarity_weights.values().reduce(func(i,accum): return accum + i)
   var my_random_number = rng.randi_range(0, total-1)
   
   for rarity in quest_rarity_weights:
@@ -40,7 +40,7 @@ func _get_next_quest_rarity():
   
 # Pulls a reward type based on weights
 func _get_next_quest_reward_type():
-  var total = quest_reward_type_weights.values.reduce(func(i,accum): return accum + i)
+  var total = quest_reward_type_weights.values().reduce(func(i,accum): return accum + i)
   var my_random_number = rng.randi_range(0, total-1)
   
   for reward_type in quest_reward_type_weights:
@@ -56,31 +56,31 @@ func _ready():
   _sort_quests_by_rarity()
   _sort_rewards_by_type_by_rarity()
   
-  for stat in QuestGlobals.StatTrack:
+  for stat in QuestGlobals.StatTrack.values():
     stat_timers_active_status[stat] = false  
 
 func _sort_quests_by_rarity():
-  for rarity in QuestGlobals.Rarity:
+  for rarity in QuestGlobals.Rarity.values():
     quests_by_rarity[rarity] = []
     
   for quest in QuestGlobals.all_quests:
     for rarity in quest.quest_rarity:
-      quests_by_rarity[rarity].add(quest)
+      quests_by_rarity[rarity].append(quest)
       
 func _sort_rewards_by_type_by_rarity():
   # Set up dictionary
-  for rarity in QuestGlobals.Rarity:
+  for rarity in QuestGlobals.Rarity.values():
     rewards_by_type_by_rarity[rarity] = {}
-    for type in QuestGlobals.RewardType:
+    for type in QuestGlobals.RewardType.values():
       rewards_by_type_by_rarity[rarity][type] = []
     
   for reward in QuestGlobals.all_rewards:
-    rewards_by_type_by_rarity[reward.reward_rarity][reward.reward_type].add(reward)
+    rewards_by_type_by_rarity[reward.reward_rarity][reward.reward_type].append(reward)
 
 func _roll_new_quest():
   var rarity = _get_next_quest_rarity()
   var reward_type = _get_next_quest_reward_type()  
-  var quest = quests_by_rarity[rng.randi_range(0, len(quests_by_rarity[rarity])-1)]
+  var quest = quests_by_rarity[rarity][rng.randi_range(0, len(quests_by_rarity[rarity])-1)]
   var reward = rewards_by_type_by_rarity[rarity][reward_type][rng.randi_range(0, len(rewards_by_type_by_rarity[rarity][reward_type])-1)]
   
   # TODO: instantiate quest object with above params.
@@ -89,8 +89,8 @@ func _roll_new_quest():
   
   quest_container.add_child(new_quest_scn)
   quest_container.move_child(new_quest_scn, 0)
-  
-  new_quest_scn.initialize()
+ 
+  new_quest_scn.initialize(reward, rarity, quest.description, quest.quest_stat, quest.quest_rarity[rarity])
   if stat_timers_active_status[quest.quest_stat]:
     new_quest_scn.quest_start_timer(quest.quest_stat)
   

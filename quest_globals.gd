@@ -1,7 +1,6 @@
 extends Node
 
 
-class_name QuestGlobals
 # Note: REWARD_OTHER includes quest system rewards and whatever other random awards we come up with, unless we want to split those out
 enum RewardType {REWARD_GUN, REWARD_MOD, REWARD_OTHER}
 enum Rarity {RARITY_COMMON, RARITY_RARE, RARITY_LEGENDARY}
@@ -34,22 +33,22 @@ class RewardData:
     execute = callback
 
 var all_quests = [
-  QuestData.New(StatTrack.STAT_DO_NOTHING,                    { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Do nothing"),
-  QuestData.New(StatTrack.STAT_KILL_ENEMY_WITHOUT_MOVING,     { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Kills without moving"),
-  QuestData.New(StatTrack.STAT_KILL_WHILE_MOVING,             { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Kills while moving")
+  QuestData.new(StatTrack.STAT_DO_NOTHING,                    { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Do nothing"),
+  QuestData.new(StatTrack.STAT_KILL_ENEMY_WITHOUT_MOVING,     { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Kills without moving"),
+  QuestData.new(StatTrack.STAT_KILL_WHILE_MOVING,             { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Kills while moving")
 ]
 
 var all_rewards = [
-  RewardData.New(RewardType.REWARD_GUN, Rarity.RARITY_COMMON , "", func (): pass),  # Call gun reward hookups
-  RewardData.New(RewardType.REWARD_GUN, Rarity.RARITY_RARE , "", func (): pass),  # Call gun reward hookups
-  RewardData.New(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY , "", func (): pass),  # Call gun reward hookups
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_COMMON , "", func (): pass),  # Call gun reward hookups
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_RARE , "", func (): pass),  # Call gun reward hookups
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY , "", func (): pass),  # Call gun reward hookups
   
-  RewardData.New(RewardType.REWARD_MOD, Rarity.RARITY_COMMON , "", func (): pass),  # Call mod reward hookups
-  RewardData.New(RewardType.REWARD_MOD, Rarity.RARITY_RARE , "", func (): pass),  # Call mod reward hookups
-  RewardData.New(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY , "", func (): pass),  # Call mod reward hookups
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_COMMON , "", func (): pass),  # Call mod reward hookups
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_RARE , "", func (): pass),  # Call mod reward hookups
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY , "", func (): pass),  # Call mod reward hookups
   
   # TODO: Start implementing rewards relating to quest system specifically
-  RewardData.New(RewardType.REWARD_OTHER, Rarity.RARITY_COMMON , "", func (): pass), 
-  RewardData.New(RewardType.REWARD_OTHER, Rarity.RARITY_RARE , "", func (): pass), 
-  RewardData.New(RewardType.REWARD_OTHER, Rarity.RARITY_LEGENDARY , "", func (): pass), 
+  RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_COMMON , "", func (): pass), 
+  RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_RARE , "", func (): pass), 
+  RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_LEGENDARY , "", func (): pass), 
 ]

@@ -28,18 +28,12 @@ _global_script_classes=[{
 "class": &"Quest",
 "language": &"GDScript",
 "path": "res://quest.gd"
-}, {
-"base": "Node",
-"class": &"QuestGlobals",
-"language": &"GDScript",
-"path": "res://quest_globals.gd"
 }]
 _global_script_class_icons={
 "BaseEnemy": "",
 "Modifiers": "",
 "Player": "",
-"Quest": "",
-"QuestGlobals": ""
+"Quest": ""
 }
 
 [application]
@@ -48,6 +42,10 @@ config/name="LudumDare51"
 run/main_scene="res://root.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+QuestGlobals="*res://quest_globals.gd"
 
 [display]
 
