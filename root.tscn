@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlpmnpatbwk18"]
+[gd_scene load_steps=6 format=3 uid="uid://dlpmnpatbwk18"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_j03ts"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_gp4kr"]
 [ext_resource type="PackedScene" uid="uid://dx64fy25a3w0k" path="res://quest.tscn" id="3_4fbd4"]
+[ext_resource type="Script" path="res://enemy.gd" id="4_xvscb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(50, 50)
@@ -21,10 +22,10 @@ position = Vector2(31, 33)
 texture = ExtResource("2_gp4kr")
 
 [node name="quest_container" type="VBoxContainer" parent="."]
-offset_left = 807.0
-offset_top = 193.0
-offset_right = 1403.0
-offset_bottom = 485.0
+offset_left = 996.0
+offset_top = 10.0
+offset_right = 1592.0
+offset_bottom = 508.0
 
 [node name="quest" parent="quest_container" instance=ExtResource("3_4fbd4")]
 layout_mode = 2
@@ -38,3 +39,16 @@ offset_bottom = 204.0
 layout_mode = 2
 offset_top = 208.0
 offset_bottom = 308.0
+
+[node name="enemy" type="CharacterBody2D" parent="."]
+position = Vector2(748, 561)
+script = ExtResource("4_xvscb")
+
+[node name="collision_shape" type="CollisionShape2D" parent="enemy"]
+position = Vector2(25, 25)
+shape = SubResource("RectangleShape2D_kkfjx")
+
+[node name="filler_image" type="Sprite2D" parent="enemy"]
+modulate = Color(1, 0.137255, 0.215686, 1)
+position = Vector2(31, 33)
+texture = ExtResource("2_gp4kr")
