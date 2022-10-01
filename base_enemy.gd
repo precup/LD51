@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name BaseEnemy
 
-@export var MAX_HEALTH: float = 5.0
+@export var _max_health: float = 5.0
 const BURN_DAMAGE: float = 1.0
 
 # Set this in the subclass.
@@ -10,12 +10,13 @@ var desired_velocity: Vector2 = Vector2.ZERO
 
 var _conditions: Array = [] # [condition: Modifiers.Effect, gun_id: int, condition_strength: float]
 var _health: float = 5.0
+var active_tween: Tween = null
 
 func _ready() -> void:
-  $graphic.material.set_shader_parameter("solid_color", Color.RED)
+  $graphic.material.set_shader_parameter("solid_color", Color.TRANSPARENT)
 
 func _process(__delta: float) -> void:
-  $health_bar.update(_health, MAX_HEALTH)
+  $health_bar.update(_health, _max_health)
 
 func _physics_process(delta: float) -> void:
   var time_left: float = 1.0
@@ -62,9 +63,12 @@ func _physics_process(delta: float) -> void:
       collider.damage(-1, - collider.position.direction_to(position))
 
 func _hit_animation() -> void:
+  if active_tween:
+    active_tween.kill()
+
   $graphic.material.set_shader_parameter("solid_color", Color.WHITE)
-  var tween = create_tween()
-  var r = tween.tween_property($graphic.material, "shader_parameter/solid_color", Color.RED, 0.2)
+  active_tween = create_tween()
+  var r = active_tween.tween_property($graphic.material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.2)
   
   r.set_trans(Tween.TRANS_QUAD)
 

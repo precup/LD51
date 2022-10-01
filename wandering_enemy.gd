@@ -7,7 +7,7 @@ func _ready():
   super._ready()
 
   _next_destination = position
-  MAX_HEALTH = 5.0
+  _max_health = 5.0
   _health = 5.0
 
 func _choose_next_destination() -> void:

@@ -338,12 +338,15 @@ offset_right = 1592.0
 offset_bottom = 508.0
 
 [node name="quest" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
+layout_mode = 2
 
 [node name="quest2" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
+layout_mode = 2
 offset_top = 104.0
 offset_bottom = 204.0
 
 [node name="quest3" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
+layout_mode = 2
 offset_top = 208.0
 offset_bottom = 308.0
 
@@ -354,16 +357,20 @@ script = ExtResource("6_3q4g0")
 player_node = NodePath("../../player")
 
 [node name="heart" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
+layout_mode = 2
 
 [node name="heart2" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
+layout_mode = 2
 offset_left = 132.0
 offset_right = 260.0
 
 [node name="heart3" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
+layout_mode = 2
 offset_left = 264.0
 offset_right = 392.0
 
 [node name="heart4" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
+layout_mode = 2
 offset_left = 396.0
 offset_right = 524.0
 

@@ -79,6 +79,7 @@ func _physics_process(delta):
       var destructible: Node2D = collision.get_collider()
       
       destructible.damage(_damage)
+      _destroy()
     else: # Wall hit
       if _richocets > 0:
         _richocets -= 1
