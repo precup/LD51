@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 var next_destination = Vector2.ZERO
+var health = 5
+var max_health = 5
 
 func _ready():
   next_destination = position
@@ -22,6 +24,8 @@ func choose_next_destination():
   #   next_destination = new_destination
 
 func _process(_delta):
+  $health_bar.update(health, max_health)
+  
   if next_destination.distance_to(position) < 15:
     choose_next_destination()
   
@@ -31,5 +35,8 @@ func _process(_delta):
 
   move_and_slide()
 
-func hit():
-  queue_free()
+func hit(damage):
+  health -= damage
+
+  if health <= 0:
+    queue_free()

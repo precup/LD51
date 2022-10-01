@@ -28,4 +28,4 @@ func check_for_shoot():
     bullet.rotation = rotation
     get_parent().add_child(bullet)
 
-    bullet.initialize(last_direction, self)
+    bullet.initialize(last_direction, self, 1)

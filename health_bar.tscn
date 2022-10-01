@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://k3xhl0u2v0og"]
+
+[ext_resource type="Script" path="res://health_bar.gd" id="1_blybw"]
+[ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="1_web15"]
+
+[node name="health_bar" type="Node2D"]
+position = Vector2(-7, -26)
+script = ExtResource("1_blybw")
+
+[node name="graphic" type="Sprite2D" parent="."]
+modulate = Color(0, 0.67451, 0.168627, 1)
+position = Vector2(7.62939e-06, 2)
+scale = Vector2(1.60938, 0.21875)
+texture = ExtResource("1_web15")
+centered = false
