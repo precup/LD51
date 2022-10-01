@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Enemy
 
 var next_destination = Vector2.ZERO
 
@@ -30,3 +31,7 @@ func _process(_delta):
   velocity = direction * 100
 
   move_and_slide()
+
+func hit():
+  print("HIT")
+  queue_free()
