@@ -18,11 +18,9 @@ func _process(delta):
 
 
 func _on_hit_area_body_entered(body):
-  if body.name == "enemy":
-    body.hit()
-  
   if body.has_method("hit") and body != shooter:
     body.hit()
-    
+  
+  if body != shooter:
     queue_free()
 

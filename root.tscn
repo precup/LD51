@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlpmnpatbwk18"]
+[gd_scene load_steps=10 format=3 uid="uid://dlpmnpatbwk18"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_j03ts"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_gp4kr"]
 [ext_resource type="PackedScene" uid="uid://dx64fy25a3w0k" path="res://quest.tscn" id="3_4fbd4"]
 [ext_resource type="PackedScene" uid="uid://5m5u4ju6obmn" path="res://enemy.tscn" id="4_ltobp"]
 [ext_resource type="Texture2D" uid="uid://dm25ahy0fmma6" path="res://assets/tiles.png" id="5_gi3ks"]
+[ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(63, 64)
@@ -328,15 +329,12 @@ offset_right = 1592.0
 offset_bottom = 508.0
 
 [node name="quest" parent="quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
 
 [node name="quest2" parent="quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
 offset_top = 104.0
 offset_bottom = 204.0
 
 [node name="quest3" parent="quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
 offset_top = 208.0
 offset_bottom = 308.0
 
@@ -351,3 +349,5 @@ layer_0/tile_data = PackedInt32Array(458755, 196609, 4, 524291, 196609, 4, 65536
 
 [node name="camera" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
+script = ExtResource("6_crj1l")
