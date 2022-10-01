@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlpmnpatbwk18"]
+[gd_scene load_steps=6 format=3 uid="uid://dlpmnpatbwk18"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_j03ts"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_gp4kr"]
 [ext_resource type="PackedScene" uid="uid://dx64fy25a3w0k" path="res://quest.tscn" id="3_4fbd4"]
 [ext_resource type="PackedScene" uid="uid://5m5u4ju6obmn" path="res://enemy.tscn" id="4_ltobp"]
-[ext_resource type="PackedScene" uid="uid://cea0ff6stwyon" path="res://bullet.tscn" id="5_e64vc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(50, 50)
@@ -43,5 +42,3 @@ offset_bottom = 308.0
 
 [node name="enemy" parent="." instance=ExtResource("4_ltobp")]
 position = Vector2(575, 104)
-
-[node name="bullet" parent="." instance=ExtResource("5_e64vc")]

@@ -8,22 +8,6 @@
 
 config_version=5
 
-_global_script_classes=[{
-"base": "Node2D",
-"class": &"Bullet",
-"language": &"GDScript",
-"path": "res://bullet.gd"
-}, {
-"base": "CharacterBody2D",
-"class": &"Enemy",
-"language": &"GDScript",
-"path": "res://enemy.gd"
-}]
-_global_script_class_icons={
-"Bullet": "",
-"Enemy": ""
-}
-
 [application]
 
 config/name="LudumDare51"

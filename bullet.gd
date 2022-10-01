@@ -1,5 +1,4 @@
 extends Node2D
-class_name Bullet
 
 var direction: Vector2
 var shooter: Node
@@ -19,8 +18,6 @@ func _process(delta):
 
 
 func _on_hit_area_body_entered(body):
-  print("hit", body.name)
-  
   if body.name == "enemy":
     body.hit()
   
