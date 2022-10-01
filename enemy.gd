@@ -72,7 +72,13 @@ func _physics_process(delta: float) -> void:
 
   velocity = MOVEMENT_SPEED * position.direction_to(_next_destination).normalized() * time_left / delta
   move_and_slide()
+  
+  for q in range(get_slide_collision_count()):
+    var collision: KinematicCollision2D = get_slide_collision(q)
+    var collider: Node2D = collision.get_collider()
 
+    if collider.has_method("damage"):
+      collider.damage(-1, - collider.position.direction_to(position))
 
 func _hit_animation() -> void:
   $filler_image.material.set_shader_parameter("solid_color", Color.WHITE)
