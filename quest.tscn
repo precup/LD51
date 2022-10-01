@@ -1,11 +1,15 @@
-[gd_scene format=3 uid="uid://dx64fy25a3w0k"]
+[gd_scene load_steps=2 format=3 uid="uid://dn0o886degb1x"]
+
+[ext_resource type="Script" path="res://quest.gd" id="1_iu6j4"]
 
 [node name="Quest" type="ColorRect"]
 custom_minimum_size = Vector2i(0, 100)
 offset_right = 596.0
 offset_bottom = 100.0
+script = ExtResource("1_iu6j4")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 17.0
 offset_right = 442.0
