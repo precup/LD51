@@ -14,9 +14,10 @@ var _knockback: Vector2 = Vector2.ZERO
 var _invuln_frames = 0
 
 func _ready() -> void:
+  _health -= 2 # just for debugging
+  
   for gun in GUNS:
     gun.PROJECTILE_NODE = PROJECTILE_NODE
-
 
 func _physics_process(_delta):
   if Input.is_action_just_pressed("change_gun"):
@@ -101,3 +102,7 @@ func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
   if _health == 0:
     print("u died")
     return
+
+func pickup(item: String) -> void:
+  if item == "heart":
+    heal(1)

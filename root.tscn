@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=12 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="3_4fbd4"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="6_5xe0t"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
 [ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
+[ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
 texture = ExtResource("5_gi3ks")
@@ -338,15 +339,12 @@ offset_right = 1592.0
 offset_bottom = 508.0
 
 [node name="quest" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
 
 [node name="quest2" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
 offset_top = 104.0
 offset_bottom = 204.0
 
 [node name="quest3" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
 offset_top = 208.0
 offset_bottom = 308.0
 
@@ -357,20 +355,16 @@ script = ExtResource("6_3q4g0")
 player_node = NodePath("../../player")
 
 [node name="heart" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
-layout_mode = 2
 
 [node name="heart2" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
-layout_mode = 2
 offset_left = 132.0
 offset_right = 260.0
 
 [node name="heart3" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
-layout_mode = 2
 offset_left = 264.0
 offset_right = 392.0
 
 [node name="heart4" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
-layout_mode = 2
 offset_left = 396.0
 offset_right = 524.0
 
@@ -382,3 +376,6 @@ position = Vector2(266, 383)
 
 [node name="barrel3" parent="." instance=ExtResource("8_b3h3m")]
 position = Vector2(267, 460)
+
+[node name="heart_pickup" parent="." instance=ExtResource("9_gl1f0")]
+position = Vector2(720, 376)
