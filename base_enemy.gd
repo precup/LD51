@@ -12,6 +12,10 @@ var _conditions: Array = [] # [condition: Modifiers.Effect, gun_id: int, conditi
 var _health: float = 5.0
 var active_tween: Tween = null
 
+# "common", "rare", "epic", "legendary"
+# (This is unused currently.)
+var _enemy_rarity = "common"
+
 func _ready() -> void:
   $graphic.material.set_shader_parameter("solid_color", Color.TRANSPARENT)
 
@@ -111,6 +115,27 @@ func damage(amount: float, weapon_id: int = -1) -> void:
   _health = max(0.0, _health - amount)
 
   if _health <= 0:
-    queue_free()
+    destroy()
   else:
     _hit_animation()
+
+func destroy(): 
+  drop_random_item()
+
+  queue_free()
+
+var heart_pickup = preload("res://heart_pickup.tscn")
+
+# TODO: Probably have an item drop table with rarities, etc.
+func drop_random_item():
+  # for now we just disregard the rarity entirely.
+
+  var potential_pickups = [
+    heart_pickup
+  ]
+
+  var pickup = potential_pickups[randi() % len(potential_pickups)]
+  var pickup_instance = pickup.instantiate()
+
+  pickup_instance.position = position
+  get_parent().add_child(pickup_instance)
