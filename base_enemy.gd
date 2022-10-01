@@ -12,9 +12,9 @@ var _conditions: Array = [] # [condition: Modifiers.Effect, gun_id: int, conditi
 var _health: float = 5.0
 var active_tween: Tween = null
 
-# "common", "rare", "epic", "legendary"
+# "trash", "common", "rare", "epic", "legendary"
 # (This is unused currently.)
-var _enemy_rarity = "common"
+var _item_drop_type = "common"
 
 func _ready() -> void:
   $graphic.material.set_shader_parameter("solid_color", Color.TRANSPARENT)
@@ -128,7 +128,11 @@ var heart_pickup = preload("res://heart_pickup.tscn")
 
 # TODO: Probably have an item drop table with rarities, etc.
 func drop_random_item():
-  # for now we just disregard the rarity entirely.
+  # for now we just disregard the rarity entirely, but eventually we should use
+  # enemy_rarity rather than tossing it in the garbage as we do
+
+  if randi() % 10 < 6:
+    return
 
   var potential_pickups = [
     heart_pickup

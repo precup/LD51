@@ -6,9 +6,11 @@ var _next_destination: Vector2 = Vector2.ZERO
 func _ready():
   super._ready()
 
+  _max_health = 4
+  _health = 4
+  _item_drop_type = "common"
+
   _next_destination = position
-  _max_health = 5.0
-  _health = 5.0
 
 func _choose_next_destination() -> void:
   var deltas = [
