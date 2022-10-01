@@ -33,6 +33,5 @@ func _process(delta):
     _choose_next_destination()
 
   # read and used by superclass.
-  desired_velocity = MOVEMENT_SPEED * position.direction_to(_next_destination).normalized() * delta
-  move_and_slide()
+  desired_velocity = MOVEMENT_SPEED * position.direction_to(_next_destination).normalized()
   

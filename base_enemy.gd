@@ -18,7 +18,7 @@ func _process(__delta: float) -> void:
   $health_bar.update(_health, MAX_HEALTH)
 
 func _physics_process(delta: float) -> void:
-  var time_left: float = delta
+  var time_left: float = 1.0
   var i: int = 0
   
   while i < len(_conditions):
