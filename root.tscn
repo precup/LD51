@@ -1,15 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=12 format=3 uid="uid://b2q25rwes07ol"]
 
-[ext_resource type="PackedScene" path="res://player.tscn" id="1_3xk4e"]
-[ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="3_4fbd4"]
-[ext_resource type="PackedScene" path="res://wandering_enemy.tscn" id="4_ltobp"]
+[ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
+[ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
+[ext_resource type="PackedScene" uid="uid://cs0n77jbgk8xo" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Texture2D" uid="uid://dm25ahy0fmma6" path="res://assets/tiles.png" id="5_gi3ks"]
-[ext_resource type="Script" path="res://health_container.gd" id="6_3q4g0"]
-[ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="6_5xe0t"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
-[ext_resource type="PackedScene" path="res://barrel.tscn" id="8_b3h3m"]
+[ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
 [ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
 [ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
+[ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
 texture = ExtResource("5_gi3ks")
@@ -331,50 +330,7 @@ script = ExtResource("6_crj1l")
 
 [node name="projectiles" type="Node2D" parent="."]
 
-[node name="ui" type="CanvasLayer" parent="."]
-
-[node name="quest_container" type="VBoxContainer" parent="ui"]
-offset_left = 996.0
-offset_top = 10.0
-offset_right = 1592.0
-offset_bottom = 508.0
-
-[node name="quest" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
-
-[node name="quest2" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
-offset_top = 104.0
-offset_bottom = 204.0
-
-[node name="quest3" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
-layout_mode = 2
-offset_top = 208.0
-offset_bottom = 308.0
-
-[node name="health_container" type="HBoxContainer" parent="ui"]
-offset_right = 459.0
-offset_bottom = 130.0
-script = ExtResource("6_3q4g0")
-player_node = NodePath("../../player")
-
-[node name="heart" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
-layout_mode = 2
-
-[node name="heart2" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
-layout_mode = 2
-offset_left = 132.0
-offset_right = 260.0
-
-[node name="heart3" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
-layout_mode = 2
-offset_left = 264.0
-offset_right = 392.0
-
-[node name="heart4" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
-layout_mode = 2
-offset_left = 396.0
-offset_right = 524.0
+[node name="ui" parent="." instance=ExtResource("5_e1kqk")]
 
 [node name="barrel" parent="." instance=ExtResource("8_b3h3m")]
 position = Vector2(264, 304)
@@ -389,3 +345,7 @@ position = Vector2(267, 460)
 position = Vector2(720, 376)
 
 [node name="quest_manager" parent="." instance=ExtResource("10_l83fa")]
+
+[node name="references" type="Node2D" parent="."]
+script = ExtResource("11_8w57x")
+player = NodePath("../player")

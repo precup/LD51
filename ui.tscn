@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs0n77jbgk8xo"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_hmor5"]
+[ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="2_ahe0l"]
+[ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
+[ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="4_xbvb8"]
+
+[node name="ui" type="CanvasLayer"]
+script = ExtResource("1_hmor5")
+
+[node name="quest_container" type="VBoxContainer" parent="."]
+offset_left = 996.0
+offset_top = 10.0
+offset_right = 1592.0
+offset_bottom = 508.0
+
+[node name="quest" parent="quest_container" instance=ExtResource("2_ahe0l")]
+layout_mode = 2
+
+[node name="quest2" parent="quest_container" instance=ExtResource("2_ahe0l")]
+layout_mode = 2
+offset_top = 104.0
+offset_bottom = 204.0
+
+[node name="quest3" parent="quest_container" instance=ExtResource("2_ahe0l")]
+layout_mode = 2
+offset_top = 208.0
+offset_bottom = 308.0
+
+[node name="health_container" type="HBoxContainer" parent="."]
+offset_right = 459.0
+offset_bottom = 130.0
+script = ExtResource("3_bryk1")
+player_node = NodePath("../../player")
+
+[node name="heart" parent="health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
+
+[node name="heart2" parent="health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
+offset_left = 132.0
+offset_right = 260.0
+
+[node name="heart3" parent="health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
+offset_left = 264.0
+offset_right = 392.0
+
+[node name="heart4" parent="health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
+offset_left = 396.0
+offset_right = 524.0
+
+[node name="clip_label" type="Label" parent="."]
+offset_left = 1423.0
+offset_top = 1102.0
+offset_right = 1561.0
+offset_bottom = 1172.0
+theme_override_font_sizes/font_size = 48
+text = "Clip: 5"

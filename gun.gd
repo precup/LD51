@@ -37,6 +37,8 @@ func _ready() -> void:
   _rounds_left = magazine_size()
   $sprite.modulate = COLOR
 
+func get_rounds_left() -> int:
+  return _rounds_left
 
 func _physics_process(delta) -> void:
   if not visible:
@@ -55,7 +57,7 @@ func _physics_process(delta) -> void:
       fire()
     else:
       start_reload()
-
+  
 
 func fire() -> void:
   var num_shots: int = 1

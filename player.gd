@@ -19,6 +19,14 @@ func _ready() -> void:
   for gun in GUNS:
     gun.PROJECTILE_NODE = PROJECTILE_NODE
 
+func get_active_gun():
+  for gun in GUNS:
+    if gun.visible:
+      return gun
+
+  # Hopefully this never happens.
+  return GUNS[0]
+
 func _physics_process(_delta):
   if Input.is_action_just_pressed("change_gun"):
     for gun in GUNS:
