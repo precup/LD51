@@ -1,6 +1,7 @@
 extends Node2D
 
 var current_health = 0
+var damage_text_scene = preload("res://damage_text.tscn")
 
 func _ready():
   modulate = Color.TRANSPARENT
@@ -15,9 +16,15 @@ func update(health, max_health):
     current_health = health
     self.modulate = Color.WHITE
     eventually_fade_out()
+    
+    var damage_amount = health - current_health
+    var new_damage_text = damage_text_scene.instantiate()
+    
+    new_damage_text.position = position
+
+    get_parent().add_child(new_damage_text)
   
   current_health = health
-
 
 func eventually_fade_out():
   var health_when_changed = current_health
