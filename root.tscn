@@ -357,3 +357,20 @@ layer_0/tile_data = PackedInt32Array(458755, 196609, 4, 524291, 196609, 4, 65536
 
 [node name="spike_trap" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
 position = Vector2(953, -250)
+
+[node name="spike_trap2" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
+position = Vector2(833, -695)
+
+[node name="spike_trap6" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
+position = Vector2(966, -692)
+off_cycle = true
+
+[node name="spike_trap3" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
+position = Vector2(396, -692)
+
+[node name="spike_trap4" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
+position = Vector2(290, -271)
+off_cycle = true
+
+[node name="spike_trap5" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
+position = Vector2(216, -916)

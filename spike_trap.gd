@@ -2,6 +2,9 @@ extends Area2D
 
 var is_spiky = false
 var bodies_in_trap = []
+@export var off_cycle = false
+
+# countdown looks pretty ugly and seems unnecessary imo!
 
 func _ready():
   $base_enemy._max_health = 4
@@ -24,6 +27,10 @@ func run_state_machine():
     for x in range(3):
       # $countdown.text = "%d" % x
       
+      if off_cycle:
+        off_cycle = false
+        continue
+      
       for tick in range(120):
         await get_tree().process_frame
     
@@ -45,7 +52,6 @@ func update_graphics():
   $graphic_triggered.visible = is_spiky
   $graphic.visible = not is_spiky
   # $countdown.visible = not is_spiky
-
 
 func _on_spike_trap_body_entered(body):
   bodies_in_trap.append(body)
