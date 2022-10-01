@@ -1,54 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4serf2rxddc2"]
 
+[ext_resource type="Script" path="res://spike_trap.gd" id="1_1x5hy"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_dlhy5"]
 [ext_resource type="Texture2D" uid="uid://crx52n1wj54cv" path="res://assets/spike_untriggered.png" id="3_nj45o"]
 [ext_resource type="Texture2D" uid="uid://cd07ix57jxcy8" path="res://assets/spike_triggered.png" id="4_d530a"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_t6uql"]
-
-[sub_resource type="GDScript" id="GDScript_s5ku2"]
-script/source = "extends StaticBody2D
-
-var is_spiky = false
-
-func _ready():
-  $base_enemy._max_health = 4
-  $base_enemy._health = 4
-  $base_enemy._item_drop_type = \"trash\"
-  
-  $health_bar.visible = false
-  $graphic.visible = true
-  $graphic_triggered.visible = false
-  
-  var cd: Label = $countdown
-  cd.text = \"\" 
-  run_state_machine()
-
-func run_state_machine():
-  while true:
-    is_spiky = false
-    update_graphics()
-    
-    for x in range(3):
-      # $countdown.text = \"%d\" % x
-      
-      for tick in range(120):
-        await get_tree().process_frame
-    
-    is_spiky = false
-    update_graphics()
-    
-    $graphic_triggered.visible = true
-    $graphic.visible = false
-    
-    for tick in range(120):
-      await get_tree().process_frame
-
-
-func update_graphics():
-  $graphic_triggered.visible = is_spiky
-  $graphic.visible = not is_spiky
-  # $countdown.visible = not is_spiky
-"
 
 [sub_resource type="Shader" id="Shader_0m0ln"]
 code = "shader_type canvas_item;
@@ -67,11 +23,11 @@ shader = SubResource("Shader_0m0ln")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
-size = Vector2(58, 62)
+size = Vector2(123, 128)
 
-[node name="spike_trap" type="StaticBody2D" groups=["destructible"]]
+[node name="spike_trap" type="Area2D" groups=["destructible"]]
 collision_layer = 48
-script = SubResource("GDScript_s5ku2")
+script = ExtResource("1_1x5hy")
 
 [node name="base_enemy" type="Node2D" parent="."]
 script = ExtResource("3_dlhy5")
@@ -87,8 +43,7 @@ position = Vector2(64, 64)
 texture = ExtResource("4_d530a")
 
 [node name="shape" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(29, 32)
+position = Vector2(61.5, 65)
 shape = SubResource("RectangleShape2D_gjycc")
 
 [node name="health_bar" parent="." instance=ExtResource("4_t6uql")]
@@ -100,3 +55,6 @@ offset_right = 82.0
 offset_bottom = -8.0
 theme_override_font_sizes/font_size = 48
 text = "3"
+
+[connection signal="body_entered" from="." to="." method="_on_spike_trap_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_spike_trap_body_exited"]
