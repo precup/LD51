@@ -1,14 +1,9 @@
 extends Camera2D
 
+@export var POSITION_AVERAGE_FRACTION: float = 0.1
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-  pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-  var player = $"../player"
-
-  position = player.position
-
+func _physics_process(__delta):
+  var player = get_tree().get_first_node_in_group("player")
+  if player:
+    global_position = lerp(global_position, player.global_position, POSITION_AVERAGE_FRACTION)
+  
