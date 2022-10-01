@@ -9,16 +9,6 @@
 config_version=5
 
 _global_script_classes=[{
-"base": "CharacterBody2D",
-"class": &"BaseMovingEnemy",
-"language": &"GDScript",
-"path": "res://base_moving_enemy.gd"
-}, {
-"base": "BaseEnemy",
-"class": &"BaseStaticEnemy",
-"language": &"GDScript",
-"path": "res://base_static_enemy.gd"
-}, {
 "base": "RefCounted",
 "class": &"Modifiers",
 "language": &"GDScript",
@@ -35,8 +25,6 @@ _global_script_classes=[{
 "path": "res://quest.gd"
 }]
 _global_script_class_icons={
-"BaseMovingEnemy": "",
-"BaseStaticEnemy": "",
 "Modifiers": "",
 "Player": "",
 "Quest": ""
