@@ -37,6 +37,7 @@ func _process(__delta: float) -> void:
 func _physics_process(delta: float) -> void:
   var time_left: float = delta
   var i: int = 0
+  
   while i < len(_conditions):
     match _conditions[i][0]:
       Modifiers.Effect.STUN:
@@ -87,7 +88,8 @@ func apply_condition(new_condition: Array) -> void:
   _conditions.append(new_condition)
 
 
-func get_status_effects() -> Dictionary: # Dictionary is from Modifiers.Effect to its current strength
+# Dictionary is from Modifiers.Effect to its current strength
+func get_status_effects() -> Dictionary: 
   var effects: Dictionary = {}
   for condition in _conditions:
     if condition[0] not in effects:

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlpmnpatbwk18"]
+[gd_scene load_steps=10 format=3 uid="uid://dlpmnpatbwk18"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="3_4fbd4"]
 [ext_resource type="PackedScene" uid="uid://5m5u4ju6obmn" path="res://enemy.tscn" id="4_ltobp"]
 [ext_resource type="Texture2D" uid="uid://dm25ahy0fmma6" path="res://assets/tiles.png" id="5_gi3ks"]
+[ext_resource type="Script" path="res://health_container.gd" id="6_3q4g0"]
+[ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="6_5xe0t"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
@@ -310,22 +312,6 @@ sources/1 = SubResource("TileSetAtlasSource_wx7vc")
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
 PROJECTILE_NODE = NodePath("../projectiles")
 
-[node name="quest_container" type="VBoxContainer" parent="."]
-offset_left = 996.0
-offset_top = 10.0
-offset_right = 1592.0
-offset_bottom = 508.0
-
-[node name="quest" parent="quest_container" instance=ExtResource("3_4fbd4")]
-
-[node name="quest2" parent="quest_container" instance=ExtResource("3_4fbd4")]
-offset_top = 104.0
-offset_bottom = 204.0
-
-[node name="quest3" parent="quest_container" instance=ExtResource("3_4fbd4")]
-offset_top = 208.0
-offset_bottom = 308.0
-
 [node name="enemy" parent="." instance=ExtResource("4_ltobp")]
 position = Vector2(575, 104)
 
@@ -341,3 +327,41 @@ smoothing_enabled = true
 script = ExtResource("6_crj1l")
 
 [node name="projectiles" type="Node2D" parent="."]
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="quest_container" type="VBoxContainer" parent="ui"]
+offset_left = 996.0
+offset_top = 10.0
+offset_right = 1592.0
+offset_bottom = 508.0
+
+[node name="quest" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
+
+[node name="quest2" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
+offset_top = 104.0
+offset_bottom = 204.0
+
+[node name="quest3" parent="ui/quest_container" instance=ExtResource("3_4fbd4")]
+offset_top = 208.0
+offset_bottom = 308.0
+
+[node name="health_container" type="HBoxContainer" parent="ui"]
+offset_right = 459.0
+offset_bottom = 130.0
+script = ExtResource("6_3q4g0")
+player_node = NodePath("../../player")
+
+[node name="heart" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
+
+[node name="heart2" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
+offset_left = 132.0
+offset_right = 260.0
+
+[node name="heart3" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
+offset_left = 264.0
+offset_right = 392.0
+
+[node name="heart4" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
+offset_left = 396.0
+offset_right = 524.0

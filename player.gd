@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var PROJECTILE_NODE: Node2D
 @export var SPEED: float = 400.0

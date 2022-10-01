@@ -63,6 +63,7 @@ func fire() -> void:
   var damage: float = bullet_damage()
   var effects: Array = []
   var scale: float = 1.0
+  
   for upgrade in UPGRADES:
     match upgrade:
       Modifiers.Gun.SCATTERSHOT:

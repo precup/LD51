@@ -9,7 +9,6 @@ offset_bottom = 100.0
 script = ExtResource("1_iu6j4")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
 offset_left = 10.0
 offset_top = 17.0
 offset_right = 442.0
