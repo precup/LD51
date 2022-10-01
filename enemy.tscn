@@ -1,11 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://5m5u4ju6obmn"]
+[gd_scene load_steps=8 format=3 uid="uid://5m5u4ju6obmn"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_iujh1"]
+[ext_resource type="Shader" path="res://white_flash.gdshader" id="2_bnrfm"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_r5rv8"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="3_edrfm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(50, 50)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rm2iy"]
+shader = ExtResource("2_bnrfm")
+shader_parameter/solid_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d426"]
 size = Vector2(72.5, 73.5)
@@ -20,6 +25,7 @@ shape = SubResource("RectangleShape2D_kkfjx")
 
 [node name="filler_image" type="Sprite2D" parent="."]
 modulate = Color(1, 0.137255, 0.215686, 1)
+material = SubResource("ShaderMaterial_rm2iy")
 position = Vector2(31, 33)
 texture = ExtResource("2_r5rv8")
 

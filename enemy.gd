@@ -5,6 +5,7 @@ var health = 5
 var max_health = 5
 
 func _ready():
+  $filler_image.material.set_shader_parameter("solid_color", Color.RED)
   next_destination = position
 
 func choose_next_destination():
@@ -35,8 +36,15 @@ func _process(_delta):
 
   move_and_slide()
 
+func hit_animation():
+  $filler_image.material.set_shader_parameter("solid_color", Color.WHITE)
+  var tween = create_tween()
+  tween.tween_property($filler_image.material, "shader_parameter/solid_color", Color.RED, 0.4)
+
 func hit(damage):
   health -= damage
 
   if health <= 0:
     queue_free()
+  else:
+    hit_animation()
