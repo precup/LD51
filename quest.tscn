@@ -2,32 +2,49 @@
 
 [ext_resource type="Script" path="res://quest.gd" id="1_iu6j4"]
 
-[node name="Quest" type="ColorRect"]
-custom_minimum_size = Vector2i(0, 100)
-offset_right = 596.0
-offset_bottom = 100.0
+[node name="Quest" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_iu6j4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 597.0
-offset_bottom = 73.0
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_direction = 3
+layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HSplitContainer"]
+layout_mode = 2
+offset_bottom = 1080.0
+
+[node name="RewardType" type="TextureRect" parent="HSplitContainer/MarginContainer"]
+layout_mode = 2
+offset_bottom = 1080.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="HSplitContainer"]
+layout_mode = 2
+offset_left = 12.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HSplitContainer/VSplitContainer"]
+layout_mode = 2
+offset_right = 1908.0
+offset_bottom = 1041.0
+size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 40
 text = "Next Quest"
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="HSplitContainer/VSplitContainer"]
+layout_mode = 2
 anchors_preset = -1
-anchor_top = 0.8
-anchor_right = 1.0
-anchor_bottom = 1.0
+offset_top = 1053.0
+offset_right = 1908.0
+offset_bottom = 1080.0
 grow_horizontal = 2
 grow_vertical = 0
 step = 1.0
-
-[node name="RewardType" type="TextureRect" parent="."]
-offset_left = 542.0
-offset_top = 16.0
-offset_right = 582.0
-offset_bottom = 56.0
