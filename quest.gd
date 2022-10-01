@@ -2,9 +2,14 @@ extends Node
 
 class_name Quest
 
-@onready var ui_description_text : RichTextLabel = $RichTextLabel
-@onready var ui_progress_bar : ProgressBar = $ProgressBar
-@onready var ui_reward_type_icon : TextureRect = $RewardType
+@onready var ui_description_text : RichTextLabel = $HSplit/VSplit/Margin1/Label
+@onready var ui_progress_bar : ProgressBar = $HSplit/VSplit/Margin2/ProgressBar
+@onready var ui_reward_type_icon : TextureRect = $HSplit/Margin/Center/RewardIcon
+const REWARD_ICON_RESOURCES: Dictionary = {
+  QuestGlobals.RewardType.REWARD_GUN: "res://assets/gun_reward_icon.png",
+  QuestGlobals.RewardType.REWARD_MOD: "res://assets/mod_reward_icon.png",
+  QuestGlobals.RewardType.REWARD_OTHER: "res://assets/misc_reward_icon.png"
+}
 
 var reward
 var quest_rarity =  QuestGlobals.Rarity.RARITY_COMMON
@@ -24,10 +29,7 @@ var initial_delay_counter = 0.0
 
 # TODO: may need to display more details about rewards
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-  pass # Replace with function body.
-  
+
 func initialize(_reward, _quest_rarity, _description, _stat_being_tracked, _stat_count_required):
   reward = _reward
   quest_rarity = _quest_rarity
@@ -35,8 +37,9 @@ func initialize(_reward, _quest_rarity, _description, _stat_being_tracked, _stat
   ui_progress_bar.max_value = _stat_count_required
   stat_being_tracked = _stat_being_tracked
   stat_count_required = _stat_count_required
-  
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+  ui_reward_type_icon.texture = load(REWARD_ICON_RESOURCES[reward.reward_type])
+
+
 func _process(delta):
   if (is_accumulating_duration && !is_completed):
     # Add the delta to initial delay, or actual counter accordingly
@@ -47,7 +50,8 @@ func _process(delta):
       if (sub_second_timer >= 1.0):
         sub_second_timer -= 1
         _increment_current_count(1) 
-      
+  
+  
 func _increment_current_count(amount):
   stat_count_current += amount
   ui_progress_bar.value = stat_count_current
@@ -60,7 +64,8 @@ func _increment_current_count(amount):
 func quest_count_progress(stat_track_id, amount):
   if stat_track_id == stat_being_tracked && !is_completed:
     _increment_current_count(amount)
-  
+
+
 # This is for stats that involve continuity (do __ without doing __)
 func quest_reset_progress_count(stat_track_id):
   if stat_track_id == stat_being_tracked && !is_completed:
@@ -68,17 +73,20 @@ func quest_reset_progress_count(stat_track_id):
     ui_progress_bar.value = stat_count_current
     initial_delay_counter = 0.0 # probably dont need this here, but whatever
 
+
 # For stats that involve duration
 func quest_start_timer(stat_track_id):
   if stat_track_id == stat_being_tracked && !is_completed:
     is_accumulating_duration = true
-  
+
+
 # If the duration does not need to be continuous
 func quest_pause_timer(stat_track_id):
   if stat_track_id == stat_being_tracked && !is_completed:
     is_accumulating_duration = false
     initial_delay_counter = 0.0 
-  
+
+
 # For if the duration must be continous
 func quest_rest_timer(stat_track_id):
   if stat_track_id == stat_being_tracked && !is_completed:
