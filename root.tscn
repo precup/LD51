@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlpmnpatbwk18"]
+[gd_scene load_steps=11 format=3 uid="uid://dlpmnpatbwk18"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="3_4fbd4"]
-[ext_resource type="PackedScene" uid="uid://5m5u4ju6obmn" path="res://enemy.tscn" id="4_ltobp"]
+[ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://enemy.tscn" id="4_ltobp"]
 [ext_resource type="Texture2D" uid="uid://dm25ahy0fmma6" path="res://assets/tiles.png" id="5_gi3ks"]
 [ext_resource type="Script" path="res://health_container.gd" id="6_3q4g0"]
 [ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="6_5xe0t"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
+[ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
 texture = ExtResource("5_gi3ks")
@@ -365,3 +366,12 @@ offset_right = 392.0
 [node name="heart4" parent="ui/health_container" instance=ExtResource("6_5xe0t")]
 offset_left = 396.0
 offset_right = 524.0
+
+[node name="barrel" parent="." instance=ExtResource("8_b3h3m")]
+position = Vector2(264, 304)
+
+[node name="barrel2" parent="." instance=ExtResource("8_b3h3m")]
+position = Vector2(266, 383)
+
+[node name="barrel3" parent="." instance=ExtResource("8_b3h3m")]
+position = Vector2(267, 460)

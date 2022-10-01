@@ -1,38 +1,21 @@
 extends CharacterBody2D
+class_name BaseEnemy
 
 @export var MAX_HEALTH: float = 5.0
-@export var MOVEMENT_SPEED: float = 100.0
 const BURN_DAMAGE: float = 1.0
-var _next_destination: Vector2 = Vector2.ZERO
-var _health: float = 5.0
-var _conditions: Array = [] # [condition: Modifiers.Effect, gun_id: int, condition_strength: float]
 
+# Set this in the subclass.
+# The superclass will take it and apply status modifiers before moving.
+var desired_velocity: Vector2 = Vector2.ZERO
+
+var _conditions: Array = [] # [condition: Modifiers.Effect, gun_id: int, condition_strength: float]
+var _health: float = 5.0
 
 func _ready() -> void:
-  $filler_image.material.set_shader_parameter("solid_color", Color.RED)
-  _next_destination = position
-
-
-func _choose_next_destination() -> void:
-  var deltas = [
-    Vector2.LEFT,
-    Vector2.RIGHT,
-    Vector2.UP,
-    Vector2.DOWN
-  ]
-
-  var new_destination = position + 200 * deltas[randi() % deltas.size()]
-
-  _next_destination = new_destination
-
-  # TODO: Use this to determine if the new destination is valid
-  # if get_node("/root/World").get_cellv(new_destination) == 0:
-  #   next_destination = new_destination
-
+  $graphic.material.set_shader_parameter("solid_color", Color.RED)
 
 func _process(__delta: float) -> void:
   $health_bar.update(_health, MAX_HEALTH)
-
 
 func _physics_process(delta: float) -> void:
   var time_left: float = delta
@@ -66,13 +49,11 @@ func _physics_process(delta: float) -> void:
           i -= 1
     i += 1
           
-  
-  if _next_destination.distance_to(position) < 15:
-    _choose_next_destination()
+  velocity = desired_velocity * time_left
 
-  velocity = MOVEMENT_SPEED * position.direction_to(_next_destination).normalized() * time_left / delta
   move_and_slide()
   
+  # hit the player
   for q in range(get_slide_collision_count()):
     var collision: KinematicCollision2D = get_slide_collision(q)
     var collider: Node2D = collision.get_collider()
@@ -81,10 +62,11 @@ func _physics_process(delta: float) -> void:
       collider.damage(-1, - collider.position.direction_to(position))
 
 func _hit_animation() -> void:
-  $filler_image.material.set_shader_parameter("solid_color", Color.WHITE)
+  $graphic.material.set_shader_parameter("solid_color", Color.WHITE)
   var tween = create_tween()
-  tween.tween_property($filler_image.material, "shader_parameter/solid_color", Color.RED, 0.4)
-
+  var r = tween.tween_property($graphic.material, "shader_parameter/solid_color", Color.RED, 0.2)
+  
+  r.set_trans(Tween.TRANS_QUAD)
 
 func apply_condition(new_condition: Array) -> void:
   for condition in _conditions:

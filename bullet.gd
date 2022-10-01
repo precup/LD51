@@ -27,12 +27,20 @@ func _physics_process(delta):
   if collision:
     var collider: Object = collision.get_collider()
     var enemy_hit: bool = false
+    var destructible_hit = false
+    
     for enemy in get_tree().get_nodes_in_group("enemies"):
       if enemy == collider:
         enemy_hit = true
         break
+    
+    for destructible in get_tree().get_nodes_in_group("destructible"):
+      if destructible == collider:
+        destructible_hit = true
+    
     if enemy_hit:
       var react_damage: float = 1.0
+      
       for effect in _effects:
         match effect[0]:
           Modifiers.Effect.REACT:
@@ -67,6 +75,10 @@ func _physics_process(delta):
         _pierces -= 1
       else:
         _destroy()
+    elif destructible_hit:
+      var destructible: Node2D = collision.get_collider()
+      
+      destructible.damage(_damage)
     else: # Wall hit
       if _richocets > 0:
         _richocets -= 1

@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "CharacterBody2D",
+"class": &"BaseEnemy",
+"language": &"GDScript",
+"path": "res://base_enemy.gd"
+}, {
 "base": "RefCounted",
 "class": &"Modifiers",
 "language": &"GDScript",
@@ -30,6 +35,7 @@ _global_script_classes=[{
 "path": "res://quest_globals.gd"
 }]
 _global_script_class_icons={
+"BaseEnemy": "",
 "Modifiers": "",
 "Player": "",
 "Quest": "",
@@ -100,3 +106,4 @@ change_gun={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="EnemyProjectile"
 2d_physics/layer_5="Wall"
+2d_physics/layer_6="Destructible"
