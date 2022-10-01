@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://4ajkemhdisr1"]
+
+[ext_resource type="PackedScene" uid="uid://cptkldrevgpc1" path="res://gun.tscn" id="1_p2rrm"]
+
+[node name="gun_range" type="Node2D"]
+
+[node name="gun" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_p2rrm")]
+position = Vector2(820, 607)
+UPGRADES = [6, 5, 6, 11, 11]
+PROJECTILE_NODE = NodePath("..")
