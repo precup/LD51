@@ -130,8 +130,8 @@ func quest_pause_timer(stat_track_id):
     quest_scn.quest_pause_timer(stat_track_id)
   
 # For if the duration must be continous
-func quest_stop_timer(stat_track_id):
+func quest_reset_timer(stat_track_id):
   stat_timers_active_status[stat_track_id] = false
   for quest_scn in active_quests:
-    quest_scn.quest_stop_timer(stat_track_id)
+    quest_scn.quest_reset_timer(stat_track_id)
 
