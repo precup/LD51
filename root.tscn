@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlpmnpatbwk18"]
+[gd_scene load_steps=5 format=3 uid="uid://dlpmnpatbwk18"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_j03ts"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_gp4kr"]
+[ext_resource type="PackedScene" uid="uid://dx64fy25a3w0k" path="res://quest.tscn" id="3_4fbd4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(50, 50)
@@ -15,6 +16,25 @@ script = ExtResource("1_j03ts")
 position = Vector2(25, 25)
 shape = SubResource("RectangleShape2D_kkfjx")
 
-[node name="WhiteSquare64x64" type="Sprite2D" parent="player"]
+[node name="filler_image" type="Sprite2D" parent="player"]
 position = Vector2(31, 33)
 texture = ExtResource("2_gp4kr")
+
+[node name="quest_container" type="VBoxContainer" parent="."]
+offset_left = 807.0
+offset_top = 193.0
+offset_right = 1403.0
+offset_bottom = 485.0
+
+[node name="quest" parent="quest_container" instance=ExtResource("3_4fbd4")]
+layout_mode = 2
+
+[node name="quest2" parent="quest_container" instance=ExtResource("3_4fbd4")]
+layout_mode = 2
+offset_top = 104.0
+offset_bottom = 204.0
+
+[node name="quest3" parent="quest_container" instance=ExtResource("3_4fbd4")]
+layout_mode = 2
+offset_top = 208.0
+offset_bottom = 308.0

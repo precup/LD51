@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dx64fy25a3w0k"]
+
+[node name="Quest" type="ColorRect"]
+custom_minimum_size = Vector2i(0, 100)
+offset_right = 596.0
+offset_bottom = 100.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 17.0
+offset_right = 442.0
+offset_bottom = 79.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "Next Quest"
