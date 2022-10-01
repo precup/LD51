@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=14 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c4serf2rxddc2" path="res://spike_trap.tscn" id="10_b02l4"]
 [ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
+[ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
 texture = ExtResource("5_gi3ks")
@@ -313,11 +314,8 @@ sources/1 = SubResource("TileSetAtlasSource_wx7vc")
 [node name="root" type="Node2D"]
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(697, -212)
+position = Vector2(852, 598)
 PROJECTILE_NODE = NodePath("../projectiles")
-
-[node name="enemy" parent="." instance=ExtResource("4_ltobp")]
-position = Vector2(575, 104)
 
 [node name="camera" type="Camera2D" parent="."]
 current = true
@@ -326,15 +324,6 @@ script = ExtResource("6_crj1l")
 [node name="projectiles" type="Node2D" parent="."]
 
 [node name="ui" parent="." instance=ExtResource("5_e1kqk")]
-
-[node name="barrel" parent="." instance=ExtResource("8_b3h3m")]
-position = Vector2(264, 304)
-
-[node name="barrel2" parent="." instance=ExtResource("8_b3h3m")]
-position = Vector2(266, 383)
-
-[node name="barrel3" parent="." instance=ExtResource("8_b3h3m")]
-position = Vector2(267, 460)
 
 [node name="heart_pickup" parent="." instance=ExtResource("9_gl1f0")]
 position = Vector2(720, 376)
@@ -374,3 +363,18 @@ off_cycle = true
 
 [node name="spike_trap5" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
 position = Vector2(216, -916)
+
+[node name="cannon" parent="level_1/doodads" instance=ExtResource("11_je3km")]
+position = Vector2(557, 557)
+
+[node name="enemy" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
+position = Vector2(575, 104)
+
+[node name="barrel" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
+position = Vector2(264, 304)
+
+[node name="barrel2" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
+position = Vector2(266, 383)
+
+[node name="barrel3" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
+position = Vector2(267, 460)
