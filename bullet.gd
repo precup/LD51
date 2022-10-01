@@ -23,4 +23,3 @@ func _on_hit_area_body_entered(body):
   
   if body != shooter:
     queue_free()
-
