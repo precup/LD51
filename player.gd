@@ -1,31 +1,54 @@
 extends CharacterBody2D
 
-var speed = 400
-var bullet_scene = preload("res://bullet.tscn")
-var last_direction = Vector2.LEFT
+@export var PROJECTILE_NODE: Node2D
+@export var SPEED: float = 400.0
+@export var MAX_HEALTH: int = 8
+const BULLET_SCENE: PackedScene = preload("res://bullet.tscn")
+@onready var GUNS: Array = $guns.get_children()
 
-func _process(_delta):
+var _last_direction: Vector2 = Vector2.LEFT
+var _health: int = MAX_HEALTH
+
+
+func _ready() -> void:
+  for gun in GUNS:
+    gun.PROJECTILE_NODE = PROJECTILE_NODE
+
+
+func _physics_process(_delta):
+  if Input.is_action_just_pressed("change_gun"):
+    for gun in GUNS:
+      gun.visible = not gun.visible
+  
   var direction = Input.get_vector(
-    "ui_left", 
-    "ui_right",
-    "ui_up",
-    "ui_down"
-  ) * 300
+    "left", 
+    "right",
+    "up",
+    "down"
+  ) * SPEED
 
   velocity = direction
 
   if direction.length() > 0:
-    last_direction = direction.normalized()
+    _last_direction = direction.normalized()
 
   move_and_slide()
-  check_for_shoot()
 
-func check_for_shoot():
-  if Input.is_action_just_pressed("shoot"):
-    var bullet = bullet_scene.instantiate()
 
-    bullet.position = position
-    bullet.rotation = rotation
-    get_parent().add_child(bullet)
+func health() -> int:
+  return _health
 
-    bullet.initialize(last_direction, self, 1)
+
+func max_health() -> int:
+  return MAX_HEALTH
+
+
+func heal(amount: float) -> void:
+  _health = min(MAX_HEALTH, _health + amount)
+
+
+func damage(amount: float) -> void:
+  _health = max(0, _health + amount)
+  if _health == 0:
+    print("u died")
+  

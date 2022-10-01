@@ -6,5 +6,5 @@
 
 [node name="gun" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_p2rrm")]
 position = Vector2(820, 607)
-UPGRADES = [6, 5, 6, 11, 11]
+UPGRADES = [34, 0, 5, 25, 26]
 PROJECTILE_NODE = NodePath("..")

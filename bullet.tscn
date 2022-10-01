@@ -4,21 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="1_d7ark"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syl5c"]
-size = Vector2(28, 27)
+size = Vector2(22, 22)
 
-[node name="bullet" type="Node2D"]
-position = Vector2(355, 178)
+[node name="bullet" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 20
 script = ExtResource("1_c42cd")
 
 [node name="filler_img" type="Sprite2D" parent="."]
-position = Vector2(2, -1)
 scale = Vector2(0.34375, 0.34375)
 texture = ExtResource("1_d7ark")
 
-[node name="hit_area" type="Area2D" parent="."]
-
-[node name="shape" type="CollisionShape2D" parent="hit_area"]
-position = Vector2(0, 1)
+[node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_syl5c")
-
-[connection signal="body_entered" from="hit_area" to="." method="_on_hit_area_body_entered"]

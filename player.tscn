@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdu7slvow3axy"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_575jd"]
+[ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_kdxou"]
+[ext_resource type="PackedScene" uid="uid://cptkldrevgpc1" path="res://gun.tscn" id="3_cptr2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
+size = Vector2(63, 64)
+
+[node name="player" type="CharacterBody2D" groups=["player"]]
+position = Vector2(610, 681)
+collision_mask = 24
+script = ExtResource("1_575jd")
+
+[node name="collision_shape" type="CollisionShape2D" parent="."]
+position = Vector2(31.5, 32)
+shape = SubResource("RectangleShape2D_kkfjx")
+
+[node name="filler_image" type="Sprite2D" parent="."]
+position = Vector2(31, 33)
+texture = ExtResource("2_kdxou")
+
+[node name="guns" type="Node2D" parent="."]
+
+[node name="gun1" parent="guns" instance=ExtResource("3_cptr2")]
+COLOR = Color(1, 1, 0.278431, 1)
+UPGRADES = [24, 17]
+
+[node name="gun2" parent="guns" instance=ExtResource("3_cptr2")]
+visible = false
+COLOR = Color(0.545098, 0.258824, 0.937255, 1)
+UPGRADES = [32, 32, 32]
