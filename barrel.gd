@@ -1,9 +1,9 @@
-extends BaseEnemy
+extends StaticBody2D
 
 func _ready():
-  _max_health = 4
-  _health = 4
-  _item_drop_type = "trash"
+  $base_enemy._max_health = 4
+  $base_enemy._health = 4
+  $base_enemy._item_drop_type = "trash"
 
 func _process(delta):
   pass

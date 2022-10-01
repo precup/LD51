@@ -25,17 +25,17 @@ func _physics_process(delta):
   var direction: Vector2 = transform.x
   var collision: KinematicCollision2D = move_and_collide(direction * _speed * delta)
   if collision:
-    var collider: Object = collision.get_collider()
+    var collider: Object = collision.get_collider().get_node('base_enemy')
     var enemy_hit: bool = false
     var destructible_hit = false
     
     for enemy in get_tree().get_nodes_in_group("enemies"):
-      if enemy == collider:
+      if enemy.get_node('base_enemy') == collider:
         enemy_hit = true
         break
     
     for destructible in get_tree().get_nodes_in_group("destructible"):
-      if destructible == collider:
+      if destructible.get_node('base_enemy') == collider:
         destructible_hit = true
     
     if enemy_hit:
@@ -76,7 +76,7 @@ func _physics_process(delta):
       else:
         _destroy()
     elif destructible_hit:
-      var destructible: Node2D = collision.get_collider()
+      var destructible: Node2D = collision.get_collider().get_node("base_enemy")
       
       destructible.damage(_damage)
       _destroy()

@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://hxgma5bwp6l1"]
+[gd_scene load_steps=9 format=3 uid="uid://hxgma5bwp6l1"]
 
+[ext_resource type="Script" path="res://base_enemy.gd" id="1_kn47u"]
 [ext_resource type="Script" path="res://wandering_enemy.gd" id="1_t7sh5"]
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="2_bnrfm"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_r5rv8"]
@@ -20,6 +21,9 @@ position = Vector2(1, -2)
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_t7sh5")
+
+[node name="base_enemy" type="Node2D" parent="."]
+script = ExtResource("1_kn47u")
 
 [node name="collision_shape" type="CollisionShape2D" parent="."]
 position = Vector2(31, 33)

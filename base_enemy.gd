@@ -1,5 +1,7 @@
-extends CharacterBody2D
-class_name BaseEnemy
+extends Node2D
+
+@onready var graphic = $"../graphic"
+@onready var health_bar = $"../health_bar"
 
 @export var _max_health: float = 5.0
 const BURN_DAMAGE: float = 1.0
@@ -11,37 +13,38 @@ var desired_velocity: Vector2 = Vector2.ZERO
 var _conditions: Array = [] # [condition: Modifiers.Effect, gun_id: int, condition_strength: float]
 var _health: float = 5.0
 var active_tween: Tween = null
+var _speed_multiplier = 1.0
 
 # "trash", "common", "rare", "epic", "legendary"
 # (This is unused currently.)
 var _item_drop_type = "common"
 
 func _ready() -> void:
-  $graphic.material.set_shader_parameter("solid_color", Color.TRANSPARENT)
+  graphic.material.set_shader_parameter("solid_color", Color.TRANSPARENT)
 
 func _process(__delta: float) -> void:
-  $health_bar.update(_health, _max_health)
+  health_bar.update(_health, _max_health)
 
 func _physics_process(delta: float) -> void:
-  var time_left: float = 1.0
+  var speed_multiplier: float = 1.0
   var i: int = 0
   
   while i < len(_conditions):
     match _conditions[i][0]:
       Modifiers.Effect.STUN:
-        if _conditions[i][2] > time_left:
-          _conditions[i][2] -= time_left
-          time_left = 0.0
+        if _conditions[i][2] > speed_multiplier:
+          _conditions[i][2] -= speed_multiplier
+          speed_multiplier = 0.0
         else:
-          time_left -= _conditions[i][2]
+          speed_multiplier -= _conditions[i][2]
           _conditions.remove_at(i)
           i -= 1
       Modifiers.Effect.FREEZE:
         if _conditions[i][2] > delta:
           _conditions[i][2] -= delta
-          time_left *= 0.5
+          speed_multiplier *= 0.5
         else:
-          time_left = time_left * lerp(0.5, 1.0, _conditions[i][2] / delta)
+          speed_multiplier = speed_multiplier * lerp(0.5, 1.0, _conditions[i][2] / delta)
           _conditions.remove_at(i)
           i -= 1
       Modifiers.Effect.BURN:
@@ -53,26 +56,19 @@ func _physics_process(delta: float) -> void:
           _conditions.remove_at(i)
           i -= 1
     i += 1
-          
-  velocity = desired_velocity * time_left
 
-  move_and_slide()
-  
-  # hit the player
-  for q in range(get_slide_collision_count()):
-    var collision: KinematicCollision2D = get_slide_collision(q)
-    var collider: Node2D = collision.get_collider()
+  _speed_multiplier = speed_multiplier
 
-    if collider.has_method("damage"):
-      collider.damage(-1, - collider.position.direction_to(position))
+func get_speed_multiplier() -> float:
+  return _speed_multiplier
 
 func _hit_animation() -> void:
   if active_tween:
     active_tween.kill()
 
-  $graphic.material.set_shader_parameter("solid_color", Color.WHITE)
+  graphic.material.set_shader_parameter("solid_color", Color.WHITE)
   active_tween = create_tween()
-  var r = active_tween.tween_property($graphic.material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.2)
+  var r = active_tween.tween_property(graphic.material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.2)
   
   r.set_trans(Tween.TRANS_QUAD)
 
@@ -113,7 +109,6 @@ func damage(amount: float, weapon_id: int = -1) -> void:
     i += 1
       
   _health = max(0.0, _health - amount)
-
   if _health <= 0:
     destroy()
   else:
@@ -122,7 +117,7 @@ func damage(amount: float, weapon_id: int = -1) -> void:
 func destroy(): 
   drop_random_item()
 
-  queue_free()
+  get_parent().queue_free()
 
 var heart_pickup = preload("res://heart_pickup.tscn")
 

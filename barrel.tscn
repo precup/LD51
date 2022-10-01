@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c377nj22nsru2"]
+[gd_scene load_steps=8 format=3 uid="uid://c377nj22nsru2"]
 
 [ext_resource type="Texture2D" uid="uid://evrsev5shq4q" path="res://assets/barrel.png" id="1_dhndc"]
 [ext_resource type="Script" path="res://barrel.gd" id="1_l1avd"]
+[ext_resource type="Script" path="res://base_enemy.gd" id="3_l4shq"]
+[ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_cw0x7"]
 
 [sub_resource type="Shader" id="Shader_0m0ln"]
 code = "shader_type canvas_item;
@@ -22,8 +24,8 @@ shader_parameter/solid_color = Color(0, 0, 0, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
 size = Vector2(58, 62)
 
-[node name="barrel" type="CharacterBody2D" groups=["destructible"]]
-collision_layer = 32
+[node name="barrel" type="StaticBody2D" groups=["destructible"]]
+collision_layer = 48
 script = ExtResource("1_l1avd")
 
 [node name="graphic" type="Sprite2D" parent="."]
@@ -35,3 +37,8 @@ texture = ExtResource("1_dhndc")
 visible = false
 position = Vector2(29, 32)
 shape = SubResource("RectangleShape2D_gjycc")
+
+[node name="base_enemy" type="Node2D" parent="."]
+script = ExtResource("3_l4shq")
+
+[node name="health_bar" parent="." instance=ExtResource("4_cw0x7")]

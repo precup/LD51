@@ -15,15 +15,12 @@ offset_right = 1592.0
 offset_bottom = 508.0
 
 [node name="quest" parent="quest_container" instance=ExtResource("2_ahe0l")]
-layout_mode = 2
 
 [node name="quest2" parent="quest_container" instance=ExtResource("2_ahe0l")]
-layout_mode = 2
 offset_top = 104.0
 offset_bottom = 204.0
 
 [node name="quest3" parent="quest_container" instance=ExtResource("2_ahe0l")]
-layout_mode = 2
 offset_top = 208.0
 offset_bottom = 308.0
 
@@ -34,20 +31,16 @@ script = ExtResource("3_bryk1")
 player_node = NodePath("../../player")
 
 [node name="heart" parent="health_container" instance=ExtResource("4_xbvb8")]
-layout_mode = 2
 
 [node name="heart2" parent="health_container" instance=ExtResource("4_xbvb8")]
-layout_mode = 2
 offset_left = 132.0
 offset_right = 260.0
 
 [node name="heart3" parent="health_container" instance=ExtResource("4_xbvb8")]
-layout_mode = 2
 offset_left = 264.0
 offset_right = 392.0
 
 [node name="heart4" parent="health_container" instance=ExtResource("4_xbvb8")]
-layout_mode = 2
 offset_left = 396.0
 offset_right = 524.0
 

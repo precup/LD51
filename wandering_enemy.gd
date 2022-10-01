@@ -1,14 +1,12 @@
-extends BaseEnemy
+extends CharacterBody2D
 
 @export var MOVEMENT_SPEED: float = 100.0
 var _next_destination: Vector2 = Vector2.ZERO
 
 func _ready():
-  super._ready()
-
-  _max_health = 4
-  _health = 4
-  _item_drop_type = "common"
+  $base_enemy._max_health = 4
+  $base_enemy._health = 4
+  $base_enemy._item_drop_type = "common"
 
   _next_destination = position
 
@@ -29,11 +27,19 @@ func _choose_next_destination() -> void:
   #   next_destination = new_destination
 
 func _process(delta):
-  super._process(delta)
-
   if _next_destination.distance_to(position) < 15:
     _choose_next_destination()
 
-  # read and used by superclass.
-  desired_velocity = MOVEMENT_SPEED * position.direction_to(_next_destination).normalized()
+  velocity = MOVEMENT_SPEED * position.direction_to(_next_destination).normalized() * $base_enemy.get_speed_multiplier()
+
+  move_and_slide()
+  
+  # hit the player
+  for q in range(get_slide_collision_count()):
+    var collision: KinematicCollision2D = get_slide_collision(q)
+    var collider: Node2D = collision.get_collider()
+
+    if collider.has_method("damage"):
+      collider.damage(-1, - collider.position.direction_to(position))
+
   
