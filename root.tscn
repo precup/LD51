@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://b2q25rwes07ol"]
 
-[ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
+[ext_resource type="PackedScene" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="3_4fbd4"]
 [ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
 [ext_resource type="Texture2D" uid="uid://dm25ahy0fmma6" path="res://assets/tiles.png" id="5_gi3ks"]
 [ext_resource type="Script" path="res://health_container.gd" id="6_3q4g0"]
-[ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="6_5xe0t"]
+[ext_resource type="PackedScene" path="res://heart.tscn" id="6_5xe0t"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
 [ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
 [ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]

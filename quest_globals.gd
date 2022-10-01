@@ -21,13 +21,35 @@ class QuestData:
     quest_stat = stat
     quest_rarity = rarity
     description = desc
-
+    
+class RewardData:
+  var reward_type : RewardType
+  var reward_rarity : Rarity
+  var description : String
+  var execute : Callable
+  func _init(type, rarity, desc, callback):
+    reward_type = type
+    reward_rarity = rarity
+    description = desc
+    execute = callback
 
 var all_quests = [
-    QuestData.New(StatTrack.STAT_DO_NOTHING,                    { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Do nothing"),
-    QuestData.New(StatTrack.STAT_KILL_ENEMY_WITHOUT_MOVING,     { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Kills without moving"),
-    QuestData.New(StatTrack.STAT_KILL_WHILE_MOVING,             { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Kills while moving")
-  ]
+  QuestData.New(StatTrack.STAT_DO_NOTHING,                    { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Do nothing"),
+  QuestData.New(StatTrack.STAT_KILL_ENEMY_WITHOUT_MOVING,     { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Kills without moving"),
+  QuestData.New(StatTrack.STAT_KILL_WHILE_MOVING,             { Rarity.RARITY_COMMON: 5, Rarity.RARITY_RARE: 10, Rarity.RARITY_LEGENDARY: 20}, "Kills while moving")
+]
 
-
-# TODO: Need an "all_rewards", probably using lambdas. Perhaps a reward handler too so that we can have a pop-up UI for user to read and accept/dismiss
+var all_rewards = [
+  RewardData.New(RewardType.REWARD_GUN, Rarity.RARITY_COMMON , "", func (): pass),  # Call gun reward hookups
+  RewardData.New(RewardType.REWARD_GUN, Rarity.RARITY_RARE , "", func (): pass),  # Call gun reward hookups
+  RewardData.New(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY , "", func (): pass),  # Call gun reward hookups
+  
+  RewardData.New(RewardType.REWARD_MOD, Rarity.RARITY_COMMON , "", func (): pass),  # Call mod reward hookups
+  RewardData.New(RewardType.REWARD_MOD, Rarity.RARITY_RARE , "", func (): pass),  # Call mod reward hookups
+  RewardData.New(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY , "", func (): pass),  # Call mod reward hookups
+  
+  # TODO: Start implementing rewards relating to quest system specifically
+  RewardData.New(RewardType.REWARD_OTHER, Rarity.RARITY_COMMON , "", func (): pass), 
+  RewardData.New(RewardType.REWARD_OTHER, Rarity.RARITY_RARE , "", func (): pass), 
+  RewardData.New(RewardType.REWARD_OTHER, Rarity.RARITY_LEGENDARY , "", func (): pass), 
+]
