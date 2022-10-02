@@ -8,7 +8,7 @@ class_name Quest
 @onready var ui_reward_type_icon : TextureRect = $HSplit/Margin/Center/RewardIcon
 @onready var ui_quest_complete_overlay : ColorRect = $CompletedQuestOverlay
 @onready var ui_background : ColorRect = $BackgroundStyle
-@onready var ui_quest_complete_overlay2 : TextureRect = $TextureRect
+@onready var ui_quest_complete_overlay2 : TextureRect = $HSplit/Margin/Center/CheckMark
 const REWARD_ICON_RESOURCES: Dictionary = {
   QuestGlobals.RewardType.REWARD_GUN: "res://assets/gun_reward_icon.png",
   QuestGlobals.RewardType.REWARD_MOD: "res://assets/mod_reward_icon.png",
