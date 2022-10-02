@@ -25,7 +25,7 @@ var quest_reward_type_weights : Dictionary = {
   QuestGlobals.RewardType.REWARD_OTHER: 0, # temporarily 0, was 30
 }
 const quest_scn = preload("res://quest.tscn")
-@onready var quest_container = $"/root/root/ui/margin2/quest_container"
+@onready var quest_container = $"/root/root/ui/top_right/quest_container"
 
 # Pulls a rarity based on weights
 func _get_next_quest_rarity():

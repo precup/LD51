@@ -1,52 +1,76 @@
-[gd_scene load_steps=4 format=3 uid="uid://cs0n77jbgk8xo"]
+[gd_scene load_steps=7 format=3 uid="uid://dmnrsfv3p2o4p"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_hmor5"]
+[ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="2_ahe0l"]
 [ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
-[ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="4_xbvb8"]
+[ext_resource type="PackedScene" path="res://heart.tscn" id="4_xbvb8"]
+[ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="5_ubxos"]
+
+[sub_resource type="StyleBox" id="StyleBox_l1c8y"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_hmor5")
 
-[node name="clip_label" type="Label" parent="."]
-offset_left = 1666.0
-offset_top = 1002.0
-offset_right = 1804.0
-offset_bottom = 1072.0
-theme_override_font_sizes/font_size = 48
-text = "Clip: 5"
-
-[node name="margin" type="MarginContainer" parent="."]
+[node name="top_left" type="MarginContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 60
 theme_override_constants/margin_top = 60
 
-[node name="health_container" type="HBoxContainer" parent="margin"]
+[node name="panel" type="PanelContainer" parent="top_left"]
+layout_mode = 2
 offset_left = 60.0
 offset_top = 60.0
-offset_right = 584.0
-offset_bottom = 188.0
+offset_right = 604.0
+offset_bottom = 208.0
+theme_override_styles/panel = SubResource("StyleBox_l1c8y")
+
+[node name="margin" type="MarginContainer" parent="top_left/panel"]
+layout_mode = 2
+offset_right = 544.0
+offset_bottom = 148.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="health_container" type="HBoxContainer" parent="top_left/panel/margin"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 534.0
+offset_bottom = 138.0
 script = ExtResource("3_bryk1")
 
-[node name="heart" parent="margin/health_container" instance=ExtResource("4_xbvb8")]
+[node name="heart" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_bottom = 128.0
 
-[node name="heart2" parent="margin/health_container" instance=ExtResource("4_xbvb8")]
+[node name="heart2" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 132.0
 offset_right = 260.0
 offset_bottom = 128.0
 
-[node name="heart3" parent="margin/health_container" instance=ExtResource("4_xbvb8")]
+[node name="heart3" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 264.0
 offset_right = 392.0
 offset_bottom = 128.0
 
-[node name="heart4" parent="margin/health_container" instance=ExtResource("4_xbvb8")]
+[node name="heart4" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 396.0
 offset_right = 524.0
 offset_bottom = 128.0
 
-[node name="margin2" type="MarginContainer" parent="."]
+[node name="top_right" type="MarginContainer" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -56,8 +80,99 @@ grow_horizontal = 0
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 
-[node name="quest_container" type="VBoxContainer" parent="margin2"]
+[node name="quest_container" type="VBoxContainer" parent="top_right"]
+layout_mode = 2
 offset_top = 60.0
-offset_right = 164.0
+offset_right = 478.0
 offset_bottom = 485.0
 grow_horizontal = 0
+
+[node name="quest" parent="top_right/quest_container" instance=ExtResource("2_ahe0l")]
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 478.0
+offset_bottom = 148.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="bottom_left" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_right = 138.0
+grow_vertical = 0
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="panel" type="PanelContainer" parent="bottom_left"]
+layout_mode = 2
+offset_left = 60.0
+offset_right = 224.0
+offset_bottom = 270.0
+
+[node name="margin" type="MarginContainer" parent="bottom_left/panel"]
+layout_mode = 2
+offset_right = 164.0
+offset_bottom = 270.0
+
+[node name="vsplit" type="VBoxContainer" parent="bottom_left/panel/margin"]
+layout_mode = 2
+offset_right = 164.0
+offset_bottom = 270.0
+
+[node name="margin" type="MarginContainer" parent="bottom_left/panel/margin/vsplit"]
+layout_mode = 2
+offset_right = 164.0
+offset_bottom = 110.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="clip_label" type="Label" parent="bottom_left/panel/margin/vsplit/margin"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 144.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 48
+text = "5 / 10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="bottom_left/panel/margin/vsplit"]
+layout_mode = 2
+offset_top = 114.0
+offset_right = 164.0
+offset_bottom = 118.0
+
+[node name="margin2" type="MarginContainer" parent="bottom_left/panel/margin/vsplit"]
+layout_mode = 2
+offset_top = 122.0
+offset_right = 164.0
+offset_bottom = 270.0
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="center" type="CenterContainer" parent="bottom_left/panel/margin/vsplit/margin2"]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 154.0
+offset_bottom = 138.0
+
+[node name="gun_image" type="TextureRect" parent="bottom_left/panel/margin/vsplit/margin2/center"]
+custom_minimum_size = Vector2i(128, 128)
+layout_mode = 2
+offset_left = 8.0
+offset_right = 136.0
+offset_bottom = 128.0
+texture = ExtResource("5_ubxos")
+ignore_texture_size = true
+stretch_mode = 4

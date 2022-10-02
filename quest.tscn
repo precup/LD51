@@ -15,32 +15,39 @@ script = ExtResource("1_iu6j4")
 layout_direction = 3
 offset_right = 1920.0
 offset_bottom = 1080.0
+dragger_visibility = 2
 
 [node name="Margin" type="MarginContainer" parent="HSplit"]
-offset_right = 128.0
+offset_right = 138.0
 offset_bottom = 1080.0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="Center" type="CenterContainer" parent="HSplit/Margin"]
-offset_right = 128.0
-offset_bottom = 1080.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 138.0
+offset_bottom = 1070.0
 
 [node name="RewardIcon" type="TextureRect" parent="HSplit/Margin/Center"]
 custom_minimum_size = Vector2i(128, 128)
-offset_top = 476.0
+offset_top = 466.0
 offset_right = 128.0
-offset_bottom = 604.0
+offset_bottom = 594.0
 texture = ExtResource("2_urxvi")
 ignore_texture_size = true
 stretch_mode = 4
 
 [node name="VSplit" type="VSplitContainer" parent="HSplit"]
-offset_left = 140.0
+offset_left = 138.0
 offset_right = 1920.0
 offset_bottom = 1080.0
+dragger_visibility = 2
 
 [node name="Margin1" type="MarginContainer" parent="HSplit/VSplit"]
-offset_right = 1780.0
-offset_bottom = 1021.0
+offset_right = 1782.0
+offset_bottom = 1033.0
 size_flags_vertical = 3
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -51,8 +58,8 @@ theme_override_constants/margin_bottom = 20
 custom_minimum_size = Vector2i(300, 0)
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 1760.0
-offset_bottom = 1001.0
+offset_right = 1762.0
+offset_bottom = 1013.0
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 28
@@ -62,7 +69,7 @@ scroll_active = false
 
 [node name="Margin2" type="MarginContainer" parent="HSplit/VSplit"]
 offset_top = 1033.0
-offset_right = 1780.0
+offset_right = 1782.0
 offset_bottom = 1080.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
@@ -71,7 +78,7 @@ theme_override_constants/margin_bottom = 20
 [node name="ProgressBar" type="ProgressBar" parent="HSplit/VSplit/Margin2"]
 anchors_preset = -1
 offset_left = 20.0
-offset_right = 1760.0
+offset_right = 1762.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 0
