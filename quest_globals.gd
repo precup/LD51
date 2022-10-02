@@ -60,7 +60,7 @@ var all_quests = [
   QuestData.new(StatTrack.STAT_FIRE_GUN, { Rarity.RARITY_COMMON: 10, Rarity.RARITY_RARE: 20, Rarity.RARITY_LEGENDARY: 40}, "Fire your gun." ),
   QuestData.new(StatTrack.STAT_FIRE_SHOT, { Rarity.RARITY_RARE: 40, Rarity.RARITY_LEGENDARY: 100}, "Fire bullets." ),
   QuestData.new(StatTrack.STAT_CONTINUOUSLY_FIRE, { Rarity.RARITY_COMMON: 10, Rarity.RARITY_RARE: 18, Rarity.RARITY_LEGENDARY: 25}, "Fire continuously." ),
-  QuestData.new(StatTrack.STAT_CONTINUOUSLY_TOUCH_WALL, { Rarity.RARITY_COMMON: 10, Rarity.RARITY_RARE: 18, Rarity.RARITY_LEGENDARY: 25}, "Remain touching a wall." ),
+  QuestData.new(StatTrack.STAT_CONTINUOUSLY_TOUCH_WALL, { Rarity.RARITY_COMMON: 10, Rarity.RARITY_RARE: 18, Rarity.RARITY_LEGENDARY: 25}, "Continuously touch a wall." ),
   QuestData.new(StatTrack.STAT_COMPLETE_QUEST, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 2, Rarity.RARITY_LEGENDARY: 3}, "Complete other quest(s)." ),
   QuestData.new(StatTrack.STAT_GET_HIT, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 3, Rarity.RARITY_LEGENDARY: 5}, "Get hit." ),
   QuestData.new(StatTrack.STAT_LOSE_HEARTS, { Rarity.RARITY_COMMON: 2, Rarity.RARITY_RARE: 5, Rarity.RARITY_LEGENDARY: 10}, "Lose hearts." ),
