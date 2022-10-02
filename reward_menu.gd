@@ -11,6 +11,7 @@ const GUN_SCENE: PackedScene = preload("res://gun.tscn")
 
 @onready var WEAPON1 = $center/panel/vsplit/margin2/vsplit/hbox/margin/weapon1
 @onready var WEAPON2 = $center/panel/vsplit/margin2/vsplit/hbox/margin2/weapon2
+@onready var TRASH = $center/panel/vsplit/margin2/vsplit/hbox/margin3/trash
 
 var _upgrade_mode: bool = true
 var _upgrade: Modifiers.Gun = Modifiers.Gun.NONE
@@ -53,6 +54,7 @@ func get_random_starter_gun(with_mod : bool):
   var gun = GUN_SCENE.instantiate()
   gun.MAX_MODIFIERS = 2
   gun.UPGRADES = []
+  gun.COLOR = Color.from_hsv(randf(), 0.5, 1.0)
   if with_mod:  # one of their guns gets a mod, one doesnt
     gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 1})) # Heavily bias starter weapon mod to be a common
   return gun
@@ -65,6 +67,7 @@ func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Diction
   # Legendary  Max(0-6, 3-5) 
   gun.MAX_MODIFIERS = max_mods
   gun.UPGRADES = []
+  gun.COLOR = Color.from_hsv(randf(), 0.5, 1.0)
   
   # prefilled mod counts:
     # Common 0-2   (will get clipped to >=1)
@@ -87,6 +90,7 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
   var player_guns: Array = get_tree().get_first_node_in_group("player").get_node("gun_rotation_container/guns").get_children()
   WEAPON1.display_weapon(player_guns[0], reward_type == QuestGlobals.RewardType.REWARD_MOD)
   WEAPON2.display_weapon(player_guns[1], reward_type == QuestGlobals.RewardType.REWARD_MOD)
+  TRASH.clear_highlights()
   
   # mutate the base_rarity_weights table based on reward rarity. Mods of the reward rarity tier are twice as likely. Mods of lower tiers are .5x per tier lower  
   # DO NOT MODIFY base rarity weights, its not a copy... lol
