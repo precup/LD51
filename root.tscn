@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=19 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
+[ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
 [ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
 [ext_resource type="PackedScene" uid="uid://dmnrsfv3p2o4p" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Texture2D" uid="uid://dm25ahy0fmma6" path="res://assets/tiles.png" id="5_gi3ks"]
@@ -317,8 +318,11 @@ sources/1 = SubResource("TileSetAtlasSource_wx7vc")
 
 [node name="root" type="Node2D"]
 
+[node name="hitsprite" parent="." instance=ExtResource("1_y7wtu")]
+position = Vector2(883, 709)
+
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(1714, -3986)
+position = Vector2(744, 1063)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="camera" type="Camera2D" parent="."]

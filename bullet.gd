@@ -96,6 +96,13 @@ func _physics_process(delta):
         _destroy()
 
 
+@onready var hitsprite = preload("res://hitsprite.tscn")
+
 func _destroy() -> void:
+  var instance = hitsprite.instantiate()
+  $"/root/root".add_child(instance)
+
+  instance.global_position = global_position
+
   queue_free()
     
