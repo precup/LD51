@@ -4,11 +4,13 @@ class_name Quest
 
 @onready var ui_description_text : RichTextLabel = $HSplit/VSplit/Margin1/Label
 @onready var ui_progress_bar : ProgressBar = $HSplit/VSplit/Margin2/ProgressBar
-@onready var ui_progress_text : RichTextLabel = $HSplit/VSplit/Margin2/ProgressBar/Progress
+@onready var ui_progress_text : Label = $HSplit/VSplit/Margin2/ProgressBar/Progress
 @onready var ui_reward_type_icon : TextureRect = $HSplit/Margin/Center/RewardIcon
 @onready var ui_quest_complete_overlay : ColorRect = $CompletedQuestOverlay
 @onready var ui_background : ColorRect = $BackgroundStyle
 @onready var ui_quest_complete_overlay2 : TextureRect = $HSplit/Margin/Center/CheckMark
+@onready var red_overlay : TextureRect = $RedOverlay
+@onready var countdown : Label = $HSplit/Margin/Center/Countdown
 
 
 @onready var quest_manager = $"/root/root/quest_manager"
@@ -65,6 +67,12 @@ func _process(delta):
       if (sub_second_timer >= 1.0):
         sub_second_timer -= 1
         _increment_current_count(1) 
+    
+  var seconds_left: float = 30.0 # Kevin TODO please wire this up
+  countdown.text = "" if seconds_left > 10 else str(int(ceil(seconds_left)))
+  red_overlay.custom_minimum_size.y = max(0, 14.8 * (10 - seconds_left))
+  
+  
   
 func _update_progress():
   ui_progress_text.text = str(stat_count_current, " of ", stat_count_required)
