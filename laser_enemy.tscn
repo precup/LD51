@@ -11,10 +11,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(64, 64)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rm2iy"]
-shader = ExtResource("3_f8sp3")
-shader_parameter/solid_color = Color(1, 1, 1, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d426"]
 size = Vector2(72.5, 73.5)
 
@@ -71,11 +67,16 @@ scale_max = 0.7
 scale_curve = SubResource("CurveTexture_7o7rw")
 color_ramp = SubResource("GradientTexture1D_gtpys")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rm2iy"]
+shader = ExtResource("3_f8sp3")
+shader_parameter/solid_color = Color(1, 1, 1, 1)
+
 [node name="laser_enemy" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(-31, -36)
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_qljgk")
+facing_direction = 2
 
 [node name="base_enemy" type="Node2D" parent="."]
 script = ExtResource("2_gcmcp")
@@ -83,12 +84,6 @@ script = ExtResource("2_gcmcp")
 [node name="collision_shape" type="CollisionShape2D" parent="."]
 position = Vector2(31, 33)
 shape = SubResource("RectangleShape2D_kkfjx")
-
-[node name="graphic" type="Sprite2D" parent="."]
-modulate = Color(1, 0.137255, 0.215686, 1)
-material = SubResource("ShaderMaterial_rm2iy")
-position = Vector2(31, 33)
-texture = ExtResource("4_sftgi")
 
 [node name="area" type="Area2D" parent="."]
 position = Vector2(129, 25)
@@ -140,3 +135,9 @@ visibility_rect = Rect2(-50, -50, 50, 50)
 trail_length_secs = 0.17
 process_material = SubResource("ParticleProcessMaterial_sxrdm")
 texture = ExtResource("7_1lgc7")
+
+[node name="graphic" type="Sprite2D" parent="."]
+modulate = Color(1, 0.137255, 0.215686, 1)
+material = SubResource("ShaderMaterial_rm2iy")
+position = Vector2(31, 33)
+texture = ExtResource("4_sftgi")

@@ -4,7 +4,6 @@ func _ready():
   var beam_particles: GPUParticles2D = $"../beam_particles"
   # beam_particles.visible = false
   
-  
   pulse()
   sweep()
 
@@ -24,17 +23,36 @@ func pulse():
       await get_tree().process_frame
 
 func sweep():
-  var initial = Vector2(1000, -300)
+  var direction_vector = get_parent().get_facing_direction_vector()
+  var start_vector = Vector2.ZERO
+  var end_vector = Vector2.ZERO
+
+  if direction_vector == Vector2.DOWN:
+    start_vector = Vector2(-300, 1000)
+    end_vector = Vector2(300, 1000)
+  
+  if direction_vector == Vector2.UP:
+    start_vector = Vector2(300, -1000)
+    end_vector = Vector2(-300, -1000)
+
+  if direction_vector == Vector2.RIGHT:
+    start_vector = Vector2(1000, -300)
+    end_vector = Vector2(1000, 300)
+
+  if direction_vector == Vector2.LEFT:
+    start_vector = Vector2(-1000, 300)
+    end_vector = Vector2(-1000, -300)
+
   var line: Line2D = $"../line"
   
   while true:
     for y in range(0, 600, 1):
-      target_position = initial + Vector2(0, y)
+      target_position = start_vector + (end_vector - start_vector) * float(y) / 600.0
       
       await get_tree().process_frame
     
     for y in range(600, 0, -1):
-      target_position = initial + Vector2(0, y)
+      target_position = start_vector + (end_vector - start_vector) * float(y) / 600.0
       
       await get_tree().process_frame
 
