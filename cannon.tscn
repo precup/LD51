@@ -28,10 +28,13 @@ size = Vector2(58, 62)
 collision_layer = 16
 script = ExtResource("1_ueamw")
 direction = 0
+bullet_speed = 1000.0
+max_time_between_shots = 500.0
 
 [node name="graphic" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_qh18e")
 position = Vector2(31, 31)
+rotation = 1.5708
 texture = ExtResource("2_ht6dd")
 
 [node name="bullet_spawn" type="Node2D" parent="graphic"]
@@ -44,5 +47,6 @@ shape = SubResource("RectangleShape2D_gjycc")
 
 [node name="base_enemy" type="Node2D" parent="."]
 script = ExtResource("3_xh8jx")
+_max_health = 4
 
 [node name="health_bar" parent="." instance=ExtResource("4_f85wm")]

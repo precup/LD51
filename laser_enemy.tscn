@@ -1,0 +1,142 @@
+[gd_scene load_steps=18 format=3 uid="uid://cspp5u6u33ps1"]
+
+[ext_resource type="Script" path="res://laser_enemy.gd" id="1_qljgk"]
+[ext_resource type="Script" path="res://base_enemy.gd" id="2_gcmcp"]
+[ext_resource type="Shader" path="res://white_flash.gdshader" id="3_f8sp3"]
+[ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="4_sftgi"]
+[ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_1mj2p"]
+[ext_resource type="Script" path="res://laser_raycast.gd" id="6_ag5w6"]
+[ext_resource type="Texture2D" uid="uid://dcuma3xobg2bd" path="res://assets/particle.png" id="7_1lgc7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rm2iy"]
+shader = ExtResource("3_f8sp3")
+shader_parameter/solid_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2d426"]
+size = Vector2(72.5, 73.5)
+
+[sub_resource type="Gradient" id="Gradient_1vkv7"]
+colors = PackedColorArray(0.501961, 0.941176, 0.992157, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gtpys"]
+gradient = SubResource("Gradient_1vkv7")
+
+[sub_resource type="Curve" id="Curve_iv76r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.687259, 0.0405406), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7o7rw"]
+curve = SubResource("Curve_iv76r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mi2h1"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = -100.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.3
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_7o7rw")
+color_ramp = SubResource("GradientTexture1D_gtpys")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_43v8r"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.3
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_7o7rw")
+color_ramp = SubResource("GradientTexture1D_gtpys")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sxrdm"]
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.3
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_7o7rw")
+color_ramp = SubResource("GradientTexture1D_gtpys")
+
+[node name="laser_enemy" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(-31, -36)
+collision_layer = 4
+collision_mask = 17
+script = ExtResource("1_qljgk")
+
+[node name="base_enemy" type="Node2D" parent="."]
+script = ExtResource("2_gcmcp")
+
+[node name="collision_shape" type="CollisionShape2D" parent="."]
+position = Vector2(31, 33)
+shape = SubResource("RectangleShape2D_kkfjx")
+
+[node name="graphic" type="Sprite2D" parent="."]
+modulate = Color(1, 0.137255, 0.215686, 1)
+material = SubResource("ShaderMaterial_rm2iy")
+position = Vector2(31, 33)
+texture = ExtResource("4_sftgi")
+
+[node name="area" type="Area2D" parent="."]
+position = Vector2(129, 25)
+collision_layer = 4
+collision_mask = 3
+
+[node name="shape" type="CollisionShape2D" parent="area"]
+position = Vector2(-97.25, 8.25)
+shape = SubResource("RectangleShape2D_2d426")
+
+[node name="health_bar" parent="." instance=ExtResource("5_1mj2p")]
+position = Vector2(14, -23)
+
+[node name="raycast" type="RayCast2D" parent="."]
+position = Vector2(0, 33)
+target_position = Vector2(1000, 0)
+collision_mask = 49
+collide_with_areas = true
+script = ExtResource("6_ag5w6")
+
+[node name="line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 500, 0)
+default_color = Color(0.647059, 0.901961, 1, 1)
+
+[node name="creation_particles" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(29, 35)
+amount = 15
+lifetime = 1.92
+visibility_rect = Rect2(-50, -50, 50, 50)
+trail_length_secs = 0.17
+process_material = SubResource("ParticleProcessMaterial_mi2h1")
+texture = ExtResource("7_1lgc7")
+
+[node name="collision_particles" type="GPUParticles2D" parent="."]
+position = Vector2(536, 29)
+amount = 15
+lifetime = 1.92
+visibility_rect = Rect2(-50, -50, 50, 50)
+trail_length_secs = 0.17
+process_material = SubResource("ParticleProcessMaterial_43v8r")
+texture = ExtResource("7_1lgc7")
+
+[node name="beam_particles" type="GPUParticles2D" parent="."]
+position = Vector2(536, 29)
+amount = 15
+lifetime = 1.92
+visibility_rect = Rect2(-50, -50, 50, 50)
+trail_length_secs = 0.17
+process_material = SubResource("ParticleProcessMaterial_sxrdm")
+texture = ExtResource("7_1lgc7")
