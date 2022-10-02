@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://om8bg7u458pb"
-path="res://.godot/imported/wall-tile1-grid.png-c2c9fdcf3f83d5716be23f83ff1aea14.ctex"
+uid="uid://c17cgdlnxml1t"
+path="res://.godot/imported/completed_quest_icon.png-f9de854e2ac7ba346062f2bbdca3463a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://wall-tile1-grid.png"
-dest_files=["res://.godot/imported/wall-tile1-grid.png-c2c9fdcf3f83d5716be23f83ff1aea14.ctex"]
+source_file="res://assets/completed_quest_icon.png"
+dest_files=["res://.godot/imported/completed_quest_icon.png-f9de854e2ac7ba346062f2bbdca3463a.ctex"]
 
 [params]
 

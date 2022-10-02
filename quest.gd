@@ -4,11 +4,20 @@ class_name Quest
 
 @onready var ui_description_text : RichTextLabel = $HSplit/VSplit/Margin1/Label
 @onready var ui_progress_bar : ProgressBar = $HSplit/VSplit/Margin2/ProgressBar
+@onready var ui_progress_text : RichTextLabel = $HSplit/VSplit/Margin2/ProgressBar/Progress
 @onready var ui_reward_type_icon : TextureRect = $HSplit/Margin/Center/RewardIcon
+@onready var ui_quest_complete_overlay : ColorRect = $CompletedQuestOverlay
+@onready var ui_background : ColorRect = $BackgroundStyle
+@onready var ui_quest_complete_overlay2 : TextureRect = $TextureRect
 const REWARD_ICON_RESOURCES: Dictionary = {
   QuestGlobals.RewardType.REWARD_GUN: "res://assets/gun_reward_icon.png",
   QuestGlobals.RewardType.REWARD_MOD: "res://assets/mod_reward_icon.png",
   QuestGlobals.RewardType.REWARD_OTHER: "res://assets/misc_reward_icon.png"
+}
+const RARITY_COLORS: Dictionary = {
+  QuestGlobals.Rarity.RARITY_COMMON: Color(0.0,0.0,0.0,164.0/255.0),
+  QuestGlobals.Rarity.RARITY_RARE: Color(22.0/255.0,22.0/255.0,135.0/255.0,164.0/255.0),
+  QuestGlobals.Rarity.RARITY_LEGENDARY: Color(106.0/255.0,65.0/255.0,8.0/255.0,164.0/255.0)
 }
 
 var reward
@@ -33,11 +42,13 @@ var initial_delay_counter = 0.0
 func initialize(_reward, _quest_rarity, _description, _stat_being_tracked, _stat_count_required):
   reward = _reward
   quest_rarity = _quest_rarity
+  ui_background.color = RARITY_COLORS[quest_rarity]
   ui_description_text.text = _description
   ui_progress_bar.max_value = _stat_count_required
   stat_being_tracked = _stat_being_tracked
   stat_count_required = _stat_count_required
   ui_reward_type_icon.texture = load(REWARD_ICON_RESOURCES[reward.reward_type])
+  _update_progress()
 
 
 func _process(delta):
@@ -51,13 +62,18 @@ func _process(delta):
         sub_second_timer -= 1
         _increment_current_count(1) 
   
-  
+func _update_progress():
+  ui_progress_text.text = str(stat_count_current, " of ", stat_count_required)
+
 func _increment_current_count(amount):
   stat_count_current += amount
+  _update_progress()
   ui_progress_bar.value = stat_count_current
     
   if stat_count_current >= stat_count_required:
     is_completed = true
+    ui_quest_complete_overlay.visible = true
+    ui_quest_complete_overlay2.visible = true
     reward.execute.call()
     
     
@@ -72,6 +88,7 @@ func quest_reset_progress_count(stat_track_id):
     stat_count_current = 0    
     ui_progress_bar.value = stat_count_current
     initial_delay_counter = 0.0 # probably dont need this here, but whatever
+    _update_progress()
 
 
 # For stats that involve duration
@@ -94,3 +111,4 @@ func quest_reset_timer(stat_track_id):
     stat_count_current = 0  # reset progress on stop duration
     ui_progress_bar.value = stat_count_current
     initial_delay_counter = 0.0 
+    _update_progress()
