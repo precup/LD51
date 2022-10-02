@@ -37,7 +37,6 @@ var _reload_left: float = 0
 
 func _ready() -> void:
   _rounds_left = magazine_size()
-  COLOR = Color.from_hsv(randf(), 0.5, 1.0)
   $sprite.modulate = COLOR
 
 func get_rounds_left() -> int:

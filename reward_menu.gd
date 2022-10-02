@@ -53,6 +53,7 @@ func get_random_starter_gun(with_mod : bool):
   var gun = GUN_SCENE.instantiate()
   gun.MAX_MODIFIERS = 2
   gun.UPGRADES = []
+  gun.COLOR = Color.from_hsv(randf(), 0.5, 1.0)
   if with_mod:  # one of their guns gets a mod, one doesnt
     gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 1})) # Heavily bias starter weapon mod to be a common
   return gun
@@ -65,6 +66,7 @@ func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Diction
   # Legendary  Max(0-6, 3-5) 
   gun.MAX_MODIFIERS = max_mods
   gun.UPGRADES = []
+  gun.COLOR = Color.from_hsv(randf(), 0.5, 1.0)
   
   # prefilled mod counts:
     # Common 0-2   (will get clipped to >=1)

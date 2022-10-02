@@ -24,7 +24,7 @@ func _ready() -> void:
   # Instantiate starter guns
   var gun_index = 0
   for i in range(GUN_COUNT):
-    var new_gun = reward_menu.get_random_starter_gun(gun_index==0) # primary gun gets a mod
+    var new_gun = reward_menu.get_random_starter_gun(true) # primary gun gets a mod
     new_gun.PROJECTILE_NODE = PROJECTILE_NODE
     new_gun.visible = gun_index == 0 # primary gun is visible
     $gun_rotation_container/guns.add_child(new_gun)
