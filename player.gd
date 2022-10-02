@@ -29,7 +29,29 @@ func get_active_gun():
   # Hopefully this never happens.
   return GUNS[0]
 
+var boosted_speed = SPEED
+const BOOSTED_SPEED_MULTIPLIER = 5
+const BOOSTED_SPEED_DURATION = .25
+const DASH_COOLDOWN = 2
+var dash_cooldown_counter = 0
+
+func _begin_dash():
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_DASH) 
+  dash_cooldown_counter = DASH_COOLDOWN
+  var tween = get_tree().create_tween()
+  tween.tween_property(self, "boosted_speed", BOOSTED_SPEED_MULTIPLIER*SPEED, BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)       
+  tween.tween_interval(BOOSTED_SPEED_DURATION/3.0)        
+  tween.tween_property(self, "boosted_speed", SPEED,  BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)      
+  tween.tween_interval(DASH_COOLDOWN - BOOSTED_SPEED_DURATION)    
+  tween.tween_property(self, "modulate", Color(.6,.6,1,1), .12).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)    
+  tween.tween_property(self, "modulate", Color(1,1,1,1), .06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)  
+
 func _physics_process(_delta):
+  dash_cooldown_counter-=_delta
+  if Input.is_action_just_pressed("dash") && dash_cooldown_counter <= 0:
+    # TODO: put a CD on this, have UI show CD
+    _begin_dash()
+    
   if Input.is_action_just_pressed("change_gun"):
     for gun in GUNS:
       gun.visible = not gun.visible
@@ -39,7 +61,7 @@ func _physics_process(_delta):
     "right",
     "up",
     "down"
-  ) * SPEED
+  ) * boosted_speed
   
   if _knockback != Vector2.ZERO:
     velocity = _knockback
@@ -101,11 +123,9 @@ func play_flicker_animation():
   visible = true
 
 func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
-  # can consider moving this to after invlun frames if this ends up being too easy
-  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_GET_HIT)
   if _invuln_frames > 0:
     return
-  
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_GET_HIT)  
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_LOSE_HEARTS, abs(amount))
   _health = max(0, _health + amount)
   _invuln_frames = INVULN_LENGTH
