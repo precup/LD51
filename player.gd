@@ -29,9 +29,16 @@ func _ready() -> void:
     new_gun.visible = gun_index == 0 # primary gun is visible
     $guns.add_child(new_gun)
     gun_index += 1
-    
 
+func _unhandled_input(event):
+  if event is InputEventMouseButton:
+    if event.is_pressed() and (event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
+      change_gun()
   
+func change_gun():  
+  for gun in $guns.get_children():
+    gun.visible = not gun.visible
+
 func get_active_gun():
   var guns: Array = $guns.get_children()
   for gun in guns:
@@ -65,8 +72,7 @@ func _physics_process(_delta):
     _begin_dash()
     
   if Input.is_action_just_pressed("change_gun"):
-    for gun in $guns.get_children():
-      gun.visible = not gun.visible
+    change_gun()
   
   var direction = Input.get_vector(
     "left", 
@@ -108,8 +114,6 @@ func attentuate_knockback():
 func handle_collisions():
   for i in get_slide_collision_count():
     var collision = get_slide_collision(i)
-    
-    print(collision)
 
 func health() -> int:
   return _health

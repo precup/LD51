@@ -6,6 +6,7 @@ signal clicked
 @export var IS_TRASH: bool = false
 
 @onready var SLOT_PARENT: VBoxContainer = $split/panel/scroll/margin/center/vbox
+@onready var GUN_ICON: TextureRect = $split/gun_icon
 var maxed_out: bool = false
 
 func _ready():
@@ -31,6 +32,8 @@ func display_weapon(gun, can_max_out: bool):
     slot.get_node("hsplit/mod_name").text = Modifiers.NAMES[upgrades[i]] if i < len(upgrades) else ""
     slot.get_node("hsplit/full_icon").visible = i < len(upgrades)
     slot.get_node("hsplit/empty_icon").visible = i >= len(upgrades)
+  
+  GUN_ICON.modulate = gun.COLOR
 
 
 func _input(event):
