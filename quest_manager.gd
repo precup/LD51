@@ -108,6 +108,9 @@ func _process(delta):
   if (spawn_rate_counter >= quest_spawn_rate):
     spawn_rate_counter -= quest_spawn_rate
     _roll_new_quest()
+    
+  if (len(rewards_to_earn) > 0):
+    _pausable_earn_reward()
 
 func quest_count_progress(stat_track_id, amount = 1):
   for quest_scn in active_quests:
@@ -136,11 +139,22 @@ func quest_reset_timer(stat_track_id):
   for quest_scn in active_quests:
     quest_scn.quest_reset_timer(stat_track_id)
 
+var rewards_to_earn = []
+
 func quest_complete(quest, reward):
   active_quests.erase(quest)
-  
-  # If we need a reward UI, spin it up here(?) and pass in the reward callback
-  reward.execute.call()
+  rewards_to_earn.append(reward)
   
   # TODO: Track the completion after reward from prior has been given? Right now this results in one reward being lost. If we add a slight delay here it should pause until after UI done?
   quest_count_progress(QuestGlobals.StatTrack.STAT_COMPLETE_QUEST)
+  
+
+# Earn 1 reward per process loop. Allowing time for the game to be paused for each individual reward
+func _pausable_earn_reward():
+  if (len(rewards_to_earn) <= 0):
+    return
+    
+  var reward = rewards_to_earn[0]
+  rewards_to_earn.remove_at(0)
+  
+  QuestGlobals.show_reward(reward, quest_rarity_weights)  

@@ -75,21 +75,22 @@ var all_quests = [
 ]
 
 var all_rewards = [
-  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_COMMON , "", func (): show_reward(RewardType.REWARD_GUN, Rarity.RARITY_COMMON)),  # Call gun reward hookups
-  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_RARE , "", func (): show_reward(RewardType.REWARD_GUN, Rarity.RARITY_RARE)),  # Call gun reward hookups
-  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY , "", func (): show_reward(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY)),  # Call gun reward hookups
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_COMMON , "", func (): pass),  # No specific call-back needed. all handled by show_rward
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_RARE , "", func (): pass),  
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY , "", func (): pass),  
   
-  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_COMMON , "", func (): show_reward(RewardType.REWARD_MOD, Rarity.RARITY_COMMON)),  # Call mod reward hookups
-  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_RARE , "", func (): show_reward(RewardType.REWARD_MOD, Rarity.RARITY_RARE)),  # Call mod reward hookups
-  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY , "", func (): show_reward(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY)),  # Call mod reward hookups
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_COMMON , "", func (): pass),  
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_RARE , "", func (): pass),  
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY , "", func (): pass),  
   
   # TODO: Start implementing rewards relating to quest system specifically
-  RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_COMMON , "", func (): pass), 
+  RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_COMMON , "", func (): pass), # Call-backs will be needed here eventually
   RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_RARE , "", func (): pass), 
   RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_LEGENDARY , "", func (): pass), 
 ]
 
-
-func show_reward(reward_type, rarity):
+func show_reward(reward, base_rarity_weights):
   var reward_menu = get_tree().get_first_node_in_group("reward_menu")
-  reward_menu.show_reward(reward_type, rarity)
+  
+  # TODO: when passing REWARD_OTHER through here we may need to handle it separately. Unsure how callbacks will work
+  reward_menu.show_reward(reward.reward_type, reward.reward_rarity, base_rarity_weights)

@@ -16,25 +16,68 @@ var _upgrade_mode: bool = true
 var _upgrade: Modifiers.Gun = Modifiers.Gun.NONE
 var _gun = null
 
+var _gun_mods_by_rarity = {}
+
 func _ready() -> void:
-  visible = false
+  visible = false 
+
+func _init():
+  _sort_mods_by_rarity()
+    
+func _sort_mods_by_rarity():
+  for rarity in QuestGlobals.Rarity.values():
+    _gun_mods_by_rarity[rarity] = []
+    
+  for mod in Modifiers.RARITIES:
+    if mod != Modifiers.Gun.NONE:
+      _gun_mods_by_rarity[Modifiers.RARITIES[mod]].append(mod)
 
 
-func get_random_upgrade(min_rarity: QuestGlobals.Rarity):
-  return Modifiers.Gun.RICOCHET
+func get_random_upgrade(rarity_weights: Dictionary):
   
-
-func get_random_gun(min_rarity: QuestGlobals.Rarity):
+  var total = rarity_weights.values().reduce(func(i,accum): return accum + i)
+  var my_random_number = randi_range(0, total-1)
+  
+  var selected_rarity = QuestGlobals.Rarity.RARITY_COMMON
+  for rarity in rarity_weights:
+    my_random_number -= rarity_weights[rarity]
+    if my_random_number < 0:
+      selected_rarity = rarity
+      break
+  
+  var selected_mod = _gun_mods_by_rarity[selected_rarity][randi_range(0, len(_gun_mods_by_rarity[selected_rarity])-1)]
+  
+  return selected_mod
+  
+func get_random_starter_gun(with_mod : bool):
   var gun = GUN_SCENE.instantiate()
-  var max_mods: int = max((randi() % (min_rarity * 2 + 2)), min_rarity + 2)
+  gun.MAX_MODIFIERS = (randi() % 2) + 1 # 1 or 2 mod slots (random)
+  gun.UPGRADES = []
+  if with_mod:  # one of their guns gets a mod, one doesnt
+    gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 9, QuestGlobals.Rarity.RARITY_RARE: 1})) # Heavily bias starter weapon mod to be a common
+  return gun
+  
+func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Dictionary):
+  var gun = GUN_SCENE.instantiate()
+  var max_mods: int = max((randi() % (gun_rarity * 2 + 3)), gun_rarity + 1 + (randi() % 2)) # You always get your gun rarity + 1. Then you basically get two rolls at increases
+  # Common  Max(0-2, 1-2)
+  # Rare    Max(0-4, 2-3) 
+  # Legendary  Max(0-6, 3-4) 
   gun.MAX_MODIFIERS = max_mods
   gun.UPGRADES = []
-  for i in range(max(1, int(ceil(gun.MAX_MODIFIERS / 2.0)))):
-    gun.UPGRADES.append(get_random_upgrade(min_rarity))
+  
+  # prefilled mod counts:
+    # Common 0-2   (will get clipped to >=1)
+    # Rare   1-3
+    # Legendary   2-4
+  var free_mod_count = randi_range(gun_rarity, int(ceil(gun.MAX_MODIFIERS / 2.0)) + (randi() % 2))
+  # Clip free mods to be between 1 and max mods-1. In some cases this is [1,1] 
+  free_mod_count = max(1, min(max_mods - 1, free_mod_count))
+  for i in range(free_mod_count):
+    gun.UPGRADES.append(get_random_upgrade(mod_rarity_weights)) 
   return gun
 
-
-func show_reward(reward_type: QuestGlobals.RewardType, min_rarity: QuestGlobals.Rarity) -> void:
+func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGlobals.Rarity, base_rarity_weights: Dictionary) -> void:
   get_tree().paused = true
   visible = true
   
@@ -45,10 +88,21 @@ func show_reward(reward_type: QuestGlobals.RewardType, min_rarity: QuestGlobals.
   WEAPON1.display_weapon(player_guns[0], reward_type == QuestGlobals.RewardType.REWARD_MOD)
   WEAPON2.display_weapon(player_guns[1], reward_type == QuestGlobals.RewardType.REWARD_MOD)
   
+  # mutate the base_rarity_weights table based on reward rarity. Mods of the reward rarity tier are twice as likely. Mods of lower tiers are .5x per tier lower  
+  # DO NOT MODIFY base rarity weights, its not a copy... lol
+  var reward_rarity_adjusted_mod_weights = {}
+  for rarity in QuestGlobals.Rarity.values():
+    if rarity < reward_rarity:
+      reward_rarity_adjusted_mod_weights[rarity] = base_rarity_weights[rarity] * pow(.5, reward_rarity - rarity) #lower rarities than the gun rarity are halved. doubly so for common on a legendary
+    elif rarity == reward_rarity:
+      reward_rarity_adjusted_mod_weights[rarity] = base_rarity_weights[rarity] *  2
+    else:
+      reward_rarity_adjusted_mod_weights[rarity] = base_rarity_weights[rarity]
+      
   match reward_type:
     QuestGlobals.RewardType.REWARD_MOD:
       _upgrade_mode = true
-      _upgrade = get_random_upgrade(min_rarity)
+      _upgrade = get_random_upgrade(reward_rarity_adjusted_mod_weights)
       UPGRADE_NAME.text = Modifiers.NAMES[_upgrade]
       UPGRADE_DESCRIPTION.text = Modifiers.DESCRIPTIONS[_upgrade]
       HEADER.text = "New Wand Upgrade!"
@@ -57,7 +111,7 @@ func show_reward(reward_type: QuestGlobals.RewardType, min_rarity: QuestGlobals.
       
     QuestGlobals.RewardType.REWARD_GUN:
       _upgrade_mode = false
-      _gun = get_random_gun(min_rarity)
+      _gun = get_random_gun(reward_rarity, reward_rarity_adjusted_mod_weights)
       NEW_WEAPON.display_weapon(_gun, false)
       HEADER.text = "New Wand!"
       OPTION_HEADER.text = "Pick a wand to replace:"
@@ -92,7 +146,6 @@ func apply_to_weapon(i):
     old_gun.visible = false
     gun_node.remove_child(old_gun)
   close_menu()
-
 
 func _on_trash_clicked():
   if not _upgrade_mode:

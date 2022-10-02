@@ -6,8 +6,12 @@ var INVULN_LENGTH = 60
 @export var SPEED: float = 400.0
 @export var MAX_HEALTH: int = 8
 const BULLET_SCENE: PackedScene = preload("res://bullet.tscn")
+const GUN_COUNT = 2
 
 @onready var quest_manager = $"/root/root/quest_manager"
+
+# Hacky, but we are using this to generate our starter weapons lol
+@onready var reward_menu = get_tree().get_first_node_in_group("reward_menu")
 
 var _last_direction: Vector2 = Vector2.LEFT
 var _health: int = MAX_HEALTH
@@ -15,11 +19,19 @@ var _knockback: Vector2 = Vector2.ZERO
 var _invuln_frames = 0
 
 func _ready() -> void:
-  _health -= 2 # just for debugging
+  _health -= 2 # just for debugging  
   
-  for gun in $guns.get_children():
-    gun.PROJECTILE_NODE = PROJECTILE_NODE
+  # Instantiate starter guns
+  var gun_index = 0
+  for i in range(GUN_COUNT):
+    var new_gun = reward_menu.get_random_starter_gun(gun_index==0) # primary gun gets a mod
+    new_gun.PROJECTILE_NODE = PROJECTILE_NODE
+    new_gun.visible = gun_index == 0 # primary gun is visible
+    $guns.add_child(new_gun)
+    gun_index += 1
+    
 
+  
 func get_active_gun():
   var guns: Array = $guns.get_children()
   for gun in guns:
