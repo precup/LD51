@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends RigidBody2D
 
 @onready var BULLET: PackedScene = preload("res://bullet.tscn")
 @onready var PROJECTILE_NODE: Node2D = $'/root/root/projectiles'
@@ -33,7 +33,9 @@ func _process(delta):
       shoot_bullet(direction.rotated(deg_to_rad(x)))
   
   if position.distance_to(next_destination) >= 10:
-    position += position.direction_to(next_destination).normalized() * 200 * delta
+    var velocity = position.direction_to(next_destination).normalized() * 200 * delta
+    
+    # move_and_collide(velocity)
   
   if ticks_to_choose_next_destination <= 0:
     ticks_to_choose_next_destination = max_ticks_to_choose_next_destination
@@ -80,3 +82,6 @@ func shoot_bullet(direction_vector: Vector2):
   bullet.global_position = bullet_spawn.global_position
   bullet.global_rotation = direction_vector.angle()
   bullet.scale = Vector2(1, 1)
+
+func knockback(bullet_vector: Vector2):
+  apply_central_impulse(bullet_vector * 500)

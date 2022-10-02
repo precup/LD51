@@ -65,6 +65,8 @@ func get_speed_multiplier() -> float:
   return _speed_multiplier
 
 func _hit_animation() -> void:
+  # flash white
+  
   if active_tween:
     active_tween.kill()
 
@@ -73,6 +75,8 @@ func _hit_animation() -> void:
   var r = active_tween.tween_property(graphic.material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.1)
   
   r.set_trans(Tween.TRANS_QUAD)
+  
+  
 
 func apply_condition(new_condition: Array) -> void:
   for condition in _conditions:
@@ -91,9 +95,13 @@ func get_status_effects() -> Dictionary:
     effects[condition[0]] += effects[condition[2]]
   return effects
 
+func knockback(bullet_vector: Vector2):
+  if get_parent().has_method("knockback"):
+    get_parent().knockback(bullet_vector)
 
-func damage(amount: float, weapon_id: int = -1) -> void:
+func damage(amount: float, weapon_id: int = -1, bullet_vector: Vector2 = Vector2.ZERO) -> void:
   var i: int = 0
+  
   while i < len(_conditions) and weapon_id != -1:
     match _conditions[i][0]:
       Modifiers.Effect.MARK:
@@ -116,6 +124,8 @@ func damage(amount: float, weapon_id: int = -1) -> void:
     quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KILL_ENEMY)
     destroy()
   else:
+    if bullet_vector != Vector2.ZERO:
+      knockback(bullet_vector)
     _hit_animation()
 
 func destroy(): 

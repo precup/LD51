@@ -61,7 +61,7 @@ func _physics_process(delta):
             if not _has_returned:
               _has_returned = true
               _gun.return_bullet()
-      collider.damage(_damage * react_damage)
+      collider.damage(_damage * react_damage, -1, direction)
       for effect in _effects:
         quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_APPLY_EFFECT)
         match effect[0]:
