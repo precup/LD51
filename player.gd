@@ -36,7 +36,7 @@ func _unhandled_input(event):
       change_gun()
   
 func change_gun():  
-  for gun in $guns.get_children():
+  for gun in $gun_rotation_container/guns.get_children():
     gun.visible = not gun.visible
 
 func get_active_gun():
