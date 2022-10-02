@@ -47,8 +47,6 @@ func _physics_process(delta) -> void:
   if not visible:
     return
   
-  rotation += get_angle_to(get_global_mouse_position())
-  
   if _reload_left > 0:
     _reload_left -= delta
     if _reload_left <= 0:
@@ -124,6 +122,9 @@ func fire() -> void:
     bullet.global_rotation = BULLET_SPAWN.global_rotation + arc_angle
     bullet.scale = Vector2(scale, scale)
     _fire_cooldown_left = fire_cooldown()
+  
+  var player = $"/root/root/references".get_player()
+  player.gun_was_fired()
   
   if not Modifiers.Gun.BOTTOMLESS_MAGAZINE in UPGRADES:
     _rounds_left -= 1

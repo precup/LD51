@@ -27,7 +27,7 @@ func _ready() -> void:
     var new_gun = reward_menu.get_random_starter_gun(gun_index==0) # primary gun gets a mod
     new_gun.PROJECTILE_NODE = PROJECTILE_NODE
     new_gun.visible = gun_index == 0 # primary gun is visible
-    $guns.add_child(new_gun)
+    $gun_rotation_container/guns.add_child(new_gun)
     gun_index += 1
 
 func _unhandled_input(event):
@@ -40,7 +40,7 @@ func change_gun():
     gun.visible = not gun.visible
 
 func get_active_gun():
-  var guns: Array = $guns.get_children()
+  var guns: Array = $gun_rotation_container/guns.get_children()
   for gun in guns:
     if gun.visible:
       return gun
@@ -66,7 +66,10 @@ func _begin_dash():
   tween.tween_property(self, "modulate", Color(1,1,1,1), .06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)  
 
 func _physics_process(_delta):
-  dash_cooldown_counter-=_delta
+  dash_cooldown_counter -= _delta
+  
+  $gun_rotation_container.rotation = get_angle_to(get_global_mouse_position())
+  
   if Input.is_action_just_pressed("dash") && dash_cooldown_counter <= 0:
     # TODO: put a CD on this, have UI show CD
     _begin_dash()
@@ -160,3 +163,9 @@ func pickup(item: String) -> void:
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_PICKUP_ITEM)
   if item == "heart":
     heal(1)
+
+func gun_was_fired() -> void:
+  var animation_player: AnimationPlayer = $animation_player
+  
+  animation_player.seek(0, true) # reset
+  animation_player.play("fire")

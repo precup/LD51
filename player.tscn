@@ -1,10 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdu7slvow3axy"]
+[gd_scene load_steps=6 format=3 uid="uid://cdu7slvow3axy"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_575jd"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_kdxou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(63, 64)
+
+[sub_resource type="Animation" id="Animation_ahgkx"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun_rotation_container/guns:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-20, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s5m3d"]
+_data = {
+"fire": SubResource("Animation_ahgkx")
+}
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(610, 681)
@@ -19,4 +39,12 @@ shape = SubResource("RectangleShape2D_kkfjx")
 position = Vector2(31, 33)
 texture = ExtResource("2_kdxou")
 
-[node name="guns" type="Node2D" parent="."]
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s5m3d")
+}
+
+[node name="gun_rotation_container" type="Node2D" parent="."]
+
+[node name="guns" type="Node2D" parent="gun_rotation_container"]
+position = Vector2(-20, 0)

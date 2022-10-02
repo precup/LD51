@@ -70,7 +70,7 @@ func _hit_animation() -> void:
 
   graphic.material.set_shader_parameter("solid_color", Color.WHITE)
   active_tween = create_tween()
-  var r = active_tween.tween_property(graphic.material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.2)
+  var r = active_tween.tween_property(graphic.material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.1)
   
   r.set_trans(Tween.TRANS_QUAD)
 
@@ -111,6 +111,7 @@ func damage(amount: float, weapon_id: int = -1) -> void:
     i += 1
       
   _health = max(0.0, _health - amount)
+
   if _health <= 0:
     quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KILL_ENEMY)
     destroy()

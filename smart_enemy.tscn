@@ -46,6 +46,5 @@ shape = SubResource("RectangleShape2D_gjycc")
 
 [node name="base_enemy" type="Node2D" parent="."]
 script = ExtResource("3_8sucg")
-_max_health = 12
 
 [node name="health_bar" parent="." instance=ExtResource("4_px8to")]
