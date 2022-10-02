@@ -59,18 +59,18 @@ func get_random_starter_gun(with_mod : bool):
   
 func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Dictionary):
   var gun = GUN_SCENE.instantiate()
-  var max_mods: int = max((randi() % (gun_rarity * 2 + 3)), gun_rarity + 1 + (randi() % 2)) # You always get your gun rarity + 1. Then you basically get two rolls at increases
-  # Common  Max(0-2, 1-2)
-  # Rare    Max(0-4, 2-3) 
-  # Legendary  Max(0-6, 3-4) 
+  var max_mods: int = max((randi() % (gun_rarity * 2 + 3)), gun_rarity + 1 + (randi() % 2) + (randi() % 2)) # You always get your gun rarity + 1. Then you basically get two rolls at increases
+  # Common  Max(0-2, 1-3)
+  # Rare    Max(0-4, 2-4) 
+  # Legendary  Max(0-6, 3-5) 
   gun.MAX_MODIFIERS = max_mods
   gun.UPGRADES = []
   
   # prefilled mod counts:
     # Common 0-2   (will get clipped to >=1)
-    # Rare   1-3
-    # Legendary   2-4
-  var free_mod_count = randi_range(gun_rarity, int(ceil(gun.MAX_MODIFIERS / 2.0)) + (randi() % 2))
+    # Rare   1-2
+    # Legendary   2-3
+  var free_mod_count = randi_range(gun_rarity, int(floor(gun.MAX_MODIFIERS / 2.1))) + (randi() % 2)
   # Clip free mods to be between 1 and max mods-1. In some cases this is [1,1] 
   free_mod_count = max(1, min(max_mods - 1, free_mod_count))
   for i in range(free_mod_count):

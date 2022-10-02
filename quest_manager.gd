@@ -21,7 +21,7 @@ var quest_rarity_weights : Dictionary = {
 # Affects the distribution of incoming quest reward types
 var quest_reward_type_weights : Dictionary = {
   QuestGlobals.RewardType.REWARD_GUN: 20,
-  QuestGlobals.RewardType.REWARD_MOD: 40,
+  QuestGlobals.RewardType.REWARD_MOD: 20,
   QuestGlobals.RewardType.REWARD_OTHER: 0, 
 }
 const quest_scn = preload("res://quest.tscn")
