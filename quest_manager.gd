@@ -116,7 +116,6 @@ func quest_reset_progress_count(stat_track_id):
   for quest_scn in active_quests:
     quest_scn.quest_reset_progress_count(stat_track_id)
 
-
 # For stats that involve duration
 func quest_start_timer(stat_track_id):
   stat_timers_active_status[stat_track_id] = true

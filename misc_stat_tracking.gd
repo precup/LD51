@@ -1,6 +1,6 @@
 extends Node
 
-@onready var quest_manager = $"/root/quest_manager"
+@onready var quest_manager = $"/root/root/quest_manager"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,14 +28,11 @@ var IMANOK_CODE = ["right", "left", "right", "left", "down", "down", "up", "up"]
 
 var konami_counter = 0
 var imanok_counter = 0
-      
-  STAT_CONTINUOUSLY_FIRE,
-  STAT_CONTINUOUSLY_TOUCH_WALL,
 
 # No clue if this works
 func _input(event :InputEvent):
-  if event.is_pressed():
-    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KEY_PRESSED)
+  if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right") || Input.is_action_just_pressed("up") || Input.is_action_just_pressed("down"):
+      quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KEY_PRESSED)
     
   if event.is_action_pressed(KONAMI_CODE[konami_counter]):
     konami_counter+=1

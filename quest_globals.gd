@@ -65,7 +65,7 @@ var all_quests = [
   QuestData.new(StatTrack.STAT_LOSE_HEARTS, { Rarity.RARITY_COMMON: 2, Rarity.RARITY_RARE: 5, Rarity.RARITY_LEGENDARY: 10}, "Lose hearts." ),
 #  QuestData.new(StatTrack.STAT_ADD_GUN_MODULE, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 3, Rarity.RARITY_LEGENDARY: 5}, "Add a module to your gun." ),
   QuestData.new(StatTrack.STAT_KONAMI_CODE, { Rarity.RARITY_RARE: 1}, "Type the Konami code." ),
-  QuestData.new(StatTrack.STAT_KEY_PRESSED, { Rarity.RARITY_COMMON: 20, Rarity.RARITY_RARE: 50, Rarity.RARITY_LEGENDARY: 100}, "Type keys on your keyboard." ),
+  QuestData.new(StatTrack.STAT_KEY_PRESSED, { Rarity.RARITY_COMMON: 30, Rarity.RARITY_RARE: 80, Rarity.RARITY_LEGENDARY: 160}, "Mash movement keys." ),
   QuestData.new(StatTrack.STAT_IMANOK_CODE, { Rarity.RARITY_LEGENDARY: 1}, "Type the imanoK code." ),
   QuestData.new(StatTrack.STAT_RELOAD, { Rarity.RARITY_COMMON: 2, Rarity.RARITY_RARE: 4, Rarity.RARITY_LEGENDARY: 10}, "Reload your gun." ),
   QuestData.new(StatTrack.STAT_PICKUP_ITEM, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 3, Rarity.RARITY_LEGENDARY: 8}, "Pick up items." ),
