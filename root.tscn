@@ -315,7 +315,7 @@ sources/1 = SubResource("TileSetAtlasSource_wx7vc")
 [node name="root" type="Node2D"]
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(-457, -2200)
+position = Vector2(621, 642)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="camera" type="Camera2D" parent="."]
