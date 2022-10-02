@@ -1,12 +1,12 @@
 extends HBoxContainer
 
-@export var player_node: NodePath
 var player: Player
 var cur_health = 0
 var cur_max_health = 0
 
 func _ready():
-  player = get_node(player_node)
+  player = get_tree().get_first_node_in_group("player")
+
 
 func _process(delta):
   var next_health = player.health()
@@ -17,7 +17,8 @@ func _process(delta):
     cur_max_health = next_max_health
     
     update_hearts()
-  
+
+
 func update_hearts():
   var health = player.health()
   var max_health = player.max_health()
