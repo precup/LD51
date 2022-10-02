@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnad03ke1cx1l"]
+
+[ext_resource type="Script" path="res://patrol_enemy.gd" id="1_i4h0h"]
+[ext_resource type="Script" path="res://base_enemy.gd" id="2_82qbc"]
+[ext_resource type="Shader" path="res://white_flash.gdshader" id="3_6nmas"]
+[ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="4_m862p"]
+[ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_x0nn2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
+size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rm2iy"]
+shader = ExtResource("3_6nmas")
+shader_parameter/solid_color = Color(1, 1, 1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2d426"]
+size = Vector2(72.5, 73.5)
+
+[node name="patrol_enemy" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(-768, -2397)
+collision_layer = 4
+collision_mask = 17
+script = ExtResource("1_i4h0h")
+
+[node name="base_enemy" type="Node2D" parent="."]
+script = ExtResource("2_82qbc")
+
+[node name="collision_shape" type="CollisionShape2D" parent="."]
+position = Vector2(31, 33)
+shape = SubResource("RectangleShape2D_kkfjx")
+
+[node name="graphic" type="Sprite2D" parent="."]
+modulate = Color(1, 0.137255, 0.215686, 1)
+material = SubResource("ShaderMaterial_rm2iy")
+position = Vector2(31, 33)
+texture = ExtResource("4_m862p")
+
+[node name="area" type="Area2D" parent="."]
+position = Vector2(129, 25)
+collision_layer = 4
+collision_mask = 3
+
+[node name="shape" type="CollisionShape2D" parent="area"]
+position = Vector2(-97.25, 8.25)
+shape = SubResource("RectangleShape2D_2d426")
+
+[node name="health_bar" parent="." instance=ExtResource("5_x0nn2")]
+position = Vector2(14, -23)
