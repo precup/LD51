@@ -33,23 +33,24 @@ var imanok_counter = 0
 func _input(event :InputEvent):
   if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right") || Input.is_action_just_pressed("up") || Input.is_action_just_pressed("down"):
       quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KEY_PRESSED)
-    
-  if event.is_action_pressed(KONAMI_CODE[konami_counter]):
-    konami_counter+=1
-    if konami_counter >= len(KONAMI_CODE):
-      konami_counter = 0
-      quest_manager.quest_counter_progress(QuestGlobals.StatTrack.STAT_KONAMI_CODE)
-  else:
-    konami_counter = 0
+  
+  if event.is_pressed:
     if event.is_action_pressed(KONAMI_CODE[konami_counter]):
       konami_counter+=1
-      
-  if event.is_action_pressed(IMANOK_CODE[imanok_counter]):
-    imanok_counter+=1
-    if imanok_counter >= len(IMANOK_CODE):
-      imanok_counter = 0
-      quest_manager.quest_counter_progress(QuestGlobals.StatTrack.STAT_IMANOK_CODE)
-  else:
-    imanok_counter = 0
+      if konami_counter >= len(KONAMI_CODE):
+        konami_counter = 0
+        quest_manager.quest_counter_progress(QuestGlobals.StatTrack.STAT_KONAMI_CODE)
+    else:
+      konami_counter = 0
+      if event.is_action_pressed(KONAMI_CODE[konami_counter]):
+        konami_counter+=1
+        
     if event.is_action_pressed(IMANOK_CODE[imanok_counter]):
       imanok_counter+=1
+      if imanok_counter >= len(IMANOK_CODE):
+        imanok_counter = 0
+        quest_manager.quest_counter_progress(QuestGlobals.StatTrack.STAT_IMANOK_CODE)
+    else:
+      imanok_counter = 0
+      if event.is_action_pressed(IMANOK_CODE[imanok_counter]):
+        imanok_counter+=1
