@@ -22,7 +22,6 @@ script = ExtResource("1_vihu6")
 [node name="tooltip_canvas" type="CanvasLayer" parent="."]
 
 [node name="split" type="HSplitContainer" parent="."]
-layout_mode = 2
 offset_right = 463.0
 offset_bottom = 256.0
 grow_horizontal = 2
@@ -30,19 +29,16 @@ grow_vertical = 2
 dragger_visibility = 2
 
 [node name="margin" type="MarginContainer" parent="split"]
-layout_mode = 2
 offset_right = 256.0
 offset_bottom = 256.0
 
 [node name="gun_icon" type="TextureRect" parent="split/margin"]
-layout_mode = 2
 offset_right = 256.0
 offset_bottom = 256.0
 texture = ExtResource("1_kvlyu")
 
 [node name="margin" type="MarginContainer" parent="split/margin"]
 visible = false
-layout_mode = 2
 offset_right = 256.0
 offset_bottom = 256.0
 theme_override_constants/margin_left = 10
@@ -51,7 +47,6 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="panel" type="PanelContainer" parent="split/margin/margin"]
-layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 246.0
@@ -59,7 +54,6 @@ offset_bottom = 246.0
 theme_override_styles/panel = ExtResource("3_p65p4")
 
 [node name="margin" type="MarginContainer" parent="split/margin/margin/panel"]
-layout_mode = 2
 offset_right = 236.0
 offset_bottom = 236.0
 theme_override_constants/margin_left = 10
@@ -68,7 +62,6 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="description" type="Label" parent="split/margin/margin/panel/margin"]
-layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 226.0
@@ -81,7 +74,6 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="panel" type="MarginContainer" parent="split"]
-layout_mode = 2
 offset_left = 256.0
 offset_right = 463.0
 offset_bottom = 256.0
@@ -90,7 +82,6 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="scroll" type="ScrollContainer" parent="split/panel"]
-layout_mode = 2
 offset_top = 10.0
 offset_right = 197.0
 offset_bottom = 246.0
@@ -98,7 +89,6 @@ theme_override_styles/panel = ExtResource("3_p65p4")
 horizontal_scroll_mode = 0
 
 [node name="margin" type="MarginContainer" parent="split/panel/scroll"]
-layout_mode = 2
 offset_right = 189.0
 offset_bottom = 59.0
 theme_override_constants/margin_left = 10
@@ -107,7 +97,6 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="center" type="CenterContainer" parent="split/panel/scroll/margin"]
-layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 179.0
@@ -115,12 +104,10 @@ offset_bottom = 49.0
 size_flags_horizontal = 3
 
 [node name="vbox" type="VBoxContainer" parent="split/panel/scroll/margin/center"]
-layout_mode = 2
 offset_right = 169.0
 offset_bottom = 39.0
 
 [node name="margin" type="MarginContainer" parent="split/panel/scroll/margin/center/vbox"]
-layout_mode = 2
 offset_right = 169.0
 offset_bottom = 39.0
 theme_override_constants/margin_left = 0
@@ -129,11 +116,9 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 7
 
 [node name="hsplit" parent="split/panel/scroll/margin/center/vbox/margin" instance=ExtResource("4_82kod")]
-layout_mode = 2
 
 [node name="highlight" type="ColorRect" parent="."]
 visible = false
-layout_mode = 2
 offset_right = 463.0
 offset_bottom = 256.0
 mouse_filter = 2
@@ -141,14 +126,12 @@ color = Color(1, 1, 1, 0.109804)
 
 [node name="unselectable" type="ColorRect" parent="."]
 visible = false
-layout_mode = 2
 offset_right = 463.0
 offset_bottom = 256.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.490196)
 
 [node name="Label" type="Label" parent="unselectable"]
-layout_mode = 0
 offset_left = 30.0
 offset_top = 46.0
 offset_right = 228.0

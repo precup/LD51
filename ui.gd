@@ -5,6 +5,9 @@ extends CanvasLayer
 @onready var overlay: TextureRect = $bottom_left/panel/margin/vsplit/margin2/overlay
 @onready var gun_icon: TextureRect = $bottom_left/panel/margin/vsplit/margin2/margin/center/gun_image
 
+func _ready():
+  _process(0)
+
 func _process(delta):
   var player = $"/root/root/references".get_player()
   var gun = player.get_active_gun()
