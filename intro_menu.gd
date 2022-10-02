@@ -21,8 +21,6 @@ func _process(__delta):
     get_tree().paused = true
     visible = true
 
-
-
 func _on_button_pressed():
   get_tree().paused = false
   visible = false

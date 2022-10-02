@@ -26,6 +26,7 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
 func _physics_process(delta):
   var direction: Vector2 = transform.x
   var collision: KinematicCollision2D = move_and_collide(direction * _speed * delta)
+  
   if collision:
     var collider: Object = collision.get_collider().get_node('base_enemy')
     var enemy_hit: bool = false
@@ -93,13 +94,21 @@ func _physics_process(delta):
         _richocets -= 1
         look_at(global_position + direction.bounce(collision.get_normal()))
       else:
-        _destroy()
+        _destroy(true)
 
 
 @onready var hitsprite = preload("res://hitsprite.tscn")
+@onready var hitsprite_wall = preload("res://hitsprite_wall.tscn")
 
-func _destroy() -> void:
-  var instance = hitsprite.instantiate()
+func _destroy(is_wall = false) -> void:
+  var instance: Node2D
+  if is_wall:
+    instance = hitsprite_wall.instantiate()
+    $"/root/root/sfx/wall_hit".play()
+  else:
+    instance = hitsprite.instantiate()
+    $"/root/root/sfx/enemy_hit".play()
+    
   $"/root/root".add_child(instance)
 
   instance.global_position = global_position

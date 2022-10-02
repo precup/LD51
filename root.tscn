@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=22 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
@@ -16,6 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
 [ext_resource type="PackedScene" uid="uid://cspp5u6u33ps1" path="res://laser_enemy.tscn" id="12_weq06"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
+[ext_resource type="AudioStream" uid="uid://dbr6ok4bh5c0f" path="res://assets/ld51 sfx/gunshot5.mp3" id="17_dcm7x"]
+[ext_resource type="AudioStream" uid="uid://s6b1t71tpu5p" path="res://assets/ld51 sfx/enemyhit.mp3" id="18_c15wr"]
+[ext_resource type="AudioStream" uid="uid://04plw8ot1rvi" path="res://assets/ld51 sfx/wallhit.mp3" id="19_1cvp1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
 texture = ExtResource("5_gi3ks")
@@ -380,7 +383,7 @@ bullet_speed = 600.0
 max_time_between_shots = 600.0
 
 [node name="smart_enemy" parent="level_1/doodads" instance=ExtResource("10_3gr08")]
-position = Vector2(1647, -4492)
+position = Vector2(1485, 1170)
 
 [node name="smart_enemy2" parent="level_1/doodads" instance=ExtResource("10_3gr08")]
 position = Vector2(1912, -4652)
@@ -444,3 +447,17 @@ current = true
 script = ExtResource("6_crj1l")
 
 [node name="ui" parent="." instance=ExtResource("5_e1kqk")]
+
+[node name="sfx" type="Node2D" parent="."]
+
+[node name="gunshot_4" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("17_dcm7x")
+volume_db = -20.0
+
+[node name="enemy_hit" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("18_c15wr")
+volume_db = -20.0
+
+[node name="wall_hit" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("19_1cvp1")
+volume_db = -20.0
