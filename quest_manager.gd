@@ -104,7 +104,9 @@ func _roll_new_quest():
 func _process(delta):
   # TODO: pausing / slower time, etc?
   spawn_rate_counter += delta
-  
+  if quest_container.get_child_count() >= MAX_CONCURRENT_QUESTS:
+    quest_container.get_child(MAX_CONCURRENT_QUESTS-1).set_seconds_left(quest_spawn_rate-spawn_rate_counter)
+    
   if (spawn_rate_counter >= quest_spawn_rate):
     spawn_rate_counter -= quest_spawn_rate
     _roll_new_quest()

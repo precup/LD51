@@ -56,7 +56,7 @@ func initialize(_reward , _quest_rarity, _description, _stat_being_tracked, _sta
   ui_reward_type_icon.texture = load(REWARD_ICON_RESOURCES[reward.reward_type])
   _update_progress()
 
-
+var seconds_left: float = 30.0
 func _process(delta):
   if (is_accumulating_duration && !is_completed):
     # Add the delta to initial delay, or actual counter accordingly
@@ -68,11 +68,11 @@ func _process(delta):
         sub_second_timer -= 1
         _increment_current_count(1) 
     
-  var seconds_left: float = 30.0 # Kevin TODO please wire this up
   countdown.text = "" if seconds_left > 10 else str(int(ceil(seconds_left)))
   red_overlay.custom_minimum_size.y = max(0, 14.8 * (10 - seconds_left))
   
-  
+func set_seconds_left(time_remaining: float):
+  seconds_left = time_remaining
   
 func _update_progress():
   ui_progress_text.text = str(stat_count_current, " of ", stat_count_required)

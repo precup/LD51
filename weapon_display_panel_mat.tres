@@ -1,0 +1,8 @@
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://b3c1dut1sapdf"]
+
+[resource]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.709804)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
