@@ -51,10 +51,10 @@ func get_random_upgrade(rarity_weights: Dictionary):
   
 func get_random_starter_gun(with_mod : bool):
   var gun = GUN_SCENE.instantiate()
-  gun.MAX_MODIFIERS = (randi() % 2) + 1 # 1 or 2 mod slots (random)
+  gun.MAX_MODIFIERS = 2
   gun.UPGRADES = []
   if with_mod:  # one of their guns gets a mod, one doesnt
-    gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 9, QuestGlobals.Rarity.RARITY_RARE: 1})) # Heavily bias starter weapon mod to be a common
+    gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 1})) # Heavily bias starter weapon mod to be a common
   return gun
   
 func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Dictionary):
@@ -137,7 +137,7 @@ func _on_weapon_2_clicked():
 
 
 func apply_to_weapon(i):
-  var gun_node = get_tree().get_first_node_in_group("player").get_node("guns")
+  var gun_node = get_tree().get_first_node_in_group("player").get_node("gun_rotation_container/guns")
   var old_gun = gun_node.get_child(i)
   if _upgrade_mode:
     old_gun.UPGRADES.append(_upgrade)
