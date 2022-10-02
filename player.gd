@@ -6,7 +6,6 @@ var INVULN_LENGTH = 60
 @export var SPEED: float = 400.0
 @export var MAX_HEALTH: int = 8
 const BULLET_SCENE: PackedScene = preload("res://bullet.tscn")
-@onready var GUNS: Array = $guns.get_children()
 
 @onready var quest_manager = $"/root/root/quest_manager"
 
@@ -18,16 +17,17 @@ var _invuln_frames = 0
 func _ready() -> void:
   _health -= 2 # just for debugging
   
-  for gun in GUNS:
+  for gun in $guns.get_children():
     gun.PROJECTILE_NODE = PROJECTILE_NODE
 
 func get_active_gun():
-  for gun in GUNS:
+  var guns: Array = $guns.get_children()
+  for gun in guns:
     if gun.visible:
       return gun
 
   # Hopefully this never happens.
-  return GUNS[0]
+  return guns[0]
 
 var boosted_speed = SPEED
 const BOOSTED_SPEED_MULTIPLIER = 3
@@ -53,7 +53,7 @@ func _physics_process(_delta):
     _begin_dash()
     
   if Input.is_action_just_pressed("change_gun"):
-    for gun in GUNS:
+    for gun in $guns.get_children():
       gun.visible = not gun.visible
   
   var direction = Input.get_vector(
