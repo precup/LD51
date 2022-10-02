@@ -14,7 +14,9 @@ func _ready():
     $split/panel.visible = false
   $highlight.visible = false
 
-func display_weapon(upgrades: Array, max_slots: int, can_max_out: bool):
+func display_weapon(gun, can_max_out: bool):
+  var max_slots: int = gun.MAX_MODIFIERS
+  var upgrades: Array = gun.UPGRADES
   maxed_out = max_slots <= len(upgrades) and can_max_out
   $unselectable.visible = maxed_out
   while SLOT_PARENT.get_child_count() < max_slots:
@@ -24,7 +26,7 @@ func display_weapon(upgrades: Array, max_slots: int, can_max_out: bool):
     SLOT_PARENT.get_child(i).queue_free()
   SLOT_PARENT.get_child(0).visible = max_slots > 0
   
-  for i in range(len(max_slots)):
+  for i in range(max_slots):
     var slot = SLOT_PARENT.get_child(i)
     slot.get_node("hsplit/mod_name").text = Modifiers.NAMES[upgrades[i]] if i < len(upgrades) else ""
     slot.get_node("hsplit/full_icon").visible = i < len(upgrades)
@@ -33,7 +35,7 @@ func display_weapon(upgrades: Array, max_slots: int, can_max_out: bool):
 
 func _input(event):
   if event is InputEventMouseButton:
-    if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and $highlight.visible:
+    if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and CLICKABLE and not maxed_out and $highlight.visible:
       emit_signal("clicked")
 
 
