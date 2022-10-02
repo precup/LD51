@@ -13,7 +13,7 @@ const MAX_CONCURRENT_QUESTS = 5
 
 # Affects rarity of incoming quests
 var quest_rarity_weights : Dictionary = {
-  QuestGlobals.Rarity.RARITY_COMMON: 50,
+  QuestGlobals.Rarity.RARITY_COMMON: 50, # was 50
   QuestGlobals.Rarity.RARITY_RARE: 25,
   QuestGlobals.Rarity.RARITY_LEGENDARY: 5,
 }
@@ -22,7 +22,7 @@ var quest_rarity_weights : Dictionary = {
 var quest_reward_type_weights : Dictionary = {
   QuestGlobals.RewardType.REWARD_GUN: 20,
   QuestGlobals.RewardType.REWARD_MOD: 40,
-  QuestGlobals.RewardType.REWARD_OTHER: 0, # temporarily 0, was 30
+  QuestGlobals.RewardType.REWARD_OTHER: 0, 
 }
 const quest_scn = preload("res://quest.tscn")
 @onready var quest_container = $"/root/root/ui/top_right/quest_container"
