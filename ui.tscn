@@ -8,10 +8,10 @@
 script = ExtResource("1_hmor5")
 
 [node name="clip_label" type="Label" parent="."]
-offset_left = 1423.0
-offset_top = 1102.0
-offset_right = 1561.0
-offset_bottom = 1172.0
+offset_left = 1666.0
+offset_top = 1002.0
+offset_right = 1804.0
+offset_bottom = 1072.0
 theme_override_font_sizes/font_size = 48
 text = "Clip: 5"
 

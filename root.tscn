@@ -1,18 +1,18 @@
 [gd_scene load_steps=16 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
-[ext_resource type="PackedScene" path="res://wandering_enemy.tscn" id="4_ltobp"]
+[ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
 [ext_resource type="PackedScene" uid="uid://cs0n77jbgk8xo" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Texture2D" uid="uid://dm25ahy0fmma6" path="res://assets/tiles.png" id="5_gi3ks"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
-[ext_resource type="PackedScene" path="res://barrel.tscn" id="8_b3h3m"]
+[ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
 [ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
-[ext_resource type="PackedScene" path="res://spike_trap.tscn" id="10_b02l4"]
+[ext_resource type="PackedScene" uid="uid://c4serf2rxddc2" path="res://spike_trap.tscn" id="10_b02l4"]
 [ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 [ext_resource type="PackedScene" uid="uid://bnad03ke1cx1l" path="res://patrol_enemy.tscn" id="11_atj5v"]
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
-[ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
+[ext_resource type="PackedScene" path="res://misc_stat_tracking.tscn" id="13_m5266"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
 texture = ExtResource("5_gi3ks")
