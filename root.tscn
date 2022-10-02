@@ -366,6 +366,14 @@ off_cycle = true
 position = Vector2(192, -707)
 off_cycle = true
 
+[node name="spike_trap7" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
+position = Vector2(464, -1429)
+off_cycle = true
+
+[node name="spike_trap8" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
+position = Vector2(886, -1788)
+off_cycle = true
+
 [node name="cannon" parent="level_1/doodads" instance=ExtResource("11_je3km")]
 position = Vector2(229, -1200)
 direction = 3
