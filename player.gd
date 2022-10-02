@@ -8,6 +8,8 @@ var INVULN_LENGTH = 60
 const BULLET_SCENE: PackedScene = preload("res://bullet.tscn")
 @onready var GUNS: Array = $guns.get_children()
 
+@onready var quest_manager = $"/root/quest_manager"
+
 var _last_direction: Vector2 = Vector2.LEFT
 var _health: int = MAX_HEALTH
 var _knockback: Vector2 = Vector2.ZERO
@@ -56,6 +58,9 @@ func _physics_process(_delta):
   
   if get_slide_collision_count() > 0:
     handle_collisions()
+    quest_manager.quest_start_timer(QuestGlobals.StatTrack.STAT_CONTINUOUSLY_TOUCH_WALL) 
+  elif direction.length() > 0:    
+    quest_manager.quest_reset_timer(QuestGlobals.StatTrack.STAT_CONTINUOUSLY_TOUCH_WALL) 
 
 func attentuate_knockback():
   if _knockback == Vector2.ZERO:
@@ -81,6 +86,7 @@ func max_health() -> int:
 
 
 func heal(amount: float) -> void:
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_HEAL, abs(amount))
   _health = min(MAX_HEALTH, _health + amount)
 
 func play_flicker_animation():
@@ -95,9 +101,12 @@ func play_flicker_animation():
   visible = true
 
 func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
+  # can consider moving this to after invlun frames if this ends up being too easy
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_GET_HIT)
   if _invuln_frames > 0:
     return
   
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_LOSE_HEARTS, abs(amount))
   _health = max(0, _health + amount)
   _invuln_frames = INVULN_LENGTH
   
@@ -112,5 +121,6 @@ func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
     return
 
 func pickup(item: String) -> void:
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_PICKUP_ITEMS)
   if item == "heart":
     heal(1)

@@ -10,6 +10,8 @@ var _effects: Array = []
 var _target: Node2D = null
 var _has_returned: bool = false
 
+@onready var quest_manager = $"/root/quest_manager"
+
 func configure(gun, speed: float, damage: float, effects: Array, homing: float, target: Node2D, richochets: int, pierces: int):
   _gun = gun
   _speed = speed
@@ -47,6 +49,7 @@ func _physics_process(delta):
     
     if enemy_hit:
       var react_damage: float = 1.0
+      quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_HIT_ENEMY)
       
       for effect in _effects:
         match effect[0]:
@@ -62,6 +65,7 @@ func _physics_process(delta):
               _gun.return_bullet()
       collider.damage(_damage * react_damage)
       for effect in _effects:
+        quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_APPLY_EFFECT)
         match effect[0]:
           Modifiers.Effect.FREEZE:
             collider.apply_condition(effect)

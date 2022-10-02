@@ -29,6 +29,8 @@ extends Node2D
 
 @export var PROJECTILE_NODE: Node2D
 
+@onready var quest_manager = $"/root/quest_manager"
+
 var _rounds_left: int = 0
 var _fire_cooldown_left: float = 0
 var _reload_left: float = 0
@@ -65,6 +67,7 @@ func fire() -> void:
   var damage: float = bullet_damage()
   var effects: Array = []
   var scale: float = 1.0
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_FIRE_GUN)
   
   for upgrade in UPGRADES:
     match upgrade:
@@ -108,6 +111,7 @@ func fire() -> void:
         if randf() < BASE_VAMPIRISM_PROC_CHANCE:
           effects.append([Modifiers.Effect.LEECH, -1, BASE_VAMPIRISM_HEAL])
   
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_FIRE_SHOT, num_shots)
   for i in range(num_shots):
     var arc_angle: float = lerp(-arc_size, arc_size, float(i) / max(1, num_shots - 1))
     if arc_size >= PI:
@@ -132,6 +136,7 @@ func start_reload() -> void:
 
 
 func reload() -> void:
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_RELOAD)
   _rounds_left = magazine_size()
 
 

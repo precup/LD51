@@ -88,7 +88,7 @@ func quest_pause_timer(stat_track_id):
 
 
 # For if the duration must be continous
-func quest_rest_timer(stat_track_id):
+func quest_reset_timer(stat_track_id):
   if stat_track_id == stat_being_tracked && !is_completed:
     is_accumulating_duration = false
     stat_count_current = 0  # reset progress on stop duration

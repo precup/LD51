@@ -1,5 +1,6 @@
 extends Node
 
+
 var quests_by_rarity = {}
 var rewards_by_type_by_rarity = {}
 var stat_timers_active_status = {}
@@ -21,7 +22,7 @@ var quest_rarity_weights : Dictionary = {
 var quest_reward_type_weights : Dictionary = {
   QuestGlobals.RewardType.REWARD_GUN: 20,
   QuestGlobals.RewardType.REWARD_MOD: 40,
-  QuestGlobals.RewardType.REWARD_OTHER: 30,
+  QuestGlobals.RewardType.REWARD_OTHER: 0, # temporarily 0, was 30
 }
 const quest_scn = preload("res://quest.tscn")
 @onready var quest_container = $"/root/root/ui/margin2/quest_container"
@@ -135,3 +136,8 @@ func quest_reset_timer(stat_track_id):
   for quest_scn in active_quests:
     quest_scn.quest_reset_timer(stat_track_id)
 
+func quest_complete(reward : QuestGlobals.RewardData):
+  quest_count_progress(QuestGlobals.StatTrack.STAT_COMPLETE_QUEST)
+  
+  # If we need a reward UI, spin it up here(?) and pass in the reward callback
+  reward.execute.call()

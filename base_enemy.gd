@@ -6,6 +6,8 @@ extends Node2D
 @export var _max_health: float = 5.0
 const BURN_DAMAGE: float = 1.0
 
+@onready var quest_manager = $"/root/quest_manager"
+
 # Set this in the subclass.
 # The superclass will take it and apply status modifiers before moving.
 var desired_velocity: Vector2 = Vector2.ZERO
@@ -110,6 +112,7 @@ func damage(amount: float, weapon_id: int = -1) -> void:
       
   _health = max(0.0, _health - amount)
   if _health <= 0:
+    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KILL_ENEMY)
     destroy()
   else:
     _hit_animation()
