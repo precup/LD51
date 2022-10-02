@@ -96,7 +96,9 @@ func _roll_new_quest():
   
   # remove excess children
   while (quest_container.get_child_count() > MAX_CONCURRENT_QUESTS):
-    quest_container.remove_child(quest_container.get_child(MAX_CONCURRENT_QUESTS))
+    var removed_quest = quest_container.get_child(MAX_CONCURRENT_QUESTS)
+    active_quests.erase(removed_quest)
+    quest_container.remove_child(removed_quest)
   
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -134,8 +136,11 @@ func quest_reset_timer(stat_track_id):
   for quest_scn in active_quests:
     quest_scn.quest_reset_timer(stat_track_id)
 
-func quest_complete(reward : QuestGlobals.RewardData):
-  quest_count_progress(QuestGlobals.StatTrack.STAT_COMPLETE_QUEST)
+func quest_complete(quest, reward):
+  active_quests.erase(quest)
   
   # If we need a reward UI, spin it up here(?) and pass in the reward callback
   reward.execute.call()
+  
+  # TODO: Track the completion after reward from prior has been given? Right now this results in one reward being lost. If we add a slight delay here it should pause until after UI done?
+  quest_count_progress(QuestGlobals.StatTrack.STAT_COMPLETE_QUEST)

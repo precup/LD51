@@ -9,6 +9,10 @@ class_name Quest
 @onready var ui_quest_complete_overlay : ColorRect = $CompletedQuestOverlay
 @onready var ui_background : ColorRect = $BackgroundStyle
 @onready var ui_quest_complete_overlay2 : TextureRect = $HSplit/Margin/Center/CheckMark
+
+
+@onready var quest_manager = $"/root/root/quest_manager"
+
 const REWARD_ICON_RESOURCES: Dictionary = {
   QuestGlobals.RewardType.REWARD_GUN: "res://assets/gun_reward_icon.png",
   QuestGlobals.RewardType.REWARD_MOD: "res://assets/mod_reward_icon.png",
@@ -20,7 +24,7 @@ const RARITY_COLORS: Dictionary = {
   QuestGlobals.Rarity.RARITY_LEGENDARY: Color(106.0/255.0,65.0/255.0,8.0/255.0,164.0/255.0)
 }
 
-var reward
+var reward 
 var quest_rarity =  QuestGlobals.Rarity.RARITY_COMMON
 var is_completed = false
 
@@ -39,7 +43,7 @@ var initial_delay_counter = 0.0
 # TODO: may need to display more details about rewards
 
 
-func initialize(_reward, _quest_rarity, _description, _stat_being_tracked, _stat_count_required):
+func initialize(_reward , _quest_rarity, _description, _stat_being_tracked, _stat_count_required):
   reward = _reward
   quest_rarity = _quest_rarity
   ui_background.color = RARITY_COLORS[quest_rarity]
@@ -74,7 +78,7 @@ func _increment_current_count(amount):
     is_completed = true
     ui_quest_complete_overlay.visible = true
     ui_quest_complete_overlay2.visible = true
-    reward.execute.call()
+    quest_manager.quest_complete(self, reward)
     
     
 func quest_count_progress(stat_track_id, amount):
