@@ -18,6 +18,7 @@ func _ready():
   $highlight.visible = false
 
 func display_weapon(gun, can_max_out: bool):
+  $highlight.visible = false
   var max_slots: int = gun.MAX_MODIFIERS
   var upgrades: Array = gun.UPGRADES
   maxed_out = max_slots <= len(upgrades) and can_max_out
@@ -45,7 +46,9 @@ func _input(event):
     if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and CLICKABLE and not maxed_out and $highlight.visible:
       emit_signal("clicked")
 
-
+func clear_highlights():
+  $highlight.visible = false
+  
 func _on_weapon_display_mouse_entered():
   if CLICKABLE and not maxed_out:
     $highlight.visible = true
@@ -53,7 +56,7 @@ func _on_weapon_display_mouse_entered():
 
 func _on_weapon_display_mouse_exited():
   $highlight.visible = false
-
+  
 
 func _on_hsplit_updated():
   var hovered = null
