@@ -108,8 +108,6 @@ func attentuate_knockback():
 func handle_collisions():
   for i in get_slide_collision_count():
     var collision = get_slide_collision(i)
-    
-    print(collision)
 
 func health() -> int:
   return _health

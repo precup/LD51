@@ -19,7 +19,7 @@ var _gun = null
 var _gun_mods_by_rarity = {}
 
 func _ready() -> void:
-  visible = false 
+  visible = true 
 
 func _init():
   _sort_mods_by_rarity()
@@ -127,10 +127,12 @@ func close_menu() -> void:
 
 
 func _on_weapon_1_clicked():
+  print("You clicked gun 1")
   apply_to_weapon(0)
 
 
 func _on_weapon_2_clicked():
+  print("You clicked gun 2")
   apply_to_weapon(1)
 
 
@@ -148,6 +150,7 @@ func apply_to_weapon(i):
   close_menu()
 
 func _on_trash_clicked():
+  print("You clicked trash")
   if not _upgrade_mode:
     _gun.visible = false
   close_menu()
