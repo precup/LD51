@@ -68,8 +68,12 @@ func _physics_process(delta):
   line.set_point_position(1, cast_point)
   
   var collision_particles: GPUParticles2D = $"../collision_particles"
-  collision_particles.global_rotation = get_collision_normal().angle()
-  collision_particles.position = to_local(get_collision_point())
+  if is_colliding():
+    collision_particles.visible = true
+    collision_particles.global_rotation = get_collision_normal().angle()
+    collision_particles.position = to_local(get_collision_point())
+  else:
+    collision_particles.visible = false
   
   var beam_particles: GPUParticles2D = $"../beam_particles"
   beam_particles.position = cast_point * 0.5

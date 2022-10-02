@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
 [ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="4_xbvb8"]
 [ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="5_ubxos"]
-[ext_resource type="PackedScene" uid="uid://nk2tdbkd4ujv" path="res://reward_menu.tscn" id="6_b4ynd"]
+[ext_resource type="PackedScene" path="res://reward_menu.tscn" id="6_b4ynd"]
 
 [sub_resource type="StyleBox" id="StyleBox_l1c8y"]
 resource_local_to_scene = false
