@@ -6,7 +6,7 @@ extends Node2D
 @export var _max_health: float = 5.0
 const BURN_DAMAGE: float = 1.0
 
-@onready var quest_manager = $"/root/quest_manager"
+@onready var quest_manager = $"/root/root/quest_manager"
 
 # Set this in the subclass.
 # The superclass will take it and apply status modifiers before moving.

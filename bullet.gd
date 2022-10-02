@@ -10,7 +10,7 @@ var _effects: Array = []
 var _target: Node2D = null
 var _has_returned: bool = false
 
-@onready var quest_manager = $"/root/quest_manager"
+@onready var quest_manager = $"/root/root/quest_manager"
 
 func configure(gun, speed: float, damage: float, effects: Array, homing: float, target: Node2D, richochets: int, pierces: int):
   _gun = gun

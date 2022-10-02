@@ -29,7 +29,7 @@ extends Node2D
 
 @export var PROJECTILE_NODE: Node2D
 
-@onready var quest_manager = $"/root/quest_manager"
+@onready var quest_manager = $"/root/root/quest_manager"
 
 var _rounds_left: int = 0
 var _fire_cooldown_left: float = 0

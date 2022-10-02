@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cs0n77jbgk8xo"]
+[gd_scene load_steps=4 format=3 uid="uid://cs0n77jbgk8xo"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_hmor5"]
-[ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="2_ahe0l"]
 [ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
 [ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="4_xbvb8"]
 
@@ -23,6 +22,7 @@ theme_override_constants/margin_left = 60
 theme_override_constants/margin_top = 60
 
 [node name="health_container" type="HBoxContainer" parent="margin"]
+layout_mode = 2
 offset_left = 60.0
 offset_top = 60.0
 offset_right = 584.0
@@ -30,19 +30,23 @@ offset_bottom = 188.0
 script = ExtResource("3_bryk1")
 
 [node name="heart" parent="margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_bottom = 128.0
 
 [node name="heart2" parent="margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 132.0
 offset_right = 260.0
 offset_bottom = 128.0
 
 [node name="heart3" parent="margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 264.0
 offset_right = 392.0
 offset_bottom = 128.0
 
 [node name="heart4" parent="margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 396.0
 offset_right = 524.0
 offset_bottom = 128.0
@@ -58,20 +62,8 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 
 [node name="quest_container" type="VBoxContainer" parent="margin2"]
+layout_mode = 2
 offset_top = 60.0
 offset_right = 164.0
 offset_bottom = 485.0
 grow_horizontal = 0
-
-[node name="quest" parent="margin2/quest_container" instance=ExtResource("2_ahe0l")]
-offset_right = 164.0
-
-[node name="quest2" parent="margin2/quest_container" instance=ExtResource("2_ahe0l")]
-offset_top = 104.0
-offset_right = 164.0
-offset_bottom = 204.0
-
-[node name="quest3" parent="margin2/quest_container" instance=ExtResource("2_ahe0l")]
-offset_top = 208.0
-offset_right = 164.0
-offset_bottom = 308.0

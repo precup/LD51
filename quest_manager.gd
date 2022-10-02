@@ -4,11 +4,11 @@ extends Node
 var quests_by_rarity = {}
 var rewards_by_type_by_rarity = {}
 var stat_timers_active_status = {}
-var active_quests
+var active_quests = []
 var rng = RandomNumberGenerator.new()
 
 var quest_spawn_rate = 10.0 # 10s
-var spawn_rate_counter = 10.0 
+var spawn_rate_counter = 30.0 # will spawn 3 quests to start
 const MAX_CONCURRENT_QUESTS = 5
 
 # Affects rarity of incoming quests
@@ -83,15 +83,14 @@ func _roll_new_quest():
   var reward_type = _get_next_quest_reward_type()  
   var quest = quests_by_rarity[rarity][rng.randi_range(0, len(quests_by_rarity[rarity])-1)]
   var reward = rewards_by_type_by_rarity[rarity][reward_type][rng.randi_range(0, len(rewards_by_type_by_rarity[rarity][reward_type])-1)]
-  
-  # TODO: instantiate quest object with above params.
-  
+    
   var new_quest_scn = quest_scn.instantiate()
   
   quest_container.add_child(new_quest_scn)
   quest_container.move_child(new_quest_scn, 0)
  
   new_quest_scn.initialize(reward, rarity, quest.description, quest.quest_stat, quest.quest_rarity[rarity])
+  active_quests.append(new_quest_scn)
   if stat_timers_active_status[quest.quest_stat]:
     new_quest_scn.quest_start_timer(quest.quest_stat)
   

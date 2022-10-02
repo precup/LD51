@@ -8,7 +8,7 @@ var INVULN_LENGTH = 60
 const BULLET_SCENE: PackedScene = preload("res://bullet.tscn")
 @onready var GUNS: Array = $guns.get_children()
 
-@onready var quest_manager = $"/root/quest_manager"
+@onready var quest_manager = $"/root/root/quest_manager"
 
 var _last_direction: Vector2 = Vector2.LEFT
 var _health: int = MAX_HEALTH
@@ -121,6 +121,6 @@ func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
     return
 
 func pickup(item: String) -> void:
-  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_PICKUP_ITEMS)
+  quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_PICKUP_ITEM)
   if item == "heart":
     heal(1)
