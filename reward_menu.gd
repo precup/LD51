@@ -84,7 +84,7 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
   NEW_WEAPON.visible = reward_type == QuestGlobals.RewardType.REWARD_GUN
   NEW_UPGRADE.visible = reward_type == QuestGlobals.RewardType.REWARD_MOD
   
-  var player_guns: Array = get_tree().get_first_node_in_group("player").get_node("guns").get_children()
+  var player_guns: Array = get_tree().get_first_node_in_group("player").get_node("gun_rotation_container/guns").get_children()
   WEAPON1.display_weapon(player_guns[0], reward_type == QuestGlobals.RewardType.REWARD_MOD)
   WEAPON2.display_weapon(player_guns[1], reward_type == QuestGlobals.RewardType.REWARD_MOD)
   
