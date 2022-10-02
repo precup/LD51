@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfw7sj83g6rab"
+path="res://.godot/imported/pothit.mp3-27dffa59d4f2ac3aeda2445c8bd32bec.mp3str"
+
+[deps]
+
+source_file="res://assets/ld51 sfx/pothit.mp3"
+dest_files=["res://.godot/imported/pothit.mp3-27dffa59d4f2ac3aeda2445c8bd32bec.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

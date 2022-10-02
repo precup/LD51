@@ -7,6 +7,11 @@ var has_shown: bool = false
 
 func _process(__delta):
   if not has_shown:
+    if $"/root/root/references".is_debug:
+      has_shown = true
+      visible = false
+      return
+
     has_shown = true
     var player = get_tree().get_first_node_in_group("player")
     var guns = player.get_node("gun_rotation_container/guns")

@@ -1,5 +1,7 @@
 extends Node2D
 
+var is_debug = true
+
 # handy list of all references!
 
 @export var player: NodePath

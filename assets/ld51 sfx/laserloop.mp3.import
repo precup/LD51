@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bp4q17ocohps"
+path="res://.godot/imported/laserloop.mp3-5774aa930a7a7923b14c29f530620d6e.mp3str"
+
+[deps]
+
+source_file="res://assets/ld51 sfx/laserloop.mp3"
+dest_files=["res://.godot/imported/laserloop.mp3-5774aa930a7a7923b14c29f530620d6e.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
