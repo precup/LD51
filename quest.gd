@@ -5,10 +5,16 @@ class_name Quest
 @onready var ui_description_text : RichTextLabel = $HSplit/VSplit/Margin1/Label
 @onready var ui_progress_bar : ProgressBar = $HSplit/VSplit/Margin2/ProgressBar
 @onready var ui_reward_type_icon : TextureRect = $HSplit/Margin/Center/RewardIcon
+@onready var ui_quest_complete_overlay : ColorRect = $CompletedQuestOverlay
 const REWARD_ICON_RESOURCES: Dictionary = {
   QuestGlobals.RewardType.REWARD_GUN: "res://assets/gun_reward_icon.png",
   QuestGlobals.RewardType.REWARD_MOD: "res://assets/mod_reward_icon.png",
   QuestGlobals.RewardType.REWARD_OTHER: "res://assets/misc_reward_icon.png"
+}
+const RARITY_COLORS: Dictionary = {
+  QuestGlobals.Rarity.RARITY_COMMON: Color(0.0,0.0,0.0,164.0/255.0),
+  QuestGlobals.Rarity.RARITY_RARE: Color(22.0/255.0,22.0/255.0,135.0/255.0,164.0/255.0),
+  QuestGlobals.Rarity.RARITY_LEGENDARY: Color(106.0/255.0,65.0/255.0,8.0/255.0,164.0/255.0)
 }
 
 var reward
@@ -33,6 +39,7 @@ var initial_delay_counter = 0.0
 func initialize(_reward, _quest_rarity, _description, _stat_being_tracked, _stat_count_required):
   reward = _reward
   quest_rarity = _quest_rarity
+  self.color = RARITY_COLORS[quest_rarity]
   ui_description_text.text = _description
   ui_progress_bar.max_value = _stat_count_required
   stat_being_tracked = _stat_being_tracked
@@ -58,6 +65,7 @@ func _increment_current_count(amount):
     
   if stat_count_current >= stat_count_required:
     is_completed = true
+    ui_quest_complete_overlay.visible = true
     reward.execute.call()
     
     
