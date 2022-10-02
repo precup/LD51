@@ -28,7 +28,14 @@ func _physics_process(delta):
     var collider: Object = collision.get_collider().get_node('base_enemy')
     var enemy_hit: bool = false
     var destructible_hit = false
-    
+
+    if collider == null:
+      return
+      
+    # never collide against self
+    if collider.get_parent() == _gun:
+      return
+
     for enemy in get_tree().get_nodes_in_group("enemies"):
       if enemy.get_node('base_enemy') == collider:
         enemy_hit = true

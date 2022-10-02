@@ -366,6 +366,7 @@ position = Vector2(216, -916)
 
 [node name="cannon" parent="level_1/doodads" instance=ExtResource("11_je3km")]
 position = Vector2(557, 557)
+direction = 1
 
 [node name="enemy" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
 position = Vector2(575, 104)

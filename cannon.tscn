@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://d0hwx6l3xfuns"]
 
-[ext_resource type="Script" path="res://cannon.gd" id="1_nmwsw"]
+[ext_resource type="Script" path="res://cannon.gd" id="1_ueamw"]
 [ext_resource type="Texture2D" uid="uid://skefo6a6g5yc" path="res://assets/cannon.png" id="2_ht6dd"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_xh8jx"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_f85wm"]
@@ -24,14 +24,18 @@ shader_parameter/solid_color = Color(0, 0, 0, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
 size = Vector2(58, 62)
 
-[node name="cannon" type="StaticBody2D" groups=["destructible"]]
-collision_layer = 48
-script = ExtResource("1_nmwsw")
+[node name="cannon" type="StaticBody2D" groups=["enemies"]]
+collision_layer = 16
+script = ExtResource("1_ueamw")
+direction = 0
 
 [node name="graphic" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_qh18e")
 position = Vector2(31, 31)
 texture = ExtResource("2_ht6dd")
+
+[node name="bullet_spawn" type="Node2D" parent="graphic"]
+position = Vector2(-5, 36)
 
 [node name="shape" type="CollisionShape2D" parent="."]
 visible = false
