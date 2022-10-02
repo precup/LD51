@@ -1,13 +1,28 @@
 extends CanvasLayer
 
-@onready var clip_label: Label = $clip_label
+@onready var clip_label: Label = $bottom_left/panel/margin/vsplit/margin/clip_label
+@onready var clip_label2: Label = $bottom_left/panel/margin/vsplit/margin/clip_label3
+@onready var overlay: TextureRect = $bottom_left/panel/margin/vsplit/margin2/overlay
 
 func _process(delta):
   var player = $"/root/root/references".get_player()
-  var rounds_left = player.get_active_gun().get_rounds_left()
+  var gun = player.get_active_gun()
+  var reload_progress = gun.get_reload_progress()
+  
+  overlay.visible = reload_progress >= 0
+  overlay.custom_minimum_size.y = (1 - reload_progress) * 148
+  
+  var rounds_left = gun.get_rounds_left()
+  var mag_size = str(gun.magazine_size())
 
-#  if rounds_left > 0:
-#    clip_label.text = "Clip: %d" % player.get_active_gun().get_rounds_left()
-#  else:
-#    clip_label.text = "Reloading..."
+  var rl_label
+  if reload_progress < 0:
+    rl_label = str(rounds_left)
+  else:
+    rl_label = "-"
+  
+  while len(rl_label) < len(mag_size):
+    rl_label = " " + rl_label
+  clip_label.text = rl_label
+  clip_label2.text = mag_size
   

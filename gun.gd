@@ -227,3 +227,10 @@ func bullet_pierces() -> int:
 func return_bullet() -> void:
   if _rounds_left < magazine_size():
     _rounds_left += 1
+
+
+func get_reload_progress() -> float:
+  if _reload_left <= 0:
+    return -1.0
+  return _reload_left / reload_time()
+  
