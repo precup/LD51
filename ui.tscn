@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://ui.gd" id="1_hmor5"]
 [ext_resource type="PackedScene" uid="uid://dn0o886degb1x" path="res://quest.tscn" id="2_ahe0l"]
 [ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
-[ext_resource type="PackedScene" path="res://heart.tscn" id="4_xbvb8"]
+[ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="4_xbvb8"]
 [ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="5_ubxos"]
 
 [sub_resource type="StyleBox" id="StyleBox_l1c8y"]
@@ -83,11 +83,12 @@ theme_override_constants/margin_right = 60
 [node name="quest_container" type="VBoxContainer" parent="top_right"]
 layout_mode = 2
 offset_top = 60.0
-offset_right = 478.0
+offset_right = 164.0
 offset_bottom = 485.0
 grow_horizontal = 0
 
 [node name="quest" parent="top_right/quest_container" instance=ExtResource("2_ahe0l")]
+visible = false
 layout_mode = 2
 anchors_preset = 0
 anchor_right = 0.0

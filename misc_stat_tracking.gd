@@ -17,7 +17,7 @@ func _process(delta):
     
   # Restart the quest if they stop firing
   if Input.is_action_just_pressed("shoot"):
-    quest_manager.quest_start_timer(QuestGlobals.StatTrack.STAT_DO_NOTHING)
+    quest_manager.quest_start_timer(QuestGlobals.StatTrack.STAT_CONTINUOUSLY_FIRE)
   if Input.is_action_just_released("shoot"):
     quest_manager.quest_reset_timer(QuestGlobals.StatTrack.STAT_CONTINUOUSLY_FIRE) 
   
