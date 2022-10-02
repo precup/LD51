@@ -75,16 +75,21 @@ var all_quests = [
 ]
 
 var all_rewards = [
-  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_COMMON , "", func (): pass),  # Call gun reward hookups
-  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_RARE , "", func (): pass),  # Call gun reward hookups
-  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY , "", func (): pass),  # Call gun reward hookups
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_COMMON , "", func (): show_reward(RewardType.REWARD_GUN, Rarity.RARITY_COMMON)),  # Call gun reward hookups
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_RARE , "", func (): show_reward(RewardType.REWARD_GUN, Rarity.RARITY_RARE)),  # Call gun reward hookups
+  RewardData.new(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY , "", func (): show_reward(RewardType.REWARD_GUN, Rarity.RARITY_LEGENDARY)),  # Call gun reward hookups
   
-  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_COMMON , "", func (): pass),  # Call mod reward hookups
-  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_RARE , "", func (): pass),  # Call mod reward hookups
-  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY , "", func (): pass),  # Call mod reward hookups
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_COMMON , "", func (): show_reward(RewardType.REWARD_MOD, Rarity.RARITY_COMMON)),  # Call mod reward hookups
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_RARE , "", func (): show_reward(RewardType.REWARD_MOD, Rarity.RARITY_RARE)),  # Call mod reward hookups
+  RewardData.new(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY , "", func (): show_reward(RewardType.REWARD_MOD, Rarity.RARITY_LEGENDARY)),  # Call mod reward hookups
   
   # TODO: Start implementing rewards relating to quest system specifically
   RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_COMMON , "", func (): pass), 
   RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_RARE , "", func (): pass), 
   RewardData.new(RewardType.REWARD_OTHER, Rarity.RARITY_LEGENDARY , "", func (): pass), 
 ]
+
+
+func show_reward(reward_type, rarity):
+  var reward_menu = get_tree().get_first_node_in_group("reward_menu")
+  reward_menu.show_reward(reward_type, rarity)

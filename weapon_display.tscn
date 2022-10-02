@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=3 uid="uid://fj76k2ap1q30"]
+
+[ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="1_kvlyu"]
+[ext_resource type="Script" path="res://weapon_display.gd" id="1_vihu6"]
+[ext_resource type="Texture2D" uid="uid://b3nx3nfjrat6h" path="res://assets/full_slot.png" id="2_i8fw8"]
+[ext_resource type="Texture2D" uid="uid://dhakgtw8kx44d" path="res://assets/empty_slot.png" id="3_m86su"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p30he"]
+bg_color = Color(0.533333, 0.611765, 0.678431, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n3toa"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 0.709804)
+
+[node name="weapon_display" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p30he")
+script = ExtResource("1_vihu6")
+
+[node name="tooltip_canvas" type="CanvasLayer" parent="."]
+
+[node name="split" type="HSplitContainer" parent="."]
+offset_right = 463.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+dragger_visibility = 2
+
+[node name="gun_icon" type="TextureRect" parent="split"]
+offset_right = 256.0
+offset_bottom = 256.0
+texture = ExtResource("1_kvlyu")
+
+[node name="panel" type="MarginContainer" parent="split"]
+offset_left = 256.0
+offset_right = 463.0
+offset_bottom = 256.0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="scroll" type="ScrollContainer" parent="split/panel"]
+offset_top = 10.0
+offset_right = 197.0
+offset_bottom = 246.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_n3toa")
+horizontal_scroll_mode = 0
+
+[node name="margin" type="MarginContainer" parent="split/panel/scroll"]
+offset_right = 189.0
+offset_bottom = 59.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="center" type="CenterContainer" parent="split/panel/scroll/margin"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 179.0
+offset_bottom = 49.0
+size_flags_horizontal = 3
+
+[node name="vbox" type="VBoxContainer" parent="split/panel/scroll/margin/center"]
+offset_right = 169.0
+offset_bottom = 39.0
+
+[node name="margin" type="MarginContainer" parent="split/panel/scroll/margin/center/vbox"]
+offset_right = 169.0
+offset_bottom = 39.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 7
+
+[node name="hsplit" type="HSplitContainer" parent="split/panel/scroll/margin/center/vbox/margin"]
+layout_direction = 3
+offset_right = 169.0
+offset_bottom = 32.0
+dragger_visibility = 1
+
+[node name="mod_name" type="Label" parent="split/panel/scroll/margin/center/vbox/margin/hsplit"]
+offset_top = 3.0
+offset_right = 125.0
+offset_bottom = 29.0
+text = "One Hit Wonder
+"
+
+[node name="full_icon" type="TextureRect" parent="split/panel/scroll/margin/center/vbox/margin/hsplit"]
+offset_left = 137.0
+offset_right = 169.0
+offset_bottom = 32.0
+texture = ExtResource("2_i8fw8")
+stretch_mode = 2
+
+[node name="empty_icon" type="TextureRect" parent="split/panel/scroll/margin/center/vbox/margin/hsplit"]
+visible = false
+offset_left = 137.0
+offset_right = 169.0
+offset_bottom = 32.0
+texture = ExtResource("3_m86su")
+stretch_mode = 2
+
+[node name="highlight" type="ColorRect" parent="."]
+visible = false
+offset_right = 463.0
+offset_bottom = 256.0
+mouse_filter = 1
+color = Color(1, 1, 1, 0.109804)
+
+[node name="unselectable" type="ColorRect" parent="."]
+visible = false
+offset_right = 463.0
+offset_bottom = 256.0
+mouse_filter = 1
+color = Color(0, 0, 0, 0.490196)
+
+[node name="Label" type="Label" parent="unselectable"]
+offset_left = 30.0
+offset_top = 46.0
+offset_right = 228.0
+offset_bottom = 206.0
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_font_sizes/font_size = 56
+text = "MAX
+POWER"
+horizontal_alignment = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_weapon_display_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_weapon_display_mouse_exited"]
