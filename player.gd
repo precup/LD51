@@ -170,4 +170,4 @@ func gun_was_fired() -> void:
   animation_player.seek(0, true) # reset
   animation_player.play("fire")
   
-  $"/root/root/sfx/gunshot_4".play()
+  $"/root/root/sfx/gunshot_5".play()
