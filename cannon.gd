@@ -10,12 +10,10 @@ enum Direction {
 @onready var bullet_spawn = $graphic/bullet_spawn
 
 @export var direction: Direction = Direction.RIGHT
+@export var bullet_speed: float = 1000
 
 var max_ticks_to_next_shot = 500
 var ticks_to_next_shot = 100
-
-func bullet_speed():
-  return 100
 
 func _ready():
   $base_enemy._max_health = 4
@@ -44,13 +42,12 @@ func _process(delta):
 func shoot_bullet():
   var bullet: Node2D = BULLET.instantiate()
   var homing = false
-  var speed = bullet_speed()
   var ricochets = false
   var pierces = false
   var damage = 1
   var effects = []
   
-  bullet.configure(self, speed, damage, effects, homing, null, ricochets, pierces)
+  bullet.configure(self, bullet_speed, damage, effects, homing, null, ricochets, pierces)
   PROJECTILE_NODE.add_child(bullet)
 
   var direction_vector = get_direction_vector()
