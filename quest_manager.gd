@@ -83,7 +83,7 @@ func _roll_new_quest():
   var reward_type = _get_next_quest_reward_type()  
   var quest = quests_by_rarity[rarity][rng.randi_range(0, len(quests_by_rarity[rarity])-1)]
   var reward = rewards_by_type_by_rarity[rarity][reward_type][rng.randi_range(0, len(rewards_by_type_by_rarity[rarity][reward_type])-1)]
-    
+  
   var new_quest_scn = quest_scn.instantiate()
   
   quest_container.add_child(new_quest_scn)

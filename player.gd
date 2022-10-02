@@ -30,7 +30,7 @@ func get_active_gun():
   return GUNS[0]
 
 var boosted_speed = SPEED
-const BOOSTED_SPEED_MULTIPLIER = 5
+const BOOSTED_SPEED_MULTIPLIER = 3
 const BOOSTED_SPEED_DURATION = .25
 const DASH_COOLDOWN = 2
 var dash_cooldown_counter = 0

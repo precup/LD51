@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0hwx6l3xfuns"]
+[gd_scene load_steps=8 format=3 uid="uid://depms7p861do1"]
 
-[ext_resource type="Script" path="res://cannon.gd" id="1_ueamw"]
-[ext_resource type="Texture2D" uid="uid://skefo6a6g5yc" path="res://assets/cannon.png" id="2_ht6dd"]
-[ext_resource type="Script" path="res://base_enemy.gd" id="3_xh8jx"]
-[ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_f85wm"]
+[ext_resource type="Script" path="res://smart_enemy.gd" id="1_c51ek"]
+[ext_resource type="Texture2D" uid="uid://skefo6a6g5yc" path="res://assets/cannon.png" id="2_0tw5w"]
+[ext_resource type="Script" path="res://base_enemy.gd" id="3_8sucg"]
+[ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_px8to"]
 
 [sub_resource type="Shader" id="Shader_0m0ln"]
 code = "shader_type canvas_item;
@@ -16,7 +16,7 @@ void fragment() {
 }
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh18e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0uxtc"]
 resource_local_to_scene = true
 shader = SubResource("Shader_0m0ln")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
@@ -24,17 +24,17 @@ shader_parameter/solid_color = Color(0, 0, 0, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
 size = Vector2(58, 62)
 
-[node name="cannon" type="StaticBody2D" groups=["enemies"]]
+[node name="smart_enemy" type="StaticBody2D" groups=["enemies"]]
+position = Vector2(22, 39)
 collision_layer = 16
-script = ExtResource("1_ueamw")
-bullet_speed = 1000.0
+script = ExtResource("1_c51ek")
+bullet_speed = 300.0
 max_time_between_shots = 500.0
 
 [node name="graphic" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_qh18e")
+material = SubResource("ShaderMaterial_0uxtc")
 position = Vector2(31, 31)
-rotation = 1.5708
-texture = ExtResource("2_ht6dd")
+texture = ExtResource("2_0tw5w")
 
 [node name="bullet_spawn" type="Node2D" parent="graphic"]
 position = Vector2(-5, 36)
@@ -45,7 +45,7 @@ position = Vector2(29, 32)
 shape = SubResource("RectangleShape2D_gjycc")
 
 [node name="base_enemy" type="Node2D" parent="."]
-script = ExtResource("3_xh8jx")
-_max_health = 4
+script = ExtResource("3_8sucg")
+_max_health = 12
 
-[node name="health_bar" parent="." instance=ExtResource("4_f85wm")]
+[node name="health_bar" parent="." instance=ExtResource("4_px8to")]
