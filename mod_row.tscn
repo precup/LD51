@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://docvd2mhlftl"]
+
+[ext_resource type="Script" path="res://mod_row.gd" id="1_qa3of"]
+[ext_resource type="Texture2D" uid="uid://b3nx3nfjrat6h" path="res://assets/full_slot.png" id="1_rolu1"]
+[ext_resource type="Texture2D" uid="uid://dhakgtw8kx44d" path="res://assets/empty_slot.png" id="2_k2let"]
+
+[node name="hsplit" type="HSplitContainer"]
+layout_direction = 3
+offset_right = 169.0
+offset_bottom = 32.0
+dragger_visibility = 1
+script = ExtResource("1_qa3of")
+
+[node name="mod_name" type="Label" parent="."]
+custom_minimum_size = Vector2i(50, 0)
+layout_mode = 2
+offset_top = 3.0
+offset_right = 125.0
+offset_bottom = 29.0
+size_flags_horizontal = 3
+text = "One Hit Wonder
+"
+horizontal_alignment = 2
+
+[node name="full_icon" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 137.0
+offset_right = 169.0
+offset_bottom = 32.0
+texture = ExtResource("1_rolu1")
+stretch_mode = 2
+
+[node name="empty_icon" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+offset_left = 137.0
+offset_right = 169.0
+offset_bottom = 32.0
+texture = ExtResource("2_k2let")
+stretch_mode = 2
+
+[connection signal="mouse_entered" from="." to="." method="_on_hsplit_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_hsplit_mouse_exited"]
