@@ -19,7 +19,7 @@ var _gun = null
 var _gun_mods_by_rarity = {}
 
 func _ready() -> void:
-  visible = true 
+  visible = false 
 
 func _init():
   _sort_mods_by_rarity()
