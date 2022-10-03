@@ -13,7 +13,7 @@ enum Direction {
 @export var bullet_speed: float = 1000
 @export var max_time_between_shots: float = 500
 
-var ticks_to_next_shot = max_time_between_shots
+var ticks_to_next_shot = 0
 
 func _ready():
   $base_enemy._max_health = 4

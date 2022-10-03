@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://w1inu0j1tffh"]
+[gd_scene load_steps=10 format=3 uid="uid://w1inu0j1tffh"]
 
 [ext_resource type="Script" path="res://spike_trap.gd" id="1_1x5hy"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_dlhy5"]
@@ -24,6 +24,9 @@ shader_parameter/solid_color = Color(0, 0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
 size = Vector2(123, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2yu7"]
+size = Vector2(112, 115.5)
 
 [node name="spike_trap" type="Area2D" groups=["destructible"]]
 collision_layer = 48
@@ -55,6 +58,13 @@ offset_right = 82.0
 offset_bottom = -8.0
 theme_override_font_sizes/font_size = 48
 text = "3"
+
+[node name="static_body" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="shape" type="CollisionShape2D" parent="static_body"]
+position = Vector2(59, 61.25)
+shape = SubResource("RectangleShape2D_f2yu7")
 
 [connection signal="body_entered" from="." to="." method="_on_spike_trap_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_spike_trap_body_exited"]

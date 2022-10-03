@@ -33,19 +33,25 @@ func _ready():
 func _physics_process(delta):
   if state_ttl - delta < 0:
     is_spiky = not is_spiky
+    
     if is_spiky:
       state_ttl = UP_TIME
+      $static_body/shape.disabled = bodies_in_trap.size() != 0
     else:
       state_ttl = DOWN_TIME
+      $static_body/shape.disabled = true
+      
     update_graphics()
   else:
     state_ttl -= delta
   
   if is_spiky:
     for body in bodies_in_trap:
-        # TODO: Don't damage more than once per cycle
+        # TODO: Only damage once per cycle
+        
         if body.has_method("damage"):
-          body.damage(1)
+          var kb_vec = (global_position - body.global_position).normalized()
+          body.damage(1, kb_vec)
 
 
 func update_graphics():
