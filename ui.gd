@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var gun_icon: TextureRect = $bottom_left/panel/margin/vsplit/margin2/margin/center/gun_image
 
 func _ready():
+  $dialog.visbile = false
   _process(0)
 
 func _process(delta):

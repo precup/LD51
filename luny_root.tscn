@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=23 format=3 uid="uid://dfxwgec4r78ar"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
@@ -20,8 +20,6 @@
 [ext_resource type="AudioStream" uid="uid://852hjl4qgnp2" path="res://assets/ld51 sfx/enemyhit.mp3" id="18_c15wr"]
 [ext_resource type="AudioStream" uid="uid://2qeh3ttl1oej" path="res://assets/ld51 sfx/wallhit.mp3" id="19_1cvp1"]
 [ext_resource type="AudioStream" uid="uid://csiv8xkbadgso" path="res://assets/ld51 sfx/pothit.mp3" id="20_ryhri"]
-[ext_resource type="Script" path="res://npc.gd" id="21_onjo7"]
-[ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="21_sj1tc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
 texture = ExtResource("5_gi3ks")
@@ -322,16 +320,13 @@ physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 15
 sources/1 = SubResource("TileSetAtlasSource_wx7vc")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu3hx"]
-size = Vector2(430, 392)
-
 [node name="root" type="Node2D"]
 
 [node name="hitsprite" parent="." instance=ExtResource("1_y7wtu")]
 position = Vector2(883, 709)
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(801, -3421)
+position = Vector2(51, -507)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="projectiles" type="Node2D" parent="."]
@@ -472,23 +467,3 @@ volume_db = -20.0
 [node name="pot_hit" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("20_ryhri")
 volume_db = -20.0
-
-[node name="npc" type="Area2D" parent="."]
-position = Vector2(346, -3857)
-script = ExtResource("21_onjo7")
-
-[node name="area" type="CollisionShape2D" parent="npc"]
-position = Vector2(63, 182)
-shape = SubResource("RectangleShape2D_uu3hx")
-
-[node name="graphic" type="Sprite2D" parent="npc"]
-position = Vector2(63, 190)
-texture = ExtResource("21_sj1tc")
-
-[node name="click_to_talk_label" type="Label" parent="npc"]
-offset_left = -33.0
-offset_top = 111.0
-offset_right = 151.0
-offset_bottom = 156.0
-theme_override_font_sizes/font_size = 30
-text = "Click to talk!"

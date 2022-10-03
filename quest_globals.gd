@@ -41,6 +41,24 @@ enum StatTrack
   STAT_MOVE,
 }
 
+const RARITY_COLORS_TRANSPARENT_BACK: Dictionary = {
+  QuestGlobals.Rarity.RARITY_COMMON: Color("000000A4"),
+  QuestGlobals.Rarity.RARITY_RARE: Color("161687A4"),
+  QuestGlobals.Rarity.RARITY_LEGENDARY: Color("6A4108A4")
+}
+
+const RARITY_COLORS_BACK: Dictionary = {
+  QuestGlobals.Rarity.RARITY_COMMON: Color("999999"),
+  QuestGlobals.Rarity.RARITY_RARE: Color("4f4fff"),
+  QuestGlobals.Rarity.RARITY_LEGENDARY: Color("cc8d35")
+}
+
+const RARITY_COLORS_TEXT: Dictionary = {
+  QuestGlobals.Rarity.RARITY_COMMON: Color("FFFFFF"),
+  QuestGlobals.Rarity.RARITY_RARE: Color("6ec2ff"),
+  QuestGlobals.Rarity.RARITY_LEGENDARY: Color("ffbc5e")
+}
+
 # If we decide quests should be limited to specific reward types, we can do so here.
 class QuestData:
   var quest_stat : StatTrack

@@ -6,7 +6,7 @@ const GUN_SCENE: PackedScene = preload("res://gun.tscn")
 @onready var OPTION_HEADER: Label = $center/panel/vsplit/margin2/vsplit/option_header
 @onready var NEW_WEAPON = $center/panel/vsplit/margin/vbox/center/margin/new_weapon
 @onready var NEW_UPGRADE = $center/panel/vsplit/margin/vbox/center/margin/hsplit
-@onready var UPGRADE_NAME = $center/panel/vsplit/margin/vbox/center/margin/hsplit/vsplit/name
+@onready var UPGRADE_NAME : Label = $center/panel/vsplit/margin/vbox/center/margin/hsplit/vsplit/name
 @onready var UPGRADE_DESCRIPTION = $center/panel/vsplit/margin/vbox/center/margin/hsplit/vsplit/description
 
 @onready var WEAPON1 = $center/panel/vsplit/margin2/vsplit/hbox/margin/weapon1
@@ -56,8 +56,9 @@ func get_random_starter_gun(with_mod : bool):
   gun.MAX_MODIFIERS = 2
   gun.UPGRADES = []
   gun.COLOR = Color.from_hsv(randf(), 0.5, 1.0)
+  gun.RARITY = QuestGlobals.Rarity.RARITY_COMMON
   if with_mod:  # one of their guns gets a mod, one doesnt
-    gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 1})) # Heavily bias starter weapon mod to be a common
+    gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 1})) # Restrict start mods to common
   return gun
   
 func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Dictionary):
@@ -69,6 +70,7 @@ func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Diction
   gun.MAX_MODIFIERS = max_mods
   gun.UPGRADES = []
   gun.COLOR = Color.from_hsv(randf(), 0.5, 1.0)
+  gun.RARITY = gun_rarity
   
   # prefilled mod counts:
     # Common 0-2   (will get clipped to >=1)
@@ -95,30 +97,40 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
   
   # mutate the base_rarity_weights table based on reward rarity. Mods of the reward rarity tier are twice as likely. Mods of lower tiers are .5x per tier lower  
   # DO NOT MODIFY base rarity weights, its not a copy... lol
-  var reward_rarity_adjusted_mod_weights = {}
+  var reward_rarity_adjusted_gun_mod_weights = {}
+  var reward_rarity_adjusted_standalone_mod_weights = {}  #standalone mods should be forced into the reward rarity
   for rarity in QuestGlobals.Rarity.values():
     if rarity < reward_rarity:
-      reward_rarity_adjusted_mod_weights[rarity] = base_rarity_weights[rarity] * pow(.5, reward_rarity - rarity) #lower rarities than the gun rarity are halved. doubly so for common on a legendary
+      reward_rarity_adjusted_gun_mod_weights[rarity] = base_rarity_weights[rarity] * pow(.5, reward_rarity - rarity) #lower rarities than the gun rarity are halved. doubly so for common on a legendary
+      reward_rarity_adjusted_standalone_mod_weights[rarity] = 0
     elif rarity == reward_rarity:
-      reward_rarity_adjusted_mod_weights[rarity] = base_rarity_weights[rarity] *  2
+      reward_rarity_adjusted_gun_mod_weights[rarity] = base_rarity_weights[rarity] *  2
+      reward_rarity_adjusted_standalone_mod_weights[rarity] = base_rarity_weights[rarity]
     else:
-      reward_rarity_adjusted_mod_weights[rarity] = base_rarity_weights[rarity]
+      reward_rarity_adjusted_gun_mod_weights[rarity] = base_rarity_weights[rarity]
+      reward_rarity_adjusted_standalone_mod_weights[rarity] = 0
+      
+      
       
   match reward_type:
     QuestGlobals.RewardType.REWARD_MOD:
       _upgrade_mode = true
-      _upgrade = get_random_upgrade(reward_rarity_adjusted_mod_weights)
+      _upgrade = get_random_upgrade(reward_rarity_adjusted_standalone_mod_weights)
       UPGRADE_NAME.text = Modifiers.NAMES[_upgrade]
+      UPGRADE_NAME.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]])
       UPGRADE_DESCRIPTION.text = Modifiers.DESCRIPTIONS[_upgrade]
+      UPGRADE_DESCRIPTION.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]])
       HEADER.text = "New Wand Upgrade!"
+      HEADER.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]])
       OPTION_HEADER.text = "Pick a wand to upgrade:"
       _gun = null
       
     QuestGlobals.RewardType.REWARD_GUN:
       _upgrade_mode = false
-      _gun = get_random_gun(reward_rarity, reward_rarity_adjusted_mod_weights)
+      _gun = get_random_gun(reward_rarity, reward_rarity_adjusted_gun_mod_weights)
       NEW_WEAPON.display_weapon(_gun, false)
       HEADER.text = "New Wand!"
+      HEADER.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[reward_rarity]])
       OPTION_HEADER.text = "Pick a wand to replace:"
       _upgrade = Modifiers.Gun.NONE
       
