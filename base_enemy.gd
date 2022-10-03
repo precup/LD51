@@ -163,9 +163,8 @@ var heart_pickup = preload("res://heart_pickup.tscn")
 func drop_random_item():
   # for now we just disregard the rarity entirely, but eventually we should use
   # enemy_rarity rather than tossing it in the garbage as we do
-
-  if randi() % 10 < 6:
-    return
+#  if false and randi() % 10 < 6:
+#    return
 
   var potential_pickups = [
     heart_pickup
@@ -174,5 +173,9 @@ func drop_random_item():
   var pickup = potential_pickups[randi() % len(potential_pickups)]
   var pickup_instance = pickup.instantiate()
 
-  pickup_instance.position = position
-  get_parent().add_child(pickup_instance)
+  pickup_instance.global_position = global_position
+  $"/root/root/pickups".add_child(pickup_instance)
+  
+  # get_parent().move_child(pickup_instance, 0)
+  
+  print(pickup_instance)

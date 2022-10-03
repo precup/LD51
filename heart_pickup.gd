@@ -15,5 +15,6 @@ func _process(delta):
 func _on_area_body_entered(body: Node2D):
   if body.has_method("pickup"):
     body.pickup("heart")
+    $"/root/root/sfx/pickup".play()
     
     queue_free()

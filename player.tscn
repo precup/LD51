@@ -148,7 +148,7 @@ position = Vector2(0, -81.5)
 shape = SubResource("RectangleShape2D_kkfjx")
 
 [node name="front_sprite" type="Sprite2D" parent="."]
-position = Vector2(3.5, -145.5)
+position = Vector2(4, -145)
 texture = ExtResource("2_af2l0")
 
 [node name="gun_rotation_container" type="Node2D" parent="."]
