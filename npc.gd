@@ -1,5 +1,6 @@
 extends Area2D
 
+
 @export var dialog_text: Array[String] = ["Hello."]
 var player_inside = false
 

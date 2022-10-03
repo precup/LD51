@@ -1,0 +1,85 @@
+[gd_scene load_steps=4 format=3 uid="uid://darx1m0vf1ktj"]
+
+[ext_resource type="Script" path="res://death.gd" id="1_5hfj0"]
+
+[sub_resource type="Animation" id="Animation_gp3oy"]
+resource_name = "fade_overlay"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("overlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("you_died:theme_override_colors/font_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 0.956863, 0), Color(0, 0, 0, 0), Color(1, 1, 0.956863, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("press_e_to_continue:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.1, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f24gs"]
+_data = {
+"fade_overlay": SubResource("Animation_gp3oy")
+}
+
+[node name="death" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_5hfj0")
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f24gs")
+}
+
+[node name="overlay" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_right = 2013.0
+offset_bottom = 1205.0
+
+[node name="you_died" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 234.0
+offset_right = 2010.0
+offset_bottom = 517.0
+theme_override_colors/font_color = Color(1, 1, 0.956863, 1)
+theme_override_font_sizes/font_size = 200
+text = "You Died"
+horizontal_alignment = 1
+
+[node name="press_e_to_continue" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 666.0
+offset_right = 2008.0
+offset_bottom = 744.0
+theme_override_colors/font_color = Color(0.4, 0.4, 0.380392, 1)
+theme_override_font_sizes/font_size = 50
+text = "Press e to continue"
+horizontal_alignment = 1

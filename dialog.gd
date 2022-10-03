@@ -2,7 +2,7 @@ extends ColorRect
 
 func start_dialog(dialog_text: Array[String]) -> void:
   for msg in dialog_text:
-    print("Msg is ", msg)
+    msg = msg.replace("$", "\n")
     $label.text = msg
     
     var break_all = false

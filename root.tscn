@@ -329,7 +329,7 @@ position = Vector2(263, 625)
 [node name="checkpoint" parent="level_1/doodads" instance=ExtResource("13_vty5w")]
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(838, 461)
+position = Vector2(-885, -168)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="projectiles" type="Node2D" parent="."]
@@ -363,7 +363,7 @@ volume_db = -20.0
 
 [node name="sr" parent="." instance=ExtResource("21_hwo1i")]
 position = Vector2(-1371, -312)
-dialog_text = ["Hello!", "Blah blahb labhlahb"]
+dialog_text = ["Hello!$$test", "Blah blahb labhlahb"]
 
 [node name="s" parent="." instance=ExtResource("22_2jyts")]
 position = Vector2(-2388, 1317)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmnrsfv3p2o4p"]
+[gd_scene load_steps=13 format=3 uid="uid://dmnrsfv3p2o4p"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_hmor5"]
 [ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://blg4ieywsf7mt" path="res://assets/pixel.png" id="6_ikxsv"]
 [ext_resource type="PackedScene" uid="uid://duug21557oo01" path="res://intro_menu.tscn" id="8_2bwm4"]
 [ext_resource type="PackedScene" uid="uid://b0t8tfmdova6p" path="res://dialog.tscn" id="8_16qvw"]
+[ext_resource type="PackedScene" uid="uid://darx1m0vf1ktj" path="res://death.tscn" id="9_61fl0"]
 
 [sub_resource type="StyleBox" id="StyleBox_l1c8y"]
 resource_local_to_scene = false
@@ -49,6 +50,7 @@ theme_override_constants/margin_left = 60
 theme_override_constants/margin_top = 60
 
 [node name="panel" type="PanelContainer" parent="top_left"]
+layout_mode = 2
 offset_left = 60.0
 offset_top = 60.0
 offset_right = 476.0
@@ -56,6 +58,7 @@ offset_bottom = 176.0
 theme_override_styles/panel = SubResource("StyleBox_l1c8y")
 
 [node name="margin" type="MarginContainer" parent="top_left/panel"]
+layout_mode = 2
 offset_right = 416.0
 offset_bottom = 116.0
 theme_override_constants/margin_left = 10
@@ -64,6 +67,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="health_container" type="HBoxContainer" parent="top_left/panel/margin"]
+layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 406.0
@@ -71,6 +75,7 @@ offset_bottom = 106.0
 script = ExtResource("3_bryk1")
 
 [node name="heart" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 96.0
@@ -78,6 +83,7 @@ offset_bottom = 96.0
 scale = Vector2(1, 1)
 
 [node name="heart2" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 100.0
 offset_top = 0.0
 offset_right = 196.0
@@ -85,6 +91,7 @@ offset_bottom = 96.0
 scale = Vector2(1, 1)
 
 [node name="heart3" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 200.0
 offset_top = 0.0
 offset_right = 296.0
@@ -92,6 +99,7 @@ offset_bottom = 96.0
 scale = Vector2(1, 1)
 
 [node name="heart4" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
+layout_mode = 2
 offset_left = 300.0
 offset_top = 0.0
 offset_right = 396.0
@@ -109,6 +117,7 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 
 [node name="quest_container" type="VBoxContainer" parent="top_right"]
+layout_mode = 2
 offset_top = 60.0
 offset_right = 164.0
 offset_bottom = 485.0
@@ -116,11 +125,13 @@ grow_horizontal = 0
 
 [node name="press_x_to_upgrade" type="ColorRect" parent="top_right/quest_container"]
 custom_minimum_size = Vector2i(0, 120)
+layout_mode = 2
 offset_right = 164.0
 offset_bottom = 120.0
 color = Color(1, 1, 1, 0.568627)
 
 [node name="reward_available" type="Label" parent="top_right/quest_container/press_x_to_upgrade"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 11.0
 offset_right = 450.0
@@ -131,6 +142,7 @@ text = "Reward available!"
 horizontal_alignment = 1
 
 [node name="claim_press_e" type="Label" parent="top_right/quest_container/press_x_to_upgrade"]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 69.0
 offset_right = 445.0
@@ -156,19 +168,23 @@ theme_override_constants/margin_left = 60
 theme_override_constants/margin_bottom = 60
 
 [node name="panel" type="PanelContainer" parent="bottom_left"]
+layout_mode = 2
 offset_left = 60.0
 offset_right = 250.0
 offset_bottom = 270.0
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel"]
+layout_mode = 2
 offset_right = 190.0
 offset_bottom = 270.0
 
 [node name="vsplit" type="VBoxContainer" parent="bottom_left/panel/margin"]
+layout_mode = 2
 offset_right = 190.0
 offset_bottom = 270.0
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel/margin/vsplit"]
+layout_mode = 2
 offset_right = 190.0
 offset_bottom = 110.0
 theme_override_constants/margin_left = 20
@@ -178,6 +194,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="clip_label" type="Label" parent="bottom_left/panel/margin/vsplit/margin"]
 custom_minimum_size = Vector2i(150, 0)
+layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
@@ -187,6 +204,7 @@ text = "5"
 vertical_alignment = 1
 
 [node name="clip_label3" type="Label" parent="bottom_left/panel/margin/vsplit/margin"]
+layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
@@ -197,12 +215,14 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="bottom_left/panel/margin/vsplit/margin"]
+layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
 offset_bottom = 90.0
 
 [node name="clip_label2" type="Label" parent="bottom_left/panel/margin/vsplit/margin/CenterContainer"]
+layout_mode = 2
 offset_left = 65.0
 offset_right = 84.0
 offset_bottom = 70.0
@@ -212,16 +232,19 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="bottom_left/panel/margin/vsplit"]
+layout_mode = 2
 offset_top = 114.0
 offset_right = 190.0
 offset_bottom = 118.0
 
 [node name="margin2" type="MarginContainer" parent="bottom_left/panel/margin/vsplit"]
+layout_mode = 2
 offset_top = 122.0
 offset_right = 190.0
 offset_bottom = 270.0
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel/margin/vsplit/margin2"]
+layout_mode = 2
 offset_right = 190.0
 offset_bottom = 148.0
 size_flags_vertical = 3
@@ -231,6 +254,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="center" type="CenterContainer" parent="bottom_left/panel/margin/vsplit/margin2/margin"]
+layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 180.0
@@ -238,6 +262,7 @@ offset_bottom = 138.0
 
 [node name="gun_image" type="TextureRect" parent="bottom_left/panel/margin/vsplit/margin2/margin/center"]
 custom_minimum_size = Vector2i(128, 128)
+layout_mode = 2
 offset_left = 21.0
 offset_right = 149.0
 offset_bottom = 128.0
@@ -247,6 +272,7 @@ stretch_mode = 4
 
 [node name="overlay" type="TextureRect" parent="bottom_left/panel/margin/vsplit/margin2"]
 modulate = Color(0.513726, 1, 0.560784, 0.32549)
+layout_mode = 2
 offset_top = 147.0
 offset_right = 190.0
 offset_bottom = 148.0
@@ -260,3 +286,6 @@ visible = false
 [node name="intro_menu" parent="." instance=ExtResource("8_2bwm4")]
 
 [node name="dialog" parent="." instance=ExtResource("8_16qvw")]
+
+[node name="death" parent="." instance=ExtResource("9_61fl0")]
+visible = false

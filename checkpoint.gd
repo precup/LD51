@@ -1,18 +1,17 @@
 extends Area2D
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-  pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-  pass
-
+var is_last_active = false
 
 func _on_checkpoint_body_entered(body):
+  if is_last_active:
+    return
+  
   var player = $"/root/root/references".get_player()
   
   if body == player:
-    pass
+    var checkpoints = get_tree().get_nodes_in_group("checkpoint")
+    
+    for point in checkpoints:
+      point.is_last_active = false
+    
+    is_last_active = true

@@ -14,7 +14,7 @@ const GUN_COUNT = 2
 @onready var reward_menu = get_tree().get_first_node_in_group("reward_menu")
 
 var _last_direction: Vector2 = Vector2.LEFT
-var _health: int = MAX_HEALTH
+var _health: int = 1 # MAX_HEALTH
 var _knockback: Vector2 = Vector2.ZERO
 var _invuln_frames = 0
 
