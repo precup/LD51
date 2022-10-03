@@ -1,34 +1,29 @@
-[gd_scene load_steps=30 format=3 uid="uid://ft0eoa7sv3d4"]
+
+[gd_scene load_steps=20 format=3 uid="uid://bwlvrb157vbo3"]
+
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
-[ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
+[ext_resource type="PackedScene" uid="uid://cwqqmtk6yuqs" path="res://hitsprite.tscn" id="1_y7wtu"]
 [ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
 [ext_resource type="PackedScene" uid="uid://dmnrsfv3p2o4p" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
-[ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
-[ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
+[ext_resource type="PackedScene" uid="uid://bfhj42r10m8cl" path="res://barrel.tscn" id="8_b3h3m"]
+[ext_resource type="PackedScene" path="res://heart_pickup.tscn" id="9_gl1f0"]
 [ext_resource type="PackedScene" uid="uid://depms7p861do1" path="res://smart_enemy.tscn" id="10_3gr08"]
 [ext_resource type="PackedScene" uid="uid://w1inu0j1tffh" path="res://spike_trap.tscn" id="10_b02l4"]
-[ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
+[ext_resource type="PackedScene" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 [ext_resource type="PackedScene" uid="uid://bnad03ke1cx1l" path="res://patrol_enemy.tscn" id="11_atj5v"]
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
 [ext_resource type="PackedScene" uid="uid://cspp5u6u33ps1" path="res://laser_enemy.tscn" id="12_weq06"]
-[ext_resource type="Script" path="res://sfx.gd" id="13_bua1r"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
 [ext_resource type="TileSet" uid="uid://cc8wl3byxet30" path="res://tileset.tres" id="15_51hkn"]
-[ext_resource type="AudioStream" uid="uid://b3iyc3y0kf6px" path="res://assets/ld51 sfx/gunshot5.mp3" id="17_dcm7x"]
-[ext_resource type="AudioStream" uid="uid://j13jqecjpqf3" path="res://assets/ld51 sfx/reload.mp3" id="18_6b0s1"]
-[ext_resource type="AudioStream" uid="uid://852hjl4qgnp2" path="res://assets/ld51 sfx/enemyhit.mp3" id="18_c15wr"]
-[ext_resource type="AudioStream" uid="uid://2qeh3ttl1oej" path="res://assets/ld51 sfx/wallhit.mp3" id="19_1cvp1"]
-[ext_resource type="AudioStream" uid="uid://cn2kssrrk845v" path="res://assets/ld51 sfx/questcomplete.mp3" id="19_tqsex"]
-[ext_resource type="AudioStream" uid="uid://bo3kylwec4ie1" path="res://assets/ld51 sfx/ricochet1.mp3" id="20_kwrk6"]
-[ext_resource type="AudioStream" uid="uid://csiv8xkbadgso" path="res://assets/ld51 sfx/pothit.mp3" id="20_ryhri"]
-[ext_resource type="AudioStream" uid="uid://bcr8iyu2fdxnt" path="res://assets/ld51 sfx/ricochet2.mp3" id="21_868fn"]
+[ext_resource type="PackedScene" uid="uid://dbhl4y42nbxhf" path="res://sfx.tscn" id="19_837db"]
 [ext_resource type="PackedScene" path="res://npc.tscn" id="21_hwo1i"]
 [ext_resource type="PackedScene" path="res://dialog_trigger.tscn" id="22_2jyts"]
-[ext_resource type="AudioStream" uid="uid://qn5yo7n46p8a" path="res://assets/ld51 sfx/ricochet3.mp3" id="22_4rurv"]
+
 [ext_resource type="PackedScene" path="res://checkpoint.tscn" id="28_v5v15"]
+
 
 [node name="root" type="Node2D"]
 
@@ -37,45 +32,6 @@ position = Vector2(883, 709)
 
 [node name="heart_pickup" parent="." instance=ExtResource("9_gl1f0")]
 position = Vector2(720, 376)
-
-[node name="sfx" type="Node2D" parent="."]
-script = ExtResource("13_bua1r")
-
-[node name="gunshot_5" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("17_dcm7x")
-volume_db = -20.0
-
-[node name="enemy_hit" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("18_c15wr")
-volume_db = -20.0
-
-[node name="wall_hit" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("19_1cvp1")
-volume_db = -20.0
-
-[node name="pot_hit" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("20_ryhri")
-volume_db = -20.0
-
-[node name="reload" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("18_6b0s1")
-volume_db = -20.0
-
-[node name="quest_complete" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("19_tqsex")
-volume_db = -20.0
-
-[node name="ricochet_1" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("20_kwrk6")
-volume_db = -20.0
-
-[node name="ricochet_2" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("21_868fn")
-volume_db = -20.0
-
-[node name="ricochet_3" type="AudioStreamPlayer" parent="sfx"]
-stream = ExtResource("22_4rurv")
-volume_db = -20.0
 
 [node name="quest_manager" parent="." instance=ExtResource("10_l83fa")]
 
@@ -691,3 +647,5 @@ dialog_text = ["???: You may have noticed that your gun is rather... rudimentary
 position = Vector2(875, -5369)
 scale = Vector2(2.42001, 1.03162)
 dialog_text = ["???: I hope you are ready. Behind these doors lies the monsters who have invaded our fair land.", "Malthador: WOO IM READY", "Malthador: hang on who even are you anyway", "???: I'm not quite sure myself. A god, probably.", "Malthador: yea sounds about right", "God Probably: Embark, Malthador. Your citizens await.", "Malthador: :pogchamp:"]
+
+[node name="sfx" parent="." instance=ExtResource("19_837db")]

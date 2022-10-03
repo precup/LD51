@@ -1,0 +1,110 @@
+[gd_scene load_steps=16 format=3 uid="uid://c0ad5uy7k0hy5"]
+
+[ext_resource type="Script" path="res://boss.gd" id="1_2g3kd"]
+[ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_3y0pg"]
+[ext_resource type="Texture2D" uid="uid://skefo6a6g5yc" path="res://assets/cannon.png" id="3_8ijoa"]
+[ext_resource type="Script" path="res://base_enemy.gd" id="4_uixxr"]
+[ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_3xq82"]
+[ext_resource type="Texture2D" uid="uid://byphovm74wivc" path="res://assets/gunnerback.png" id="6_jwpen"]
+[ext_resource type="Texture2D" uid="uid://drn4a72kkwgs3" path="res://assets/gunnerfront.png" id="7_i3xhl"]
+[ext_resource type="Texture2D" uid="uid://dgc7nytoq511q" path="res://assets/gunnerside.png" id="8_v6soi"]
+
+[sub_resource type="Shader" id="Shader_0m0ln"]
+code = "shader_type canvas_item;
+
+uniform vec4 solid_color: source_color;
+
+void fragment() {
+    vec4 texture_color = texture(TEXTURE, UV);
+    COLOR = vec4(mix(texture_color.rgb, solid_color.rgb, solid_color.a), texture_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oo20v"]
+resource_local_to_scene = true
+shader = SubResource("Shader_0m0ln")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
+size = Vector2(241, 243)
+
+[sub_resource type="Shader" id="Shader_b130o"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 solid_color: source_color;
+
+void fragment() {
+    vec4 texture_color = texture(TEXTURE, UV);
+    COLOR = vec4(mix(texture_color.rgb, solid_color.rgb, solid_color.a), texture_color.a);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yiln3"]
+resource_local_to_scene = true
+shader = SubResource("Shader_b130o")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7f28"]
+resource_local_to_scene = true
+shader = SubResource("Shader_b130o")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vk0fx"]
+resource_local_to_scene = true
+shader = SubResource("Shader_b130o")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
+[node name="boss" type="RigidBody2D" groups=["enemies"]]
+position = Vector2(19, 2)
+collision_layer = 80
+collision_mask = 17
+mass = 4.0
+lock_rotation = true
+linear_damp = 15.0
+script = ExtResource("1_2g3kd")
+
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0.0470588, 0.176471, 0.513726)
+position = Vector2(118, 245)
+scale = Vector2(3.23675, 3.23675)
+texture = ExtResource("2_3y0pg")
+
+[node name="graphic" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_oo20v")
+position = Vector2(136, 136)
+scale = Vector2(2.64062, 2.64062)
+texture = ExtResource("3_8ijoa")
+
+[node name="bullet_spawn" type="Node2D" parent="graphic"]
+position = Vector2(-5, 36)
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(120.5, 122.5)
+shape = SubResource("RectangleShape2D_gjycc")
+
+[node name="base_enemy" type="Node2D" parent="."]
+script = ExtResource("4_uixxr")
+
+[node name="health_bar" parent="." instance=ExtResource("5_3xq82")]
+
+[node name="back" type="Sprite2D" parent="."]
+modulate = Color(1, 0.105882, 0.168627, 1)
+material = SubResource("ShaderMaterial_yiln3")
+position = Vector2(117, 91)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("6_jwpen")
+
+[node name="front" type="Sprite2D" parent="."]
+modulate = Color(1, 0.105882, 0.168627, 1)
+material = SubResource("ShaderMaterial_w7f28")
+position = Vector2(117, 91)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("7_i3xhl")
+
+[node name="side" type="Sprite2D" parent="."]
+modulate = Color(1, 0.105882, 0.168627, 1)
+material = SubResource("ShaderMaterial_vk0fx")
+position = Vector2(117, 91)
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("8_v6soi")

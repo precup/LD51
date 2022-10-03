@@ -16,10 +16,20 @@ var _knockback = Vector2.ZERO
 func _ready():
   next_destination = position
   
-  $base_enemy._max_health = 12
-  $base_enemy._health = 12
-  $base_enemy._item_drop_type = "trash"
-  
+  $base_enemy._max_health = 30
+  $base_enemy._health = 30
+  $base_enemy._item_drop_type = "trash" #lol
+
+func spread_fire():
+  var player = $"/root/root/references".get_player()
+  var direction = global_position.direction_to(player.global_position)
+
+  for x in range(-50, 50 + 1, 10):
+    shoot_bullet(direction.rotated(deg_to_rad(x)))
+    
+    for y in range(15):
+      await get_tree().process_frame
+
 func _process(delta):
   ticks_to_next_shot -= 1
   ticks_to_choose_next_destination -= 1
@@ -27,11 +37,7 @@ func _process(delta):
   if ticks_to_next_shot <= 0:
     ticks_to_next_shot = max_time_between_shots
     
-    var player = $"/root/root/references".get_player()
-    var direction = global_position.direction_to(player.global_position)
-
-    for x in range(-20, 20 + 1, 10):
-      shoot_bullet(direction.rotated(deg_to_rad(x)))
+    spread_fire()
   
   var velocity := Vector2.ZERO
 

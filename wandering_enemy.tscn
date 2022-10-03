@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://hxgma5bwp6l1"]
+[gd_scene load_steps=14 format=3 uid="uid://hxgma5bwp6l1"]
 
 [ext_resource type="Script" path="res://base_enemy.gd" id="1_kn47u"]
 [ext_resource type="Script" path="res://wandering_enemy.gd" id="1_t7sh5"]
@@ -6,16 +6,28 @@
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="2_bnrfm"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_r5rv8"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="3_edrfm"]
+[ext_resource type="Texture2D" uid="uid://bxmgjndmfmeij" path="res://assets/wander.png" id="5_antnr"]
+[ext_resource type="Material" uid="uid://7u0dxi4ff1j7" path="res://flash_material.tres" id="7_c5y4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
-size = Vector2(64, 64)
+size = Vector2(169, 188)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rm2iy"]
 shader = ExtResource("2_bnrfm")
 shader_parameter/solid_color = Color(1, 1, 1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d426"]
-size = Vector2(72.5, 73.5)
+size = Vector2(174, 193)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ir2t"]
+resource_local_to_scene = true
+shader = ExtResource("2_bnrfm")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oyudd"]
+resource_local_to_scene = true
+shader = ExtResource("2_bnrfm")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
 
 [node name="wandering_enemy" type="RigidBody2D" groups=["enemies"]]
 position = Vector2(1, -2)
@@ -36,7 +48,7 @@ texture = ExtResource("2_1a45j")
 script = ExtResource("1_kn47u")
 
 [node name="collision_shape" type="CollisionShape2D" parent="."]
-position = Vector2(31, 33)
+position = Vector2(27.5, -29)
 shape = SubResource("RectangleShape2D_kkfjx")
 
 [node name="graphic" type="Sprite2D" parent="."]
@@ -51,8 +63,23 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="shape" type="CollisionShape2D" parent="area"]
-position = Vector2(-97.25, 8.25)
+position = Vector2(-103, -51.5)
 shape = SubResource("RectangleShape2D_2d426")
 
 [node name="health_bar" parent="." instance=ExtResource("3_edrfm")]
 position = Vector2(14, -23)
+
+[node name="back" type="Sprite2D" parent="."]
+material = ExtResource("7_c5y4g")
+position = Vector2(25, -32)
+texture = ExtResource("5_antnr")
+
+[node name="front" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6ir2t")
+position = Vector2(25, -32)
+texture = ExtResource("5_antnr")
+
+[node name="side" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_oyudd")
+position = Vector2(25, -32)
+texture = ExtResource("5_antnr")
