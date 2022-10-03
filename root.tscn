@@ -1,8 +1,7 @@
-[gd_scene load_steps=35 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=33 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cwqqmtk6yuqs" path="res://hitsprite.tscn" id="1_y7wtu"]
-[ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
 [ext_resource type="PackedScene" uid="uid://dmnrsfv3p2o4p" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
 [ext_resource type="Texture2D" uid="uid://u1i12jtmkptu" path="res://assets/mike-tilemap.png" id="6_pty4p"]
@@ -12,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://w1inu0j1tffh" path="res://spike_trap.tscn" id="10_b02l4"]
 [ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
-[ext_resource type="PackedScene" uid="uid://cspp5u6u33ps1" path="res://laser_enemy.tscn" id="12_weq06"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
 [ext_resource type="PackedScene" uid="uid://c04wgwpov3o2l" path="res://checkpoint.tscn" id="13_vty5w"]
 [ext_resource type="AudioStream" uid="uid://b3iyc3y0kf6px" path="res://assets/ld51 sfx/gunshot5.mp3" id="17_dcm7x"]
@@ -377,21 +375,10 @@ position = Vector2(512, -1280)
 STARTING_TIME = 4.0
 
 [node name="smart_enemy2" parent="level_1/doodads" instance=ExtResource("10_3gr08")]
-position = Vector2(1912, -4652)
+position = Vector2(0, -2560)
 
 [node name="smart_enemy3" parent="level_1/doodads" instance=ExtResource("10_3gr08")]
-position = Vector2(1494, -4851)
-
-[node name="enemy4" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
-position = Vector2(1792, -1280)
-
-[node name="laser_enemy" parent="level_1/doodads" instance=ExtResource("12_weq06")]
-position = Vector2(1277, -3035)
-facing_direction = 1
-
-[node name="laser_enemy2" parent="level_1/doodads" instance=ExtResource("12_weq06")]
-position = Vector2(2053, -3374)
-facing_direction = 0
+position = Vector2(1792, -3072)
 
 [node name="barrel" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
 position = Vector2(256, 256)

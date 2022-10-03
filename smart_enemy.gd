@@ -31,6 +31,7 @@ func _process(delta):
     var direction = global_position.direction_to(player.global_position)
 
     for x in range(-20, 20 + 1, 10):
+      print("Bullet")
       shoot_bullet(direction.rotated(deg_to_rad(x)))
   
   var velocity := Vector2.ZERO
@@ -86,7 +87,7 @@ func shoot_bullet(direction_vector: Vector2):
   PROJECTILE_NODE.add_child(bullet)
   
   bullet.global_position = bullet_spawn.global_position
-  bullet.global_rotation = direction_vector.angle()
+  bullet.get_node("sprite").global_rotation = direction_vector.angle()
   bullet.scale = Vector2(1, 1)
 
 func knockback(bullet_vector: Vector2):
