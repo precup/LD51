@@ -11,12 +11,15 @@ var state_ttl: float = 0
 
 func _ready():
   var start_time: float = fmod(STARTING_TIME, UP_TIME + DOWN_TIME)
+  
   if start_time > DOWN_TIME:
     state_ttl = UP_TIME + DOWN_TIME - start_time
     is_spiky = true
+    $static_body/shape.disabled = false
   else:
     state_ttl = DOWN_TIME - start_time
     is_spiky = false
+    $static_body/shape.disabled = false
   
   $base_enemy._max_health = 4
   $base_enemy._health = 4
@@ -28,7 +31,6 @@ func _ready():
   
   var label: Label = $countdown
   label.text = "" 
-  
 
 func _physics_process(delta):
   if state_ttl - delta < 0:
@@ -51,7 +53,7 @@ func _physics_process(delta):
         
         if body.has_method("damage"):
           var kb_vec = (global_position - body.global_position).normalized()
-          body.damage(1, kb_vec)
+          body.damage(-1, kb_vec)
 
 
 func update_graphics():
