@@ -61,6 +61,11 @@ var step_time: float = 0
 func _begin_dash():
   $"/root/root/sfx/dash".play()
   
+  if abs(_last_direction.y) > abs(_last_direction.x):
+    $animation_player.play("dash_ud")
+  else:
+    $animation_player.play("dash_lr")
+  
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_DASH) 
   dash_cooldown_counter = DASH_COOLDOWN
   dashing = true
