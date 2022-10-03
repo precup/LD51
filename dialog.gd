@@ -19,6 +19,7 @@ func start_dialog(dialog_text: Array[String]) -> void:
           break
       if break_all:
         break
+    
     $label.visible_characters = msg.length()
   
     while true:
