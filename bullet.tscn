@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://4cl1yw57318p" path="res://assets/player_bullet3.png" id="4_iyo0h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ho3hg"]
-radius = 21.64
+radius = 40.96
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5abui"]
 animations = [{
@@ -22,10 +22,11 @@ collision_mask = 52
 script = ExtResource("1_c42cd")
 
 [node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 1)
 shape = SubResource("CircleShape2D_ho3hg")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-12, 1)
-scale = Vector2(0.544922, 0.559076)
+position = Vector2(-23, 5)
+scale = Vector2(1.24902, 1.28147)
 frames = SubResource("SpriteFrames_5abui")
 playing = true
