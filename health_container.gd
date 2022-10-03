@@ -38,7 +38,7 @@ func update_hearts():
 
       child.visible = false
     
-    if health_left <= 2:
+    if health_left <= 2 and health_left > 0:
       next_active_heart = heart
     
     if health_left >= 2:
@@ -51,7 +51,10 @@ func update_hearts():
     health_left -= 2
   
   if next_active_heart != active_heart:
-    if active_heart != null:
-      active_heart.get_node("animation_player").seek(0, true)
+    for i in range(hearts.size()):
+      var heart = hearts[i]
+      heart.get_node("animation_player").seek(0, true)
+      heart.get_node("animation_player").stop()
+
     if next_active_heart != null:
       next_active_heart.get_node("animation_player").play("pulse")
