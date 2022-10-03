@@ -25,22 +25,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="panel" type="PanelContainer" parent="center"]
-<<<<<<< HEAD
-offset_left = 151.0
-offset_top = 74.0
-offset_right = 1768.0
-offset_bottom = 1006.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_8n0tx")
-
-[node name="vsplit" type="VSplitContainer" parent="center/panel"]
-offset_right = 1617.0
-offset_bottom = 932.0
-dragger_visibility = 2
-
-[node name="margin" type="MarginContainer" parent="center/panel/vsplit"]
-offset_right = 1617.0
-offset_bottom = 501.0
-=======
 offset_left = 169.0
 offset_top = 72.0
 offset_right = 1750.0
@@ -55,7 +39,6 @@ dragger_visibility = 2
 [node name="margin" type="MarginContainer" parent="center/panel/vsplit"]
 offset_right = 1581.0
 offset_bottom = 497.0
->>>>>>> b0b2374ed6845323fed7f437f3973e9b863e20e2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 100
@@ -67,29 +50,15 @@ offset_right = 1481.0
 offset_bottom = 497.0
 
 [node name="header" type="Label" parent="center/panel/vsplit/margin/vbox"]
-<<<<<<< HEAD
-offset_right = 1417.0
-offset_bottom = 113.0
-=======
 offset_right = 1381.0
 offset_bottom = 109.0
 theme_override_fonts/font = ExtResource("2_eev8a")
->>>>>>> b0b2374ed6845323fed7f437f3973e9b863e20e2
 theme_override_font_sizes/font_size = 80
 text = "New Wand!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="center" type="CenterContainer" parent="center/panel/vsplit/margin/vbox"]
-<<<<<<< HEAD
-offset_top = 117.0
-offset_right = 1417.0
-offset_bottom = 413.0
-
-[node name="margin" type="MarginContainer" parent="center/panel/vsplit/margin/vbox/center"]
-offset_left = 354.0
-offset_right = 1062.0
-=======
 offset_top = 113.0
 offset_right = 1381.0
 offset_bottom = 409.0
@@ -97,7 +66,6 @@ offset_bottom = 409.0
 [node name="margin" type="MarginContainer" parent="center/panel/vsplit/margin/vbox/center"]
 offset_left = 336.0
 offset_right = 1044.0
->>>>>>> b0b2374ed6845323fed7f437f3973e9b863e20e2
 offset_bottom = 296.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20

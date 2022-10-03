@@ -112,6 +112,7 @@ action={
 2d_physics/layer_4="EnemyProjectile"
 2d_physics/layer_5="Wall"
 2d_physics/layer_6="Destructible"
+2d_physics/layer_7="Water"
 
 [physics]
 

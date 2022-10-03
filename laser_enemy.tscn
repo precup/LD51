@@ -71,7 +71,7 @@ color_ramp = SubResource("GradientTexture1D_gtpys")
 [node name="laser_enemy" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(-31, -36)
 collision_layer = 4
-collision_mask = 17
+collision_mask = 81
 script = ExtResource("1_qljgk")
 facing_direction = 2
 
