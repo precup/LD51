@@ -27,6 +27,7 @@ var quest_reward_type_weights : Dictionary = {
 const quest_scn = preload("res://quest.tscn")
 @onready var quest_container = $"/root/root/ui/top_right/quest_container"
 
+
 # Pulls a rarity based on weights
 func _get_next_quest_rarity():
   var total = quest_rarity_weights.values().reduce(func(i,accum): return accum + i)
@@ -34,6 +35,7 @@ func _get_next_quest_rarity():
   var rarity_penalty = 0  # rare quests penalize 1, legendary penalize 2. 
   for active_quest in active_quests:
     rarity_penalty += int(active_quest.quest_rarity)
+  rarity_penalty += (3-total_quest_completion_count) if total_quest_completion_count <=3 else 0  # penalty on rarity for your first 3 quests
   var my_random_number = rng.randi_range(0, total-1) - rarity_penalty
   
   for rarity in quest_rarity_weights:
@@ -103,13 +105,17 @@ func _roll_new_quest():
       debug_quest_index = 0
     rarity = quest.quest_rarity.keys()[0]
   else:
-    for priority_quest in quests_by_rarity[rarity]:
-      var avail = priority_quest.is_available.call()
-      if (avail || avail== null) && priority_quest.priority_quest:
-        priority_quests.append(priority_quest)
+    for iter_rarity in QuestGlobals.Rarity.values():
+      for priority_quest in quests_by_rarity[iter_rarity]:
+        var avail = priority_quest.is_available.call()
+        if (avail || avail== null) && priority_quest.priority_quest:
+          priority_quests.append(priority_quest)
         
     if len(priority_quests) > 0:
       quest = priority_quests[randi_range(0,len(priority_quests)-1)]
+      if !quest.quest_rarity.has(rarity):  # may need to change the target rarity depending on if the priority quest was not for our rarity
+        rarity = quest.quest_rarity.keys()[0]
+        
     else:  
       var safety_counter = 50
       while (true):
@@ -157,15 +163,20 @@ func _roll_new_quest():
     quest_container.remove_child(removed_quest)
   
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+var HYPER_BOOST_RATE = 5 # time travels at 5x speed when you have no quests left and 3x for the quest after
 func _process(delta):
   # TODO: pausing / slower time, etc?
-  spawn_rate_counter += delta
+  spawn_rate_counter += delta * (HYPER_BOOST_RATE if hyper_speed_quest_accrual else 1)
   if quest_container.get_child_count() >= MAX_CONCURRENT_QUESTS:
     quest_container.get_child(MAX_CONCURRENT_QUESTS-1).set_seconds_left(quest_spawn_rate-spawn_rate_counter)
     
   if (spawn_rate_counter >= quest_spawn_rate):
     spawn_rate_counter -= quest_spawn_rate
     _roll_new_quest()
+    HYPER_BOOST_RATE -= 2
+    if (HYPER_BOOST_RATE < 1):
+      HYPER_BOOST_RATE = 1
+      hyper_speed_quest_accrual = false
     
   if (len(rewards_to_earn) > 0):
     _pausable_earn_reward()
@@ -236,13 +247,18 @@ func is_moving():
   return stat_timers_active_status[QuestGlobals.StatTrack.STAT_MOVE]
   
 var total_quest_completion_count = 0
+var hyper_speed_quest_accrual = false
 func quest_complete(quest, reward):
-  var random_rarity_to_increase_rate_of = randi_range(quest.quest_rarity, min(quest.quest_rarity+1, QuestGlobals.Rarity.RARITY_LEGENDARY)) # Add weights to the current tier or one tier higher
-  quest_rarity_weights[random_rarity_to_increase_rate_of] +=  1 + randi_range(0,quest.quest_rarity) # random value, based on the quest completed
   
   total_quest_completion_count += 1
   active_quests.erase(quest)
   rewards_to_earn.append(reward)
+  
+  if len(active_quests)<= 0:
+    hyper_speed_quest_accrual = true
+  
+  var random_rarity_to_increase_rate_of = randi_range(quest.quest_rarity, min(quest.quest_rarity+1, QuestGlobals.Rarity.RARITY_LEGENDARY)) # Add weights to the current tier or one tier higher
+  quest_rarity_weights[random_rarity_to_increase_rate_of] +=  1 + randi_range(0,quest.quest_rarity) * randi_range(1,(MAX_CONCURRENT_QUESTS - len(active_quests))) # bonus for how many quests you currently have completed
   
   # TODO: Track the completion after reward from prior has been given? Right now this results in one reward being lost. If we add a slight delay here it should pause until after UI done?
   quest_count_progress(QuestGlobals.StatTrack.STAT_COMPLETE_QUEST)
