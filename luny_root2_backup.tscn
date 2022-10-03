@@ -1,29 +1,26 @@
-
-[gd_scene load_steps=20 format=3 uid="uid://bwlvrb157vbo3"]
-
+[gd_scene load_steps=22 format=3 uid="uid://ft0eoa7sv3d4"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
-[ext_resource type="PackedScene" uid="uid://cwqqmtk6yuqs" path="res://hitsprite.tscn" id="1_y7wtu"]
+[ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
 [ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
 [ext_resource type="PackedScene" uid="uid://dmnrsfv3p2o4p" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
-[ext_resource type="PackedScene" uid="uid://bfhj42r10m8cl" path="res://barrel.tscn" id="8_b3h3m"]
-[ext_resource type="PackedScene" path="res://heart_pickup.tscn" id="9_gl1f0"]
+[ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
+[ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
 [ext_resource type="PackedScene" uid="uid://depms7p861do1" path="res://smart_enemy.tscn" id="10_3gr08"]
 [ext_resource type="PackedScene" uid="uid://w1inu0j1tffh" path="res://spike_trap.tscn" id="10_b02l4"]
-[ext_resource type="PackedScene" path="res://quest_manager.tscn" id="10_l83fa"]
+[ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 [ext_resource type="PackedScene" uid="uid://bnad03ke1cx1l" path="res://patrol_enemy.tscn" id="11_atj5v"]
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
 [ext_resource type="PackedScene" uid="uid://cspp5u6u33ps1" path="res://laser_enemy.tscn" id="12_weq06"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
 [ext_resource type="TileSet" uid="uid://cc8wl3byxet30" path="res://tileset.tres" id="15_51hkn"]
-[ext_resource type="PackedScene" uid="uid://dbhl4y42nbxhf" path="res://sfx.tscn" id="19_837db"]
+[ext_resource type="PackedScene" path="res://sfx.tscn" id="19_837db"]
 [ext_resource type="PackedScene" path="res://npc.tscn" id="21_hwo1i"]
+[ext_resource type="PackedScene" path="res://boss.tscn" id="21_xy22l"]
 [ext_resource type="PackedScene" path="res://dialog_trigger.tscn" id="22_2jyts"]
-
 [ext_resource type="PackedScene" path="res://checkpoint.tscn" id="28_v5v15"]
-
 
 [node name="root" type="Node2D"]
 
@@ -149,14 +146,12 @@ position = Vector2(7572, -6496)
 position = Vector2(3072, -12559)
 
 [node name="cannon" parent="level_1/doodads" instance=ExtResource("11_je3km")]
-position = Vector2(150, -3801)
-direction = 1
+position = Vector2(335, -3801)
 bullet_speed = 600.0
 max_time_between_shots = 200.0
 
 [node name="cannon2" parent="level_1/doodads" instance=ExtResource("11_je3km")]
-position = Vector2(1902, -3533)
-direction = 0
+position = Vector2(1512, -3829)
 bullet_speed = 600.0
 max_time_between_shots = 200.0
 
@@ -604,6 +599,10 @@ script = ExtResource("6_crj1l")
 position = Vector2(-155, -3914)
 dialog_text = ["Citizen: Malthador, it's really you! Is this what a dream looks like?", "Malthador: lmao no one knows what dream looks like", "Citizen: Oh... you really HAVE been gone for a long time, haven't you..."]
 
+[node name="npc3" parent="." instance=ExtResource("21_hwo1i")]
+position = Vector2(2034, -3918)
+dialog_text = ["Citizen: The fabled hero returns! Surely we will be safe now.", "Malthador: safe from...??? what even are these things", "Citizen: I'm... not entirely sure, but they seem like something a catboy would draw."]
+
 [node name="npc2" parent="." instance=ExtResource("21_hwo1i")]
 position = Vector2(9533, -11339)
 dialog_text = ["Citizen: Hooray for Malthador! I can't wait to watch you spellcast the horde away.", "Malthador: the real magic... is artillery", "Malthador: (and mods)"]
@@ -648,4 +647,17 @@ position = Vector2(875, -5369)
 scale = Vector2(2.42001, 1.03162)
 dialog_text = ["???: I hope you are ready. Behind these doors lies the monsters who have invaded our fair land.", "Malthador: WOO IM READY", "Malthador: hang on who even are you anyway", "???: I'm not quite sure myself. A god, probably.", "Malthador: yea sounds about right", "God Probably: Embark, Malthador. Your citizens await.", "Malthador: :pogchamp:"]
 
+[node name="dialog_trigger5" parent="." instance=ExtResource("22_2jyts")]
+position = Vector2(3487, -15117)
+scale = Vector2(1.4581, 1.03162)
+dialog_text = ["God Probably: BewareGod Probably: Beware... I can sense strength up ahead.", "Malthador: are u sure ur not just sensing THESE GAINZ", "God Probably: Malthador, what gains are you talking about. You have been alive for like 4 minutes. (Or maybe more, depending on how bad the player is.)", "Malthador: git gud"]
+
+[node name="dialog_trigger6" parent="." instance=ExtResource("22_2jyts")]
+position = Vector2(3487, -23178)
+scale = Vector2(1.4581, 1.03162)
+dialog_text = ["God Probably: A great danger lurks behind these doors.", "Malthador: 'behind these doors' this 'behind these doors' that well i'll show u what's behind these MALTHAdoors BOOM IT'S PAIN", "God Probably: ...Is it bad to start rooting for the Boss Monster, or"]
+
 [node name="sfx" parent="." instance=ExtResource("19_837db")]
+
+[node name="boss" parent="." instance=ExtResource("21_xy22l")]
+position = Vector2(3478, -26762)
