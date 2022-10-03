@@ -234,7 +234,9 @@ func _make_hitspark(target = "enemy", is_ricochet = false) -> void:
     $"/root/root/sfx/enemy_hit".play()
     
   $"/root/root".add_child(instance)
+  
   instance.global_position = global_position
+  
   for effect in _effects:
     if effect[0] == Modifiers.Effect.EXPLODE:
       instance.scale = Vector2(effect[2] / 64, effect[2] / 64)
