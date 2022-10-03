@@ -269,10 +269,12 @@ func is_moving():
   
 var total_quest_completion_count = 0
 var hyper_speed_quest_accrual = false
+
 func quest_complete(quest, reward):
   total_quest_completion_count += 1
   active_quests.erase(quest)
   rewards_to_earn.append(reward)
+  $"/root/root/sfx/quest_complete".play()
   
   if len(active_quests)<= 0:
     hyper_speed_quest_accrual = true
