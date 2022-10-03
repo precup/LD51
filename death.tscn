@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" path="res://death.gd" id="1_5hfj0"]
 
+[sub_resource type="Animation" id="Animation_4afb4"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_gp3oy"]
 resource_name = "fade_overlay"
 length = 2.5
@@ -41,9 +44,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [false, false, true]
 }
-
-[sub_resource type="Animation" id="Animation_4afb4"]
-length = 0.001
 
 [sub_resource type="Animation" id="Animation_c8pxv"]
 resource_name = "pulse_text"

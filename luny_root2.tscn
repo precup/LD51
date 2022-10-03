@@ -18,16 +18,16 @@
 [ext_resource type="Script" path="res://sfx.gd" id="13_bua1r"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
 [ext_resource type="AudioStream" uid="uid://b3iyc3y0kf6px" path="res://assets/ld51 sfx/gunshot5.mp3" id="17_dcm7x"]
-[ext_resource type="AudioStream" uid="uid://j13jqecjpqf3" path="res://assets/ld51 sfx/reload.mp3" id="18_6b0s1"]
+[ext_resource type="AudioStream" uid="uid://c814cgeksbadm" path="res://assets/ld51 sfx/reload.mp3" id="18_6b0s1"]
 [ext_resource type="AudioStream" uid="uid://852hjl4qgnp2" path="res://assets/ld51 sfx/enemyhit.mp3" id="18_c15wr"]
 [ext_resource type="AudioStream" uid="uid://2qeh3ttl1oej" path="res://assets/ld51 sfx/wallhit.mp3" id="19_1cvp1"]
-[ext_resource type="AudioStream" uid="uid://cn2kssrrk845v" path="res://assets/ld51 sfx/questcomplete.mp3" id="19_tqsex"]
-[ext_resource type="AudioStream" uid="uid://bo3kylwec4ie1" path="res://assets/ld51 sfx/ricochet1.mp3" id="20_kwrk6"]
+[ext_resource type="AudioStream" uid="uid://cqwcvaavihuo8" path="res://assets/ld51 sfx/questcomplete.mp3" id="19_tqsex"]
+[ext_resource type="AudioStream" uid="uid://bnky681qonx7t" path="res://assets/ld51 sfx/ricochet1.mp3" id="20_kwrk6"]
 [ext_resource type="AudioStream" uid="uid://csiv8xkbadgso" path="res://assets/ld51 sfx/pothit.mp3" id="20_ryhri"]
-[ext_resource type="AudioStream" uid="uid://bcr8iyu2fdxnt" path="res://assets/ld51 sfx/ricochet2.mp3" id="21_868fn"]
-[ext_resource type="PackedScene" path="res://npc.tscn" id="21_hwo1i"]
-[ext_resource type="PackedScene" path="res://dialog_trigger.tscn" id="22_2jyts"]
-[ext_resource type="AudioStream" uid="uid://qn5yo7n46p8a" path="res://assets/ld51 sfx/ricochet3.mp3" id="22_4rurv"]
+[ext_resource type="AudioStream" uid="uid://8dfph6140cxn" path="res://assets/ld51 sfx/ricochet2.mp3" id="21_868fn"]
+[ext_resource type="PackedScene" uid="uid://bj8orutgvtbex" path="res://npc.tscn" id="21_hwo1i"]
+[ext_resource type="PackedScene" uid="uid://7j3pdrl1pu4n" path="res://dialog_trigger.tscn" id="22_2jyts"]
+[ext_resource type="AudioStream" uid="uid://co6x148ps04vm" path="res://assets/ld51 sfx/ricochet3.mp3" id="22_4rurv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d635m"]
 texture = ExtResource("6_pty4p")
@@ -221,6 +221,45 @@ position = Vector2(883, 709)
 [node name="heart_pickup" parent="." instance=ExtResource("9_gl1f0")]
 position = Vector2(720, 376)
 
+[node name="sfx" type="Node2D" parent="."]
+script = ExtResource("13_bua1r")
+
+[node name="gunshot_5" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("17_dcm7x")
+volume_db = -20.0
+
+[node name="enemy_hit" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("18_c15wr")
+volume_db = -20.0
+
+[node name="wall_hit" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("19_1cvp1")
+volume_db = -20.0
+
+[node name="pot_hit" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("20_ryhri")
+volume_db = -20.0
+
+[node name="reload" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("18_6b0s1")
+volume_db = -20.0
+
+[node name="quest_complete" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("19_tqsex")
+volume_db = -20.0
+
+[node name="ricochet_1" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("20_kwrk6")
+volume_db = -20.0
+
+[node name="ricochet_2" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("21_868fn")
+volume_db = -20.0
+
+[node name="ricochet_3" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("22_4rurv")
+volume_db = -20.0
+
 [node name="quest_manager" parent="." instance=ExtResource("10_l83fa")]
 
 [node name="references" type="Node2D" parent="."]
@@ -311,45 +350,6 @@ facing_direction = 1
 
 [node name="barrel" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
 position = Vector2(2155, -499)
-
-[node name="sfx" type="Node2D" parent="level_1"]
-script = ExtResource("13_bua1r")
-
-[node name="gunshot_5" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("17_dcm7x")
-volume_db = -20.0
-
-[node name="enemy_hit" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("18_c15wr")
-volume_db = -20.0
-
-[node name="wall_hit" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("19_1cvp1")
-volume_db = -20.0
-
-[node name="pot_hit" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("20_ryhri")
-volume_db = -20.0
-
-[node name="reload" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("18_6b0s1")
-volume_db = -20.0
-
-[node name="quest_complete" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("19_tqsex")
-volume_db = -20.0
-
-[node name="ricochet_1" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("20_kwrk6")
-volume_db = -20.0
-
-[node name="ricochet_2" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("21_868fn")
-volume_db = -20.0
-
-[node name="ricochet_3" type="AudioStreamPlayer" parent="level_1/sfx"]
-stream = ExtResource("22_4rurv")
-volume_db = -20.0
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
 position = Vector2(1262, 409)
