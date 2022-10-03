@@ -54,6 +54,9 @@ const BOOSTED_SPEED_DURATION = .15
 const DASH_COOLDOWN = 2
 var dash_cooldown_counter = 0
 var dashing :bool = false
+var step_state: int = 0
+var step_time: float = 0
+@export var STEP_RATE: float = 0.4
 
 func _begin_dash():
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_DASH) 
@@ -80,6 +83,14 @@ func _physics_process(_delta):
   $front_sprite.flip_h = not facing_left
   $back_sprite.flip_h = not facing_left
   
+  if STEP_RATE <= step_time:
+    step_time -= STEP_RATE
+    step_state = (step_state + 1) % 4
+    var rot = PI / 18 if step_state == 1 else (-PI / 18 if step_state == 3 else 0)
+    $front_sprite.rotation = rot
+    $back_sprite.rotation = rot
+  step_time += _delta
+  
   if Input.is_action_just_pressed("dash") && dash_cooldown_counter <= 0:
     # TODO: put a CD on this, have UI show CD
     _begin_dash()
@@ -93,6 +104,12 @@ func _physics_process(_delta):
     "up",
     "down"
   ) * boosted_speed
+  
+  if direction.length() == 0:
+    if step_state % 2 == 0 and step_time > STEP_RATE:
+      step_time = STEP_RATE - 0.0001
+    elif step_state % 2 == 1:
+      step_time += _delta
   
   if _knockback != Vector2.ZERO:
     velocity = _knockback
