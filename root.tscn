@@ -373,7 +373,7 @@ position = Vector2(1038, -628)
 position = Vector2(759, -634)
 
 [node name="spike_trap8" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
-position = Vector2(886, -1788)
+position = Vector2(512, -1280)
 STARTING_TIME = 4.0
 
 [node name="smart_enemy2" parent="level_1/doodads" instance=ExtResource("10_3gr08")]
@@ -383,7 +383,7 @@ position = Vector2(1912, -4652)
 position = Vector2(1494, -4851)
 
 [node name="enemy4" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
-position = Vector2(892, -1953)
+position = Vector2(1792, -1280)
 
 [node name="laser_enemy" parent="level_1/doodads" instance=ExtResource("12_weq06")]
 position = Vector2(1277, -3035)

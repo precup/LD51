@@ -173,7 +173,7 @@ func drop_random_item():
   var pickup = potential_pickups[randi() % len(potential_pickups)]
   var pickup_instance = pickup.instantiate()
 
-  pickup_instance.global_position = global_position
+  pickup_instance.global_position = global_position + Vector2(50, 50)
   $"/root/root/pickups".add_child(pickup_instance)
   
   # get_parent().move_child(pickup_instance, 0)
