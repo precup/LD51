@@ -71,7 +71,7 @@ func _begin_dash():
   tween.tween_property(self, "boosted_speed", SPEED,  BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)     
   tween.tween_callback(func(): dashing=false)     
   tween.tween_interval(DASH_COOLDOWN - BOOSTED_SPEED_DURATION)
-  tween.tween_property(self, "modulate", Color(.6,.6,1,1), .05).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)    
+  tween.tween_property(self, "modulate", Color(10, 10, 10, 1), .02).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)    
   tween.tween_property(self, "modulate", Color(1,1,1,1), .05).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)  
 
 func _physics_process(_delta):

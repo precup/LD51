@@ -456,7 +456,7 @@ position = Vector2(263, 625)
 [node name="checkpoint" parent="level_1/doodads" instance=ExtResource("13_vty5w")]
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(1698, -1502)
+position = Vector2(122, 1389)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="projectiles" type="Node2D" parent="."]
