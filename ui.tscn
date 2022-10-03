@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://ui.gd" id="1_hmor5"]
 [ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
-[ext_resource type="PackedScene" uid="uid://52ng5x2lok11" path="res://heart.tscn" id="4_xbvb8"]
+[ext_resource type="PackedScene" uid="uid://d16phm1370dew" path="res://heart.tscn" id="4_xbvb8"]
 [ext_resource type="Texture2D" uid="uid://bfaney0p34lxa" path="res://assets/gun_reward_icon_top.png" id="5_il67d"]
 [ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="5_ubxos"]
 [ext_resource type="PackedScene" uid="uid://nk2tdbkd4ujv" path="res://reward_menu.tscn" id="6_b4ynd"]
 [ext_resource type="Texture2D" uid="uid://blg4ieywsf7mt" path="res://assets/pixel.png" id="6_ikxsv"]
 [ext_resource type="PackedScene" uid="uid://duug21557oo01" path="res://intro_menu.tscn" id="8_2bwm4"]
-[ext_resource type="PackedScene" uid="uid://b0t8tfmdova6p" path="res://dialog.tscn" id="8_16qvw"]
-[ext_resource type="PackedScene" uid="uid://darx1m0vf1ktj" path="res://death.tscn" id="9_61fl0"]
+[ext_resource type="PackedScene" path="res://dialog.tscn" id="8_16qvw"]
+[ext_resource type="PackedScene" path="res://death.tscn" id="9_61fl0"]
 
 [sub_resource type="StyleBox" id="StyleBox_l1c8y"]
 resource_local_to_scene = false
@@ -273,3 +273,4 @@ visible = false
 [node name="dialog" parent="." instance=ExtResource("8_16qvw")]
 
 [node name="death" parent="." instance=ExtResource("9_61fl0")]
+visible = false

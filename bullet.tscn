@@ -1,10 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl4waundehbao"]
+[gd_scene load_steps=7 format=3 uid="uid://cl4waundehbao"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_c42cd"]
-[ext_resource type="Texture2D" uid="uid://dwcfs5ilpsigk" path="res://assets/player_bullet.png" id="2_qshii"]
+[ext_resource type="Texture2D" uid="uid://3x0xhdaw1g2" path="res://assets/player_bullet2.png" id="2_ymuv1"]
+[ext_resource type="Texture2D" uid="uid://bwnvpgvq7t2dl" path="res://assets/player_bullet1.png" id="3_xjv0t"]
+[ext_resource type="Texture2D" uid="uid://4cl1yw57318p" path="res://assets/player_bullet3.png" id="4_iyo0h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_syl5c"]
-size = Vector2(22, 22)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ho3hg"]
+radius = 21.64
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5abui"]
+animations = [{
+"frames": [ExtResource("2_ymuv1"), ExtResource("3_xjv0t"), ExtResource("4_iyo0h")],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="bullet" type="CharacterBody2D"]
 collision_layer = 2
@@ -12,8 +22,10 @@ collision_mask = 52
 script = ExtResource("1_c42cd")
 
 [node name="shape" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_syl5c")
+shape = SubResource("CircleShape2D_ho3hg")
 
-[node name="sprite" type="Sprite2D" parent="."]
-position = Vector2(3, 6)
-texture = ExtResource("2_qshii")
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-12, 1)
+scale = Vector2(0.544922, 0.559076)
+frames = SubResource("SpriteFrames_5abui")
+playing = true

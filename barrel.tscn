@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c377nj22nsru2"]
+[gd_scene load_steps=8 format=3 uid="uid://bfhj42r10m8cl"]
 
 [ext_resource type="Script" path="res://barrel.gd" id="1_l1avd"]
 [ext_resource type="Texture2D" uid="uid://cypv23mmlq5am" path="res://assets/pot_healthy.png" id="2_m4pgc"]
