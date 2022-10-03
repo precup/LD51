@@ -59,6 +59,8 @@ var step_time: float = 0
 @export var STEP_RATE: float = 0.4
 
 func _begin_dash():
+  $"/root/root/sfx/dash".play()
+  
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_DASH) 
   dash_cooldown_counter = DASH_COOLDOWN
   dashing = true
