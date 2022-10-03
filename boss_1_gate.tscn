@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckv60cfs2ov0d"]
+
+[ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="1_tedtl"]
+[ext_resource type="Texture2D" uid="uid://dcuma3xobg2bd" path="res://assets/particle.png" id="2_8rvpo"]
+
+[sub_resource type="Gradient" id="Gradient_0af0m"]
+colors = PackedColorArray(0.501961, 0.941176, 0.992157, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4y0hp"]
+gradient = SubResource("Gradient_0af0m")
+
+[sub_resource type="Curve" id="Curve_ntgoa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.687259, 0.0405406), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_u5cw7"]
+curve = SubResource("Curve_ntgoa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n53g5"]
+emission_shape = 3
+emission_box_extents = Vector3(200, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 162.45
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.3
+scale_max = 0.7
+scale_curve = SubResource("CurveTexture_u5cw7")
+color_ramp = SubResource("GradientTexture1D_4y0hp")
+hue_variation_min = 0.31
+hue_variation_max = 0.31
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pk8ru"]
+size = Vector2(677, 194)
+
+[node name="boss_1_gate" type="Node2D" groups=["boss_1_gate"]]
+position = Vector2(-4025, -1979)
+
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(64, 144)
+scale = Vector2(1.94565, 1.94565)
+texture = ExtResource("1_tedtl")
+
+[node name="shadow2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(173, 110)
+scale = Vector2(1.94565, 1.94565)
+texture = ExtResource("1_tedtl")
+
+[node name="shadow3" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(295, 148)
+scale = Vector2(1.94565, 1.94565)
+texture = ExtResource("1_tedtl")
+
+[node name="shadow4" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(401, 101)
+scale = Vector2(1.94565, 1.94565)
+texture = ExtResource("1_tedtl")
+
+[node name="shadow5" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(496, 151)
+scale = Vector2(1.94565, 1.94565)
+texture = ExtResource("1_tedtl")
+
+[node name="shadow6" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(579, 95)
+scale = Vector2(1.94565, 1.94565)
+texture = ExtResource("1_tedtl")
+
+[node name="beam_particles" type="GPUParticles2D" parent="."]
+position = Vector2(343, 105)
+amount = 15
+lifetime = 1.92
+visibility_rect = Rect2(-50, -50, 50, 50)
+trail_length_secs = 0.17
+process_material = SubResource("ParticleProcessMaterial_n53g5")
+texture = ExtResource("2_8rvpo")
+
+[node name="body" type="StaticBody2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="body"]
+position = Vector2(328.5, 87)
+shape = SubResource("RectangleShape2D_pk8ru")

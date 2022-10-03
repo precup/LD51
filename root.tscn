@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=23 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cwqqmtk6yuqs" path="res://hitsprite.tscn" id="1_y7wtu"]
@@ -13,7 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 [ext_resource type="PackedScene" uid="uid://51j5hrxg5vhb" path="res://win_trigger.tscn" id="11_cmtby"]
+[ext_resource type="PackedScene" uid="uid://ckv60cfs2ov0d" path="res://boss_1_gate.tscn" id="12_s4qxi"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
+[ext_resource type="PackedScene" uid="uid://ctmgpk0ka6qox" path="res://boss_2_gate.tscn" id="13_uce1s"]
 [ext_resource type="PackedScene" uid="uid://c04wgwpov3o2l" path="res://checkpoint.tscn" id="13_vty5w"]
 [ext_resource type="PackedScene" path="res://sfx.tscn" id="15_0wxu6"]
 [ext_resource type="PackedScene" uid="uid://bj8orutgvtbex" path="res://npc.tscn" id="21_hwo1i"]
@@ -429,6 +431,11 @@ position = Vector2(1698, -2811)
 
 [node name="win_trigger" parent="level_1/doodads" instance=ExtResource("11_cmtby")]
 position = Vector2(351, -5019)
+
+[node name="boss_1_gate" parent="level_1/doodads" instance=ExtResource("12_s4qxi")]
+position = Vector2(1202, -3765)
+
+[node name="boss_2_gate" parent="level_1/doodads" instance=ExtResource("13_uce1s")]
 
 [node name="pickups" type="Node2D" parent="."]
 

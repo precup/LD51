@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cspp5u6u33ps1"]
+[gd_scene load_steps=25 format=3 uid="uid://cspp5u6u33ps1"]
 
 [ext_resource type="Script" path="res://laser_enemy.gd" id="1_qljgk"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="2_gcmcp"]
@@ -17,18 +17,18 @@ size = Vector2(154, 161)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d426"]
 size = Vector2(153, 158)
 
-[sub_resource type="Gradient" id="Gradient_1vkv7"]
+[sub_resource type="Gradient" id="Gradient_0af0m"]
 colors = PackedColorArray(0.501961, 0.941176, 0.992157, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_4y0hp"]
-gradient = SubResource("Gradient_1vkv7")
+gradient = SubResource("Gradient_0af0m")
 
-[sub_resource type="Curve" id="Curve_iv76r"]
+[sub_resource type="Curve" id="Curve_ntgoa"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.687259, 0.0405406), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_u5cw7"]
-curve = SubResource("Curve_iv76r")
+curve = SubResource("Curve_ntgoa")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mi2h1"]
 particle_flag_disable_z = true
@@ -56,6 +56,19 @@ scale_max = 0.7
 scale_curve = SubResource("CurveTexture_u5cw7")
 color_ramp = SubResource("GradientTexture1D_4y0hp")
 
+[sub_resource type="Gradient" id="Gradient_1vkv7"]
+colors = PackedColorArray(0.501961, 0.941176, 0.992157, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7adu2"]
+gradient = SubResource("Gradient_1vkv7")
+
+[sub_resource type="Curve" id="Curve_iv76r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.687259, 0.0405406), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_yldvd"]
+curve = SubResource("Curve_iv76r")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sxrdm"]
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
@@ -67,8 +80,8 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.3
 scale_max = 0.7
-scale_curve = SubResource("CurveTexture_u5cw7")
-color_ramp = SubResource("GradientTexture1D_4y0hp")
+scale_curve = SubResource("CurveTexture_yldvd")
+color_ramp = SubResource("GradientTexture1D_7adu2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3ly6"]
 resource_local_to_scene = true

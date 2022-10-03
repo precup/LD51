@@ -173,7 +173,15 @@ func damage(amount: float, weapon_id: int = -1, bullet_vector: Vector2 = Vector2
       knockback(bullet_vector)
     _hit_animation()
 
-func destroy(): 
+func destroy():
+  if get_parent().name == "boss":
+    for n in get_tree().get_nodes_in_group("boss_1_gate"):
+      n.queue_free()
+    
+  if get_parent().name == "boss_2":
+    for n in get_tree().get_nodes_in_group("boss_2_gate"):
+      n.queue_free()
+  
   drop_random_item()
 
   get_parent().queue_free()

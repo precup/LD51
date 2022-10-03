@@ -110,7 +110,7 @@ scale_max = 0.7
 scale_curve = SubResource("CurveTexture_7o7rw")
 color_ramp = SubResource("GradientTexture1D_gtpys")
 
-[node name="boss" type="RigidBody2D" groups=["enemies"]]
+[node name="boss_2" type="RigidBody2D" groups=["enemies"]]
 position = Vector2(1111, -2540)
 collision_layer = 80
 collision_mask = 17
