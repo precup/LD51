@@ -27,7 +27,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_scyla"]
 size = Vector2(210, 224.5)
 
-[node name="heart_pickup" type="Node2D"]
+[node name="heart_pickup" type="Node2D" groups=["pickups"]]
 script = ExtResource("1_g5sot")
 
 [node name="heart_pickup" type="Sprite2D" parent="."]

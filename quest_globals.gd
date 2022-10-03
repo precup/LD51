@@ -2,6 +2,7 @@ extends Node
 
 
 @onready var quest_manager = $"/root/root/quest_manager"
+@onready var player = $"/root/root/player"
 
 # Note: REWARD_OTHER includes quest system rewards and whatever other random awards we come up with, unless we want to split those out
 enum RewardType {REWARD_GUN, REWARD_MOD, REWARD_OTHER}
@@ -109,10 +110,10 @@ var all_quests = [
   QuestData.new(StatTrack.STAT_TRASH_GUN_MODULE, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 2, Rarity.RARITY_LEGENDARY: 3}, "Trash module(s).", { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(7) ),
   QuestData.new(StatTrack.STAT_REPLACE_GUN, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 2, Rarity.RARITY_LEGENDARY: 3}, "Get new gun(s).", { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(3) ),
   QuestData.new(StatTrack.STAT_TRASH_GUN, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 2, Rarity.RARITY_LEGENDARY: 3}, "Trash gun(s).", { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(7) ),
-  QuestData.new(StatTrack.STAT_KONAMI_CODE, { Rarity.RARITY_RARE: 1}, "Enter the Konami code.", { Rarity.RARITY_RARE: 1} ),
+  QuestData.new(StatTrack.STAT_KONAMI_CODE, { Rarity.RARITY_RARE: 1}, "Enter the Konami code.", { Rarity.RARITY_RARE: 1}, func():return have_completed_x_quests(15) ),
   QuestData.new(StatTrack.STAT_KEY_PRESSED, { Rarity.RARITY_COMMON: 30, Rarity.RARITY_RARE: 80, Rarity.RARITY_LEGENDARY: 160}, "Mash movement keys." ),
   QuestData.new(StatTrack.STAT_KEY_PRESSED_WHILE_MOUSE_DOWN, { Rarity.RARITY_COMMON: 30, Rarity.RARITY_RARE: 80, Rarity.RARITY_LEGENDARY: 160}, "Mash movement keys, while shooting." ),
-  QuestData.new(StatTrack.STAT_IMANOK_CODE, { Rarity.RARITY_LEGENDARY: 1}, "Enter the imanoK code.", { Rarity.RARITY_LEGENDARY: 1} ),
+  QuestData.new(StatTrack.STAT_IMANOK_CODE, { Rarity.RARITY_LEGENDARY: 1}, "Enter the imanoK code.", { Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(10) ),
   QuestData.new(StatTrack.STAT_RELOAD, { Rarity.RARITY_COMMON: 2, Rarity.RARITY_RARE: 4, Rarity.RARITY_LEGENDARY: 10}, "Reload your gun." ),
   QuestData.new(StatTrack.STAT_RELOAD_WHILE_STATIONARY, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 3, Rarity.RARITY_LEGENDARY: 7}, "Reload your gun while standing still.", {}, func():return have_completed_x_quests(15) ),
   QuestData.new(StatTrack.STAT_RELOAD_WHILE_MOVING, { Rarity.RARITY_COMMON: 2, Rarity.RARITY_RARE: 4, Rarity.RARITY_LEGENDARY: 8}, "Reload your gun while moving.", {}, func():return have_completed_x_quests(15) ),
@@ -122,7 +123,7 @@ var all_quests = [
   QuestData.new(StatTrack.STAT_UNFINISHED_QUEST, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 2, Rarity.RARITY_LEGENDARY: 3}, "Let unfinished quest(s) expire.", { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(2) ),
   QuestData.new(StatTrack.STAT_HOLD_YOUR_BREATH, { Rarity.RARITY_RARE: 15, Rarity.RARITY_LEGENDARY: 30}, "Hold your breath!", {Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(5)),
   QuestData.new(StatTrack.STAT_HOLD_YOUR_BREATH, { Rarity.RARITY_LEGENDARY: 1}, "Be a cutie!", {Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(5)),
-  QuestData.new(StatTrack.STAT_HOLD_YOUR_BREATH, { Rarity.RARITY_RARE: 5}, "Enter your mother's maiden name!", {Rarity.RARITY_RARE: 1}, func():return have_completed_x_quests(5)),
+  QuestData.new(StatTrack.STAT_HOLD_YOUR_BREATH, { Rarity.RARITY_RARE: 5}, "Enter your mother's maiden name!", {Rarity.RARITY_RARE: 1}, func():return have_completed_x_quests(5)),  
 ]
 
 func _ready():
@@ -151,20 +152,43 @@ func show_reward(reward, base_rarity_weights):
   
   # TODO: when passing REWARD_OTHER through here we may need to handle it separately. Unsure how callbacks will work
   reward_menu.show_reward(reward.reward_type, reward.reward_rarity, base_rarity_weights)
-  
+
+const NEARBY_THRESH = 1800
 func is_enemy_near():
-  #TODO
-  return true
+  var nodes = get_tree().get_nodes_in_group("enemies")
+  var player_position = player.global_transform.origin
+  for node in nodes:
+    var dist = player_position.distance_to(node.global_transform.origin)
+    if dist < NEARBY_THRESH * 4:
+      return true
+  return false
   
 func is_hazard_near():
-  #TODO
-  return true
+  var nodes = get_tree().get_nodes_in_group("hazard")
+  var player_position = player.global_transform.origin
+  for node in nodes:
+    var dist = player_position.distance_to(node.global_transform.origin)
+    if dist < NEARBY_THRESH * 2:
+      return true
+  return is_enemy_near()
   
 func have_completed_x_quests(x):
   return x < quest_manager.total_quest_completion_count
   
 func is_breakable_near():
-  return true
+  var nodes = get_tree().get_nodes_in_group("destructible")
+  var player_position = player.global_transform.origin
+  for node in nodes:
+    var dist = player_position.distance_to(node.global_transform.origin)
+    if dist < NEARBY_THRESH:
+      return true
+  return false
   
 func is_pickup_near():
-  return true
+  var nodes = get_tree().get_nodes_in_group("pickups")
+  var player_position = player.global_transform.origin
+  for node in nodes:
+    var dist = player_position.distance_to(node.global_transform.origin)
+    if dist < NEARBY_THRESH:
+      return true
+  return false
