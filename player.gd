@@ -162,7 +162,7 @@ func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
   play_flicker_animation()
   
   if _health == 0:
-    print("u died")
+    $"/root/root/ui/death".play_death_animation()
     return
 
 func pickup(item: String) -> void:

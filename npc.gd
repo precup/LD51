@@ -1,6 +1,5 @@
 extends Area2D
 
-
 @export var dialog_text: Array[String] = ["Hello."]
 var player_inside = false
 
@@ -21,7 +20,6 @@ func _on_npc_body_entered(body):
   var player = $"/root/root/references".get_player()
   if player == body:
     player_inside = true
-
 
 func _on_npc_body_exited(body):
   var player = $"/root/root/references".get_player()
