@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=34 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cwqqmtk6yuqs" path="res://hitsprite.tscn" id="1_y7wtu"]
@@ -30,6 +30,7 @@
 [ext_resource type="AudioStream" uid="uid://8dfph6140cxn" path="res://assets/ld51 sfx/ricochet2.mp3" id="25_nkftf"]
 [ext_resource type="AudioStream" uid="uid://co6x148ps04vm" path="res://assets/ld51 sfx/ricochet3.mp3" id="26_kxnx0"]
 [ext_resource type="AudioStream" uid="uid://dlcsvsjljkqv" path="res://assets/ld51 sfx/dash.mp3" id="28_oj2nl"]
+[ext_resource type="AudioStream" uid="uid://bc4smni73w0h0" path="res://assets/ld51 sfx/dashregain.mp3" id="29_h4w5o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d635m"]
 texture = ExtResource("6_pty4p")
@@ -512,6 +513,9 @@ volume_db = -20.0
 [node name="dash" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("28_oj2nl")
 volume_db = -20.0
+
+[node name="dash_regain" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("29_h4w5o")
 
 [node name="sr" parent="." instance=ExtResource("21_hwo1i")]
 position = Vector2(-1371, -312)

@@ -91,6 +91,10 @@ func _begin_dash():
   cooldown_tween.tween_interval(DASH_COOLDOWN - BOOSTED_SPEED_DURATION)
   cooldown_tween.tween_property(self, "modulate", Color(10, 10, 10, 1), .02).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)    
   cooldown_tween.tween_property(self, "modulate", Color(1,1,1,1), .05).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN) 
+  
+  await cooldown_tween.finished
+  
+  $"/root/root/sfx/dash_regain".play()
 
 func _physics_process(_delta):
   dash_cooldown_counter -= _delta
