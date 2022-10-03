@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=34 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cwqqmtk6yuqs" path="res://hitsprite.tscn" id="1_y7wtu"]
@@ -12,8 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://w1inu0j1tffh" path="res://spike_trap.tscn" id="10_b02l4"]
 [ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
-[ext_resource type="PackedScene" uid="uid://bnad03ke1cx1l" path="res://patrol_enemy.tscn" id="11_atj5v"]
-[ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
 [ext_resource type="PackedScene" uid="uid://cspp5u6u33ps1" path="res://laser_enemy.tscn" id="12_weq06"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
 [ext_resource type="PackedScene" uid="uid://c04wgwpov3o2l" path="res://checkpoint.tscn" id="13_vty5w"]
@@ -368,38 +366,14 @@ layer_0/tile_data = PackedInt32Array(-65534, 327680, 2, -65535, 327680, 2, -6553
 [node name="doodads" type="Node2D" parent="level_1"]
 
 [node name="spike_trap" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
-position = Vector2(953, -250)
-
-[node name="spike_trap2" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
-position = Vector2(833, -695)
+position = Vector2(1040, -628)
 
 [node name="spike_trap6" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
-position = Vector2(966, -692)
-
-[node name="spike_trap3" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
-position = Vector2(396, -692)
-
-[node name="spike_trap4" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
-position = Vector2(290, -271)
-STARTING_TIME = 4.0
-
-[node name="spike_trap5" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
-position = Vector2(192, -707)
-STARTING_TIME = 4.0
-
-[node name="spike_trap7" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
-position = Vector2(464, -1429)
-STARTING_TIME = 4.0
+position = Vector2(759, -634)
 
 [node name="spike_trap8" parent="level_1/doodads" instance=ExtResource("10_b02l4")]
 position = Vector2(886, -1788)
 STARTING_TIME = 4.0
-
-[node name="cannon" parent="level_1/doodads" instance=ExtResource("11_je3km")]
-position = Vector2(229, -1200)
-direction = 3
-bullet_speed = 600.0
-max_time_between_shots = 200.0
 
 [node name="smart_enemy2" parent="level_1/doodads" instance=ExtResource("10_3gr08")]
 position = Vector2(1912, -4652)
@@ -410,34 +384,8 @@ position = Vector2(1494, -4851)
 [node name="enemy" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
 position = Vector2(1094, 946)
 
-[node name="enemy2" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
-position = Vector2(352, -1733)
-
-[node name="enemy3" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
-position = Vector2(801, -1329)
-
 [node name="enemy4" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
 position = Vector2(892, -1953)
-
-[node name="enemy5" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
-position = Vector2(637, -1767)
-
-[node name="enemy6" parent="level_1/doodads" instance=ExtResource("4_ltobp")]
-position = Vector2(369, -2152)
-
-[node name="patrol_enemy" parent="level_1/doodads" instance=ExtResource("11_atj5v")]
-position = Vector2(-764, -2412)
-
-[node name="patrol_enemy2" parent="level_1/doodads" instance=ExtResource("11_atj5v")]
-position = Vector2(-365, -2653)
-
-[node name="patrol_enemy3" parent="level_1/doodads" instance=ExtResource("11_atj5v")]
-position = Vector2(-78, -2772)
-initial_patrol_direction = 2
-
-[node name="patrol_enemy4" parent="level_1/doodads" instance=ExtResource("11_atj5v")]
-position = Vector2(392, -2909)
-initial_patrol_direction = 3
 
 [node name="laser_enemy" parent="level_1/doodads" instance=ExtResource("12_weq06")]
 position = Vector2(1277, -3035)
@@ -472,6 +420,7 @@ zoom = Vector2(0.6, 0.6)
 script = ExtResource("6_crj1l")
 
 [node name="ui" parent="." instance=ExtResource("5_e1kqk")]
+visible = false
 
 [node name="sfx" type="Node2D" parent="."]
 script = ExtResource("18_okoyd")
