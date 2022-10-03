@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=25 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://2qeh3ttl1oej" path="res://assets/ld51 sfx/wallhit.mp3" id="19_1cvp1"]
 [ext_resource type="AudioStream" uid="uid://csiv8xkbadgso" path="res://assets/ld51 sfx/pothit.mp3" id="20_ryhri"]
 [ext_resource type="PackedScene" uid="uid://bj8orutgvtbex" path="res://npc.tscn" id="21_hwo1i"]
+[ext_resource type="PackedScene" uid="uid://7j3pdrl1pu4n" path="res://dialog_trigger.tscn" id="22_2jyts"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wx7vc"]
 texture = ExtResource("5_gi3ks")
@@ -471,3 +472,5 @@ volume_db = -20.0
 
 [node name="npc" parent="." instance=ExtResource("21_hwo1i")]
 dialog_text = "Hello. This is some demo text."
+
+[node name="dialog_trigger" parent="." instance=ExtResource("22_2jyts")]

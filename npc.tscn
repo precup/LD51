@@ -44,9 +44,9 @@ position = Vector2(-27, -21)
 
 [node name="click_to_talk_label" type="Label" parent="position"]
 offset_left = -33.0
-offset_top = 69.0766
+offset_top = 111.0
 offset_right = 246.0
-offset_bottom = 139.077
+offset_bottom = 181.0
 theme_override_font_sizes/font_size = 48
 text = "Click to talk!"
 

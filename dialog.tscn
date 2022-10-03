@@ -17,7 +17,7 @@ offset_left = 32.0
 offset_top = 23.0
 offset_right = 788.0
 offset_bottom = 284.0
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 30
 text = "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah "
 autowrap_mode = 3
 
