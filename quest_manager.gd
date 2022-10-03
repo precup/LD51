@@ -88,42 +88,52 @@ func _sort_rewards_by_type_by_rarity():
   for reward in QuestGlobals.all_rewards:
     rewards_by_type_by_rarity[reward.reward_rarity][reward.reward_type].append(reward)
 
+const DEBUG_MODE = false
+var debug_quest_index = 0
 func _roll_new_quest():
   var rarity = _get_next_quest_rarity()
   var reward_type = _get_next_quest_reward_type()  
   
-  var priority_quests = []
-  for quest in quests_by_rarity[rarity]:
-    var avail = quest.is_available.call()
-    if (avail || avail== null) && quest.priority_quest:
-      priority_quests.append(quest)
   var quest
-  
-  if len(priority_quests) > 0:
-    quest = priority_quests[randi_range(0,len(priority_quests)-1)]
-  else:  
-    var safety_counter = 50
-    while (true):
-      safety_counter-=1
-      if (safety_counter < 0):
-        break
+  var priority_quests = []
+  if DEBUG_MODE && false:
+    quest = QuestGlobals.all_quests[debug_quest_index]
+    debug_quest_index+=1
+    if debug_quest_index >= len(QuestGlobals.all_quests):
+      debug_quest_index = 0
+    rarity = quest.quest_rarity.keys()[0]
+  else:
+    for priority_quest in quests_by_rarity[rarity]:
+      var avail = priority_quest.is_available.call()
+      if (avail || avail== null) && priority_quest.priority_quest:
+        priority_quests.append(priority_quest)
         
-      quest = quests_by_rarity[rarity][rng.randi_range(0, len(quests_by_rarity[rarity])-1)]
-      var avail = quest.is_available.call()
-      if (avail || avail== null):
-        var currently_active = false
-        for active_quest in active_quests:
-          if active_quest.quest_id == quest.quest_id:
-            currently_active = true
-            
-        # if we dont already have this quest, finally break
-        if (!currently_active):
-          break;
-      
-  if quest.quest_uses_by_rarity.has(rarity):
-    quest.quest_uses_by_rarity[rarity]-=1
-    if quest.quest_uses_by_rarity[rarity]<=0:
-      quests_by_rarity[rarity].erase(quest)
+    if len(priority_quests) > 0:
+      quest = priority_quests[randi_range(0,len(priority_quests)-1)]
+    else:  
+      var safety_counter = 50
+      while (true):
+        safety_counter-=1
+        if (safety_counter < 0):
+          break
+          
+        quest = quests_by_rarity[rarity][rng.randi_range(0, len(quests_by_rarity[rarity])-1)]
+        var avail = quest.is_available.call()
+        if (avail || avail== null):
+          var currently_active = false
+          for active_quest in active_quests:
+            if active_quest.quest_id == quest.quest_id:
+              currently_active = true
+              
+          # if we dont already have this quest, finally break
+          if (!currently_active):
+            break;
+        
+    if quest.quest_uses_by_rarity.has(rarity):
+      quest.quest_uses_by_rarity[rarity]-=1
+      if quest.quest_uses_by_rarity[rarity]<=0:
+        quests_by_rarity[rarity].erase(quest)
+        
   var reward = rewards_by_type_by_rarity[rarity][reward_type][rng.randi_range(0, len(rewards_by_type_by_rarity[rarity][reward_type])-1)]
   
   var new_quest_scn = quest_scn.instantiate()
@@ -140,6 +150,8 @@ func _roll_new_quest():
   while (quest_container.get_child_count() > MAX_CONCURRENT_QUESTS):
     var removed_quest = quest_container.get_child(MAX_CONCURRENT_QUESTS)
     if (!removed_quest.is_completed):
+      if DEBUG_MODE:
+        quest_complete(removed_quest, removed_quest.reward)
       quest_count_progress(QuestGlobals.StatTrack.STAT_UNFINISHED_QUEST)
     active_quests.erase(removed_quest)
     quest_container.remove_child(removed_quest)
@@ -157,6 +169,9 @@ func _process(delta):
     
   if (len(rewards_to_earn) > 0):
     _pausable_earn_reward()
+  
+  if DEBUG_MODE && Input.is_action_just_pressed("dash"):    
+    _roll_new_quest()
 
 func quest_count_progress(stat_track_id, amount = 1):
   var stats = find_cascading_stats(stat_track_id)
@@ -222,6 +237,9 @@ func is_moving():
   
 var total_quest_completion_count = 0
 func quest_complete(quest, reward):
+  var random_rarity_to_increase_rate_of = randi_range(quest.quest_rarity, min(quest.quest_rarity+1, QuestGlobals.Rarity.RARITY_LEGENDARY)) # Add weights to the current tier or one tier higher
+  quest_rarity_weights[random_rarity_to_increase_rate_of] +=  1 + randi_range(0,quest.quest_rarity) # random value, based on the quest completed
+  
   total_quest_completion_count += 1
   active_quests.erase(quest)
   rewards_to_earn.append(reward)
