@@ -39,14 +39,17 @@ var sub_second_timer = 0.0
 const DURATION_INITIAL_DELAY = .2 # wait 200ms before starting/unpausing the duration counter
 var initial_delay_counter = 0.0
 
+var quest_id
+
 
 # TODO: Get UI to dynamically update
 
 # TODO: may need to display more details about rewards
 
 
-func initialize(_reward , _quest_rarity, _description, _stat_being_tracked, _stat_count_required):
+func initialize(_reward, _quest_id, _quest_rarity, _description, _stat_being_tracked, _stat_count_required):
   reward = _reward
+  quest_id = _quest_id
   quest_rarity = _quest_rarity
   ui_background.color = RARITY_COLORS[quest_rarity]
   ui_description_text.text = _description

@@ -13,6 +13,7 @@ const GUN_SCENE: PackedScene = preload("res://gun.tscn")
 @onready var WEAPON2 = $center/panel/vsplit/margin2/vsplit/hbox/margin2/weapon2
 @onready var TRASH = $center/panel/vsplit/margin2/vsplit/hbox/margin3/trash
 
+@onready var quest_manager = $"/root/root/quest_manager"
 var _upgrade_mode: bool = true
 var _upgrade: Modifiers.Gun = Modifiers.Gun.NONE
 var _gun = null
@@ -144,8 +145,10 @@ func apply_to_weapon(i):
   var gun_node = get_tree().get_first_node_in_group("player").get_node("gun_rotation_container/guns")
   var old_gun = gun_node.get_child(i)
   if _upgrade_mode:
+    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_ADD_GUN_MODULE) 
     old_gun.UPGRADES.append(_upgrade)
   else:
+    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_REPLACE_GUN) 
     _gun.PROJECTILE_NODE = old_gun.PROJECTILE_NODE
     old_gun.add_sibling(_gun)
     _gun.visible = old_gun.visible
@@ -156,5 +159,8 @@ func apply_to_weapon(i):
 func _on_trash_clicked():
   print("You clicked trash")
   if not _upgrade_mode:
+    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_TRASH_GUN) 
     _gun.visible = false
+  else:    
+    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_TRASH_GUN_MODULE) 
   close_menu()

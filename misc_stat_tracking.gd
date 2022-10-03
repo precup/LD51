@@ -33,6 +33,13 @@ var imanok_counter = 0
 func _input(event :InputEvent):
   if Input.is_action_just_pressed("left") || Input.is_action_just_pressed("right") || Input.is_action_just_pressed("up") || Input.is_action_just_pressed("down"):
       quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KEY_PRESSED)
+      if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+        quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KEY_PRESSED_WHILE_MOUSE_DOWN)
+  
+  if Input.is_action_pressed("left") || Input.is_action_pressed("right") || Input.is_action_pressed("up") || Input.is_action_pressed("down"):
+    quest_manager.quest_start_timer(QuestGlobals.StatTrack.STAT_MOVE)
+  else:
+    quest_manager.quest_pause_timer(QuestGlobals.StatTrack.STAT_MOVE)
   
   if event.is_pressed:
     if event.is_action_pressed(KONAMI_CODE[konami_counter]):

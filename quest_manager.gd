@@ -30,7 +30,11 @@ const quest_scn = preload("res://quest.tscn")
 # Pulls a rarity based on weights
 func _get_next_quest_rarity():
   var total = quest_rarity_weights.values().reduce(func(i,accum): return accum + i)
-  var my_random_number = rng.randi_range(0, total-1)
+  
+  var rarity_penalty = 0  # rare quests penalize 1, legendary penalize 2. 
+  for active_quest in active_quests:
+    rarity_penalty += int(active_quest.quest_rarity)
+  var my_random_number = rng.randi_range(0, total-1) - rarity_penalty
   
   for rarity in quest_rarity_weights:
     my_random_number -= quest_rarity_weights[rarity]
@@ -59,6 +63,12 @@ func _ready():
   
   for stat in QuestGlobals.StatTrack.values():
     stat_timers_active_status[stat] = false  
+    if stat == QuestGlobals.StatTrack.STAT_DO_NOTHING:
+      stat_timers_active_status[stat] = true
+    if stat == QuestGlobals.StatTrack.STAT_HOLD_YOUR_BREATH:
+      stat_timers_active_status[stat] = true
+    if stat == QuestGlobals.StatTrack.STAT_DO_NOTHING:
+      stat_timers_active_status[stat] = true      
 
 func _sort_quests_by_rarity():
   for rarity in QuestGlobals.Rarity.values():
@@ -81,7 +91,39 @@ func _sort_rewards_by_type_by_rarity():
 func _roll_new_quest():
   var rarity = _get_next_quest_rarity()
   var reward_type = _get_next_quest_reward_type()  
-  var quest = quests_by_rarity[rarity][rng.randi_range(0, len(quests_by_rarity[rarity])-1)]
+  
+  var priority_quests = []
+  for quest in quests_by_rarity[rarity]:
+    var avail = quest.is_available.call()
+    if (avail || avail== null) && quest.priority_quest:
+      priority_quests.append(quest)
+  var quest
+  
+  if len(priority_quests) > 0:
+    quest = priority_quests[randi_range(0,len(priority_quests)-1)]
+  else:  
+    var safety_counter = 50
+    while (true):
+      safety_counter-=1
+      if (safety_counter < 0):
+        break
+        
+      quest = quests_by_rarity[rarity][rng.randi_range(0, len(quests_by_rarity[rarity])-1)]
+      var avail = quest.is_available.call()
+      if (avail || avail== null):
+        var currently_active = false
+        for active_quest in active_quests:
+          if active_quest.quest_id == quest.quest_id:
+            currently_active = true
+            
+        # if we dont already have this quest, finally break
+        if (!currently_active):
+          break;
+      
+  if quest.quest_uses_by_rarity.has(rarity):
+    quest.quest_uses_by_rarity[rarity]-=1
+    if quest.quest_uses_by_rarity[rarity]<=0:
+      quests_by_rarity[rarity].erase(quest)
   var reward = rewards_by_type_by_rarity[rarity][reward_type][rng.randi_range(0, len(rewards_by_type_by_rarity[rarity][reward_type])-1)]
   
   var new_quest_scn = quest_scn.instantiate()
@@ -89,7 +131,7 @@ func _roll_new_quest():
   quest_container.add_child(new_quest_scn)
   quest_container.move_child(new_quest_scn, 0)
  
-  new_quest_scn.initialize(reward, rarity, quest.description, quest.quest_stat, quest.quest_rarity[rarity])
+  new_quest_scn.initialize(reward, quest.quest_id, rarity, quest.description, quest.quest_stat, quest.quest_rarity[rarity])
   active_quests.append(new_quest_scn)
   if stat_timers_active_status[quest.quest_stat]:
     new_quest_scn.quest_start_timer(quest.quest_stat)
@@ -97,6 +139,8 @@ func _roll_new_quest():
   # remove excess children
   while (quest_container.get_child_count() > MAX_CONCURRENT_QUESTS):
     var removed_quest = quest_container.get_child(MAX_CONCURRENT_QUESTS)
+    if (!removed_quest.is_completed):
+      quest_count_progress(QuestGlobals.StatTrack.STAT_UNFINISHED_QUEST)
     active_quests.erase(removed_quest)
     quest_container.remove_child(removed_quest)
   
@@ -115,35 +159,70 @@ func _process(delta):
     _pausable_earn_reward()
 
 func quest_count_progress(stat_track_id, amount = 1):
-  for quest_scn in active_quests:
-    quest_scn.quest_count_progress(stat_track_id, amount)
+  var stats = find_cascading_stats(stat_track_id)
+  stats.append(stat_track_id)
+  for stat_track in stats:
+    for quest_scn in active_quests:
+      quest_scn.quest_count_progress(stat_track, amount)
   
 # This is for stats that involve continuity (do __ without doing __)
 func quest_reset_progress_count(stat_track_id):
-  for quest_scn in active_quests:
-    quest_scn.quest_reset_progress_count(stat_track_id)
+  var stats = find_cascading_stats(stat_track_id)
+  stats.append(stat_track_id)
+  for stat_track in stats:
+    for quest_scn in active_quests:
+      quest_scn.quest_reset_progress_count(stat_track)
 
 # For stats that involve duration
 func quest_start_timer(stat_track_id):
-  stat_timers_active_status[stat_track_id] = true
-  for quest_scn in active_quests:
-    quest_scn.quest_start_timer(stat_track_id)
+  var stats = find_cascading_stats(stat_track_id)
+  stats.append(stat_track_id)
+  for stat_track in stats:
+    stat_timers_active_status[stat_track] = true
+    for quest_scn in active_quests:
+      quest_scn.quest_start_timer(stat_track)
   
 # If the duration does not need to be continuous
 func quest_pause_timer(stat_track_id):
-  stat_timers_active_status[stat_track_id] = false
-  for quest_scn in active_quests:
-    quest_scn.quest_pause_timer(stat_track_id)
+  var stats = find_cascading_stats(stat_track_id)
+  stats.append(stat_track_id)
+  for stat_track in stats:
+    stat_timers_active_status[stat_track] = false
+    for quest_scn in active_quests:
+      quest_scn.quest_pause_timer(stat_track)
   
 # For if the duration must be continous
 func quest_reset_timer(stat_track_id):
-  stat_timers_active_status[stat_track_id] = false
-  for quest_scn in active_quests:
-    quest_scn.quest_reset_timer(stat_track_id)
+  var stats = find_cascading_stats(stat_track_id)
+  stats.append(stat_track_id)
+  for stat_track in stats:
+    stat_timers_active_status[stat_track] = false
+    for quest_scn in active_quests:
+      quest_scn.quest_reset_timer(stat_track)
+
+func find_cascading_stats(stat_track_id):
+  var cascading_stats = []
+  match stat_track_id:
+    QuestGlobals.StatTrack.STAT_RELOAD:
+      if is_moving():
+        cascading_stats.append(QuestGlobals.StatTrack.STAT_RELOAD_WHILE_MOVING)
+      else:
+        cascading_stats.append(QuestGlobals.StatTrack.STAT_RELOAD_WHILE_STATIONARY)
+    QuestGlobals.StatTrack.STAT_KILL_ENEMY:
+      if is_moving():
+        cascading_stats.append(QuestGlobals.StatTrack.STAT_KILL_ENEMY_WHILE_MOVING)
+      else:
+        cascading_stats.append(QuestGlobals.StatTrack.STAT_KILL_ENEMY_WITHOUT_MOVING)
+  return cascading_stats
 
 var rewards_to_earn = []
 
+func is_moving():
+  return stat_timers_active_status[QuestGlobals.StatTrack.STAT_MOVE]
+  
+var total_quest_completion_count = 0
 func quest_complete(quest, reward):
+  total_quest_completion_count += 1
   active_quests.erase(quest)
   rewards_to_earn.append(reward)
   
