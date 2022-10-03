@@ -3,7 +3,7 @@ extends Control
 @onready var weapon1 = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/weapon_display
 @onready var weapon2 = $CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HSplitContainer/weapon_display2
 
-var has_shown: bool = false
+var has_shown: bool = true
 
 func _process(__delta):
   if not has_shown:
@@ -16,8 +16,8 @@ func _process(__delta):
     var player = get_tree().get_first_node_in_group("player")
     var guns = player.get_node("gun_rotation_container/guns")
     assert(guns.get_child_count() == 2)
-    weapon1.display_weapon(guns.get_child(0), false)
-    weapon2.display_weapon(guns.get_child(1), false)
+    weapon1.display_weapon(guns.get_child(0), false, false, Modifiers.Gun.NONE)
+    weapon2.display_weapon(guns.get_child(1), false, false, Modifiers.Gun.NONE)
     get_tree().paused = true
     visible = true
 

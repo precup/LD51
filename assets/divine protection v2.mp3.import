@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6qwdr3ljbu5t"
+path="res://.godot/imported/divine protection v2.mp3-c60a552d7ca00467f08faab9f7ff94cf.mp3str"
+
+[deps]
+
+source_file="res://assets/divine protection v2.mp3"
+dest_files=["res://.godot/imported/divine protection v2.mp3-c60a552d7ca00467f08faab9f7ff94cf.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

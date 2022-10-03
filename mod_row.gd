@@ -12,8 +12,9 @@ func set_light(off: bool, color: Color):
 
 
 func _on_hsplit_mouse_entered():
-  hovered = true
-  emit_signal("updated")
+  if $mod_name.text != "":
+    hovered = true
+    emit_signal("updated")
 
 
 func _on_hsplit_mouse_exited():

@@ -13,6 +13,8 @@ signal clicked
 var maxed_out: bool = false
 var is_modding = false
 var background_style_box : StyleBoxFlat
+var _gun = null
+var _mod = null
 
 func _ready():
   if get_parent().has_node("trashimg"):
@@ -29,12 +31,17 @@ func _ready():
   background_style_box = new_style
   set('theme_override_styles/panel', new_style)
 
-func display_weapon(gun, can_max_out: bool):
-  $highlight.visible = false
+func display_weapon(gun, can_max_out: bool, is_gun_time: bool, mod: Modifiers.Gun):
+  if not is_gun_time and mod != Modifiers.Gun.NONE:
+    _gun = gun
+    _mod = mod
+  else: 
+    _gun = null
+    _mod = null
+  $highlight.get_child(0).visible = is_gun_time
+  $highlight.visible = false 
+  
   var max_slots: int = gun.MAX_MODIFIERS
-  var upgrades: Array = gun.UPGRADES
-  maxed_out = max_slots <= len(upgrades) and can_max_out
-  $unselectable.visible = maxed_out
   while SLOT_PARENT.get_child_count() < max_slots:
     var new_slot = SLOT_PARENT.get_child(0).duplicate(DuplicateFlags.DUPLICATE_SIGNALS | DuplicateFlags.DUPLICATE_SCRIPTS)
     SLOT_PARENT.add_child(new_slot)
@@ -46,14 +53,27 @@ func display_weapon(gun, can_max_out: bool):
   
   for i in range(max_slots):
     var slot = SLOT_PARENT.get_child(i)
-    slot.get_node("hsplit/mod_name").text = Modifiers.NAMES[upgrades[i]] if i < len(upgrades) else ""
-    slot.get_node("hsplit/mod_name").set("theme_override_colors/font_color", QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[upgrades[i]]] if i < len(upgrades) else null)
-    slot.get_node("hsplit").set_light(i >= len(upgrades), Color(0.4, 0.4, 0.4) if i >= len(upgrades) else QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[upgrades[i]]])
     slot.get_child(0).hovered = false
-  
+    
+  _display_weapon(gun, can_max_out, is_gun_time, Modifiers.Gun.NONE)
   _on_hsplit_updated()
   GUN_ICON.modulate = gun.COLOR
 
+
+func _display_weapon(gun, can_max_out: bool, is_gun_time: bool, mod: Modifiers.Gun):
+  var max_slots: int = gun.MAX_MODIFIERS
+  var upgrades: Array = gun.UPGRADES.duplicate()
+  maxed_out = max_slots <= len(upgrades) and can_max_out
+  $unselectable.visible = maxed_out
+  if mod != Modifiers.Gun.NONE and not maxed_out:
+    upgrades.append(mod)
+  
+  for i in range(max_slots):
+    var slot = SLOT_PARENT.get_child(i)
+    slot.get_node("hsplit/mod_name").text = Modifiers.NAMES[upgrades[i]] if i < len(upgrades) else ""
+    slot.get_node("hsplit/mod_name").set("theme_override_colors/font_color", QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[upgrades[i]]] if i < len(upgrades) else null)
+    slot.get_node("hsplit").set_light(i >= len(upgrades), Color(0.4, 0.4, 0.4) if i >= len(upgrades) else QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[upgrades[i]]])
+  
 
 func _input(event):
   if event is InputEventMouseButton:
@@ -62,17 +82,17 @@ func _input(event):
 
 func clear_highlights():
   $highlight.visible = false
+  if _gun != null:
+    _display_weapon(_gun, true, false, Modifiers.Gun.NONE)
   
 func _on_weapon_display_mouse_entered():
   if CLICKABLE and not maxed_out:
     $highlight.visible = true
-    if get_parent().has_node("trashimg") and not IS_TRASH:
-      get_parent().get_node("trashimg").visible = not is_modding
+    if _gun != null:
+      _display_weapon(_gun, true, false, _mod)
 
 func _on_weapon_display_mouse_exited():
-  $highlight.visible = false
-  if get_parent().has_node("trashimg"):
-    get_parent().get_node("trashimg").visible = false
+  clear_highlights()
 
 func _on_hsplit_updated():
   var hovered = null

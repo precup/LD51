@@ -92,10 +92,6 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
   NEW_UPGRADE.visible = reward_type == QuestGlobals.RewardType.REWARD_MOD
   
   var player_guns: Array = get_tree().get_first_node_in_group("player").get_node("gun_rotation_container/guns").get_children()
-  WEAPON1.display_weapon(player_guns[0], reward_type == QuestGlobals.RewardType.REWARD_MOD)
-  if player_guns.size() > 1:
-    WEAPON2.display_weapon(player_guns[1], reward_type == QuestGlobals.RewardType.REWARD_MOD)
-  TRASH.clear_highlights()
   
   # mutate the base_rarity_weights table based on reward rarity. Mods of the reward rarity tier are twice as likely. Mods of lower tiers are .5x per tier lower  
   # DO NOT MODIFY base rarity weights, its not a copy... lol
@@ -113,6 +109,7 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
       reward_rarity_adjusted_standalone_mod_weights[rarity] = 0
       
       
+  TRASH.clear_highlights()
       
   match reward_type:
     QuestGlobals.RewardType.REWARD_MOD:
@@ -131,10 +128,13 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
       WEAPON2.is_modding = true
       
       
+      WEAPON1.display_weapon(player_guns[0], reward_type == QuestGlobals.RewardType.REWARD_MOD, reward_type == QuestGlobals.RewardType.REWARD_GUN, _upgrade)
+      WEAPON2.display_weapon(player_guns[1], reward_type == QuestGlobals.RewardType.REWARD_MOD, reward_type == QuestGlobals.RewardType.REWARD_GUN, _upgrade)
+      
     QuestGlobals.RewardType.REWARD_GUN:
       _upgrade_mode = false
       _gun = get_random_gun(reward_rarity, reward_rarity_adjusted_gun_mod_weights)
-      NEW_WEAPON.display_weapon(_gun, false)
+      NEW_WEAPON.display_weapon(_gun, false, false, Modifiers.Gun.NONE)
       HEADER.text = "New Wand!"
       HEADER.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[reward_rarity]])
       OPTION_HEADER.text = "Pick a wand to replace:"
@@ -142,6 +142,9 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
       WEAPON1.is_modding = false
       WEAPON2.is_modding = false
       
+      
+      WEAPON1.display_weapon(player_guns[0], reward_type == QuestGlobals.RewardType.REWARD_MOD, reward_type == QuestGlobals.RewardType.REWARD_GUN, Modifiers.Gun.NONE)
+      WEAPON2.display_weapon(player_guns[1], reward_type == QuestGlobals.RewardType.REWARD_MOD, reward_type == QuestGlobals.RewardType.REWARD_GUN, Modifiers.Gun.NONE)
       
     QuestGlobals.RewardType.REWARD_OTHER:
       close_menu()
