@@ -12,7 +12,6 @@ color = Color(0.027451, 0.0666667, 0.192157, 1)
 script = ExtResource("1_sfy4b")
 
 [node name="label" type="Label" parent="."]
-layout_mode = 0
 offset_left = 32.0
 offset_top = 23.0
 offset_right = 788.0
@@ -22,7 +21,6 @@ text = "blah blah blah blah blah blah blah blah blah blah blah blah blah blah bl
 autowrap_mode = 3
 
 [node name="click_to_continue" type="Label" parent="."]
-layout_mode = 0
 offset_left = 33.0
 offset_top = 310.0
 offset_right = 789.0
