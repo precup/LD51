@@ -67,6 +67,9 @@ func _physics_process(delta):
       return
     
     if collision.get_collider() == player:
+      if player.dashing:
+        add_collision_exception_with(player)
+        return
       player.damage(-_damage, direction)
     
     var stacks = false
