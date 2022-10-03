@@ -1,23 +1,22 @@
-[gd_scene load_steps=21 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=20 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cwqqmtk6yuqs" path="res://hitsprite.tscn" id="1_y7wtu"]
 [ext_resource type="PackedScene" uid="uid://dmnrsfv3p2o4p" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
 [ext_resource type="Texture2D" uid="uid://u1i12jtmkptu" path="res://assets/mike-tilemap.png" id="6_pty4p"]
-[ext_resource type="PackedScene" uid="uid://c0ad5uy7k0hy5" path="res://boss.tscn" id="7_6rber"]
+[ext_resource type="PackedScene" uid="uid://ddv1tup1imy8y" path="res://boss_2.tscn" id="7_1d32f"]
 [ext_resource type="PackedScene" uid="uid://bfhj42r10m8cl" path="res://barrel.tscn" id="8_b3h3m"]
-[ext_resource type="PackedScene" path="res://heart_pickup.tscn" id="9_gl1f0"]
-[ext_resource type="PackedScene" uid="uid://depms7p861do1" path="res://smart_enemy.tscn" id="10_3gr08"]
+[ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
 [ext_resource type="PackedScene" uid="uid://w1inu0j1tffh" path="res://spike_trap.tscn" id="10_b02l4"]
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="10_d441m"]
-[ext_resource type="PackedScene" path="res://quest_manager.tscn" id="10_l83fa"]
+[ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
-[ext_resource type="PackedScene" path="res://checkpoint.tscn" id="13_vty5w"]
-[ext_resource type="PackedScene" uid="uid://dbhl4y42nbxhf" path="res://sfx.tscn" id="15_0wxu6"]
-[ext_resource type="PackedScene" path="res://npc.tscn" id="21_hwo1i"]
-[ext_resource type="PackedScene" path="res://dialog_trigger.tscn" id="22_2jyts"]
+[ext_resource type="PackedScene" uid="uid://c04wgwpov3o2l" path="res://checkpoint.tscn" id="13_vty5w"]
+[ext_resource type="PackedScene" path="res://sfx.tscn" id="15_0wxu6"]
+[ext_resource type="PackedScene" uid="uid://bj8orutgvtbex" path="res://npc.tscn" id="21_hwo1i"]
+[ext_resource type="PackedScene" uid="uid://7j3pdrl1pu4n" path="res://dialog_trigger.tscn" id="22_2jyts"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d635m"]
 texture = ExtResource("6_pty4p")
@@ -402,8 +401,7 @@ position = Vector2(759, -634)
 position = Vector2(512, -1280)
 STARTING_TIME = 4.0
 
-[node name="boss" parent="level_1/doodads" instance=ExtResource("7_6rber")]
-position = Vector2(1111, -2540)
+[node name="boss" parent="level_1/doodads" instance=ExtResource("7_1d32f")]
 
 [node name="barrel" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
 position = Vector2(256, 256)

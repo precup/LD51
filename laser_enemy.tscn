@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_q638r"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="4_sftgi"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_1mj2p"]
-[ext_resource type="Material" uid="uid://drek4vtfr8vlf" path="res://laser_enemy.tres" id="6_4s7vw"]
+[ext_resource type="Material" path="res://laser_enemy.tres" id="6_4s7vw"]
 [ext_resource type="Script" path="res://laser_raycast.gd" id="6_ag5w6"]
 [ext_resource type="Texture2D" uid="uid://dcuma3xobg2bd" path="res://assets/particle.png" id="7_1lgc7"]
-[ext_resource type="Texture2D" uid="uid://djmqmr8jc560s" path="res://assets/laser.png" id="10_fxgkx"]
+[ext_resource type="Texture2D" uid="uid://cq1lqtckbqyyw" path="res://assets/laser.png" id="10_fxgkx"]
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="11_mslgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
@@ -20,14 +20,14 @@ size = Vector2(153, 158)
 [sub_resource type="Gradient" id="Gradient_1vkv7"]
 colors = PackedColorArray(0.501961, 0.941176, 0.992157, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_gtpys"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4y0hp"]
 gradient = SubResource("Gradient_1vkv7")
 
 [sub_resource type="Curve" id="Curve_iv76r"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.687259, 0.0405406), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_7o7rw"]
+[sub_resource type="CurveTexture" id="CurveTexture_u5cw7"]
 curve = SubResource("Curve_iv76r")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mi2h1"]
@@ -39,8 +39,8 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.3
 scale_max = 0.7
-scale_curve = SubResource("CurveTexture_7o7rw")
-color_ramp = SubResource("GradientTexture1D_gtpys")
+scale_curve = SubResource("CurveTexture_u5cw7")
+color_ramp = SubResource("GradientTexture1D_4y0hp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_43v8r"]
 emission_shape = 3
@@ -53,8 +53,8 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.3
 scale_max = 0.7
-scale_curve = SubResource("CurveTexture_7o7rw")
-color_ramp = SubResource("GradientTexture1D_gtpys")
+scale_curve = SubResource("CurveTexture_u5cw7")
+color_ramp = SubResource("GradientTexture1D_4y0hp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sxrdm"]
 emission_shape = 3
@@ -67,8 +67,8 @@ orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_min = 0.3
 scale_max = 0.7
-scale_curve = SubResource("CurveTexture_7o7rw")
-color_ramp = SubResource("GradientTexture1D_gtpys")
+scale_curve = SubResource("CurveTexture_u5cw7")
+color_ramp = SubResource("GradientTexture1D_4y0hp")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3ly6"]
 resource_local_to_scene = true
