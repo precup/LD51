@@ -17,7 +17,8 @@ enum Effect {
   STACK,
   LEECH,
   RETURN,
-  IMPACT
+  IMPACT,
+  EXPLODE
 }
 
 enum Gun {
@@ -34,7 +35,6 @@ enum Gun {
   SPEEDY,
   RAPID_FIRE,
   ONE_HIT_WONDER,
-  LONG_RANGE,
   PIERCING,
   RADIAL,
   VAMPIRIC,
@@ -69,11 +69,10 @@ const DESCRIPTIONS: Dictionary = {
   Gun.SCATTERSHOT: "Fire a spread of weaker bolts",
   Gun.CHAIN: "This one doesn't work yet",
   Gun.LASER: "This one doesn't work yet",
-  Gun.EXPLOSIVE: "This one doesn't work yet",
+  Gun.EXPLOSIVE: "Damages everyone within a radius",
   Gun.SPEEDY: "Spells travel twice as fast",
   Gun.RAPID_FIRE: "+100% fire rate",
   Gun.ONE_HIT_WONDER: "Fire your entire magazine in one shot for half damage!",
-  Gun.LONG_RANGE: "This one doesn't work yet",
   Gun.PIERCING: "Spells pierce through an additional enemy",
   Gun.RADIAL: "Fire bullets all around you",
   Gun.VAMPIRIC: "Dealing damage has a chance to heal you",
@@ -83,7 +82,7 @@ const DESCRIPTIONS: Dictionary = {
   Gun.ASSASSIN: "This one doesn't work yet",
   Gun.STACKING: "This one doesn't work yet",
   Gun.IMPACT: "This one doesn't work yet",
-  Gun.LUCKY: "This one doesn't work yet",
+  Gun.LUCKY: "High rarity quests are more common",
   Gun.STUNNING: "Dealing damage has a chance to stun enemies",
   Gun.HOT_SHOT: "May cause the target to catch on fire",
   Gun.INTOXICATING: "This one doesn't work yet",
@@ -112,7 +111,6 @@ const NAMES: Dictionary = {
   Gun.SPEEDY: "Speedy",
   Gun.RAPID_FIRE: "Rapid Fire",
   Gun.ONE_HIT_WONDER: "One Hit Wonder",
-  Gun.LONG_RANGE: "Long Range",
   Gun.PIERCING: "Piercing",
   Gun.RADIAL: "Radial",
   Gun.VAMPIRIC: "Vampiric",
@@ -143,13 +141,13 @@ const RARITIES: Dictionary = {
   Gun.QUICK_RELOAD: Rarity.COMMON,
   Gun.LARGE_MAGAZINE: Rarity.COMMON,
   Gun.SPEEDY: Rarity.COMMON,
-  Gun.LONG_RANGE: Rarity.COMMON,
   Gun.PIERCING: Rarity.COMMON,
   Gun.STACKING: Rarity.COMMON,
   Gun.IMPACT: Rarity.COMMON,
   Gun.LUCKY: Rarity.COMMON,
   Gun.POWERFUL: Rarity.COMMON,
   Gun.RICOCHET: Rarity.COMMON,
+  Gun.BIG_SHOT: Rarity.COMMON,
   
   Gun.VAMPIRIC: Rarity.RARE,
   Gun.FREEZING: Rarity.RARE,
@@ -165,7 +163,6 @@ const RARITIES: Dictionary = {
   Gun.EXPLOSIVE: Rarity.RARE,
   Gun.HOMING: Rarity.RARE,
   Gun.BLAZE_OF_GLORY: Rarity.RARE,
-  Gun.BIG_SHOT: Rarity.RARE,
   
   Gun.LASER: Rarity.LEGENDARY,
   Gun.LIGHTNING: Rarity.LEGENDARY,

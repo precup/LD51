@@ -60,6 +60,8 @@ func get_random_starter_gun(with_mod : bool):
   gun.RARITY = QuestGlobals.Rarity.RARITY_COMMON
   if with_mod:  # one of their guns gets a mod, one doesnt
     gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 1})) # Restrict start mods to common
+  gun.UPGRADES.append(Modifiers.Gun.LUCKY)
+  gun.UPGRADES.append(Modifiers.Gun.EXPLOSIVE)
   return gun
   
 func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Dictionary):
