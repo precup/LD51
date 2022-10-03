@@ -27,9 +27,10 @@ _data = {
 "pulse": SubResource("Animation_kssjs")
 }
 
-[node name="npc" type="Area2D"]
+[node name="s" type="Area2D"]
 position = Vector2(346, -3857)
 script = ExtResource("1_em57j")
+dialog_text = ["Hello!"]
 
 [node name="area" type="CollisionShape2D" parent="."]
 position = Vector2(63, 182)

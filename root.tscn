@@ -326,7 +326,7 @@ position = Vector2(256, 478)
 position = Vector2(263, 625)
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(758, 512)
+position = Vector2(-1082, 235)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="projectiles" type="Node2D" parent="."]
@@ -358,7 +358,10 @@ volume_db = -20.0
 stream = ExtResource("20_ryhri")
 volume_db = -20.0
 
-[node name="npc" parent="." instance=ExtResource("21_hwo1i")]
-dialog_text = "Hello. This is some demo text."
+[node name="sr" parent="." instance=ExtResource("21_hwo1i")]
+position = Vector2(-1371, -312)
+dialog_text = ["Hello!", "Blah blahb labhlahb"]
 
-[node name="dialog_trigger" parent="." instance=ExtResource("22_2jyts")]
+[node name="s" parent="." instance=ExtResource("22_2jyts")]
+position = Vector2(-2388, 1317)
+dialog_text = ["This is a dialog trigger"]

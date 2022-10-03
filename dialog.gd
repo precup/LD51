@@ -1,38 +1,31 @@
 extends ColorRect
 
-var prev_text = "nothing"
-var finished = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-  pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-  if visible:
-    if Input.is_action_just_pressed("shoot"):
-      if $label.visible_characters != $label.text.length():
-        $label.visible_characters = $label.text.length()
-        finished = true
-        return
-      
-      await get_tree().process_frame
-      visible = false
-      get_tree().paused = false
-      
-      $label.text = ""
-
-    if $label.text != prev_text:
-      prev_text = $label.text
-      finished = false
-      start_text()
-
-func start_text(): 
-  for x in range($label.text.length()):
-    if finished: 
-      return
-    var l: Label = $label
-    l.visible_characters = x
+func start_dialog(dialog_text: Array[String]) -> void:
+  for msg in dialog_text:
+    print("Msg is ", msg)
+    $label.text = msg
     
-    for wait in range(3):
+    var break_all = false
+    
+    for i in range(msg.length()):
+      $label.visible_characters = i
+      
+      for wait in range(3):
+        await get_tree().process_frame
+        if Input.is_action_just_pressed("shoot"):
+          await get_tree().process_frame
+          
+          break_all = true
+          break
+      if break_all:
+        break
+  
+    while true:
       await get_tree().process_frame
+      
+      if Input.is_action_just_pressed("shoot"):
+        break
+        
+  visible = false
+  get_tree().paused = false
+  $label.text = ""

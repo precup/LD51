@@ -27,7 +27,6 @@ theme_override_constants/margin_left = 60
 theme_override_constants/margin_top = 60
 
 [node name="panel" type="PanelContainer" parent="top_left"]
-layout_mode = 2
 offset_left = 60.0
 offset_top = 60.0
 offset_right = 476.0
@@ -35,7 +34,6 @@ offset_bottom = 176.0
 theme_override_styles/panel = SubResource("StyleBox_l1c8y")
 
 [node name="margin" type="MarginContainer" parent="top_left/panel"]
-layout_mode = 2
 offset_right = 416.0
 offset_bottom = 116.0
 theme_override_constants/margin_left = 10
@@ -44,7 +42,6 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="health_container" type="HBoxContainer" parent="top_left/panel/margin"]
-layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 406.0
@@ -52,7 +49,6 @@ offset_bottom = 106.0
 script = ExtResource("3_bryk1")
 
 [node name="heart" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
-layout_mode = 2
 offset_left = 0.0
 offset_top = 0.0
 offset_right = 96.0
@@ -60,7 +56,6 @@ offset_bottom = 96.0
 scale = Vector2(1, 1)
 
 [node name="heart2" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
-layout_mode = 2
 offset_left = 100.0
 offset_top = 0.0
 offset_right = 196.0
@@ -68,7 +63,6 @@ offset_bottom = 96.0
 scale = Vector2(1, 1)
 
 [node name="heart3" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
-layout_mode = 2
 offset_left = 200.0
 offset_top = 0.0
 offset_right = 296.0
@@ -76,7 +70,6 @@ offset_bottom = 96.0
 scale = Vector2(1, 1)
 
 [node name="heart4" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
-layout_mode = 2
 offset_left = 300.0
 offset_top = 0.0
 offset_right = 396.0
@@ -94,7 +87,6 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 
 [node name="quest_container" type="VBoxContainer" parent="top_right"]
-layout_mode = 2
 offset_top = 60.0
 offset_right = 164.0
 offset_bottom = 485.0
@@ -111,23 +103,19 @@ theme_override_constants/margin_left = 60
 theme_override_constants/margin_bottom = 60
 
 [node name="panel" type="PanelContainer" parent="bottom_left"]
-layout_mode = 2
 offset_left = 60.0
 offset_right = 250.0
 offset_bottom = 270.0
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel"]
-layout_mode = 2
 offset_right = 190.0
 offset_bottom = 270.0
 
 [node name="vsplit" type="VBoxContainer" parent="bottom_left/panel/margin"]
-layout_mode = 2
 offset_right = 190.0
 offset_bottom = 270.0
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel/margin/vsplit"]
-layout_mode = 2
 offset_right = 190.0
 offset_bottom = 110.0
 theme_override_constants/margin_left = 20
@@ -137,7 +125,6 @@ theme_override_constants/margin_bottom = 20
 
 [node name="clip_label" type="Label" parent="bottom_left/panel/margin/vsplit/margin"]
 custom_minimum_size = Vector2i(150, 0)
-layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
@@ -147,7 +134,6 @@ text = "5"
 vertical_alignment = 1
 
 [node name="clip_label3" type="Label" parent="bottom_left/panel/margin/vsplit/margin"]
-layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
@@ -158,14 +144,12 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="bottom_left/panel/margin/vsplit/margin"]
-layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
 offset_bottom = 90.0
 
 [node name="clip_label2" type="Label" parent="bottom_left/panel/margin/vsplit/margin/CenterContainer"]
-layout_mode = 2
 offset_left = 65.0
 offset_right = 84.0
 offset_bottom = 70.0
@@ -175,19 +159,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="bottom_left/panel/margin/vsplit"]
-layout_mode = 2
 offset_top = 114.0
 offset_right = 190.0
 offset_bottom = 118.0
 
 [node name="margin2" type="MarginContainer" parent="bottom_left/panel/margin/vsplit"]
-layout_mode = 2
 offset_top = 122.0
 offset_right = 190.0
 offset_bottom = 270.0
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel/margin/vsplit/margin2"]
-layout_mode = 2
 offset_right = 190.0
 offset_bottom = 148.0
 size_flags_vertical = 3
@@ -197,7 +178,6 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="center" type="CenterContainer" parent="bottom_left/panel/margin/vsplit/margin2/margin"]
-layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 180.0
@@ -205,7 +185,6 @@ offset_bottom = 138.0
 
 [node name="gun_image" type="TextureRect" parent="bottom_left/panel/margin/vsplit/margin2/margin/center"]
 custom_minimum_size = Vector2i(128, 128)
-layout_mode = 2
 offset_left = 21.0
 offset_right = 149.0
 offset_bottom = 128.0
@@ -215,7 +194,6 @@ stretch_mode = 4
 
 [node name="overlay" type="TextureRect" parent="bottom_left/panel/margin/vsplit/margin2"]
 modulate = Color(0.513726, 1, 0.560784, 0.32549)
-layout_mode = 2
 offset_top = 147.0
 offset_right = 190.0
 offset_bottom = 148.0

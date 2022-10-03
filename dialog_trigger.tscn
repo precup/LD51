@@ -1,14 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://7j3pdrl1pu4n"]
 
-[ext_resource type="Script" path="res://npc.gd" id="1_h5abv"]
+[ext_resource type="Script" path="res://dialog_trigger.gd" id="1_hfsuy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu3hx"]
 size = Vector2(430, 392)
 
 [node name="dialog_trigger" type="Area2D"]
 position = Vector2(-236, -3863)
-script = ExtResource("1_h5abv")
-dialog_text = "Hello. This is some demo text."
+script = ExtResource("1_hfsuy")
 
 [node name="area" type="CollisionShape2D" parent="."]
 position = Vector2(63, 182)

@@ -101,7 +101,6 @@ func _physics_process(delta):
       else:
         _destroy("wall")
 
-
 @onready var hitsprite = preload("res://hitsprite.tscn")
 @onready var hitsprite_wall = preload("res://hitsprite_wall.tscn")
 
