@@ -1,0 +1,75 @@
+[gd_scene load_steps=16 format=3 uid="uid://dbhl4y42nbxhf"]
+
+[ext_resource type="Script" path="res://sfx.gd" id="1_6gq6s"]
+[ext_resource type="AudioStream" uid="uid://b3ngkmdxge80y" path="res://assets/ld51 sfx/gunshot5.mp3" id="2_7r2sh"]
+[ext_resource type="AudioStream" uid="uid://b6xu5cfci6kdt" path="res://assets/ld51 sfx/enemyhit.mp3" id="3_pasr7"]
+[ext_resource type="AudioStream" uid="uid://dnsskhd871mj8" path="res://assets/ld51 sfx/wallhit.mp3" id="4_un8ui"]
+[ext_resource type="AudioStream" uid="uid://dvu5q1m2wt08e" path="res://assets/ld51 sfx/pothit.mp3" id="5_6uv0v"]
+[ext_resource type="AudioStream" uid="uid://j13jqecjpqf3" path="res://assets/ld51 sfx/reload.mp3" id="6_l2231"]
+[ext_resource type="AudioStream" uid="uid://cn2kssrrk845v" path="res://assets/ld51 sfx/questcomplete.mp3" id="7_w8gjr"]
+[ext_resource type="AudioStream" uid="uid://bnky681qonx7t" path="res://assets/ld51 sfx/ricochet1.mp3" id="8_gw8kr"]
+[ext_resource type="AudioStream" uid="uid://8dfph6140cxn" path="res://assets/ld51 sfx/ricochet2.mp3" id="9_fgn70"]
+[ext_resource type="AudioStream" uid="uid://co6x148ps04vm" path="res://assets/ld51 sfx/ricochet3.mp3" id="10_iiwmt"]
+[ext_resource type="AudioStream" uid="uid://dp5t5psu373l1" path="res://assets/ld51 sfx/dash.mp3" id="11_3tf8d"]
+[ext_resource type="AudioStream" uid="uid://bc4smni73w0h0" path="res://assets/ld51 sfx/dashregain.mp3" id="12_6mwyw"]
+[ext_resource type="AudioStream" uid="uid://c3d1yij7c37ck" path="res://uiconfirm.mp3" id="13_sfobi"]
+[ext_resource type="AudioStream" uid="uid://drm7fah5ytxwi" path="res://uicancel.mp3" id="14_eafva"]
+[ext_resource type="AudioStream" uid="uid://c7musnf05u8ub" path="res://assets/ld51 sfx/healthpickup.mp3" id="15_nch4j"]
+
+[node name="sfx" type="Node2D"]
+script = ExtResource("1_6gq6s")
+
+[node name="gunshot_5" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7r2sh")
+volume_db = -20.0
+
+[node name="enemy_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pasr7")
+volume_db = -20.0
+
+[node name="wall_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_un8ui")
+volume_db = -20.0
+
+[node name="pot_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_6uv0v")
+volume_db = -20.0
+
+[node name="reload" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_l2231")
+volume_db = -20.0
+
+[node name="quest_complete" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_w8gjr")
+volume_db = -20.0
+
+[node name="ricochet_1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_gw8kr")
+volume_db = -20.0
+
+[node name="ricochet_2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_fgn70")
+volume_db = -20.0
+
+[node name="ricochet_3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_iiwmt")
+volume_db = -20.0
+
+[node name="dash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_3tf8d")
+volume_db = -20.0
+
+[node name="dash_regain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_6mwyw")
+
+[node name="ui_confirm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_sfobi")
+volume_db = -10.0
+
+[node name="ui_cancel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_eafva")
+volume_db = -10.0
+
+[node name="pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_nch4j")
+volume_db = -20.0
