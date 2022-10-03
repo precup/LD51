@@ -58,6 +58,8 @@ var step_state: int = 0
 var step_time: float = 0
 @export var STEP_RATE: float = 0.4
 
+var dash_line_tscn = preload("res://dash_line.tscn")
+
 func _begin_dash():
   $"/root/root/sfx/dash".play()
   
@@ -65,6 +67,11 @@ func _begin_dash():
     $animation_player.play("dash_ud")
   else:
     $animation_player.play("dash_lr")
+  
+  var new_dash_line = dash_line_tscn.instantiate()
+  new_dash_line.global_position = global_position
+  get_tree().root.add_child(new_dash_line)
+  # get_tree().root.move_child(new_dash_line, 0)
   
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_DASH) 
   dash_cooldown_counter = DASH_COOLDOWN
@@ -74,10 +81,16 @@ func _begin_dash():
   tween.tween_property(self, "boosted_speed", BOOSTED_SPEED_MULTIPLIER*SPEED, BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)       
   tween.tween_interval(BOOSTED_SPEED_DURATION/3.0)        
   tween.tween_property(self, "boosted_speed", SPEED,  BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)     
-  tween.tween_callback(func(): dashing=false)     
-  tween.tween_interval(DASH_COOLDOWN - BOOSTED_SPEED_DURATION)
-  tween.tween_property(self, "modulate", Color(10, 10, 10, 1), .02).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)    
-  tween.tween_property(self, "modulate", Color(1,1,1,1), .05).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)  
+
+  await tween.finished
+  
+  dashing = false
+  
+  var cooldown_tween = get_tree().create_tween()
+  
+  cooldown_tween.tween_interval(DASH_COOLDOWN - BOOSTED_SPEED_DURATION)
+  cooldown_tween.tween_property(self, "modulate", Color(10, 10, 10, 1), .02).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)    
+  cooldown_tween.tween_property(self, "modulate", Color(1,1,1,1), .05).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN) 
 
 func _physics_process(_delta):
   dash_cooldown_counter -= _delta

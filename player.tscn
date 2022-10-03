@@ -1,27 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://cdu7slvow3axy"]
+[gd_scene load_steps=11 format=3 uid="uid://cdu7slvow3axy"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_575jd"]
 [ext_resource type="Texture2D" uid="uid://cahch1ibpmcxl" path="res://assets/char_front.png" id="2_af2l0"]
 [ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_tcgbw"]
 [ext_resource type="Texture2D" uid="uid://dm8athdwrt4aw" path="res://assets/char_back.png" id="3_0rn5p"]
+[ext_resource type="PackedScene" uid="uid://c0e81sxlwyt51" path="res://dash_line.tscn" id="5_yg8l2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(112, 157)
-
-[sub_resource type="Animation" id="Animation_ahgkx"]
-resource_name = "fire"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("gun_rotation_container/guns:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-20, 0), Vector2(0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_uclah"]
 resource_name = "dash_lr"
@@ -77,6 +63,69 @@ tracks/1/keys = {
 "values": [Vector2(1, 0.5), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ahgkx"]
+resource_name = "fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun_rotation_container/guns:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-20, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("front_sprite:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("back_sprite:skew")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("front_sprite:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("back_sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s5m3d"]
 _data = {
 "dash_lr": SubResource("Animation_uclah"),
@@ -100,6 +149,7 @@ shape = SubResource("RectangleShape2D_kkfjx")
 
 [node name="front_sprite" type="Sprite2D" parent="."]
 position = Vector2(3.5, -145.5)
+scale = Vector2(1, 0.5)
 texture = ExtResource("2_af2l0")
 
 [node name="gun_rotation_container" type="Node2D" parent="."]
@@ -110,7 +160,7 @@ position = Vector2(-20, 0)
 
 [node name="back_sprite" type="Sprite2D" parent="."]
 position = Vector2(3, -145)
-scale = Vector2(1, 0.995)
+scale = Vector2(1, 0.5)
 texture = ExtResource("3_0rn5p")
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
@@ -118,7 +168,4 @@ libraries = {
 "": SubResource("AnimationLibrary_s5m3d")
 }
 
-[node name="dash_line" type="Line2D" parent="."]
-points = PackedVector2Array(0, 0, 200, 0)
-width = 20.0
-end_cap_mode = 2
+[node name="dash_line" parent="." instance=ExtResource("5_yg8l2")]

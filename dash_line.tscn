@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0e81sxlwyt51"]
+
+[ext_resource type="Script" path="res://dash_line.gd" id="1_norsq"]
+
+[sub_resource type="Gradient" id="Gradient_c80n0"]
+offsets = PackedFloat32Array(0.0872727, 1)
+colors = PackedColorArray(0.517647, 0.886275, 0.796078, 0, 1, 1, 1, 0.854902)
+
+[node name="line_container" type="Node2D"]
+script = ExtResource("1_norsq")
+
+[node name="dash_line" type="Line2D" parent="."]
+position = Vector2(0, -96)
+points = PackedVector2Array(0, 0, 200, 0)
+width = 50.0
+gradient = SubResource("Gradient_c80n0")
+begin_cap_mode = 2
+end_cap_mode = 2
