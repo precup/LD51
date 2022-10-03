@@ -16,10 +16,13 @@ shader_parameter/solid_color = Color(1, 1, 1, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d426"]
 size = Vector2(72.5, 73.5)
 
-[node name="wandering_enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="wandering_enemy" type="RigidBody2D" groups=["enemies"]]
 position = Vector2(1, -2)
 collision_layer = 4
 collision_mask = 17
+mass = 4.0
+lock_rotation = true
+linear_damp = 3.0
 script = ExtResource("1_t7sh5")
 
 [node name="base_enemy" type="Node2D" parent="."]

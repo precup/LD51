@@ -11,6 +11,7 @@ var max_ticks_to_choose_next_destination = 200
 var ticks_to_next_shot = max_time_between_shots
 var next_destination = Vector2.ZERO
 var ticks_to_choose_next_destination = max_ticks_to_choose_next_destination
+var _knockback = Vector2.ZERO
 
 func _ready():
   next_destination = position
@@ -32,11 +33,16 @@ func _process(delta):
     for x in range(-20, 20 + 1, 10):
       shoot_bullet(direction.rotated(deg_to_rad(x)))
   
+  var velocity := Vector2.ZERO
+
   if position.distance_to(next_destination) >= 10:
-    var velocity = position.direction_to(next_destination).normalized() * 200 * delta
-    
-    # move_and_collide(velocity)
+    velocity = position.direction_to(next_destination).normalized() * 200 * delta
   
+  velocity += _knockback * delta
+  _knockback = lerp(_knockback, Vector2.ZERO, delta * 5)
+
+  move_and_collide(velocity)
+    
   if ticks_to_choose_next_destination <= 0:
     ticks_to_choose_next_destination = max_ticks_to_choose_next_destination
     next_destination = choose_next_destination() 
@@ -84,4 +90,4 @@ func shoot_bullet(direction_vector: Vector2):
   bullet.scale = Vector2(1, 1)
 
 func knockback(bullet_vector: Vector2):
-  apply_central_impulse(bullet_vector * 500)
+  _knockback = bullet_vector.normalized() * 500

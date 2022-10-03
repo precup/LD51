@@ -1,7 +1,8 @@
-extends CharacterBody2D
+extends RigidBody2D
 
 @export var MOVEMENT_SPEED: float = 100.0
 var _next_destination: Vector2 = Vector2.ZERO
+var _knockback: Vector2 = Vector2.ZERO
 
 func _ready():
   $base_enemy._max_health = 4
@@ -30,16 +31,18 @@ func _process(delta):
   if _next_destination.distance_to(position) < 15:
     _choose_next_destination()
 
-  velocity = MOVEMENT_SPEED * position.direction_to(_next_destination).normalized() * $base_enemy.get_speed_multiplier()
-
-  move_and_slide()
+  var collision = move_and_collide(
+    MOVEMENT_SPEED * delta * position.direction_to(_next_destination).normalized() * $base_enemy.get_speed_multiplier() + 
+    _knockback * delta
+  )
   
-  # hit the player
-  for q in range(get_slide_collision_count()):
-    var collision: KinematicCollision2D = get_slide_collision(q)
+  _knockback = lerp(_knockback, Vector2.ZERO, delta * 5)
+  
+  if collision != null:
     var collider: Node2D = collision.get_collider()
 
-    if collider.has_method("damage"):
+    if collider != null and collider.has_method("damage"):
       collider.damage(-1, - collider.position.direction_to(position))
 
-  
+func knockback(bullet_vector: Vector2):
+  _knockback = bullet_vector * 500
