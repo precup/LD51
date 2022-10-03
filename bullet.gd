@@ -96,6 +96,7 @@ func _physics_process(delta):
     else: # Wall hit
       if _richocets > 0:
         _richocets -= 1
+        _make_hitspark("wall")
         look_at(global_position + direction.bounce(collision.get_normal()))
       else:
         _destroy("wall")
@@ -104,8 +105,9 @@ func _physics_process(delta):
 @onready var hitsprite = preload("res://hitsprite.tscn")
 @onready var hitsprite_wall = preload("res://hitsprite_wall.tscn")
 
-func _destroy(target = "enemy") -> void:
+func _make_hitspark(target = "enemy") -> void:
   var instance: Node2D
+  
   if target == "wall":
     instance = hitsprite_wall.instantiate()
     $"/root/root/sfx/wall_hit".play()
@@ -117,8 +119,10 @@ func _destroy(target = "enemy") -> void:
     $"/root/root/sfx/enemy_hit".play()
     
   $"/root/root".add_child(instance)
-
   instance.global_position = global_position
+
+func _destroy(target = "enemy") -> void:
+  _make_hitspark(target)
 
   queue_free()
     
