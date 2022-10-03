@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://4cl1yw57318p" path="res://assets/player_bullet3.png" id="4_iyo0h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ho3hg"]
-radius = 40.96
+radius = 32.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5abui"]
 animations = [{
@@ -26,7 +26,7 @@ position = Vector2(-2, 1)
 shape = SubResource("CircleShape2D_ho3hg")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-33, 2)
-scale = Vector2(1.24902, 1.28147)
+position = Vector2(-19, 3)
+scale = Vector2(0.8, 0.8)
 frames = SubResource("SpriteFrames_5abui")
 playing = true
