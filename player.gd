@@ -49,19 +49,23 @@ func get_active_gun():
   return guns[0]
 
 var boosted_speed = SPEED
-const BOOSTED_SPEED_MULTIPLIER = 3
-const BOOSTED_SPEED_DURATION = .25
+const BOOSTED_SPEED_MULTIPLIER = 5
+const BOOSTED_SPEED_DURATION = .15
 const DASH_COOLDOWN = 2
 var dash_cooldown_counter = 0
+var dashing :bool = false
 
 func _begin_dash():
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_DASH) 
   dash_cooldown_counter = DASH_COOLDOWN
+  dashing = true
+  modulate = Color(.8,.8,.8) # slight gray tint until recovery
   var tween = get_tree().create_tween()
   tween.tween_property(self, "boosted_speed", BOOSTED_SPEED_MULTIPLIER*SPEED, BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)       
   tween.tween_interval(BOOSTED_SPEED_DURATION/3.0)        
-  tween.tween_property(self, "boosted_speed", SPEED,  BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)      
-  tween.tween_interval(DASH_COOLDOWN - BOOSTED_SPEED_DURATION)    
+  tween.tween_property(self, "boosted_speed", SPEED,  BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)     
+  tween.tween_callback(func(): dashing=false)     
+  tween.tween_interval(DASH_COOLDOWN - BOOSTED_SPEED_DURATION)
   tween.tween_property(self, "modulate", Color(.6,.6,1,1), .12).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)    
   tween.tween_property(self, "modulate", Color(1,1,1,1), .06).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)  
 
@@ -88,6 +92,8 @@ func _physics_process(_delta):
     velocity = _knockback
   else:
     velocity = direction
+    if direction.length() <= 0 && dashing:  # when dashing we move regardless of input
+      velocity = _last_direction * boosted_speed
   
   attentuate_knockback()
   
