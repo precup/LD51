@@ -120,7 +120,7 @@ var all_quests = [
   QuestData.new(StatTrack.STAT_PICKUP_ITEM, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 2, Rarity.RARITY_LEGENDARY: 4}, "Pick up items.",{}, func():return is_pickup_near() ),
   QuestData.new(StatTrack.STAT_HEAL, { Rarity.RARITY_RARE: 3, Rarity.RARITY_LEGENDARY: 5}, "Heal hearts.", {}, func():return have_completed_x_quests(5)),
   QuestData.new(StatTrack.STAT_DASH, { Rarity.RARITY_COMMON: 3, Rarity.RARITY_RARE: 6, Rarity.RARITY_LEGENDARY: 12}, "Dash." ),
-  QuestData.new(StatTrack.STAT_UNFINISHED_QUEST, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 2, Rarity.RARITY_LEGENDARY: 3}, "Let unfinished quest(s) expire.", { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(2) ),
+  QuestData.new(StatTrack.STAT_UNFINISHED_QUEST, { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 2, Rarity.RARITY_LEGENDARY: 3}, "Let unfinished quest(s) expire.", { Rarity.RARITY_COMMON: 1, Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(2) && have_x_active_quests(3), true ),
   QuestData.new(StatTrack.STAT_HOLD_YOUR_BREATH, { Rarity.RARITY_RARE: 15, Rarity.RARITY_LEGENDARY: 30}, "Hold your breath!", {Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(5)),
   QuestData.new(StatTrack.STAT_HOLD_YOUR_BREATH, { Rarity.RARITY_LEGENDARY: 1}, "Be a cutie!", {Rarity.RARITY_RARE: 1, Rarity.RARITY_LEGENDARY: 1}, func():return have_completed_x_quests(5)),
   QuestData.new(StatTrack.STAT_HOLD_YOUR_BREATH, { Rarity.RARITY_RARE: 5}, "Enter your mother's maiden name!", {Rarity.RARITY_RARE: 1}, func():return have_completed_x_quests(5)),  
@@ -173,7 +173,10 @@ func is_hazard_near():
   return is_enemy_near()
   
 func have_completed_x_quests(x):
-  return x < quest_manager.total_quest_completion_count
+  return x <= quest_manager.total_quest_completion_count
+  
+func have_x_active_quests(x):
+  return x <= len(quest_manager.active_quests)
   
 func is_breakable_near():
   var nodes = get_tree().get_nodes_in_group("destructible")
