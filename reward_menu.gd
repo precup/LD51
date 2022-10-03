@@ -32,7 +32,7 @@ func _sort_mods_by_rarity():
     _gun_mods_by_rarity[rarity] = []
     
   for mod in Modifiers.RARITIES:
-    if mod != Modifiers.Gun.NONE:
+    if mod != Modifiers.Gun.NONE and mod != Modifiers.Gun.IMPACT and mod != Modifiers.Gun.INTOXICATING:
       _gun_mods_by_rarity[Modifiers.RARITIES[mod]].append(mod)
 
 

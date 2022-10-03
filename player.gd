@@ -61,6 +61,7 @@ var step_time: float = 0
 var dash_line_tscn = preload("res://dash_line.tscn")
 
 func _begin_dash():
+  var speed = SPEED + get_active_gun().bonus_speed
   $"/root/root/sfx/dash".play()
   
   if abs(_last_direction.y) > abs(_last_direction.x):
@@ -78,9 +79,9 @@ func _begin_dash():
   dashing = true
   modulate = Color(.5, .5, .5) 
   var tween = get_tree().create_tween()
-  tween.tween_property(self, "boosted_speed", BOOSTED_SPEED_MULTIPLIER*SPEED, BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)       
+  tween.tween_property(self, "boosted_speed", BOOSTED_SPEED_MULTIPLIER*speed, BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)       
   tween.tween_interval(BOOSTED_SPEED_DURATION/3.0)        
-  tween.tween_property(self, "boosted_speed", SPEED,  BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)     
+  tween.tween_property(self, "boosted_speed", speed,  BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_IN)     
 
   await tween.finished
   
@@ -122,12 +123,13 @@ func _physics_process(_delta):
   if Input.is_action_just_pressed("change_gun"):
     change_gun()
   
+  var speed = boosted_speed + get_active_gun().bonus_speed
   var direction = Input.get_vector(
     "left", 
     "right",
     "up",
     "down"
-  ) * boosted_speed
+  ) * speed
   
   if direction.length() == 0:
     if step_state % 2 == 0 and step_time > STEP_RATE:
@@ -140,7 +142,7 @@ func _physics_process(_delta):
   else:
     velocity = direction
     if direction.length() <= 0 && dashing:  # when dashing we move regardless of input
-      velocity = _last_direction * boosted_speed
+      velocity = _last_direction * speed
   
   attentuate_knockback()
   

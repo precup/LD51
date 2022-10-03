@@ -21,6 +21,7 @@ enum Effect {
   EXPLODE,
   TRICK_SHOT,
   CHAIN,
+  HOMING,
   GROW
 }
 
@@ -57,12 +58,13 @@ enum Gun {
   RICOCHET,
   GROWING,
   BIG_SHOT,
+  FLEET,
   RETURNING
 }
 
 const DESCRIPTIONS: Dictionary = {
   Gun.NONE: "Well that isn't very exciting...",
-  Gun.HOMING: "This one doesn't work yet",
+  Gun.HOMING: "Spells track the nearest enemy",
   Gun.QUICK_RELOAD: "+100% reload speed",
   Gun.LARGE_MAGAZINE: "+100% magazine size",
   Gun.BOTTOMLESS_MAGAZINE: "Never reload again!",
@@ -89,10 +91,11 @@ const DESCRIPTIONS: Dictionary = {
   Gun.POWERFUL: "Twice the damage, but half the speed",
   Gun.REACTIVE: "Deal extra damage for every status effect on an enemy",
   Gun.BLAZE_OF_GLORY: "Deal triple damage if below 30% health",
-  Gun.BULLET_EATER: "This one doesn't work yet",
+  Gun.BULLET_EATER: "Your spells destroy enemy spells",
   Gun.RICOCHET: "Spells bounce off a wall an additional time",
   Gun.GROWING: "Spells grow as they fly",
   Gun.BIG_SHOT: "Larger spells",
+  Gun.FLEET: "Move faster while holding this wand",
   Gun.RETURNING: "Hitting an enemy loads a spell into your magazine"
 }
 
@@ -125,8 +128,9 @@ const NAMES: Dictionary = {
   Gun.POWERFUL: "Powerful",
   Gun.REACTIVE: "Reactive",
   Gun.BLAZE_OF_GLORY: "Blaze of Glory",
-  Gun.BULLET_EATER: "Bullet Eater",
+  Gun.BULLET_EATER: "Spell Eater",
   Gun.RICOCHET: "Ricochet",
+  Gun.FLEET: "Fleet Footed",
   Gun.GROWING: "Growing",
   Gun.BIG_SHOT: "Big Shot",
   Gun.RETURNING: "Returning"
@@ -145,6 +149,7 @@ const RARITIES: Dictionary = {
   Gun.POWERFUL: Rarity.COMMON,
   Gun.RICOCHET: Rarity.COMMON,
   Gun.BIG_SHOT: Rarity.COMMON,
+  Gun.FLEET: Rarity.COMMON,
   
   Gun.VAMPIRIC: Rarity.RARE,
   Gun.FREEZING: Rarity.RARE,

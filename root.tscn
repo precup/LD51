@@ -6,30 +6,34 @@
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
 [ext_resource type="Texture2D" uid="uid://u1i12jtmkptu" path="res://assets/mike-tilemap.png" id="6_pty4p"]
 [ext_resource type="PackedScene" uid="uid://bfhj42r10m8cl" path="res://barrel.tscn" id="8_b3h3m"]
-[ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
+[ext_resource type="PackedScene" path="res://heart_pickup.tscn" id="9_gl1f0"]
 [ext_resource type="PackedScene" uid="uid://depms7p861do1" path="res://smart_enemy.tscn" id="10_3gr08"]
 [ext_resource type="PackedScene" uid="uid://w1inu0j1tffh" path="res://spike_trap.tscn" id="10_b02l4"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="10_d441m"]
 [ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
+=======
+[ext_resource type="PackedScene" path="res://quest_manager.tscn" id="10_l83fa"]
+>>>>>>> b7198637e6c4e48a82aa5d8223ac623473eaac91
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
-[ext_resource type="PackedScene" uid="uid://c04wgwpov3o2l" path="res://checkpoint.tscn" id="13_vty5w"]
-[ext_resource type="AudioStream" uid="uid://b3iyc3y0kf6px" path="res://assets/ld51 sfx/gunshot5.mp3" id="17_dcm7x"]
-[ext_resource type="AudioStream" uid="uid://852hjl4qgnp2" path="res://assets/ld51 sfx/enemyhit.mp3" id="18_c15wr"]
+[ext_resource type="PackedScene" path="res://checkpoint.tscn" id="13_vty5w"]
+[ext_resource type="AudioStream" uid="uid://b3ngkmdxge80y" path="res://assets/ld51 sfx/gunshot5.mp3" id="17_dcm7x"]
+[ext_resource type="AudioStream" uid="uid://b6xu5cfci6kdt" path="res://assets/ld51 sfx/enemyhit.mp3" id="18_c15wr"]
 [ext_resource type="Script" path="res://sfx.gd" id="18_okoyd"]
-[ext_resource type="AudioStream" uid="uid://2qeh3ttl1oej" path="res://assets/ld51 sfx/wallhit.mp3" id="19_1cvp1"]
-[ext_resource type="AudioStream" uid="uid://csiv8xkbadgso" path="res://assets/ld51 sfx/pothit.mp3" id="20_ryhri"]
-[ext_resource type="PackedScene" uid="uid://bj8orutgvtbex" path="res://npc.tscn" id="21_hwo1i"]
-[ext_resource type="PackedScene" uid="uid://7j3pdrl1pu4n" path="res://dialog_trigger.tscn" id="22_2jyts"]
-[ext_resource type="AudioStream" uid="uid://c814cgeksbadm" path="res://assets/ld51 sfx/reload.mp3" id="22_rbq7y"]
-[ext_resource type="AudioStream" uid="uid://cqwcvaavihuo8" path="res://assets/ld51 sfx/questcomplete.mp3" id="23_7lov7"]
+[ext_resource type="AudioStream" uid="uid://dnsskhd871mj8" path="res://assets/ld51 sfx/wallhit.mp3" id="19_1cvp1"]
+[ext_resource type="AudioStream" uid="uid://dvu5q1m2wt08e" path="res://assets/ld51 sfx/pothit.mp3" id="20_ryhri"]
+[ext_resource type="PackedScene" path="res://npc.tscn" id="21_hwo1i"]
+[ext_resource type="PackedScene" path="res://dialog_trigger.tscn" id="22_2jyts"]
+[ext_resource type="AudioStream" uid="uid://j13jqecjpqf3" path="res://assets/ld51 sfx/reload.mp3" id="22_rbq7y"]
+[ext_resource type="AudioStream" uid="uid://cn2kssrrk845v" path="res://assets/ld51 sfx/questcomplete.mp3" id="23_7lov7"]
 [ext_resource type="AudioStream" uid="uid://bnky681qonx7t" path="res://assets/ld51 sfx/ricochet1.mp3" id="24_0ppj1"]
 [ext_resource type="AudioStream" uid="uid://8dfph6140cxn" path="res://assets/ld51 sfx/ricochet2.mp3" id="25_nkftf"]
 [ext_resource type="AudioStream" uid="uid://co6x148ps04vm" path="res://assets/ld51 sfx/ricochet3.mp3" id="26_kxnx0"]
-[ext_resource type="AudioStream" uid="uid://dlcsvsjljkqv" path="res://assets/ld51 sfx/dash.mp3" id="28_oj2nl"]
+[ext_resource type="AudioStream" uid="uid://dp5t5psu373l1" path="res://assets/ld51 sfx/dash.mp3" id="28_oj2nl"]
 [ext_resource type="AudioStream" uid="uid://bc4smni73w0h0" path="res://assets/ld51 sfx/dashregain.mp3" id="29_h4w5o"]
 [ext_resource type="AudioStream" uid="uid://c3d1yij7c37ck" path="res://uiconfirm.mp3" id="30_owont"]
-[ext_resource type="AudioStream" uid="uid://hso4nhir2lx6" path="res://assets/ld51 sfx/healthpickup.mp3" id="30_wr5ts"]
+[ext_resource type="AudioStream" uid="uid://c7musnf05u8ub" path="res://assets/ld51 sfx/healthpickup.mp3" id="30_wr5ts"]
 [ext_resource type="AudioStream" uid="uid://drm7fah5ytxwi" path="res://uicancel.mp3" id="31_n7j1w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d635m"]
@@ -335,6 +339,46 @@ texture_region_size = Vector2i(256, 256)
 8:9/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 8:9/0/physics_layer_1/angular_velocity = 0.0
 8:9/0/physics_layer_1/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
+5:6/0 = 0
+5:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+5:6/0/physics_layer_0/angular_velocity = 0.0
+5:6/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+5:6/0/physics_layer_1/angular_velocity = 0.0
+6:6/0 = 0
+6:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+6:6/0/physics_layer_0/angular_velocity = 0.0
+6:6/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+6:6/0/physics_layer_1/angular_velocity = 0.0
+3:4/0 = 0
+3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:4/0/physics_layer_0/angular_velocity = 0.0
+3:4/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:4/0/physics_layer_1/angular_velocity = 0.0
+3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_1/angular_velocity = 0.0
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_1/angular_velocity = 0.0
+2:4/0 = 0
+2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:4/0/physics_layer_0/angular_velocity = 0.0
+2:4/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+2:4/0/physics_layer_1/angular_velocity = 0.0
+1:4/0 = 0
+1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:4/0/physics_layer_0/angular_velocity = 0.0
+1:4/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:4/0/physics_layer_1/angular_velocity = 0.0
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_1/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_jfbro"]
 tile_size = Vector2i(256, 256)
