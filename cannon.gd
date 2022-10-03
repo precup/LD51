@@ -25,7 +25,26 @@ func rotate_cannon():
   # Assumes cannon is pointing down. Which it definitely is. 
   var direction_vector = get_direction_vector()
 
-  $graphic.rotation = direction_vector.angle() - PI / 2
+  # $graphic.rotation = direction_vector.angle() - PI / 2
+  $graphic.visible = false
+  
+  $side.visible = false
+  $front.visible = false
+  $back.visible = false
+  
+  if direction == Direction.LEFT:
+    $side.visible = true
+    $side.scale = Vector2(1, 1)
+  
+  if direction == Direction.RIGHT:
+    $side.visible = true
+    $side.scale = Vector2(-1, 1)
+  
+  if direction == Direction.UP:
+    $back.visible = true
+  
+  if direction == Direction.DOWN:
+    $front.visible = true
 
 func _process(delta):
   if Engine.is_editor_hint():

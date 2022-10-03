@@ -1,9 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0hwx6l3xfuns"]
+[gd_scene load_steps=15 format=3 uid="uid://d0hwx6l3xfuns"]
 
 [ext_resource type="Script" path="res://cannon.gd" id="1_ueamw"]
 [ext_resource type="Texture2D" uid="uid://skefo6a6g5yc" path="res://assets/cannon.png" id="2_ht6dd"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_xh8jx"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_f85wm"]
+[ext_resource type="Texture2D" uid="uid://c6eopjpgsqan3" path="res://assets/turretside.png" id="5_8hdw7"]
+[ext_resource type="Shader" path="res://white_flash.gdshader" id="5_epru1"]
+[ext_resource type="Texture2D" uid="uid://cyjyrg6jbbqbx" path="res://assets/turretfront.png" id="6_w3mjg"]
+[ext_resource type="Texture2D" uid="uid://byv17lgyaouh6" path="res://assets/turretback.png" id="7_0p5cy"]
 
 [sub_resource type="Shader" id="Shader_0m0ln"]
 code = "shader_type canvas_item;
@@ -24,16 +28,31 @@ shader_parameter/solid_color = Color(0, 0, 0, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
 size = Vector2(58, 62)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4rlfp"]
+shader = ExtResource("5_epru1")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kp80j"]
+shader = ExtResource("5_epru1")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iexqq"]
+shader = ExtResource("5_epru1")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
 [node name="cannon" type="StaticBody2D" groups=["enemies"]]
+position = Vector2(-1, -1)
 collision_layer = 16
 script = ExtResource("1_ueamw")
+direction = 3
 bullet_speed = 1000.0
 max_time_between_shots = 500.0
 
 [node name="graphic" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_qh18e")
 position = Vector2(31, 31)
-rotation = 1.5708
+rotation = -1.5708
 texture = ExtResource("2_ht6dd")
 
 [node name="bullet_spawn" type="Node2D" parent="graphic"]
@@ -48,3 +67,21 @@ shape = SubResource("RectangleShape2D_gjycc")
 script = ExtResource("3_xh8jx")
 
 [node name="health_bar" parent="." instance=ExtResource("4_f85wm")]
+
+[node name="side" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_4rlfp")
+position = Vector2(62, 65.0001)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_8hdw7")
+
+[node name="front" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kp80j")
+position = Vector2(64, 61)
+texture = ExtResource("6_w3mjg")
+
+[node name="back" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_iexqq")
+position = Vector2(59, 53)
+texture = ExtResource("7_0p5cy")

@@ -14,7 +14,7 @@ var desired_velocity: Vector2 = Vector2.ZERO
 
 var _conditions: Array = [] # [condition: Modifiers.Effect, gun_id: int, condition_strength: float]
 var _health: float = 5.0
-var active_tween: Tween = null
+var active_tweens = []
 var _speed_multiplier = 1.0
 
 var WAKE_UP_DISTANCE = 750
@@ -89,12 +89,33 @@ func get_speed_multiplier() -> float:
 func _hit_animation() -> void:
   # flash white
   
-  if active_tween:
-    active_tween.kill()
+  for t in active_tweens:
+    t.kill()
+  active_tweens = []
 
   graphic.material.set_shader_parameter("solid_color", Color.WHITE)
-  active_tween = create_tween()
-  var r = active_tween.tween_property(graphic.material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.1)
+  
+  if get_parent().has_node("side"):
+    get_parent().get_node("side").material.set_shader_parameter("solid_color", Color.WHITE)
+    var t = create_tween()
+    t.tween_property(get_parent().get_node("side").material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.1)
+    active_tweens.append(t)
+  
+  if get_parent().has_node("front"):
+    var t = create_tween()
+    get_parent().get_node("front").material.set_shader_parameter("solid_color", Color.WHITE)
+    t.tween_property(get_parent().get_node("front").material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.1)
+    active_tweens.append(t)
+  
+  if get_parent().has_node("back"):
+    var t = create_tween()
+    get_parent().get_node("back").material.set_shader_parameter("solid_color", Color.WHITE)
+    t.tween_property(get_parent().get_node("back").material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.1)
+    active_tweens.append(t)
+  
+  var t = create_tween() 
+  var r = t.tween_property(graphic.material, "shader_parameter/solid_color", Color.TRANSPARENT, 0.1)
+  active_tweens.append(t)
   
   r.set_trans(Tween.TRANS_QUAD)
   
