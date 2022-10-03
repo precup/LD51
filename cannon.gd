@@ -47,7 +47,7 @@ func shoot_bullet():
   var damage = 1
   var effects = []
   
-  bullet.configure(self, bullet_speed, damage, effects, homing, null, ricochets, pierces)
+  bullet.configure(self, bullet_speed, damage, effects, homing, null, ricochets, pierces, Color.RED)
   PROJECTILE_NODE.add_child(bullet)
 
   var direction_vector = get_direction_vector()

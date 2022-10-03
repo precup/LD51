@@ -82,7 +82,7 @@ func shoot_bullet(direction_vector: Vector2):
   var damage = 1
   var effects = []
 
-  bullet.configure(self, bullet_speed, damage, effects, homing, null, ricochets, pierces)
+  bullet.configure(self, bullet_speed, damage, effects, homing, null, ricochets, pierces, Color.RED)
   PROJECTILE_NODE.add_child(bullet)
   
   bullet.global_position = bullet_spawn.global_position

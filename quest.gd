@@ -6,6 +6,7 @@ class_name Quest
 @onready var ui_progress_bar : ProgressBar = $HSplit/VSplit/Margin2/ProgressBar
 @onready var ui_progress_text : Label = $HSplit/VSplit/Margin2/ProgressBar/Progress
 @onready var ui_reward_type_icon : TextureRect = $HSplit/Margin/Center/RewardIcon
+@onready var ui_reward_type_icon2 : TextureRect = $HSplit/Margin/Center/RewardIcon2
 @onready var ui_quest_complete_overlay : ColorRect = $CompletedQuestOverlay
 @onready var ui_background : ColorRect = $BackgroundStyle
 @onready var ui_quest_complete_overlay2 : TextureRect = $HSplit/Margin/Center/CheckMark
@@ -52,6 +53,8 @@ func initialize(_reward, _quest_id, _quest_rarity, _description, _stat_being_tra
   stat_being_tracked = _stat_being_tracked
   stat_count_required = _stat_count_required
   ui_reward_type_icon.texture = load(REWARD_ICON_RESOURCES[reward.reward_type])
+  ui_reward_type_icon.modulate = Color.PURPLE
+  ui_reward_type_icon2.visible = reward.reward_type == QuestGlobals.RewardType.REWARD_GUN
   _update_progress()
 
 var seconds_left: float = 30.0

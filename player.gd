@@ -73,6 +73,12 @@ func _physics_process(_delta):
   dash_cooldown_counter -= _delta
   
   $gun_rotation_container.rotation = get_angle_to(get_global_mouse_position())
+  var facing_front: bool = $gun_rotation_container.global_rotation >= 0
+  var facing_left: bool = abs($gun_rotation_container.global_rotation) > PI / 2
+  $front_sprite.visible = facing_front
+  $back_sprite.visible = not facing_front
+  $front_sprite.flip_h = not facing_left
+  $back_sprite.flip_h = not facing_left
   
   if Input.is_action_just_pressed("dash") && dash_cooldown_counter <= 0:
     # TODO: put a CD on this, have UI show CD

@@ -12,7 +12,7 @@ var _has_returned: bool = false
 
 @onready var quest_manager = $"/root/root/quest_manager"
 
-func configure(gun, speed: float, damage: float, effects: Array, homing: float, target: Node2D, richochets: int, pierces: int):
+func configure(gun, speed: float, damage: float, effects: Array, homing: float, target: Node2D, richochets: int, pierces: int, color: Color):
   _gun = gun
   _speed = speed
   _damage = damage
@@ -21,6 +21,8 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
   _homing = homing
   _richocets = richochets
   _pierces = pierces
+  
+  $sprite.modulate = color
 
   # prevent collisoin w self
   

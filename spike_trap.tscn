@@ -1,32 +1,35 @@
-[gd_scene load_steps=10 format=3 uid="uid://w1inu0j1tffh"]
+[gd_scene load_steps=12 format=3 uid="uid://w1inu0j1tffh"]
 
 [ext_resource type="Script" path="res://spike_trap.gd" id="1_1x5hy"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_dlhy5"]
 [ext_resource type="Texture2D" uid="uid://crx52n1wj54cv" path="res://assets/spike_untriggered.png" id="3_nj45o"]
+[ext_resource type="Shader" path="res://white_flash.gdshader" id="3_ocly3"]
 [ext_resource type="Texture2D" uid="uid://cd07ix57jxcy8" path="res://assets/spike_triggered.png" id="4_d530a"]
+[ext_resource type="Texture2D" uid="uid://bqxlsijlfse07" path="res://assets/spike_mid_triggered.png" id="4_jqc25"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_t6uql"]
 
-[sub_resource type="Shader" id="Shader_0m0ln"]
-code = "shader_type canvas_item;
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sx46s"]
+shader = ExtResource("3_ocly3")
+shader_parameter/solid_color = Color(1, 1, 1, 1)
 
-uniform vec4 solid_color: source_color;
-
-void fragment() {
-    vec4 texture_color = texture(TEXTURE, UV);
-    COLOR = vec4(mix(texture_color.rgb, solid_color.rgb, solid_color.a), texture_color.a);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh18e"]
-resource_local_to_scene = true
-shader = SubResource("Shader_0m0ln")
-shader_parameter/solid_color = Color(0, 0, 0, 0)
+[sub_resource type="SpriteFrames" id="SpriteFrames_bq8yu"]
+animations = [{
+"frames": [ExtResource("3_nj45o"), ExtResource("4_jqc25"), ExtResource("4_d530a")],
+"loop": false,
+"name": &"spike",
+"speed": 30.0
+}, {
+"frames": [ExtResource("4_d530a"), ExtResource("4_jqc25"), ExtResource("3_nj45o")],
+"loop": false,
+"name": &"unspike",
+"speed": 30.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
-size = Vector2(123, 128)
+size = Vector2(203, 213)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2yu7"]
-size = Vector2(112, 115.5)
+size = Vector2(202, 214.25)
 
 [node name="spike_trap" type="Area2D" groups=["destructible"]]
 collision_layer = 48
@@ -36,22 +39,22 @@ script = ExtResource("1_1x5hy")
 script = ExtResource("3_dlhy5")
 
 [node name="graphic" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_qh18e")
-position = Vector2(64, 64)
-texture = ExtResource("3_nj45o")
+visible = false
+material = SubResource("ShaderMaterial_sx46s")
 
-[node name="graphic_triggered" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_qh18e")
-position = Vector2(64, 64)
-texture = ExtResource("4_d530a")
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(128, 103)
+frames = SubResource("SpriteFrames_bq8yu")
+animation = &"unspike"
 
 [node name="shape" type="CollisionShape2D" parent="."]
-position = Vector2(61.5, 65)
+position = Vector2(136, 120.5)
 shape = SubResource("RectangleShape2D_gjycc")
 
 [node name="health_bar" parent="." instance=ExtResource("4_t6uql")]
 
 [node name="countdown" type="Label" parent="."]
+visible = false
 offset_left = 42.0
 offset_top = -78.0
 offset_right = 82.0
@@ -63,7 +66,7 @@ text = "3"
 collision_layer = 16
 
 [node name="shape" type="CollisionShape2D" parent="static_body"]
-position = Vector2(59, 61.25)
+position = Vector2(134, 121.125)
 shape = SubResource("RectangleShape2D_f2yu7")
 
 [connection signal="body_entered" from="." to="." method="_on_spike_trap_body_entered"]

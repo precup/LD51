@@ -6,6 +6,7 @@ const GUN_SCENE: PackedScene = preload("res://gun.tscn")
 @onready var OPTION_HEADER: Label = $center/panel/vsplit/margin2/vsplit/option_header
 @onready var NEW_WEAPON = $center/panel/vsplit/margin/vbox/center/margin/new_weapon
 @onready var NEW_UPGRADE = $center/panel/vsplit/margin/vbox/center/margin/hsplit
+@onready var UPGRADE_ICON : TextureRect = $center/panel/vsplit/margin/vbox/center/margin/hsplit/upgrade_icon
 @onready var UPGRADE_NAME : Label = $center/panel/vsplit/margin/vbox/center/margin/hsplit/vsplit/name
 @onready var UPGRADE_DESCRIPTION = $center/panel/vsplit/margin/vbox/center/margin/hsplit/vsplit/description
 
@@ -124,6 +125,7 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
       HEADER.text = "New Wand Upgrade!"
       HEADER.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]])
       OPTION_HEADER.text = "Pick a wand to upgrade:"
+      UPGRADE_ICON.modulate = QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]]
       _gun = null
       
     QuestGlobals.RewardType.REWARD_GUN:

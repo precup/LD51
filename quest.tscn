@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn0o886degb1x"]
+[gd_scene load_steps=9 format=3 uid="uid://dn0o886degb1x"]
 
 [ext_resource type="Script" path="res://quest.gd" id="1_iu6j4"]
 [ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="2_urxvi"]
 [ext_resource type="Texture2D" uid="uid://blg4ieywsf7mt" path="res://assets/pixel.png" id="2_y4qjx"]
 [ext_resource type="Texture2D" uid="uid://c17cgdlnxml1t" path="res://assets/completed_quest_icon.png" id="3_gq4dl"]
+[ext_resource type="Texture2D" uid="uid://bfaney0p34lxa" path="res://assets/gun_reward_icon_top.png" id="4_85hcm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlco5"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -62,6 +63,15 @@ offset_top = 466.0
 offset_right = 128.0
 offset_bottom = 594.0
 texture = ExtResource("2_urxvi")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="RewardIcon2" type="TextureRect" parent="HSplit/Margin/Center"]
+custom_minimum_size = Vector2i(128, 128)
+offset_top = 466.0
+offset_right = 128.0
+offset_bottom = 594.0
+texture = ExtResource("4_85hcm")
 ignore_texture_size = true
 stretch_mode = 4
 

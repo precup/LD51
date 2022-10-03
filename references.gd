@@ -1,6 +1,6 @@
 extends Node2D
 
-var is_debug = true
+var is_debug = false
 
 # handy list of all references!
 

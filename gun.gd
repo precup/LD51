@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var BULLET: PackedScene = preload("res://bullet.tscn")
-@onready var BULLET_SPAWN: Marker2D = $sprite/bullet_spawn
+@onready var BULLET_SPAWN: Marker2D = $sprite/top/bullet_spawn
 @onready var GUN_ID: int = randi()
 
 @export var COLOR: Color = Color.WHITE
@@ -46,6 +46,8 @@ func get_rounds_left() -> int:
 func _physics_process(delta) -> void:
   if not visible:
     return
+  
+  $sprite.scale.y = 1 if abs(global_rotation) > PI / 2 else -1
   
   if _reload_left > 0:
     _reload_left -= delta
@@ -116,10 +118,10 @@ func fire() -> void:
     if arc_size >= PI:
       arc_angle = lerp(0.0, TAU, float(i) / num_shots)
     var bullet: Node2D = BULLET.instantiate()
-    bullet.configure(self, bullet_speed(), damage, effects, bullet_homing(), null, bullet_ricochets(), bullet_pierces())
+    bullet.configure(self, bullet_speed(), damage, effects, bullet_homing(), null, bullet_ricochets(), bullet_pierces(), COLOR)
     PROJECTILE_NODE.add_child(bullet)
     bullet.global_position = BULLET_SPAWN.global_position
-    bullet.global_rotation = BULLET_SPAWN.global_rotation + arc_angle
+    bullet.global_rotation = BULLET_SPAWN.global_rotation + arc_angle + PI
     bullet.scale = Vector2(scale, scale)
     _fire_cooldown_left = fire_cooldown()
   

@@ -1,16 +1,16 @@
 [gd_scene load_steps=31 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
-[ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
+[ext_resource type="PackedScene" path="res://hitsprite.tscn" id="1_y7wtu"]
 [ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
 [ext_resource type="PackedScene" uid="uid://dmnrsfv3p2o4p" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
 [ext_resource type="Texture2D" uid="uid://u1i12jtmkptu" path="res://assets/mike-tilemap.png" id="6_pty4p"]
-[ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
-[ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
+[ext_resource type="PackedScene" uid="uid://bfhj42r10m8cl" path="res://barrel.tscn" id="8_b3h3m"]
+[ext_resource type="PackedScene" path="res://heart_pickup.tscn" id="9_gl1f0"]
 [ext_resource type="PackedScene" uid="uid://depms7p861do1" path="res://smart_enemy.tscn" id="10_3gr08"]
 [ext_resource type="PackedScene" uid="uid://w1inu0j1tffh" path="res://spike_trap.tscn" id="10_b02l4"]
-[ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
+[ext_resource type="PackedScene" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 [ext_resource type="PackedScene" uid="uid://bnad03ke1cx1l" path="res://patrol_enemy.tscn" id="11_atj5v"]
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
@@ -232,7 +232,6 @@ player = NodePath("../player")
 [node name="level_1" type="Node2D" parent="."]
 
 [node name="tile_map" type="TileMap" parent="level_1"]
-position = Vector2(0, -2)
 tile_set = SubResource("TileSet_jfbro")
 format = 2
 layer_0/tile_data = PackedInt32Array(-65534, 327680, 2, -65535, 327680, 2, -65536, 327680, 2, -1, 327680, 2, -2, 262144, 2, 65534, 262144, 2, 131070, 262144, 2, 196606, 262144, 2, 262142, 262144, 2, 65535, 327680, 4, 131071, 327680, 4, 196607, 327680, 4, 131072, 458752, 4, 196609, 327680, 4, 196610, 327680, 4, 196611, 327680, 4, 196612, 327680, 4, 196613, 327680, 4, 196608, 327680, 4, 262143, 327680, 4, 131073, 458752, 4, 65537, 524288, 4, 65538, 524288, 4, 1, 327680, 4, 0, 327680, 4, 65536, 458752, 4, 2, 327680, 4, 3, 327680, 4, 4, 327680, 4, 5, 327680, 4, 65541, 458752, 4, 131077, 524288, 4, 65542, 458752, 4, 131078, 458752, 4, 6, 327680, 4, 196614, 327680, 4, 196615, 327680, 4, 131079, 327680, 4, 65543, 327680, 4, 7, 327680, 4, -131070, 327680, 1, -196606, 327680, 1, -262142, 327680, 1, -65531, 524288, 2, -65528, 589824, 2, 8, 589824, 2, 65544, 589824, 2, 131080, 589824, 2, 196616, 589824, 2, 262152, 589824, 5, 262151, 524288, 5, 262150, 524288, 5, 262149, 524288, 5, 262148, 524288, 5, 262147, 524288, 5, 262146, 524288, 5, 262145, 524288, 5, 262144, 524288, 5, 327679, 524288, 5, 327678, 262144, 5, -65530, 524288, 2, -65529, 524288, 2, -262139, 524288, 1, -196603, 524288, 1, -131067, 524288, 1, -65532, 524288, 4, -131068, 524288, 4, -131069, 524288, 4, -196605, 524288, 4, -196604, 524288, 4, -262140, 524288, 4, -65533, 524288, 4, -262141, 524288, 4, 65539, 524288, 4, 65540, 524288, 4, 131076, 524288, 4, 131075, 524288, 4)

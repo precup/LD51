@@ -16,6 +16,7 @@ var background_style_box : StyleBoxFlat
 func _ready():
   if IS_TRASH:
     GUN_ICON.texture = load("res://assets/trash_icon.png")
+    $split/margin/gun_icon2.visible = false
     $split/panel.visible = false
   $highlight.visible = false
   
@@ -43,8 +44,7 @@ func display_weapon(gun, can_max_out: bool):
     var slot = SLOT_PARENT.get_child(i)
     slot.get_node("hsplit/mod_name").text = Modifiers.NAMES[upgrades[i]] if i < len(upgrades) else ""
     slot.get_node("hsplit/mod_name").set("theme_override_colors/font_color", QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[upgrades[i]]] if i < len(upgrades) else null)
-    slot.get_node("hsplit/full_icon").visible = i < len(upgrades)
-    slot.get_node("hsplit/empty_icon").visible = i >= len(upgrades)
+    slot.get_node("hsplit").set_light(i >= len(upgrades), Color(0.4, 0.4, 0.4) if i >= len(upgrades) else QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[upgrades[i]]])
     slot.get_child(0).hovered = false
   
   _on_hsplit_updated()

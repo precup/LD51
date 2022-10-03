@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bogi2bx4mofxp"]
+[gd_scene load_steps=4 format=3 uid="uid://iimv55caft5i"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_7w46j"]
 [ext_resource type="Texture2D" uid="uid://dwcfs5ilpsigk" path="res://assets/player_bullet.png" id="2_0ujgj"]
@@ -14,7 +14,7 @@ script = ExtResource("1_7w46j")
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_syl5c")
 
-[node name="enemy_bullet" type="Sprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0.772549, 1)
 position = Vector2(3, 6)
 texture = ExtResource("2_0ujgj")

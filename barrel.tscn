@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c377nj22nsru2"]
+[gd_scene load_steps=7 format=3 uid="uid://bfhj42r10m8cl"]
 
-[ext_resource type="Texture2D" uid="uid://evrsev5shq4q" path="res://assets/barrel.png" id="1_dhndc"]
 [ext_resource type="Script" path="res://barrel.gd" id="1_l1avd"]
+[ext_resource type="Texture2D" uid="uid://cypv23mmlq5am" path="res://assets/pot_healthy.png" id="2_m4pgc"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_l4shq"]
 
 [sub_resource type="Shader" id="Shader_0m0ln"]
@@ -29,9 +29,9 @@ script = ExtResource("1_l1avd")
 
 [node name="graphic" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_qh18e")
-position = Vector2(73.5, 73.5)
-scale = Vector2(2.32812, 2.32812)
-texture = ExtResource("1_dhndc")
+position = Vector2(75, 60)
+scale = Vector2(0.789063, 0.756875)
+texture = ExtResource("2_m4pgc")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 position = Vector2(74, 78.5)

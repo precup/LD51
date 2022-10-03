@@ -1,10 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cspp5u6u33ps1"]
+[gd_scene load_steps=17 format=3 uid="uid://cspp5u6u33ps1"]
 
 [ext_resource type="Script" path="res://laser_enemy.gd" id="1_qljgk"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="2_gcmcp"]
-[ext_resource type="Shader" path="res://white_flash.gdshader" id="3_f8sp3"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="4_sftgi"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_1mj2p"]
+[ext_resource type="Material" uid="uid://drek4vtfr8vlf" path="res://laser_enemy.tres" id="6_4s7vw"]
 [ext_resource type="Script" path="res://laser_raycast.gd" id="6_ag5w6"]
 [ext_resource type="Texture2D" uid="uid://dcuma3xobg2bd" path="res://assets/particle.png" id="7_1lgc7"]
 
@@ -66,10 +66,6 @@ scale_min = 0.3
 scale_max = 0.7
 scale_curve = SubResource("CurveTexture_7o7rw")
 color_ramp = SubResource("GradientTexture1D_gtpys")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rm2iy"]
-shader = ExtResource("3_f8sp3")
-shader_parameter/solid_color = Color(1, 1, 1, 1)
 
 [node name="laser_enemy" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(-31, -36)
@@ -138,6 +134,6 @@ texture = ExtResource("7_1lgc7")
 
 [node name="graphic" type="Sprite2D" parent="."]
 modulate = Color(1, 0.137255, 0.215686, 1)
-material = SubResource("ShaderMaterial_rm2iy")
+material = ExtResource("6_4s7vw")
 position = Vector2(31, 33)
 texture = ExtResource("4_sftgi")

@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://drek4vtfr8vlf"]
+
+[ext_resource type="Shader" path="res://white_flash.gdshader" id="1_l3ykm"]
+
+[resource]
+shader = ExtResource("1_l3ykm")
+shader_parameter/solid_color = Color(1, 1, 1, 1)

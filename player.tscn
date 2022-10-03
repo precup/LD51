@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdu7slvow3axy"]
+[gd_scene load_steps=7 format=3 uid="uid://cdu7slvow3axy"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_575jd"]
-[ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_kdxou"]
+[ext_resource type="Texture2D" uid="uid://cahch1ibpmcxl" path="res://assets/char_front.png" id="2_af2l0"]
+[ext_resource type="Texture2D" uid="uid://dm8athdwrt4aw" path="res://assets/char_back.png" id="3_0rn5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
-size = Vector2(148, 154)
+size = Vector2(112, 157)
 
 [sub_resource type="Animation" id="Animation_ahgkx"]
 resource_name = "fire"
@@ -27,25 +28,28 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
-position = Vector2(610, 681)
 collision_mask = 24
 script = ExtResource("1_575jd")
 
 [node name="collision_shape" type="CollisionShape2D" parent="."]
-position = Vector2(74, 77)
+position = Vector2(0, -81.5)
 shape = SubResource("RectangleShape2D_kkfjx")
 
-[node name="filler_image" type="Sprite2D" parent="."]
-position = Vector2(74.5, 76.5)
-scale = Vector2(2.35938, 2.35938)
-texture = ExtResource("2_kdxou")
+[node name="front_sprite" type="Sprite2D" parent="."]
+position = Vector2(3.5, -145.5)
+texture = ExtResource("2_af2l0")
+
+[node name="gun_rotation_container" type="Node2D" parent="."]
+position = Vector2(0, -87)
+
+[node name="guns" type="Node2D" parent="gun_rotation_container"]
+position = Vector2(-20, 0)
+
+[node name="back_sprite" type="Sprite2D" parent="."]
+position = Vector2(3.5, -145.5)
+texture = ExtResource("3_0rn5p")
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_s5m3d")
 }
-
-[node name="gun_rotation_container" type="Node2D" parent="."]
-
-[node name="guns" type="Node2D" parent="gun_rotation_container"]
-position = Vector2(-20, 0)

@@ -26,8 +26,7 @@ func _ready():
   $base_enemy._item_drop_type = "trash"
   
   $health_bar.visible = false
-  $graphic.visible = true
-  $graphic_triggered.visible = false
+  $sprite.play("unspike")
   
   var label: Label = $countdown
   label.text = "" 
@@ -57,9 +56,10 @@ func _physics_process(delta):
 
 
 func update_graphics():
-  $graphic_triggered.visible = is_spiky
-  $graphic.visible = not is_spiky
-  # $countdown.visible = not is_spiky
+  if is_spiky and $sprite.animation != "spike":
+    $sprite.play("spike")
+  elif not is_spiky and $sprite.animation != "unspike":
+    $sprite.play("unspike")
 
 
 func _on_spike_trap_body_entered(body):
