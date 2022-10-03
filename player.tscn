@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_kdxou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
-size = Vector2(63, 64)
+size = Vector2(148, 154)
 
 [sub_resource type="Animation" id="Animation_ahgkx"]
 resource_name = "fire"
@@ -32,7 +32,7 @@ collision_mask = 24
 script = ExtResource("1_575jd")
 
 [node name="collision_shape" type="CollisionShape2D" parent="."]
-position = Vector2(31.5, 32)
+position = Vector2(74, 77)
 shape = SubResource("RectangleShape2D_kkfjx")
 
 [node name="filler_image" type="Sprite2D" parent="."]

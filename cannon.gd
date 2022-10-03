@@ -5,7 +5,7 @@ enum Direction {
   LEFT, RIGHT, UP, DOWN
 }
 
-@onready var BULLET: PackedScene = preload("res://bullet.tscn")
+@onready var BULLET: PackedScene = preload("res://enemy_bullet.tscn")
 @onready var PROJECTILE_NODE: Node2D = $'/root/root/projectiles'
 @onready var bullet_spawn = $graphic/bullet_spawn
 

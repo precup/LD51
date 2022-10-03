@@ -30,8 +30,12 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
 func _physics_process(delta):
   var direction: Vector2 = transform.x
   var collision: KinematicCollision2D = move_and_collide(direction * _speed * delta)
+  var player = $"/root/root/references".get_player()
   
   if collision:
+    if collision.get_collider() == player:
+      player.damage(_damage, direction)
+    
     var collider: Object = collision.get_collider().get_node('base_enemy')
     var enemy_hit: bool = false
     var destructible_hit = false
@@ -58,14 +62,15 @@ func _physics_process(delta):
           Modifiers.Effect.REACT:
             react_damage += 0.25 * len(collider.get_status_effects())
           Modifiers.Effect.LEECH:
-            var player = get_tree().get_first_node_in_group("player")
             if player:
               player.heal(effect[2])
           Modifiers.Effect.RETURN:
             if not _has_returned:
               _has_returned = true
               _gun.return_bullet()
+              
       collider.damage(_damage * react_damage, -1, direction)
+      
       for effect in _effects:
         quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_APPLY_EFFECT)
         match effect[0]:

@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@onready var BULLET: PackedScene = preload("res://bullet.tscn")
+@onready var BULLET: PackedScene = preload("res://enemy_bullet.tscn")
 @onready var PROJECTILE_NODE: Node2D = $'/root/root/projectiles'
 @onready var bullet_spawn = $graphic/bullet_spawn
 
@@ -8,7 +8,7 @@ extends RigidBody2D
 @export var max_time_between_shots: float = 500
 
 var max_ticks_to_choose_next_destination = 200
-var ticks_to_next_shot = max_time_between_shots
+var ticks_to_next_shot = 0
 var next_destination = Vector2.ZERO
 var ticks_to_choose_next_destination = max_ticks_to_choose_next_destination
 var _knockback = Vector2.ZERO
@@ -81,7 +81,7 @@ func shoot_bullet(direction_vector: Vector2):
   var pierces = false
   var damage = 1
   var effects = []
-  
+
   bullet.configure(self, bullet_speed, damage, effects, homing, null, ricochets, pierces)
   PROJECTILE_NODE.add_child(bullet)
   

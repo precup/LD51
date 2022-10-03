@@ -326,7 +326,7 @@ position = Vector2(256, 478)
 position = Vector2(263, 625)
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(-1339, 268)
+position = Vector2(1251, -4146)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="projectiles" type="Node2D" parent="."]
