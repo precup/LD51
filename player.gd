@@ -108,6 +108,8 @@ func _physics_process(_delta):
   if direction.length() == 0:
     if step_state % 2 == 0 and step_time > STEP_RATE:
       step_time = STEP_RATE - 0.0001
+    elif step_state % 2 == 1:
+      step_time += _delta
   
   if _knockback != Vector2.ZERO:
     velocity = _knockback

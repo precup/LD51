@@ -37,6 +37,7 @@ scale = Vector2(0.8, 0.8)
 pivot_offset = Vector2(35, 35)
 
 [node name="heart_full" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = -4.0
 offset_right = -4.0
 offset_bottom = 40.0
@@ -44,6 +45,7 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_inwgr")
 
 [node name="heart_half" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = -4.0
 offset_right = -4.0
 offset_bottom = 40.0
@@ -51,6 +53,7 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_rmd6v")
 
 [node name="heart_empty" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = -4.0
 offset_right = -4.0
 offset_bottom = 40.0
