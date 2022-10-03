@@ -30,6 +30,16 @@ func spread_fire():
     for y in range(15):
       await get_tree().process_frame
 
+    shoot_bullet(direction.rotated(deg_to_rad(x - 45)))
+    
+    for y in range(15):
+      await get_tree().process_frame
+
+    shoot_bullet(direction.rotated(deg_to_rad(x - 90)))
+    
+    for y in range(15):
+      await get_tree().process_frame
+
 func _process(delta):
   ticks_to_next_shot -= 1
   ticks_to_choose_next_destination -= 1
