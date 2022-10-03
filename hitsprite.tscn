@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgjtnd6oovo8y"]
+[gd_scene load_steps=7 format=3 uid="uid://cwqqmtk6yuqs"]
 
 [ext_resource type="Texture2D" uid="uid://c7tfwg5t2n3pk" path="res://assets/hitspark.png" id="1_0gljx"]
 [ext_resource type="Script" path="res://hitsprite.gd" id="1_jm757"]

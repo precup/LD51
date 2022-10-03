@@ -46,23 +46,37 @@ func _physics_process(delta):
     if collider != null and collider.get_parent() == _gun:
       return
 
+    var explode_radius = 0
+    for effect in _effects:
+      if effect[0] == Modifiers.Effect.EXPLODE:
+        explode_radius += effect[2]
+    
+    var enemies_hit = []
     for enemy in get_tree().get_nodes_in_group("enemies"):
       if enemy.get_node('base_enemy') == collider:
+        enemies_hit.append(enemy.get_node('base_enemy'))
         enemy_hit = true
-        break
+        if explode_radius == 0:
+          break
+      elif explode_radius > 0 and explode_radius > global_position.distance_to(enemy.get_node('base_enemy').global_position):
+        enemies_hit.append(enemy.get_node('base_enemy'))
     
+    var destructibles_hit = []
     for destructible in get_tree().get_nodes_in_group("destructible"):
       if destructible.get_node('base_enemy') == collider:
+        destructibles_hit.append(destructible.get_node('base_enemy'))
         destructible_hit = true
+      elif explode_radius > 0 and explode_radius > global_position.distance_to(destructible.get_node('base_enemy').global_position):
+        destructibles_hit.append(destructible.get_node('base_enemy'))
     
-    if enemy_hit:
+    for enemy in enemies_hit:
       var react_damage: float = 1.0
       quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_HIT_ENEMY)
       
       for effect in _effects:
         match effect[0]:
           Modifiers.Effect.REACT:
-            react_damage += 0.25 * len(collider.get_status_effects())
+            react_damage += 0.25 * len(enemy.get_status_effects())
           Modifiers.Effect.LEECH:
             if player:
               player.heal(effect[2])
@@ -71,42 +85,48 @@ func _physics_process(delta):
               _has_returned = true
               _gun.return_bullet()
               
-      collider.damage(_damage * react_damage, -1, direction)
+      enemy.damage(_damage * react_damage, -1, direction)
       
       for effect in _effects:
         quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_APPLY_EFFECT)
         match effect[0]:
           Modifiers.Effect.FREEZE:
-            collider.apply_condition(effect)
+            enemy.apply_condition(effect)
           Modifiers.Effect.BURN:
-            collider.apply_condition(effect)
+            enemy.apply_condition(effect)
           Modifiers.Effect.STUN:
-            collider.apply_condition(effect)
+            enemy.apply_condition(effect)
           Modifiers.Effect.MARK:
-            collider.apply_condition(effect)
+            enemy.apply_condition(effect)
           Modifiers.Effect.INTOXICATE:
-            collider.apply_condition(effect)
+            enemy.apply_condition(effect)
           Modifiers.Effect.STACK:
-            collider.apply_condition(effect)
+            enemy.apply_condition(effect)
           Modifiers.Effect.UNSTACK:
-            collider.apply_condition(effect)
+            enemy.apply_condition(effect)
+            
+    if enemy_hit:
       if _pierces > 0:
-        add_collision_exception_with(collider)
+        for enemy in enemies_hit:
+          add_collision_exception_with(enemy)
         _pierces -= 1
       else:
         _destroy()
-    elif destructible_hit:
-      var destructible: Node2D = collision.get_collider().get_node("base_enemy")
-      
+    for destructible in destructibles_hit:
       destructible.damage(_damage)
+    if destructible_hit:
       _destroy("pot")
-    else: # Wall hit
+    if not (destructible_hit or enemy_hit): # Wall hit
       if _richocets > 0:
         _richocets -= 1
         _make_hitspark("wall", true)
         look_at(global_position + direction.bounce(collision.get_normal()))
       else:
         _destroy("wall")
+    
+    if explode_radius > 0:
+      if player and player.global_position.distance_to(global_position) < explode_radius:
+        player.damage(-_damage)
 
 @onready var hitsprite = preload("res://hitsprite.tscn")
 @onready var hitsprite_wall = preload("res://hitsprite_wall.tscn")
@@ -129,6 +149,9 @@ func _make_hitspark(target = "enemy", is_ricochet = false) -> void:
     
   $"/root/root".add_child(instance)
   instance.global_position = global_position
+  for effect in _effects:
+    if effect[0] == Modifiers.Effect.EXPLODE:
+      instance.scale = Vector2(effect[2] / 64, effect[2] / 64)
 
 func _destroy(target = "enemy") -> void:
   _make_hitspark(target)

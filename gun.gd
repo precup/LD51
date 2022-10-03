@@ -96,6 +96,14 @@ func fire() -> void:
         effects.append([Modifiers.Effect.BURN, -1, BASE_BURN_DURATION])
       Modifiers.Gun.RETURNING:
         effects.append([Modifiers.Effect.RETURN, -1, -1])
+      Modifiers.Gun.EXPLOSIVE:
+        var found = false
+        for i in range(len(effects)):
+          if effects[i][0] == Modifiers.Effect.EXPLODE:
+            effects[i][2] += 300
+            found = true
+        if not found:
+          effects.append([Modifiers.Effect.EXPLODE, -1, 300])
       Modifiers.Gun.BIG_SHOT:
         scale *= 2.0
       Modifiers.Gun.IMPACT:

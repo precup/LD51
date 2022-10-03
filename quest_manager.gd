@@ -20,8 +20,8 @@ var quest_rarity_weights : Dictionary = {
 
 # Affects the distribution of incoming quest reward types
 var quest_reward_type_weights : Dictionary = {
-  QuestGlobals.RewardType.REWARD_GUN: 20,
-  QuestGlobals.RewardType.REWARD_MOD: 20,
+  QuestGlobals.RewardType.REWARD_GUN: 15,
+  QuestGlobals.RewardType.REWARD_MOD: 25,
   QuestGlobals.RewardType.REWARD_OTHER: 0, 
 }
 
@@ -31,7 +31,15 @@ const quest_scn = preload("res://quest.tscn")
 
 # Pulls a rarity based on weights
 func _get_next_quest_rarity():
-  var total = quest_rarity_weights.values().reduce(func(i,accum): return accum + i)
+  var weights = quest_rarity_weights.duplicate()
+  var player = get_tree().get_first_node_in_group("player")
+  if player:
+    var lucky = false
+    for upgrade in player.get_active_gun().UPGRADES:
+      if upgrade == Modifiers.Gun.LUCKY:
+        weights[QuestGlobals.Rarity.RARITY_COMMON] = int(weights[QuestGlobals.Rarity.RARITY_COMMON] * 0.6)
+        weights[QuestGlobals.Rarity.RARITY_COMMON] = int(weights[QuestGlobals.Rarity.RARITY_RARE] * 0.8)
+  var total = weights.values().reduce(func(i,accum): return accum + i)
   
   var rarity_penalty = 0  # rare quests penalize 1, legendary penalize 2. 
   for active_quest in active_quests:
@@ -39,8 +47,8 @@ func _get_next_quest_rarity():
   rarity_penalty += (3-total_quest_completion_count) if total_quest_completion_count <=3 else 0  # penalty on rarity for your first 3 quests
   var my_random_number = rng.randi_range(0, total-1) - rarity_penalty
   
-  for rarity in quest_rarity_weights:
-    my_random_number -= quest_rarity_weights[rarity]
+  for rarity in weights:
+    my_random_number -= weights[rarity]
     if my_random_number < 0:
       return rarity
       
