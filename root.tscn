@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=31 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
@@ -25,6 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://7j3pdrl1pu4n" path="res://dialog_trigger.tscn" id="22_2jyts"]
 [ext_resource type="AudioStream" uid="uid://c814cgeksbadm" path="res://assets/ld51 sfx/reload.mp3" id="22_rbq7y"]
 [ext_resource type="AudioStream" uid="uid://cqwcvaavihuo8" path="res://assets/ld51 sfx/questcomplete.mp3" id="23_7lov7"]
+[ext_resource type="AudioStream" uid="uid://bnky681qonx7t" path="res://assets/ld51 sfx/ricochet1.mp3" id="24_0ppj1"]
+[ext_resource type="AudioStream" uid="uid://8dfph6140cxn" path="res://assets/ld51 sfx/ricochet2.mp3" id="25_nkftf"]
+[ext_resource type="AudioStream" uid="uid://co6x148ps04vm" path="res://assets/ld51 sfx/ricochet3.mp3" id="26_kxnx0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d635m"]
 texture = ExtResource("6_pty4p")
@@ -362,9 +365,23 @@ volume_db = -20.0
 
 [node name="reload" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("22_rbq7y")
+volume_db = -20.0
 
 [node name="quest_complete" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("23_7lov7")
+volume_db = -20.0
+
+[node name="ricochet_1" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("24_0ppj1")
+volume_db = -20.0
+
+[node name="ricochet_2" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("25_nkftf")
+volume_db = -20.0
+
+[node name="ricochet_3" type="AudioStreamPlayer" parent="sfx"]
+stream = ExtResource("26_kxnx0")
+volume_db = -20.0
 
 [node name="sr" parent="." instance=ExtResource("21_hwo1i")]
 position = Vector2(-1371, -312)
