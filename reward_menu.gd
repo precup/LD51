@@ -127,6 +127,9 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
       OPTION_HEADER.text = "Pick a wand to upgrade:"
       UPGRADE_ICON.modulate = QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]]
       _gun = null
+      WEAPON1.is_modding = true
+      WEAPON2.is_modding = true
+      
       
     QuestGlobals.RewardType.REWARD_GUN:
       _upgrade_mode = false
@@ -136,6 +139,9 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
       HEADER.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[reward_rarity]])
       OPTION_HEADER.text = "Pick a wand to replace:"
       _upgrade = Modifiers.Gun.NONE
+      WEAPON1.is_modding = false
+      WEAPON2.is_modding = false
+      
       
     QuestGlobals.RewardType.REWARD_OTHER:
       close_menu()

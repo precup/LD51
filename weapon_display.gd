@@ -9,11 +9,15 @@ signal clicked
 @onready var GUN_ICON: TextureRect = $split/margin/gun_icon
 @onready var TOOLTIP = $split/margin/margin
 @onready var TOOLTIP_TEXT = $split/margin/margin/panel/margin/description
-var maxed_out: bool = false
 
+var maxed_out: bool = false
+var is_modding = false
 var background_style_box : StyleBoxFlat
 
 func _ready():
+  if get_parent().has_node("trashimg"):
+    get_parent().get_node("trashimg").visible = false
+  
   if IS_TRASH:
     GUN_ICON.texture = load("res://assets/trash_icon.png")
     $split/margin/gun_icon2.visible = false
@@ -62,11 +66,13 @@ func clear_highlights():
 func _on_weapon_display_mouse_entered():
   if CLICKABLE and not maxed_out:
     $highlight.visible = true
-
+    if get_parent().has_node("trashimg"):
+      get_parent().get_node("trashimg").visible = not is_modding
 
 func _on_weapon_display_mouse_exited():
   $highlight.visible = false
-  
+  if get_parent().has_node("trashimg"):
+    get_parent().get_node("trashimg").visible = false
 
 func _on_hsplit_updated():
   var hovered = null
