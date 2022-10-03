@@ -99,7 +99,7 @@ func _physics_process(delta):
       destructible.damage(_damage)
       _destroy("pot")
     else: # Wall hit
-      if _richocets > -1:
+      if _richocets > 0:
         _richocets -= 1
         _make_hitspark("wall", true)
         look_at(global_position + direction.bounce(collision.get_normal()))
