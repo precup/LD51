@@ -1,7 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb4hpy14g5fd8"]
+[gd_scene load_steps=11 format=3 uid="uid://bb4hpy14g5fd8"]
 
 [ext_resource type="Script" path="res://heart_pickup.gd" id="1_g5sot"]
 [ext_resource type="Texture2D" uid="uid://bo0x8si8ubtod" path="res://assets/heart.png" id="1_oj34l"]
+[ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_wwrjd"]
+[ext_resource type="Shader" path="res://heart_pickup.gdshader" id="3_vjqe3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pom2k"]
+resource_local_to_scene = true
+shader = ExtResource("3_vjqe3")
+shader_parameter/solid_color = Color(1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_djext"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/solid_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v8s6r"]
+resource_name = "get"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/solid_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.001, 0.2),
+"transitions": PackedFloat32Array(1, 0.329877, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.382812, 0.382812), Vector2(0.8, 0.8)]
+}
 
 [sub_resource type="Animation" id="Animation_qjg58"]
 resource_name = "pulse"
@@ -18,9 +68,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0.382812, 0.382812), Vector2(0.5, 0.5), Vector2(0.382812, 0.382812)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.27386, 1.27386), Vector2(1.5, 1.5), Vector2(1.27386, 1.27386)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3rowb"]
 _data = {
+"RESET": SubResource("Animation_djext"),
+"get": SubResource("Animation_v8s6r"),
 "pulse": SubResource("Animation_qjg58")
 }
 
@@ -30,8 +94,16 @@ size = Vector2(210, 224.5)
 [node name="heart_pickup" type="Node2D" groups=["pickups"]]
 script = ExtResource("1_g5sot")
 
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0.0470588, 0.176471, 0.513726)
+position = Vector2(4, 118)
+scale = Vector2(1.27386, 1.27386)
+texture = ExtResource("2_wwrjd")
+
 [node name="heart_pickup" type="Sprite2D" parent="."]
-position = Vector2(6, -6)
+material = SubResource("ShaderMaterial_pom2k")
+position = Vector2(2, -6)
+scale = Vector2(0.382812, 0.382812)
 texture = ExtResource("1_oj34l")
 
 [node name="animation_player" type="AnimationPlayer" parent="."]

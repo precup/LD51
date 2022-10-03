@@ -163,8 +163,8 @@ var heart_pickup = preload("res://heart_pickup.tscn")
 func drop_random_item():
   # for now we just disregard the rarity entirely, but eventually we should use
   # enemy_rarity rather than tossing it in the garbage as we do
-  if randi() % 10 < 6:
-    return
+  #if randi() % 10 < 6:
+  #  return
 
   var potential_pickups = [
     heart_pickup
