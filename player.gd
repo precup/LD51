@@ -59,7 +59,7 @@ func _begin_dash():
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_DASH) 
   dash_cooldown_counter = DASH_COOLDOWN
   dashing = true
-  modulate = Color(.8,.8,.8) # slight gray tint until recovery
+  modulate = Color(.6,.6,1.3) 
   var tween = get_tree().create_tween()
   tween.tween_property(self, "boosted_speed", BOOSTED_SPEED_MULTIPLIER*SPEED, BOOSTED_SPEED_DURATION/3.0).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)       
   tween.tween_interval(BOOSTED_SPEED_DURATION/3.0)        
