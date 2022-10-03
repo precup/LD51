@@ -34,7 +34,7 @@ func _physics_process(delta):
   
   if collision:
     if collision.get_collider() == player:
-      player.damage(_damage, direction)
+      player.damage(-_damage, direction)
     
     var collider: Object = collision.get_collider().get_node('base_enemy')
     var enemy_hit: bool = false

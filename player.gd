@@ -147,10 +147,10 @@ func play_flicker_animation():
     
   visible = true
 
+# bullet passes in a neg for amount just fyi
 func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
   if _invuln_frames > 0:
     return
-  print("OW from player")
   
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_GET_HIT)  
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_LOSE_HEARTS, abs(amount))

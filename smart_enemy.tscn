@@ -22,7 +22,7 @@ shader = SubResource("Shader_0m0ln")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
-size = Vector2(58, 62)
+size = Vector2(241, 243)
 
 [node name="smart_enemy" type="RigidBody2D" groups=["enemies"]]
 position = Vector2(22, 39)
@@ -37,15 +37,15 @@ max_time_between_shots = 500.0
 
 [node name="graphic" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_0uxtc")
-position = Vector2(31, 31)
+position = Vector2(136, 136)
+scale = Vector2(2.64062, 2.64062)
 texture = ExtResource("2_0tw5w")
 
 [node name="bullet_spawn" type="Node2D" parent="graphic"]
 position = Vector2(-5, 36)
 
 [node name="shape" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(29, 32)
+position = Vector2(120.5, 122.5)
 shape = SubResource("RectangleShape2D_gjycc")
 
 [node name="base_enemy" type="Node2D" parent="."]
