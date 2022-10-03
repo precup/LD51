@@ -25,19 +25,19 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="panel" type="PanelContainer" parent="center"]
-offset_left = 169.0
+offset_left = 132.0
 offset_top = 72.0
-offset_right = 1750.0
+offset_right = 1788.0
 offset_bottom = 1008.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_8n0tx")
 
 [node name="vsplit" type="VSplitContainer" parent="center/panel"]
-offset_right = 1581.0
+offset_right = 1656.0
 offset_bottom = 936.0
 dragger_visibility = 2
 
 [node name="margin" type="MarginContainer" parent="center/panel/vsplit"]
-offset_right = 1581.0
+offset_right = 1656.0
 offset_bottom = 497.0
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 40
@@ -46,11 +46,11 @@ theme_override_constants/margin_right = 100
 [node name="vbox" type="VBoxContainer" parent="center/panel/vsplit/margin"]
 offset_left = 100.0
 offset_top = 40.0
-offset_right = 1481.0
+offset_right = 1556.0
 offset_bottom = 497.0
 
 [node name="header" type="Label" parent="center/panel/vsplit/margin/vbox"]
-offset_right = 1381.0
+offset_right = 1456.0
 offset_bottom = 109.0
 theme_override_fonts/font = ExtResource("2_eev8a")
 theme_override_font_sizes/font_size = 80
@@ -60,12 +60,12 @@ vertical_alignment = 1
 
 [node name="center" type="CenterContainer" parent="center/panel/vsplit/margin/vbox"]
 offset_top = 113.0
-offset_right = 1381.0
+offset_right = 1456.0
 offset_bottom = 409.0
 
 [node name="margin" type="MarginContainer" parent="center/panel/vsplit/margin/vbox/center"]
-offset_left = 336.0
-offset_right = 1044.0
+offset_left = 374.0
+offset_right = 1082.0
 offset_bottom = 296.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -125,18 +125,18 @@ autowrap_mode = 2
 
 [node name="margin" type="MarginContainer" parent="center/panel/vsplit/margin/vbox"]
 offset_top = 413.0
-offset_right = 1381.0
+offset_right = 1456.0
 offset_bottom = 457.0
 theme_override_constants/margin_top = 40
 
 [node name="vsep" type="HSeparator" parent="center/panel/vsplit/margin/vbox/margin"]
 offset_top = 40.0
-offset_right = 1381.0
+offset_right = 1456.0
 offset_bottom = 44.0
 
 [node name="margin2" type="MarginContainer" parent="center/panel/vsplit"]
 offset_top = 497.0
-offset_right = 1581.0
+offset_right = 1656.0
 offset_bottom = 936.0
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 20
@@ -146,12 +146,12 @@ theme_override_constants/margin_bottom = 50
 [node name="vsplit" type="VSplitContainer" parent="center/panel/vsplit/margin2"]
 offset_left = 50.0
 offset_top = 20.0
-offset_right = 1531.0
+offset_right = 1606.0
 offset_bottom = 389.0
 dragger_visibility = 1
 
 [node name="option_header" type="Label" parent="center/panel/vsplit/margin2/vsplit"]
-offset_right = 1481.0
+offset_right = 1556.0
 offset_bottom = 51.0
 theme_override_fonts/font = ExtResource("2_eev8a")
 theme_override_font_sizes/font_size = 36
@@ -160,11 +160,11 @@ horizontal_alignment = 1
 
 [node name="hbox" type="HBoxContainer" parent="center/panel/vsplit/margin2/vsplit"]
 offset_top = 63.0
-offset_right = 1481.0
+offset_right = 1556.0
 offset_bottom = 369.0
 
 [node name="margin" type="MarginContainer" parent="center/panel/vsplit/margin2/vsplit/hbox"]
-offset_right = 491.0
+offset_right = 516.0
 offset_bottom = 306.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -174,12 +174,12 @@ theme_override_constants/margin_bottom = 20
 [node name="weapon1" parent="center/panel/vsplit/margin2/vsplit/hbox/margin" instance=ExtResource("2_fqt28")]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 471.0
+offset_right = 496.0
 offset_bottom = 286.0
 
 [node name="margin2" type="MarginContainer" parent="center/panel/vsplit/margin2/vsplit/hbox"]
-offset_left = 495.0
-offset_right = 986.0
+offset_left = 520.0
+offset_right = 1036.0
 offset_bottom = 306.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -189,12 +189,12 @@ theme_override_constants/margin_bottom = 20
 [node name="weapon2" parent="center/panel/vsplit/margin2/vsplit/hbox/margin2" instance=ExtResource("2_fqt28")]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 471.0
+offset_right = 496.0
 offset_bottom = 286.0
 
 [node name="margin3" type="MarginContainer" parent="center/panel/vsplit/margin2/vsplit/hbox"]
-offset_left = 990.0
-offset_right = 1481.0
+offset_left = 1040.0
+offset_right = 1556.0
 offset_bottom = 306.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
@@ -204,7 +204,7 @@ theme_override_constants/margin_bottom = 20
 [node name="trash" parent="center/panel/vsplit/margin2/vsplit/hbox/margin3" instance=ExtResource("2_fqt28")]
 offset_left = 20.0
 offset_top = 20.0
-offset_right = 471.0
+offset_right = 496.0
 offset_bottom = 286.0
 IS_TRASH = true
 

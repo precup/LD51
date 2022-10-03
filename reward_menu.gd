@@ -173,6 +173,7 @@ func apply_to_weapon(i):
   if _upgrade_mode:
     quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_ADD_GUN_MODULE) 
     old_gun.UPGRADES.append(_upgrade)
+    $"/root/root/sfx/ui_confirm".play()
   else:
     quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_REPLACE_GUN) 
     _gun.PROJECTILE_NODE = old_gun.PROJECTILE_NODE
@@ -180,10 +181,12 @@ func apply_to_weapon(i):
     _gun.visible = old_gun.visible
     old_gun.visible = false
     gun_node.remove_child(old_gun)
+    $"/root/root/sfx/ui_cancel".play()
   close_menu()
 
 func _on_trash_clicked():
   print("You clicked trash")
+  $"/root/root/sfx/ui_cancel".play()
   if not _upgrade_mode:
     quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_TRASH_GUN) 
     _gun.visible = false
