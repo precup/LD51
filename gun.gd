@@ -138,9 +138,9 @@ func start_reload() -> void:
 
 
 func reload() -> void:
+  $"/root/root/sfx/reload".play()
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_RELOAD)
   _rounds_left = magazine_size()
-
 
 func reload_time() -> float:
   var time: float = BASE_RELOAD_TIME
