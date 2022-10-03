@@ -3,5 +3,6 @@
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="1_h4hku"]
 
 [resource]
+resource_local_to_scene = true
 shader = ExtResource("1_h4hku")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
