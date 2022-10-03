@@ -26,6 +26,8 @@ extends Node2D
 @export var BASE_BLAZE_OF_GLORY_MULTIPLIER: float = 3.0
 @export var BASE_GROW: float = 2.0
 @export var BASE_IMPACT: float = 30.0
+@export var BASE_FLEET: float = 300.0
+@export var BASE_HOMING: float = 1.3
 
 @export var MAX_MODIFIERS: int = 5
 @export var UPGRADES: Array[Modifiers.Gun] = []
@@ -33,6 +35,8 @@ extends Node2D
 @export var PROJECTILE_NODE: Node2D
 
 @onready var quest_manager = $"/root/root/quest_manager"
+
+var bonus_speed = 0
 
 var rainbow_colors = [
   Color("9400D3"),
@@ -65,9 +69,17 @@ func _ready() -> void:
 func get_rounds_left() -> int:
   return _rounds_left
 
+var upgrade_count = 0
 func _physics_process(delta) -> void:
   if not visible:
     return
+  
+  if upgrade_count != len(UPGRADES):
+    upgrade_count = len(UPGRADES)
+    bonus_speed = 0
+    for upgrade in UPGRADES:
+      if upgrade == Modifiers.Gun.FLEET:
+        bonus_speed += BASE_FLEET
   
   $sprite.scale.y = 1 if abs(global_rotation) > PI / 2 else -1
   
@@ -93,8 +105,12 @@ func fire(free: bool = false, start = null, target = Vector2.ZERO, chain_value =
   var color = COLOR
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_FIRE_GUN)
   
+  var should_eat = false
+  
   for upgrade in UPGRADES:
     match upgrade:
+      Modifiers.Gun.BULLET_EATER:
+        should_eat = true
       Modifiers.Gun.RAINBOW:
         color = rainbow_colors[rainbow_counter]
         rainbow_counter = (rainbow_counter + 1) % len(rainbow_colors)
@@ -128,6 +144,14 @@ func fire(free: bool = false, start = null, target = Vector2.ZERO, chain_value =
             found = true
         if not found:
           effects.append([Modifiers.Effect.GROW, -1, BASE_GROW])
+      Modifiers.Gun.HOMING:
+        var found = false
+        for i in range(len(effects)):
+          if effects[i][0] == Modifiers.Effect.HOMING:
+            effects[i][2] += BASE_HOMING
+            found = true
+        if not found:
+          effects.append([Modifiers.Effect.HOMING, -1, BASE_HOMING])
       Modifiers.Gun.RETURNING:
         effects.append([Modifiers.Effect.RETURN, -1, -1])
       Modifiers.Gun.EXPLOSIVE:
@@ -188,6 +212,7 @@ func fire(free: bool = false, start = null, target = Vector2.ZERO, chain_value =
     if ignore_box != null:
       bullet.add_collision_exception_with(ignore_box.get_parent())
     bullet.scale = Vector2(scale, scale)
+    bullet.set_collision_mask_value(4, should_eat)
     _fire_cooldown_left = fire_cooldown()
   
   if not free:

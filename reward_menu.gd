@@ -32,7 +32,7 @@ func _sort_mods_by_rarity():
     _gun_mods_by_rarity[rarity] = []
     
   for mod in Modifiers.RARITIES:
-    if mod != Modifiers.Gun.NONE:
+    if mod != Modifiers.Gun.NONE and mod != Modifiers.Gun.IMPACT and mod != Modifiers.Gun.INTOXICATING:
       _gun_mods_by_rarity[Modifiers.RARITIES[mod]].append(mod)
 
 
@@ -60,6 +60,7 @@ func get_random_starter_gun(with_mod : bool):
   gun.RARITY = QuestGlobals.Rarity.RARITY_COMMON
   if with_mod:  # one of their guns gets a mod, one doesnt
     gun.UPGRADES.append(get_random_upgrade({QuestGlobals.Rarity.RARITY_COMMON: 1})) # Restrict start mods to common
+  gun.UPGRADES.append(Modifiers.Gun.HOMING)
   return gun
   
 func get_random_gun(gun_rarity: QuestGlobals.Rarity, mod_rarity_weights: Dictionary):

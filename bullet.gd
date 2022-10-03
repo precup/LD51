@@ -19,13 +19,15 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
   _damage = damage
   _effects = effects
   _target = target
-  _homing = homing
+  _homing = 0
   _richocets = richochets
   _pierces = pierces
   
   for i in range(len(effects)):
     if effects[i][0] == Modifiers.Effect.GROW:
       _growth += effects[i][2]
+    if effects[i][0] == Modifiers.Effect.HOMING:
+      _homing += effects[i][2]
   
   $sprite.modulate = color
 
@@ -33,19 +35,57 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
   
   add_collision_exception_with(gun)
 
-
+var homing_step = 0.2
+var homing_left = 0
+var homing_target = null
 func _physics_process(delta):
   if _growth > 0:
     scale.x += (delta * _speed / 1200) * _growth
     scale.y += (delta * _speed / 1200) * _growth
   
-  var direction: Vector2 = $sprite.transform.x
+  homing_left -= delta
+  if _homing > 0 and (homing_left < 0 or homing_target == null):
+    homing_left -= homing_step
+    homing_target = get_closest_target(null)
+  
+  if _homing > 0:
+    var home_amount = _homing * delta * _speed / 1200
+    var curr_rot = global_rotation
+    var target_angle = $sprite.global_position.direction_to(homing_target)
+    var curr_angle = $sprite.global_transform.x
+    var angle_between = abs(curr_angle.angle_to(target_angle))
+    var home_dir = curr_angle.slerp(target_angle, min(1.0, home_amount / angle_between))
+    $sprite.look_at($sprite.global_position + home_dir)
+  
+  var direction: Vector2 = $sprite.global_transform.x
   var collision: KinematicCollision2D = move_and_collide(direction * _speed * delta)
   var player = $"/root/root/references".get_player()
   
   if collision:
+    if collision.get_collider().has_method("_make_hitspark"):
+      collision.get_collider().queue_free()
+      return
+    
     if collision.get_collider() == player:
       player.damage(-_damage, direction)
+    
+    var stacks = false
+    var stacknum = -1
+    for effect in _effects:
+      if effect[0] == Modifiers.Effect.STACK:
+        stacks = true
+        stacknum = effect[1]
+        break
+    
+    if stacks:
+      for enemy in get_tree().get_nodes_in_group("enemies"):
+        if enemy != collision.get_collider():
+          var i = 0
+          while i < len(enemy.get_node('base_enemy')._conditions):
+            if enemy.get_node('base_enemy')._conditions[i][0] == Modifiers.Effect.STACK and enemy.get_node('base_enemy')._conditions[i][1] == stacknum:
+              enemy.get_node('base_enemy')._conditions.remove_at(i)
+              i -= 1
+            i += 1
     
     var collider: Object = collision.get_collider().get_node('base_enemy')
     var enemy_hit: bool = false
@@ -151,22 +191,27 @@ func _physics_process(delta):
         player.damage(-_damage)
 
 
-func chain(curr, player):
+func get_closest_target(avoid):
     var closest = null
     var dist = 0
     for enemy2 in get_tree().get_nodes_in_group("enemies"):
-      if enemy2.get_node('base_enemy') != curr:
+      if enemy2.get_node('base_enemy') != avoid:
         var d = enemy2.get_node('base_enemy').global_position.distance_to(global_position)
         if closest == null or d < dist:
           dist = d
           closest = enemy2.get_node('base_enemy').global_position
     for enemy2 in get_tree().get_nodes_in_group("destructible"):
-      if enemy2.get_node('base_enemy') != curr and not enemy2.has_method("_on_spike_trap_body_entered"):
+      if enemy2.get_node('base_enemy') != avoid and not enemy2.has_method("_on_spike_trap_body_entered"):
         var d = enemy2.get_node('base_enemy').global_position.distance_to(global_position)
         if closest == null or d < dist:
           dist = d
           closest = enemy2.get_node('base_enemy').global_position
-    player.get_active_gun().fire(true, global_position, closest if closest != null else (global_position + transform.x), curr)
+    return closest
+
+
+func chain(curr, player):
+  var closest = get_closest_target(curr)
+  player.get_active_gun().fire(true, global_position, closest if closest != null else (global_position + transform.x), curr)
 
 
 @onready var hitsprite = preload("res://hitsprite.tscn")
