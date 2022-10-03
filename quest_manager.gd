@@ -24,6 +24,7 @@ var quest_reward_type_weights : Dictionary = {
   QuestGlobals.RewardType.REWARD_MOD: 20,
   QuestGlobals.RewardType.REWARD_OTHER: 0, 
 }
+
 const quest_scn = preload("res://quest.tscn")
 @onready var quest_container = $"/root/root/ui/top_right/quest_container"
 
@@ -59,6 +60,7 @@ func _get_next_quest_reward_type():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  $"/root/root/ui/top_right/quest_container/press_x_to_upgrade/animation_player".play("pulse_text_color")
   rng.randomize()
   _sort_quests_by_rarity()
   _sort_rewards_by_type_by_rarity()
@@ -177,9 +179,20 @@ func _process(delta):
     if (HYPER_BOOST_RATE < 1):
       HYPER_BOOST_RATE = 1
       hyper_speed_quest_accrual = false
-    
+  
+  $"/root/root/ui/top_right/quest_container/press_x_to_upgrade".visible = len(rewards_to_earn) > 0
   if (len(rewards_to_earn) > 0):
-    _pausable_earn_reward()
+    var text = ""
+    if len(rewards_to_earn) > 1:
+      text = "%d rewards available!" % len(rewards_to_earn)
+    else:
+      text = "1 reward available"
+    
+    $"/root/root/ui/top_right/quest_container/press_x_to_upgrade/reward_available".text = text
+    
+    if Input.is_action_just_pressed("action"):
+      _pausable_earn_reward()
+    # _pausable_earn_reward()
   
   if DEBUG_MODE && Input.is_action_just_pressed("dash"):    
     _roll_new_quest()
@@ -249,7 +262,6 @@ func is_moving():
 var total_quest_completion_count = 0
 var hyper_speed_quest_accrual = false
 func quest_complete(quest, reward):
-  
   total_quest_completion_count += 1
   active_quests.erase(quest)
   rewards_to_earn.append(reward)

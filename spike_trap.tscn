@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_dlhy5"]
 [ext_resource type="Texture2D" uid="uid://crx52n1wj54cv" path="res://assets/spike_untriggered.png" id="3_nj45o"]
 [ext_resource type="Texture2D" uid="uid://cd07ix57jxcy8" path="res://assets/spike_triggered.png" id="4_d530a"]
-[ext_resource type="PackedScene" path="res://health_bar.tscn" id="4_t6uql"]
+[ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_t6uql"]
 
 [sub_resource type="Shader" id="Shader_0m0ln"]
 code = "shader_type canvas_item;
@@ -28,7 +28,7 @@ size = Vector2(123, 128)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2yu7"]
 size = Vector2(112, 115.5)
 
-[node name="spike_trap" type="Area2D" groups=["hazard"]]
+[node name="spike_trap" type="Area2D" groups=["destructible"]]
 collision_layer = 48
 script = ExtResource("1_1x5hy")
 
