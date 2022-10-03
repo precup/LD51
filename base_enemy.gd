@@ -17,6 +17,10 @@ var _health: float = 5.0
 var active_tween: Tween = null
 var _speed_multiplier = 1.0
 
+var WAKE_UP_DISTANCE = 750
+var SLEEP_DISTANCE = 1500
+var _active = false
+
 # "trash", "common", "rare", "epic", "legendary"
 # (This is unused currently.)
 var _item_drop_type = "common"
@@ -26,6 +30,26 @@ func _ready() -> void:
   graphic.material.set_shader_parameter("solid_color", Color.TRANSPARENT)
 
 func _physics_process(delta: float) -> void:
+  var player = $"/root/root/references".get_player()
+  
+  # Only wake up if player is nearby so we arent doing tons of stuff when the player is really far away!
+  # note: cant set set_process in _ready b/c our _ready happens before theirs and so godot just ignores the value... :thonk:
+  if not _active:
+    if player.global_position.distance_to(global_position) < WAKE_UP_DISTANCE:
+      _active = true
+      get_parent().set_process(true)
+    else:
+      get_parent().set_process(false)
+      return
+
+  if _active:
+    if player.global_position.distance_to(global_position) >= SLEEP_DISTANCE:
+      _active = false
+      get_parent().set_process(false)
+      return
+    else:
+      get_parent().set_process(true)
+
   var speed_multiplier: float = 1.0
   var i: int = 0
   

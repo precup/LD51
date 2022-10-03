@@ -268,9 +268,6 @@ direction = 3
 bullet_speed = 600.0
 max_time_between_shots = 200.0
 
-[node name="smart_enemy" parent="level_1/doodads" instance=ExtResource("10_3gr08")]
-position = Vector2(1485, 1170)
-
 [node name="smart_enemy2" parent="level_1/doodads" instance=ExtResource("10_3gr08")]
 position = Vector2(1912, -4652)
 

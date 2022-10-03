@@ -24,6 +24,10 @@ func play_death_animation():
     if Input.is_action_just_pressed("action"):
       break
   
+  # don't open the gun dlg by accident
+  await get_tree().process_frame
+  await get_tree().process_frame
+  
   visible = false
   
   var checkpoints = get_tree().get_nodes_in_group("checkpoint")
