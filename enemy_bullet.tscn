@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://iimv55caft5i"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_7w46j"]
-[ext_resource type="Texture2D" uid="uid://dwcfs5ilpsigk" path="res://assets/player_bullet.png" id="2_0ujgj"]
+[ext_resource type="Texture2D" uid="uid://3x0xhdaw1g2" path="res://assets/player_bullet2.png" id="2_11s5a"]
 [ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="3_urbim"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_syl5c"]
@@ -18,10 +18,10 @@ shape = SubResource("RectangleShape2D_syl5c")
 [node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0, 0.772549, 1)
 position = Vector2(3, 6)
-texture = ExtResource("2_0ujgj")
+texture = ExtResource("2_11s5a")
 
 [node name="shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0.0470588, 0.176471, 0.513726)
-position = Vector2(1.99999, 108)
+position = Vector2(2, 108)
 scale = Vector2(0.703507, 0.703507)
 texture = ExtResource("3_urbim")

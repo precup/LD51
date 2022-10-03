@@ -4,7 +4,7 @@ extends RigidBody2D
 @onready var PROJECTILE_NODE: Node2D = $'/root/root/projectiles'
 @onready var bullet_spawn = $graphic/bullet_spawn
 
-@export var bullet_speed: float = 300
+@export var bullet_speed: float = 500
 @export var max_time_between_shots: float = 500
 
 var max_ticks_to_choose_next_destination = 200

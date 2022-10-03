@@ -5,7 +5,6 @@ var last_hit = 0
 
 func _ready():
   var beam_particles: GPUParticles2D = $"../beam_particles"
-  # beam_particles.visible = false
   
   pulse()
   sweep()
