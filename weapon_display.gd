@@ -66,7 +66,7 @@ func clear_highlights():
 func _on_weapon_display_mouse_entered():
   if CLICKABLE and not maxed_out:
     $highlight.visible = true
-    if get_parent().has_node("trashimg"):
+    if get_parent().has_node("trashimg") and not IS_TRASH:
       get_parent().get_node("trashimg").visible = not is_modding
 
 func _on_weapon_display_mouse_exited():
