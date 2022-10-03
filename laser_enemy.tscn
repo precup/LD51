@@ -1,19 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://cspp5u6u33ps1"]
+[gd_scene load_steps=21 format=3 uid="uid://cspp5u6u33ps1"]
 
 [ext_resource type="Script" path="res://laser_enemy.gd" id="1_qljgk"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="2_gcmcp"]
 [ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_q638r"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="4_sftgi"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_1mj2p"]
-[ext_resource type="Material" path="res://laser_enemy.tres" id="6_4s7vw"]
+[ext_resource type="Material" uid="uid://drek4vtfr8vlf" path="res://laser_enemy.tres" id="6_4s7vw"]
 [ext_resource type="Script" path="res://laser_raycast.gd" id="6_ag5w6"]
 [ext_resource type="Texture2D" uid="uid://dcuma3xobg2bd" path="res://assets/particle.png" id="7_1lgc7"]
+[ext_resource type="Texture2D" uid="uid://djmqmr8jc560s" path="res://assets/laser.png" id="10_fxgkx"]
+[ext_resource type="Shader" path="res://white_flash.gdshader" id="11_mslgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
-size = Vector2(64, 64)
+size = Vector2(154, 161)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2d426"]
-size = Vector2(72.5, 73.5)
+size = Vector2(153, 158)
 
 [sub_resource type="Gradient" id="Gradient_1vkv7"]
 colors = PackedColorArray(0.501961, 0.941176, 0.992157, 1, 1, 1, 1, 1)
@@ -68,6 +70,11 @@ scale_max = 0.7
 scale_curve = SubResource("CurveTexture_7o7rw")
 color_ramp = SubResource("GradientTexture1D_gtpys")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3ly6"]
+resource_local_to_scene = true
+shader = ExtResource("11_mslgs")
+shader_parameter/solid_color = Color(0, 0, 0, 0)
+
 [node name="laser_enemy" type="CharacterBody2D" groups=["enemies"]]
 position = Vector2(-31, -36)
 collision_layer = 4
@@ -77,15 +84,15 @@ facing_direction = 2
 
 [node name="shadow" type="Sprite2D" parent="."]
 modulate = Color(0, 0.0470588, 0.176471, 0.513726)
-position = Vector2(27, 53)
-scale = Vector2(2.70788, 2.70788)
+position = Vector2(30, 74)
+scale = Vector2(2.23437, 2.23437)
 texture = ExtResource("2_q638r")
 
 [node name="base_enemy" type="Node2D" parent="."]
 script = ExtResource("2_gcmcp")
 
 [node name="collision_shape" type="CollisionShape2D" parent="."]
-position = Vector2(31, 33)
+position = Vector2(33, -1.5)
 shape = SubResource("RectangleShape2D_kkfjx")
 
 [node name="area" type="Area2D" parent="."]
@@ -94,7 +101,7 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="shape" type="CollisionShape2D" parent="area"]
-position = Vector2(-97.25, 8.25)
+position = Vector2(-96.5, -27)
 shape = SubResource("RectangleShape2D_2d426")
 
 [node name="health_bar" parent="." instance=ExtResource("5_1mj2p")]
@@ -146,3 +153,9 @@ modulate = Color(1, 0.137255, 0.215686, 1)
 material = ExtResource("6_4s7vw")
 position = Vector2(31, 33)
 texture = ExtResource("4_sftgi")
+
+[node name="side" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_l3ly6")
+position = Vector2(32, 0)
+scale = Vector2(0.863281, 0.863281)
+texture = ExtResource("10_fxgkx")
