@@ -3,7 +3,7 @@ class_name Player
 
 var INVULN_LENGTH = 60
 @export var PROJECTILE_NODE: Node2D
-@export var SPEED: float = 400.0
+@export var SPEED: float = 600.0
 @export var MAX_HEALTH: int = 8
 const BULLET_SCENE: PackedScene = preload("res://bullet.tscn")
 const GUN_COUNT = 2
