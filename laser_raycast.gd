@@ -1,5 +1,8 @@
 extends RayCast2D
 
+var tick = 0
+var last_hit = 0
+
 func _ready():
   var beam_particles: GPUParticles2D = $"../beam_particles"
   # beam_particles.visible = false
@@ -56,7 +59,12 @@ func sweep():
       
       await get_tree().process_frame
 
-func _physics_process(delta):  
+@onready var hitsprite = preload("res://hitsprite.tscn")
+
+func _physics_process(delta): 
+  tick += 1
+  
+  var player = $"/root/root/references".get_player()
   var cast_point = target_position
   force_raycast_update()
   
@@ -68,7 +76,17 @@ func _physics_process(delta):
   line.set_point_position(1, cast_point)
   
   var collision_particles: GPUParticles2D = $"../collision_particles"
+  
   if is_colliding():
+    if get_collider() == player:
+      if tick > last_hit + 100:
+        player.damage(-1, (player.global_position - global_position).normalized())
+      
+        var instance = hitsprite.instantiate()
+        get_tree().root.add_child(instance)
+        instance.global_position = get_collision_point()
+        last_hit = tick
+    
     collision_particles.visible = true
     collision_particles.global_rotation = get_collision_normal().angle()
     collision_particles.position = to_local(get_collision_point())

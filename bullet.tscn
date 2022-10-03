@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://cl4waundehbao"]
+[gd_scene load_steps=8 format=3 uid="uid://cl4waundehbao"]
 
 [ext_resource type="Script" path="res://bullet.gd" id="1_c42cd"]
 [ext_resource type="Texture2D" uid="uid://3x0xhdaw1g2" path="res://assets/player_bullet2.png" id="2_ymuv1"]
 [ext_resource type="Texture2D" uid="uid://bwnvpgvq7t2dl" path="res://assets/player_bullet1.png" id="3_xjv0t"]
 [ext_resource type="Texture2D" uid="uid://4cl1yw57318p" path="res://assets/player_bullet3.png" id="4_iyo0h"]
+[ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="5_y37g3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ho3hg"]
-radius = 40.96
+radius = 32.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5abui"]
 animations = [{
@@ -26,7 +27,13 @@ position = Vector2(-2, 1)
 shape = SubResource("CircleShape2D_ho3hg")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-33, 2)
-scale = Vector2(1.24902, 1.28147)
+position = Vector2(-19, 2)
+scale = Vector2(0.8, 0.82)
 frames = SubResource("SpriteFrames_5abui")
 playing = true
+
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0.0470588, 0.176471, 0.513726)
+position = Vector2(-19, 176)
+scale = Vector2(1.3418, 1.3418)
+texture = ExtResource("5_y37g3")

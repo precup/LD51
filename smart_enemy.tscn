@@ -31,10 +31,12 @@ shader_parameter/solid_color = Color(0, 0, 0, 0)
 size = Vector2(241, 243)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yykhy"]
+resource_local_to_scene = true
 shader = ExtResource("6_13ydc")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6351g"]
+resource_local_to_scene = true
 shader = ExtResource("6_13ydc")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
 

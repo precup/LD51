@@ -26,17 +26,19 @@ shader = SubResource("Shader_0m0ln")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjycc"]
-size = Vector2(58, 62)
+size = Vector2(250.5, 234.5)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4rlfp"]
 shader = ExtResource("5_epru1")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kp80j"]
+resource_local_to_scene = true
 shader = ExtResource("5_epru1")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iexqq"]
+resource_local_to_scene = true
 shader = ExtResource("5_epru1")
 shader_parameter/solid_color = Color(0, 0, 0, 0)
 
@@ -59,8 +61,7 @@ texture = ExtResource("2_ht6dd")
 position = Vector2(-5, 36)
 
 [node name="shape" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(29, 32)
+position = Vector2(61, 72)
 shape = SubResource("RectangleShape2D_gjycc")
 
 [node name="base_enemy" type="Node2D" parent="."]
