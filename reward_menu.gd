@@ -92,7 +92,8 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
   
   var player_guns: Array = get_tree().get_first_node_in_group("player").get_node("gun_rotation_container/guns").get_children()
   WEAPON1.display_weapon(player_guns[0], reward_type == QuestGlobals.RewardType.REWARD_MOD)
-  WEAPON2.display_weapon(player_guns[1], reward_type == QuestGlobals.RewardType.REWARD_MOD)
+  if player_guns.size() > 1:
+    WEAPON2.display_weapon(player_guns[1], reward_type == QuestGlobals.RewardType.REWARD_MOD)
   TRASH.clear_highlights()
   
   # mutate the base_rarity_weights table based on reward rarity. Mods of the reward rarity tier are twice as likely. Mods of lower tiers are .5x per tier lower  
