@@ -5,6 +5,7 @@ extends Node2D
 @onready var GUN_ID: int = randi()
 
 @export var COLOR: Color = Color.WHITE
+@export var RARITY: QuestGlobals.Rarity = QuestGlobals.Rarity.RARITY_COMMON
 @export var BASE_RELOAD_TIME: float = 1.0
 @export var BASE_FIRE_COOLDOWN: float = 0.1
 @export var BASE_MAGAZINE_SIZE: int = 10

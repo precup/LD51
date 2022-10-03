@@ -11,11 +11,18 @@ signal clicked
 @onready var TOOLTIP_TEXT = $split/margin/margin/panel/margin/description
 var maxed_out: bool = false
 
+var background_style_box : StyleBoxFlat
+
 func _ready():
   if IS_TRASH:
     GUN_ICON.texture = load("res://assets/trash_icon.png")
     $split/panel.visible = false
   $highlight.visible = false
+  
+  var old_style : StyleBoxFlat= get("theme_override_styles/panel")
+  var new_style = old_style.duplicate()
+  background_style_box = new_style
+  set('theme_override_styles/panel', new_style)
 
 func display_weapon(gun, can_max_out: bool):
   $highlight.visible = false
@@ -30,9 +37,12 @@ func display_weapon(gun, can_max_out: bool):
     SLOT_PARENT.get_child(i).queue_free()
   SLOT_PARENT.get_child(0).visible = max_slots > 0
   
+  background_style_box.set_bg_color(QuestGlobals.RARITY_COLORS_BACK[gun.RARITY])
+  
   for i in range(max_slots):
     var slot = SLOT_PARENT.get_child(i)
     slot.get_node("hsplit/mod_name").text = Modifiers.NAMES[upgrades[i]] if i < len(upgrades) else ""
+    slot.get_node("hsplit/mod_name").set("theme_override_colors/font_color", QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[upgrades[i]]] if i < len(upgrades) else null)
     slot.get_node("hsplit/full_icon").visible = i < len(upgrades)
     slot.get_node("hsplit/empty_icon").visible = i >= len(upgrades)
     slot.get_child(0).hovered = false

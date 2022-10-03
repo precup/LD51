@@ -20,11 +20,6 @@ const REWARD_ICON_RESOURCES: Dictionary = {
   QuestGlobals.RewardType.REWARD_MOD: "res://assets/mod_reward_icon.png",
   QuestGlobals.RewardType.REWARD_OTHER: "res://assets/misc_reward_icon.png"
 }
-const RARITY_COLORS: Dictionary = {
-  QuestGlobals.Rarity.RARITY_COMMON: Color(0.0,0.0,0.0,164.0/255.0),
-  QuestGlobals.Rarity.RARITY_RARE: Color(22.0/255.0,22.0/255.0,135.0/255.0,164.0/255.0),
-  QuestGlobals.Rarity.RARITY_LEGENDARY: Color(106.0/255.0,65.0/255.0,8.0/255.0,164.0/255.0)
-}
 
 var reward 
 var quest_rarity =  QuestGlobals.Rarity.RARITY_COMMON
@@ -51,7 +46,7 @@ func initialize(_reward, _quest_id, _quest_rarity, _description, _stat_being_tra
   reward = _reward
   quest_id = _quest_id
   quest_rarity = _quest_rarity
-  ui_background.color = RARITY_COLORS[quest_rarity]
+  ui_background.color = QuestGlobals.RARITY_COLORS_TRANSPARENT_BACK[quest_rarity]
   ui_description_text.text = _description
   ui_progress_bar.max_value = _stat_count_required
   stat_being_tracked = _stat_being_tracked
