@@ -31,7 +31,6 @@ func _process(delta):
     var direction = global_position.direction_to(player.global_position)
 
     for x in range(-20, 20 + 1, 10):
-      print("Bullet")
       shoot_bullet(direction.rotated(deg_to_rad(x)))
   
   var velocity := Vector2.ZERO
