@@ -5,6 +5,7 @@ func _ready():
   visible = false
 
 func play_win_animation():
+  
   visible = true
   
   var player = $"/root/root/references".get_player()

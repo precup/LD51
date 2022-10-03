@@ -440,7 +440,7 @@ position = Vector2(1202, -3765)
 [node name="pickups" type="Node2D" parent="."]
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(512, -2048)
+position = Vector2(-83, -1376)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="projectiles" type="Node2D" parent="."]

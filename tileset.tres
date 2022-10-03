@@ -1,8 +1,8 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cc8wl3byxet30"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://c0sps7fpo1055"]
 
 [ext_resource type="Texture2D" uid="uid://u1i12jtmkptu" path="res://assets/mike-tilemap.png" id="1_nwr38"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xj36y"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2h8ul"]
 texture = ExtResource("1_nwr38")
 texture_region_size = Vector2i(256, 256)
 2:0/0 = 0
@@ -69,4 +69,4 @@ texture_region_size = Vector2i(256, 256)
 [resource]
 tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 16
-sources/0 = SubResource("TileSetAtlasSource_xj36y")
+sources/0 = SubResource("TileSetAtlasSource_2h8ul")
