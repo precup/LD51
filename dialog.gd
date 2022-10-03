@@ -7,7 +7,7 @@ func start_dialog(dialog_text: Array[String]) -> void:
     
     var break_all = false
     
-    for i in range(msg.length()):
+    for i in range(msg.length() + 1):
       $label.visible_characters = i
       
       for wait in range(3):
