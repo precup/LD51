@@ -72,7 +72,7 @@ func shoot_bullet():
   var direction_vector = get_direction_vector()
   
   bullet.global_position = bullet_spawn.global_position
-  bullet.get_node("sprite").global_rotation = direction_vector.angle()
+  bullet.global_rotation = direction_vector.angle()
   bullet.scale = Vector2(1, 1)
 
 func get_direction_vector() -> Vector2:
