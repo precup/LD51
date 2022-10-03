@@ -26,8 +26,8 @@ script = ExtResource("1_c42cd")
 shape = SubResource("CircleShape2D_ho3hg")
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-12, 1)
-scale = Vector2(0.544922, 0.559076)
+position = Vector2(-8, 2)
+scale = Vector2(0.725586, 0.744433)
 frames = SubResource("SpriteFrames_5abui")
 playing = true
 

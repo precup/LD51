@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="1_kvlyu"]
 [ext_resource type="Script" path="res://weapon_display.gd" id="1_vihu6"]
-[ext_resource type="StyleBox" path="res://weapon_display_panel_mat.tres" id="3_p65p4"]
+[ext_resource type="StyleBox" uid="uid://b3c1dut1sapdf" path="res://weapon_display_panel_mat.tres" id="3_p65p4"]
 [ext_resource type="Texture2D" uid="uid://bfaney0p34lxa" path="res://assets/gun_reward_icon_top.png" id="3_y5c2q"]
 [ext_resource type="PackedScene" uid="uid://docvd2mhlftl" path="res://mod_row.tscn" id="4_82kod"]
 
