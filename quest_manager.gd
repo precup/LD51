@@ -155,8 +155,8 @@ func _roll_new_quest():
     new_quest_scn.quest_start_timer(quest.quest_stat)
   
   # remove excess children
-  while (quest_container.get_child_count() > MAX_CONCURRENT_QUESTS):
-    var removed_quest = quest_container.get_child(MAX_CONCURRENT_QUESTS)
+  while (quest_container.get_child_count() - 1 > MAX_CONCURRENT_QUESTS):
+    var removed_quest = quest_container.get_child(MAX_CONCURRENT_QUESTS - 1)
     if (!removed_quest.is_completed):
       if DEBUG_MODE:
         quest_complete(removed_quest, removed_quest.reward)
@@ -169,8 +169,8 @@ var HYPER_BOOST_RATE = 5 # time travels at 5x speed when you have no quests left
 func _process(delta):
   # TODO: pausing / slower time, etc?
   spawn_rate_counter += delta * (HYPER_BOOST_RATE if hyper_speed_quest_accrual else 1)
-  if quest_container.get_child_count() >= MAX_CONCURRENT_QUESTS:
-    quest_container.get_child(MAX_CONCURRENT_QUESTS-1).set_seconds_left(quest_spawn_rate-spawn_rate_counter)
+  if quest_container.get_child_count() - 1 >= MAX_CONCURRENT_QUESTS:
+    quest_container.get_child(MAX_CONCURRENT_QUESTS - 1).set_seconds_left(quest_spawn_rate-spawn_rate_counter)
     
   if (spawn_rate_counter >= quest_spawn_rate):
     spawn_rate_counter -= quest_spawn_rate
@@ -192,7 +192,6 @@ func _process(delta):
     
     if Input.is_action_just_pressed("action"):
       _pausable_earn_reward()
-    # _pausable_earn_reward()
   
   if DEBUG_MODE && Input.is_action_just_pressed("dash"):    
     _roll_new_quest()
