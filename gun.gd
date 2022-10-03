@@ -59,6 +59,8 @@ var _reload_left: float = 0
 func _ready() -> void:
   _rounds_left = magazine_size()
   $sprite.modulate = COLOR
+  
+  $explode.visible = false
 
 func get_rounds_left() -> int:
   return _rounds_left
@@ -195,6 +197,17 @@ func fire(free: bool = false, start = null, target = Vector2.ZERO, chain_value =
   if not Modifiers.Gun.BOTTOMLESS_MAGAZINE in UPGRADES and not free:
     _rounds_left -= 1
 
+
+  var expl: AnimatedSprite2D = $explode
+  $explode.frame = 0
+  $explode.visible = true
+  $explode.play()
+  
+  await $explode.animation_finished
+  
+  $explode.visible = false
+  
+  
 
 func start_reload() -> void:
   _reload_left = reload_time()
