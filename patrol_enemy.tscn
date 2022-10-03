@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bnad03ke1cx1l"]
+[gd_scene load_steps=10 format=3 uid="uid://bnad03ke1cx1l"]
 
 [ext_resource type="Script" path="res://patrol_enemy.gd" id="1_i4h0h"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="2_82qbc"]
+[ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_f3cp7"]
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="3_6nmas"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="4_m862p"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_x0nn2"]
@@ -21,6 +22,12 @@ position = Vector2(19, 42)
 collision_layer = 4
 collision_mask = 17
 script = ExtResource("1_i4h0h")
+
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0.0470588, 0.176471, 0.513726)
+position = Vector2(60, 50)
+scale = Vector2(3.05197, 3.05197)
+texture = ExtResource("2_f3cp7")
 
 [node name="base_enemy" type="Node2D" parent="."]
 script = ExtResource("2_82qbc")

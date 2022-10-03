@@ -30,7 +30,7 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
 
 
 func _physics_process(delta):
-  var direction: Vector2 = transform.x
+  var direction: Vector2 = $sprite.transform.x
   var collision: KinematicCollision2D = move_and_collide(direction * _speed * delta)
   var player = $"/root/root/references".get_player()
   

@@ -9,7 +9,7 @@ extends Node2D
 @export var BASE_RELOAD_TIME: float = 1.0
 @export var BASE_FIRE_COOLDOWN: float = 0.2
 @export var BASE_MAGAZINE_SIZE: int = 10
-@export var BASE_BULLET_SPEED: float = 600.
+@export var BASE_BULLET_SPEED: float = 800.
 @export var BASE_BULLET_DAMAGE: float = 1.
 @export var BASE_BULLET_HOMING: float = 0.
 @export var BASE_BULLET_PIERCES: int = 0
@@ -121,7 +121,7 @@ func fire() -> void:
     bullet.configure(self, bullet_speed(), damage, effects, bullet_homing(), null, bullet_ricochets(), bullet_pierces(), COLOR)
     PROJECTILE_NODE.add_child(bullet)
     bullet.global_position = BULLET_SPAWN.global_position
-    bullet.global_rotation = BULLET_SPAWN.global_rotation + arc_angle + PI
+    bullet.get_node("sprite").global_rotation = BULLET_SPAWN.global_rotation + arc_angle + PI
     bullet.scale = Vector2(scale, scale)
     _fire_cooldown_left = fire_cooldown()
   

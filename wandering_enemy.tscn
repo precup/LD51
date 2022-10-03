@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://hxgma5bwp6l1"]
+[gd_scene load_steps=10 format=3 uid="uid://hxgma5bwp6l1"]
 
 [ext_resource type="Script" path="res://base_enemy.gd" id="1_kn47u"]
 [ext_resource type="Script" path="res://wandering_enemy.gd" id="1_t7sh5"]
+[ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_1a45j"]
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="2_bnrfm"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_r5rv8"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="3_edrfm"]
@@ -24,6 +25,12 @@ mass = 4.0
 lock_rotation = true
 linear_damp = 3.0
 script = ExtResource("1_t7sh5")
+
+[node name="shadow" type="Sprite2D" parent="."]
+modulate = Color(0, 0.0470588, 0.176471, 0.513726)
+position = Vector2(29, 52)
+scale = Vector2(2.30859, 2.30859)
+texture = ExtResource("2_1a45j")
 
 [node name="base_enemy" type="Node2D" parent="."]
 script = ExtResource("1_kn47u")
