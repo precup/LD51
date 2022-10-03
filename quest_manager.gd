@@ -94,12 +94,26 @@ func _sort_rewards_by_type_by_rarity():
 
 const DEBUG_MODE = false
 var debug_quest_index = 0
+
+func _priority_quest():
+  var sorted_rarity = range(len(QuestGlobals.Rarity))
+  for iter_rarity in sorted_rarity:
+    for priority_quest in quests_by_rarity[iter_rarity]:
+      var avail = priority_quest.is_available.call()
+      if (avail || avail== null) && priority_quest.priority_quest :
+        var currently_active = false
+        for active_quest in active_quests:
+          if active_quest.quest_id == priority_quest.quest_id:
+            currently_active = true
+        if !currently_active:
+          return [priority_quest, iter_rarity]
+  return []
+            
 func _roll_new_quest():
   var rarity = _get_next_quest_rarity()
   var reward_type = _get_next_quest_reward_type()  
   
   var quest
-  var priority_quests = []
   if DEBUG_MODE && false:
     quest = QuestGlobals.all_quests[debug_quest_index]
     debug_quest_index+=1
@@ -107,17 +121,12 @@ func _roll_new_quest():
       debug_quest_index = 0
     rarity = quest.quest_rarity.keys()[0]
   else:
-    for iter_rarity in QuestGlobals.Rarity.values():
-      for priority_quest in quests_by_rarity[iter_rarity]:
-        var avail = priority_quest.is_available.call()
-        if (avail || avail== null) && priority_quest.priority_quest:
-          priority_quests.append(priority_quest)
-        
+   
+    var priority_quests = _priority_quest()        
     if len(priority_quests) > 0:
-      quest = priority_quests[randi_range(0,len(priority_quests)-1)]
-      if !quest.quest_rarity.has(rarity):  # may need to change the target rarity depending on if the priority quest was not for our rarity
-        rarity = quest.quest_rarity.keys()[0]
-        
+      quest = priority_quests[0]
+      if (quest.quest_uses_by_rarity.has(rarity) && quest.quest_uses_by_rarity[rarity] <= 0) || !quest.quest_rarity.has(rarity):      
+       rarity = priority_quests[1] # default the rarity if we ran out of uses on the one we rolled or the rolled rarity is not supported
     else:  
       var safety_counter = 50
       while (true):
