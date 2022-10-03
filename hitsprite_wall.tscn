@@ -28,6 +28,8 @@ position = Vector2(1, 0)
 script = ExtResource("1_y2iuh")
 
 [node name="animated_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(11, 5)
+scale = Vector2(1.63281, 1.63281)
 frames = SubResource("SpriteFrames_mdqnk")
 playing = true
 
