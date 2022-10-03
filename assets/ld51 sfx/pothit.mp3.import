@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://bfw7sj83g6rab"
+uid="uid://csiv8xkbadgso"
 path="res://.godot/imported/pothit.mp3-27dffa59d4f2ac3aeda2445c8bd32bec.mp3str"
 
 [deps]
@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/pothit.mp3-27dffa59d4f2ac3aeda2445c8bd32bec.m
 
 [params]
 
-loop=true
-loop_offset=0
-bpm=0
+loop=false
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

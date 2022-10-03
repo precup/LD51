@@ -22,6 +22,10 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
   _richocets = richochets
   _pierces = pierces
 
+  # prevent collisoin w self
+  
+  add_collision_exception_with(gun)
+
 
 func _physics_process(delta):
   var direction: Vector2 = transform.x
@@ -88,23 +92,26 @@ func _physics_process(delta):
       var destructible: Node2D = collision.get_collider().get_node("base_enemy")
       
       destructible.damage(_damage)
-      _destroy()
+      _destroy("pot")
     else: # Wall hit
       if _richocets > 0:
         _richocets -= 1
         look_at(global_position + direction.bounce(collision.get_normal()))
       else:
-        _destroy(true)
+        _destroy("wall")
 
 
 @onready var hitsprite = preload("res://hitsprite.tscn")
 @onready var hitsprite_wall = preload("res://hitsprite_wall.tscn")
 
-func _destroy(is_wall = false) -> void:
+func _destroy(target = "enemy") -> void:
   var instance: Node2D
-  if is_wall:
+  if target == "wall":
     instance = hitsprite_wall.instantiate()
     $"/root/root/sfx/wall_hit".play()
+  elif target == "pot":
+    instance = hitsprite_wall.instantiate()
+    $"/root/root/sfx/pot_hit".play()
   else:
     instance = hitsprite.instantiate()
     $"/root/root/sfx/enemy_hit".play()
