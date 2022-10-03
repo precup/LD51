@@ -318,10 +318,10 @@ facing_direction = 0
 position = Vector2(264, 304)
 
 [node name="barrel2" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
-position = Vector2(266, 383)
+position = Vector2(256, 478)
 
 [node name="barrel3" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
-position = Vector2(267, 460)
+position = Vector2(263, 625)
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
 position = Vector2(1694, 475)
