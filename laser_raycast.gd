@@ -13,12 +13,12 @@ func pulse():
   
   while true:
     for new_width in range(800, 1000, 1):
-      line.width = float(new_width) / 70.0
+      line.width = 10 + float(new_width) / 70.0
       
       await get_tree().process_frame
     
     for new_width in range(1000, 800, -1):
-      line.width = float(new_width) / 70.0
+      line.width = 10 + float(new_width) / 70.0
       
       await get_tree().process_frame
 
