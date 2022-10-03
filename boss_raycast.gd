@@ -14,13 +14,13 @@ func pulse():
   var line: Line2D = $"../line"
   
   while true:
-    for new_width in range(800, 1000, 1):
-      line.width = 10 + float(new_width) / 70.0
+    for new_width in range(500, 1000, 5):
+      line.width = 100 + float(new_width) / 70.0
       
       await get_tree().process_frame
     
-    for new_width in range(1000, 800, -1):
-      line.width = 10 + float(new_width) / 70.0
+    for new_width in range(1000, 500, -5):
+      line.width = 100 + float(new_width) / 70.0
       
       await get_tree().process_frame
 
