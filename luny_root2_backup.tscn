@@ -1,28 +1,34 @@
-[gd_scene load_steps=24 format=3 uid="uid://ft0eoa7sv3d4"]
+[gd_scene load_steps=28 format=3 uid="uid://ft0eoa7sv3d4"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
-[ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
+[ext_resource type="PackedScene" uid="uid://cwqqmtk6yuqs" path="res://hitsprite.tscn" id="1_y7wtu"]
 [ext_resource type="PackedScene" uid="uid://hxgma5bwp6l1" path="res://wandering_enemy.tscn" id="4_ltobp"]
 [ext_resource type="PackedScene" uid="uid://dmnrsfv3p2o4p" path="res://ui.tscn" id="5_e1kqk"]
 [ext_resource type="Script" path="res://camera.gd" id="6_crj1l"]
-[ext_resource type="PackedScene" uid="uid://c377nj22nsru2" path="res://barrel.tscn" id="8_b3h3m"]
-[ext_resource type="PackedScene" uid="uid://bb4hpy14g5fd8" path="res://heart_pickup.tscn" id="9_gl1f0"]
+[ext_resource type="PackedScene" uid="uid://bfhj42r10m8cl" path="res://barrel.tscn" id="8_b3h3m"]
+[ext_resource type="PackedScene" path="res://heart_pickup.tscn" id="9_gl1f0"]
 [ext_resource type="PackedScene" uid="uid://depms7p861do1" path="res://smart_enemy.tscn" id="10_3gr08"]
 [ext_resource type="PackedScene" uid="uid://w1inu0j1tffh" path="res://spike_trap.tscn" id="10_b02l4"]
-[ext_resource type="PackedScene" uid="uid://ng0827xsmr1q" path="res://quest_manager.tscn" id="10_l83fa"]
+[ext_resource type="PackedScene" path="res://quest_manager.tscn" id="10_l83fa"]
 [ext_resource type="Script" path="res://references.gd" id="11_8w57x"]
 [ext_resource type="PackedScene" uid="uid://bnad03ke1cx1l" path="res://patrol_enemy.tscn" id="11_atj5v"]
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
 [ext_resource type="PackedScene" uid="uid://cspp5u6u33ps1" path="res://laser_enemy.tscn" id="12_weq06"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
-[ext_resource type="PackedScene" path="res://boss_2.tscn" id="14_t57oi"]
+[ext_resource type="PackedScene" uid="uid://ddv1tup1imy8y" path="res://boss_2.tscn" id="14_t57oi"]
 [ext_resource type="TileSet" uid="uid://cc8wl3byxet30" path="res://tileset.tres" id="15_51hkn"]
-[ext_resource type="PackedScene" path="res://sfx.tscn" id="19_837db"]
+[ext_resource type="PackedScene" uid="uid://dbhl4y42nbxhf" path="res://sfx.tscn" id="19_837db"]
 [ext_resource type="PackedScene" path="res://npc.tscn" id="21_hwo1i"]
 [ext_resource type="PackedScene" path="res://boss.tscn" id="21_xy22l"]
 [ext_resource type="PackedScene" path="res://dialog_trigger.tscn" id="22_2jyts"]
 [ext_resource type="PackedScene" path="res://win_trigger.tscn" id="23_jkkgu"]
+[ext_resource type="AudioStream" uid="uid://6qwdr3ljbu5t" path="res://assets/divine protection v2.mp3" id="23_myncj"]
+[ext_resource type="AudioStream" uid="uid://dio3ddon37xw4" path="res://assets/ld main v2.mp3" id="24_qutdp"]
+[ext_resource type="Script" path="res://songchange.gd" id="25_57q1s"]
 [ext_resource type="PackedScene" path="res://checkpoint.tscn" id="28_v5v15"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxxif"]
+size = Vector2(638, 261)
 
 [node name="root" type="Node2D"]
 
@@ -787,3 +793,24 @@ dialog_text = ["God Probably: A great danger lurks behind these doors.", "Maltha
 [node name="win_trigger" parent="." instance=ExtResource("23_jkkgu")]
 position = Vector2(3367, -29909)
 scale = Vector2(0.24, 0.28001)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["oldmusic"]]
+process_mode = 3
+stream = ExtResource("23_myncj")
+volume_db = -13.0
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." groups=["newmusic"]]
+process_mode = 3
+stream = ExtResource("24_qutdp")
+volume_db = -13.0
+
+[node name="Area2d" type="Area2D" parent="."]
+position = Vector2(1028, -5539)
+script = ExtResource("25_57q1s")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Area2d"]
+position = Vector2(-39, -1.5)
+shape = SubResource("RectangleShape2D_lxxif")
+
+[connection signal="body_entered" from="Area2d" to="Area2d" method="_on_area_2d_body_entered"]
