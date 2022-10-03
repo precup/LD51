@@ -326,7 +326,7 @@ position = Vector2(256, 478)
 position = Vector2(263, 625)
 
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(1694, 475)
+position = Vector2(758, 512)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="projectiles" type="Node2D" parent="."]
@@ -339,7 +339,6 @@ zoom = Vector2(0.6, 0.6)
 script = ExtResource("6_crj1l")
 
 [node name="ui" parent="." instance=ExtResource("5_e1kqk")]
-visible = false
 
 [node name="sfx" type="Node2D" parent="."]
 
