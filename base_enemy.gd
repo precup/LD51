@@ -20,6 +20,7 @@ var _speed_multiplier = 1.0
 # "trash", "common", "rare", "epic", "legendary"
 # (This is unused currently.)
 var _item_drop_type = "common"
+var _stats_on_kill = [QuestGlobals.StatTrack.STAT_KILL_ENEMY]
 
 func _ready() -> void:
   graphic.material.set_shader_parameter("solid_color", Color.TRANSPARENT)
@@ -118,7 +119,9 @@ func damage(amount: float, weapon_id: int = -1, bullet_vector: Vector2 = Vector2
   _health = max(0.0, _health - amount)
 
   if _health <= 0:
-    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_KILL_ENEMY)
+    for stat in _stats_on_kill:
+      quest_manager.quest_count_progress(stat)
+      
     destroy()
   else:
     if bullet_vector != Vector2.ZERO:
