@@ -80,5 +80,5 @@ func _on_hsplit_updated():
     for poss_mod in Modifiers.Gun.values():
       if poss_mod in Modifiers.NAMES and Modifiers.NAMES[poss_mod] == mod_name:
         mod = poss_mod
-    TOOLTIP_TEXT.text = Modifiers.DESCRIPTIONS[mod] if mod != null else "Mod not found."
+    TOOLTIP_TEXT.text = Modifiers.DESCRIPTIONS[mod] if mod != null else "Empty slot (for a mod)."
     
