@@ -149,6 +149,8 @@ func play_flicker_animation():
 
 # bullet passes in a neg for amount just fyi
 func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
+  _knockback = knockback.normalized() * 1000
+  
   if _invuln_frames > 0:
     return
   
@@ -158,10 +160,6 @@ func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
   _invuln_frames = INVULN_LENGTH
   
   play_flicker_animation()
-
-  if knockback != Vector2.ZERO:
-    _knockback = knockback.normalized() * 1000
-    # move_and_slide()
   
   if _health == 0:
     print("u died")

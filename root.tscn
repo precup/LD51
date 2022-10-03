@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b2q25rwes07ol"]
+[gd_scene load_steps=26 format=3 uid="uid://b2q25rwes07ol"]
 
 [ext_resource type="PackedScene" uid="uid://cdu7slvow3axy" path="res://player.tscn" id="1_3xk4e"]
 [ext_resource type="PackedScene" uid="uid://cgjtnd6oovo8y" path="res://hitsprite.tscn" id="1_y7wtu"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d0hwx6l3xfuns" path="res://cannon.tscn" id="11_je3km"]
 [ext_resource type="PackedScene" uid="uid://cspp5u6u33ps1" path="res://laser_enemy.tscn" id="12_weq06"]
 [ext_resource type="PackedScene" uid="uid://dka7konmkpwvy" path="res://misc_stat_tracking.tscn" id="13_m5266"]
+[ext_resource type="PackedScene" uid="uid://c04wgwpov3o2l" path="res://checkpoint.tscn" id="13_vty5w"]
 [ext_resource type="AudioStream" uid="uid://b3iyc3y0kf6px" path="res://assets/ld51 sfx/gunshot5.mp3" id="17_dcm7x"]
 [ext_resource type="AudioStream" uid="uid://852hjl4qgnp2" path="res://assets/ld51 sfx/enemyhit.mp3" id="18_c15wr"]
 [ext_resource type="AudioStream" uid="uid://2qeh3ttl1oej" path="res://assets/ld51 sfx/wallhit.mp3" id="19_1cvp1"]
@@ -325,8 +326,10 @@ position = Vector2(256, 478)
 [node name="barrel3" parent="level_1/doodads" instance=ExtResource("8_b3h3m")]
 position = Vector2(263, 625)
 
+[node name="checkpoint" parent="level_1/doodads" instance=ExtResource("13_vty5w")]
+
 [node name="player" parent="." node_paths=PackedStringArray("PROJECTILE_NODE") instance=ExtResource("1_3xk4e")]
-position = Vector2(1251, -4146)
+position = Vector2(838, 461)
 PROJECTILE_NODE = NodePath("../projectiles")
 
 [node name="projectiles" type="Node2D" parent="."]
