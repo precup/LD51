@@ -20,13 +20,15 @@ script = ExtResource("1_vihu6")
 [node name="tooltip_canvas" type="CanvasLayer" parent="."]
 
 [node name="split" type="HSplitContainer" parent="."]
-offset_right = 451.0
+layout_mode = 2
+offset_right = 476.0
 offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
 dragger_visibility = 2
 
 [node name="margin" type="MarginContainer" parent="split"]
+layout_mode = 2
 offset_right = 266.0
 offset_bottom = 266.0
 theme_override_constants/margin_left = 5
@@ -35,6 +37,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="gun_icon" type="TextureRect" parent="split/margin"]
+layout_mode = 2
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 261.0
@@ -42,6 +45,7 @@ offset_bottom = 261.0
 texture = ExtResource("1_kvlyu")
 
 [node name="gun_icon2" type="TextureRect" parent="split/margin"]
+layout_mode = 2
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 261.0
@@ -50,6 +54,7 @@ texture = ExtResource("3_y5c2q")
 
 [node name="margin" type="MarginContainer" parent="split/margin"]
 visible = false
+layout_mode = 2
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 261.0
@@ -60,6 +65,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="panel" type="PanelContainer" parent="split/margin/margin"]
+layout_mode = 2
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 251.0
@@ -67,6 +73,7 @@ offset_bottom = 251.0
 theme_override_styles/panel = ExtResource("3_p65p4")
 
 [node name="margin" type="MarginContainer" parent="split/margin/margin/panel"]
+layout_mode = 2
 offset_right = 246.0
 offset_bottom = 246.0
 theme_override_constants/margin_left = 10
@@ -75,6 +82,7 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="description" type="Label" parent="split/margin/margin/panel/margin"]
+layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 236.0
@@ -88,21 +96,24 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="panel" type="MarginContainer" parent="split"]
+layout_mode = 2
 offset_left = 266.0
-offset_right = 451.0
+offset_right = 476.0
 offset_bottom = 266.0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="scroll" type="ScrollContainer" parent="split/panel"]
+layout_mode = 2
 offset_top = 10.0
-offset_right = 175.0
+offset_right = 200.0
 offset_bottom = 256.0
 theme_override_styles/panel = ExtResource("3_p65p4")
 horizontal_scroll_mode = 0
 
 [node name="margin" type="MarginContainer" parent="split/panel/scroll"]
+layout_mode = 2
 offset_right = 192.0
 offset_bottom = 59.0
 theme_override_constants/margin_left = 10
@@ -111,18 +122,21 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="center" type="CenterContainer" parent="split/panel/scroll/margin"]
+layout_mode = 2
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 157.0
+offset_right = 182.0
 offset_bottom = 49.0
 size_flags_horizontal = 3
 
 [node name="vbox" type="VBoxContainer" parent="split/panel/scroll/margin/center"]
-offset_right = 147.0
+layout_mode = 2
+offset_right = 172.0
 offset_bottom = 39.0
 
 [node name="margin" type="MarginContainer" parent="split/panel/scroll/margin/center/vbox"]
-offset_right = 147.0
+layout_mode = 2
+offset_right = 172.0
 offset_bottom = 39.0
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
@@ -130,10 +144,12 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 7
 
 [node name="hsplit" parent="split/panel/scroll/margin/center/vbox/margin" instance=ExtResource("4_82kod")]
-offset_right = 147.0
+layout_mode = 2
+offset_right = 172.0
 
 [node name="highlight" type="ColorRect" parent="."]
 visible = false
+layout_mode = 2
 offset_right = 451.0
 offset_bottom = 266.0
 mouse_filter = 2
@@ -141,6 +157,7 @@ color = Color(1, 1, 1, 0.109804)
 
 [node name="margin" type="MarginContainer" parent="highlight"]
 visible = false
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -153,6 +170,7 @@ mouse_filter = 2
 theme_override_constants/margin_left = 32
 
 [node name="x" type="Label" parent="highlight/margin"]
+layout_mode = 2
 offset_left = 32.0
 offset_top = 5.0
 offset_right = 451.0
@@ -167,22 +185,28 @@ vertical_alignment = 1
 
 [node name="unselectable" type="ColorRect" parent="."]
 visible = false
+layout_mode = 2
 offset_right = 451.0
 offset_bottom = 266.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.490196)
 
-[node name="Label" type="Label" parent="unselectable"]
-offset_left = 8.0
-offset_top = 68.0
-offset_right = 232.0
-offset_bottom = 228.0
+[node name="max" type="Label" parent="unselectable"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(544, 96)
 theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
 theme_override_fonts/font = ExtResource("5_ueohs")
 theme_override_font_sizes/font_size = 73
 text = "MAX 
 UPGRADES"
 horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_weapon_display_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_weapon_display_mouse_exited"]

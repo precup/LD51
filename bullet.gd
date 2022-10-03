@@ -9,6 +9,7 @@ var _pierces: int = 0
 var _effects: Array = []
 var _target: Node2D = null
 var _has_returned: bool = false
+var _growth: float = 0
 
 @onready var quest_manager = $"/root/root/quest_manager"
 
@@ -22,6 +23,10 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
   _richocets = richochets
   _pierces = pierces
   
+  for i in range(len(effects)):
+    if effects[i][0] == Modifiers.Effect.GROW:
+      _growth += effects[i][2]
+  
   $sprite.modulate = color
 
   # prevent collisoin w self
@@ -30,6 +35,10 @@ func configure(gun, speed: float, damage: float, effects: Array, homing: float, 
 
 
 func _physics_process(delta):
+  if _growth > 0:
+    scale.x += (delta * _speed / 1200) * _growth
+    scale.y += (delta * _speed / 1200) * _growth
+  
   var direction: Vector2 = $sprite.transform.x
   var collision: KinematicCollision2D = move_and_collide(direction * _speed * delta)
   var player = $"/root/root/references".get_player()
@@ -69,6 +78,7 @@ func _physics_process(delta):
       elif explode_radius > 0 and explode_radius > global_position.distance_to(destructible.get_node('base_enemy').global_position):
         destructibles_hit.append(destructible.get_node('base_enemy'))
     
+    var chained = false
     for enemy in enemies_hit:
       var react_damage: float = 1.0
       quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_HIT_ENEMY)
@@ -84,6 +94,9 @@ func _physics_process(delta):
             if not _has_returned:
               _has_returned = true
               _gun.return_bullet()
+          Modifiers.Effect.TRICK_SHOT:
+            if player.global_position.direction_to(get_global_mouse_position()).dot(player.global_position.direction_to(global_position)) < 0:
+              _damage *= 3.0
               
       enemy.damage(_damage * react_damage, -1, direction)
       
@@ -104,6 +117,10 @@ func _physics_process(delta):
             enemy.apply_condition(effect)
           Modifiers.Effect.UNSTACK:
             enemy.apply_condition(effect)
+          Modifiers.Effect.CHAIN:
+            if not chained:
+              chained = true
+              chain(collider, player)
             
     if enemy_hit:
       if _pierces > 0:
@@ -116,6 +133,11 @@ func _physics_process(delta):
       destructible.damage(_damage)
     if destructible_hit:
       _destroy("pot")
+      if not chained:
+        for effect in _effects:
+          if effect[0] == Modifiers.Effect.CHAIN:
+            chain(collider, player)
+      
     if not (destructible_hit or enemy_hit): # Wall hit
       if _richocets > 0:
         _richocets -= 1
@@ -127,6 +149,25 @@ func _physics_process(delta):
     if explode_radius > 0:
       if player and player.global_position.distance_to(global_position) < explode_radius:
         player.damage(-_damage)
+
+
+func chain(curr, player):
+    var closest = null
+    var dist = 0
+    for enemy2 in get_tree().get_nodes_in_group("enemies"):
+      if enemy2.get_node('base_enemy') != curr:
+        var d = enemy2.get_node('base_enemy').global_position.distance_to(global_position)
+        if closest == null or d < dist:
+          dist = d
+          closest = enemy2.get_node('base_enemy').global_position
+    for enemy2 in get_tree().get_nodes_in_group("destructible"):
+      if enemy2.get_node('base_enemy') != curr and not enemy2.has_method("_on_spike_trap_body_entered"):
+        var d = enemy2.get_node('base_enemy').global_position.distance_to(global_position)
+        if closest == null or d < dist:
+          dist = d
+          closest = enemy2.get_node('base_enemy').global_position
+    player.get_active_gun().fire(true, global_position, closest if closest != null else (global_position + transform.x), curr)
+
 
 @onready var hitsprite = preload("res://hitsprite.tscn")
 @onready var hitsprite_wall = preload("res://hitsprite_wall.tscn")

@@ -24,6 +24,8 @@ extends Node2D
 @export var BASE_VAMPIRISM_HEAL: int = 1
 @export var BASE_BLAZE_OF_GLORY_THRESHOLD: float = 0.3
 @export var BASE_BLAZE_OF_GLORY_MULTIPLIER: float = 3.0
+@export var BASE_GROW: float = 2.0
+@export var BASE_IMPACT: float = 30.0
 
 @export var MAX_MODIFIERS: int = 5
 @export var UPGRADES: Array[Modifiers.Gun] = []
@@ -31,6 +33,24 @@ extends Node2D
 @export var PROJECTILE_NODE: Node2D
 
 @onready var quest_manager = $"/root/root/quest_manager"
+
+var rainbow_colors = [
+  Color("9400D3"),
+  Color("9400D3"),
+  Color("4B0082"),
+  Color("4B0082"),
+  Color("0000FF"),
+  Color("0000FF"),
+  Color("00FF00"),
+  Color("00FF00"),
+  Color("FFFF00"),
+  Color("FFFF00"),
+  Color("FF7F00"),
+  Color("FF7F00"),
+  Color("FF0000"),
+  Color("FF0000"),
+]
+var rainbow_counter = 0
 
 var _rounds_left: int = 0
 var _fire_cooldown_left: float = 0
@@ -62,16 +82,20 @@ func _physics_process(delta) -> void:
       start_reload()
   
 
-func fire() -> void:
+func fire(free: bool = false, start = null, target = Vector2.ZERO, chain_value = 0, ignore_box = null) -> void:
   var num_shots: int = 1
   var arc_size: float = 0.
   var damage: float = bullet_damage()
   var effects: Array = []
   var scale: float = 1.0
+  var color = COLOR
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_FIRE_GUN)
   
   for upgrade in UPGRADES:
     match upgrade:
+      Modifiers.Gun.RAINBOW:
+        color = rainbow_colors[rainbow_counter]
+        rainbow_counter = (rainbow_counter + 1) % len(rainbow_colors)
       Modifiers.Gun.SCATTERSHOT:
         arc_size = max(arc_size, PI / 6)
         num_shots += 3
@@ -94,6 +118,14 @@ func fire() -> void:
         effects.append([Modifiers.Effect.REACT, -1, -1])
       Modifiers.Gun.HOT_SHOT:
         effects.append([Modifiers.Effect.BURN, -1, BASE_BURN_DURATION])
+      Modifiers.Gun.GROWING:
+        var found = false
+        for i in range(len(effects)):
+          if effects[i][0] == Modifiers.Effect.GROW:
+            effects[i][2] += BASE_GROW
+            found = true
+        if not found:
+          effects.append([Modifiers.Effect.GROW, -1, BASE_GROW])
       Modifiers.Gun.RETURNING:
         effects.append([Modifiers.Effect.RETURN, -1, -1])
       Modifiers.Gun.EXPLOSIVE:
@@ -107,7 +139,17 @@ func fire() -> void:
       Modifiers.Gun.BIG_SHOT:
         scale *= 2.0
       Modifiers.Gun.IMPACT:
-        effects.append([Modifiers.Effect.IMPACT, -1, -1])
+        effects.append([Modifiers.Effect.IMPACT, -1, BASE_IMPACT])
+      Modifiers.Gun.TRICK_SHOT:
+        effects.append([Modifiers.Effect.TRICK_SHOT, -1, -1])
+      Modifiers.Gun.CHAIN:
+        var found = false
+        for i in range(len(effects)):
+          if effects[i][0] == Modifiers.Effect.CHAIN:
+            effects[i][2] += 1
+            found = true
+        if not found:
+          effects.append([Modifiers.Effect.CHAIN, -1, 1])
       Modifiers.Gun.INTOXICATING:
         effects.append([Modifiers.Effect.INTOXICATE, -1, BASE_INTOXICATION_DURATION])
       Modifiers.Gun.BLAZE_OF_GLORY:
@@ -120,23 +162,37 @@ func fire() -> void:
         if randf() < BASE_VAMPIRISM_PROC_CHANCE:
           effects.append([Modifiers.Effect.LEECH, -1, BASE_VAMPIRISM_HEAL])
   
+  var rem = -1
+  for i in range(len(effects)):
+    if effects[i][0] == Modifiers.Effect.CHAIN and effects[i][2] == 1 and free:
+      rem = i
+      break
+  if rem >= 0:
+    effects.remove_at(rem)
+  
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_FIRE_SHOT, num_shots)
   for i in range(num_shots):
     var arc_angle: float = lerp(-arc_size, arc_size, float(i) / max(1, num_shots - 1))
     if arc_size >= PI:
       arc_angle = lerp(0.0, TAU, float(i) / num_shots)
     var bullet: Node2D = BULLET.instantiate()
-    bullet.configure(self, bullet_speed(), damage, effects, bullet_homing(), null, bullet_ricochets(), bullet_pierces(), COLOR)
+    bullet.configure(self, bullet_speed(), damage, effects, bullet_homing(), null, bullet_ricochets(), bullet_pierces(), color)
     PROJECTILE_NODE.add_child(bullet)
-    bullet.global_position = BULLET_SPAWN.global_position
-    bullet.get_node("sprite").global_rotation = BULLET_SPAWN.global_rotation + arc_angle + PI
+    bullet.global_position = BULLET_SPAWN.global_position if not free else start
+    if target != Vector2.ZERO:
+      bullet.get_node("sprite").global_rotation = bullet.get_angle_to(target)
+    else:
+      bullet.get_node("sprite").global_rotation = bullet.get_angle_to(get_global_mouse_position())
+    if ignore_box != null:
+      bullet.add_collision_exception_with(ignore_box.get_parent())
     bullet.scale = Vector2(scale, scale)
     _fire_cooldown_left = fire_cooldown()
   
-  var player = $"/root/root/references".get_player()
-  player.gun_was_fired()
+  if not free:
+    var player = $"/root/root/references".get_player()
+    player.gun_was_fired()
   
-  if not Modifiers.Gun.BOTTOMLESS_MAGAZINE in UPGRADES:
+  if not Modifiers.Gun.BOTTOMLESS_MAGAZINE in UPGRADES and not free:
     _rounds_left -= 1
 
 
@@ -171,6 +227,8 @@ func magazine_size(include_one_hit_wonder: bool = true) -> int:
         mag_size = int(mag_size * 2.0)
       Modifiers.Gun.ONE_HIT_WONDER:
         return 1
+      Modifiers.Gun.RAINBOW:
+        mag_size = int(mag_size * 1.5)
   return mag_size
 
 
@@ -182,6 +240,8 @@ func fire_cooldown() -> float:
         cooldown = cooldown * 0.5
       Modifiers.Gun.POWERFUL:
         cooldown = cooldown * 1.5
+      Modifiers.Gun.RAINBOW:
+        cooldown = cooldown * 0.33
   return cooldown
 
 
@@ -206,6 +266,8 @@ func bullet_damage() -> float:
         damage = damage * BASE_SCATTER_DAMAGE_LOSS
       Modifiers.Gun.FRONT_LOADED:
         damage = damage * 2.0
+      Modifiers.Gun.RAINBOW:
+        damage = damage * 0.75
   return damage
 
 
