@@ -29,13 +29,13 @@ theme_override_constants/margin_top = 60
 [node name="panel" type="PanelContainer" parent="top_left"]
 offset_left = 60.0
 offset_top = 60.0
-offset_right = 604.0
-offset_bottom = 208.0
+offset_right = 476.0
+offset_bottom = 176.0
 theme_override_styles/panel = SubResource("StyleBox_l1c8y")
 
 [node name="margin" type="MarginContainer" parent="top_left/panel"]
-offset_right = 544.0
-offset_bottom = 148.0
+offset_right = 416.0
+offset_bottom = 116.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -44,27 +44,37 @@ theme_override_constants/margin_bottom = 10
 [node name="health_container" type="HBoxContainer" parent="top_left/panel/margin"]
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 534.0
-offset_bottom = 138.0
+offset_right = 406.0
+offset_bottom = 106.0
 script = ExtResource("3_bryk1")
 
 [node name="heart" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
-offset_bottom = 128.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 96.0
+offset_bottom = 96.0
+scale = Vector2(1, 1)
 
 [node name="heart2" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
-offset_left = 132.0
-offset_right = 260.0
-offset_bottom = 128.0
+offset_left = 100.0
+offset_top = 0.0
+offset_right = 196.0
+offset_bottom = 96.0
+scale = Vector2(1, 1)
 
 [node name="heart3" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
-offset_left = 264.0
-offset_right = 392.0
-offset_bottom = 128.0
+offset_left = 200.0
+offset_top = 0.0
+offset_right = 296.0
+offset_bottom = 96.0
+scale = Vector2(1, 1)
 
 [node name="heart4" parent="top_left/panel/margin/health_container" instance=ExtResource("4_xbvb8")]
-offset_left = 396.0
-offset_right = 524.0
-offset_bottom = 128.0
+offset_left = 300.0
+offset_top = 0.0
+offset_right = 396.0
+offset_bottom = 96.0
+scale = Vector2(1, 1)
 
 [node name="top_right" type="MarginContainer" parent="."]
 anchors_preset = 1
