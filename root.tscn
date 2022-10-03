@@ -345,6 +345,7 @@ script = ExtResource("6_crj1l")
 [node name="ui" parent="." instance=ExtResource("5_e1kqk")]
 
 [node name="sfx" type="Node2D" parent="."]
+script = ExtResource("18_okoyd")
 
 [node name="gunshot_5" type="AudioStreamPlayer" parent="sfx"]
 stream = ExtResource("17_dcm7x")

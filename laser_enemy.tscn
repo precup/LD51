@@ -91,6 +91,7 @@ position = Vector2(-97.25, 8.25)
 shape = SubResource("RectangleShape2D_2d426")
 
 [node name="health_bar" parent="." instance=ExtResource("5_1mj2p")]
+visible = false
 position = Vector2(14, -23)
 
 [node name="raycast" type="RayCast2D" parent="."]
