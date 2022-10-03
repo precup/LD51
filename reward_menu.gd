@@ -119,7 +119,7 @@ func show_reward(reward_type: QuestGlobals.RewardType, reward_rarity: QuestGloba
       UPGRADE_NAME.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]])
       UPGRADE_DESCRIPTION.text = Modifiers.DESCRIPTIONS[_upgrade]
       UPGRADE_DESCRIPTION.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]])
-      HEADER.text = "New Wand Upgrade!"
+      HEADER.text = "New Upgrade!"
       HEADER.set("theme_override_colors/font_color",QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]])
       OPTION_HEADER.text = "Pick a wand to upgrade:"
       UPGRADE_ICON.modulate = QuestGlobals.RARITY_COLORS_TEXT[Modifiers.RARITIES[_upgrade]]

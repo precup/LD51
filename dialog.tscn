@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://byemrvuxtdp31"]
+[gd_scene load_steps=3 format=3 uid="uid://byemrvuxtdp31"]
 
 [ext_resource type="Script" path="res://dialog.gd" id="1_sfy4b"]
+[ext_resource type="FontFile" uid="uid://c4p41p37lal62" path="res://assets/RobotoCondensed-Regular.ttf" id="2_y0l5h"]
 
 [node name="dialog" type="ColorRect"]
 process_mode = 3
@@ -8,7 +9,7 @@ offset_left = 553.0
 offset_top = 313.0
 offset_right = 1365.0
 offset_bottom = 717.0
-color = Color(0.027451, 0.0666667, 0.192157, 1)
+color = Color(0.0352941, 0.0901961, 0.160784, 1)
 script = ExtResource("1_sfy4b")
 
 [node name="label" type="Label" parent="."]
@@ -16,6 +17,7 @@ offset_left = 32.0
 offset_top = 23.0
 offset_right = 788.0
 offset_bottom = 284.0
+theme_override_fonts/font = ExtResource("2_y0l5h")
 theme_override_font_sizes/font_size = 30
 text = "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah "
 autowrap_mode = 3
@@ -25,6 +27,7 @@ offset_left = 33.0
 offset_top = 310.0
 offset_right = 789.0
 offset_bottom = 390.0
+theme_override_fonts/font = ExtResource("2_y0l5h")
 theme_override_font_sizes/font_size = 24
 text = "Click to continue"
 autowrap_mode = 3

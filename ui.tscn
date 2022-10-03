@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dmnrsfv3p2o4p"]
+[gd_scene load_steps=16 format=3 uid="uid://dmnrsfv3p2o4p"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_hmor5"]
 [ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
 [ext_resource type="PackedScene" uid="uid://d16phm1370dew" path="res://heart.tscn" id="4_xbvb8"]
+[ext_resource type="FontFile" uid="uid://c4p41p37lal62" path="res://assets/RobotoCondensed-Regular.ttf" id="5_5mk3u"]
 [ext_resource type="Texture2D" uid="uid://bfaney0p34lxa" path="res://assets/gun_reward_icon_top.png" id="5_il67d"]
 [ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="5_ubxos"]
 [ext_resource type="PackedScene" uid="uid://nk2tdbkd4ujv" path="res://reward_menu.tscn" id="6_b4ynd"]
@@ -40,6 +41,9 @@ tracks/0/keys = {
 _data = {
 "pulse_text_color": SubResource("Animation_xralj")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7qcq0"]
+bg_color = Color(0.0352941, 0.0901961, 0.160784, 1)
 
 [node name="ui" type="CanvasLayer"]
 script = ExtResource("1_hmor5")
@@ -128,8 +132,9 @@ offset_top = 11.0
 offset_right = 450.0
 offset_bottom = 69.0
 theme_override_colors/font_color = Color(0.177987, 0.306667, 0.299451, 1)
+theme_override_fonts/font = ExtResource("5_5mk3u")
 theme_override_font_sizes/font_size = 40
-text = "Reward available!"
+text = "Reward Earned!"
 horizontal_alignment = 1
 
 [node name="claim_press_e" type="Label" parent="top_right/quest_container/press_x_to_upgrade"]
@@ -138,8 +143,9 @@ offset_top = 69.0
 offset_right = 445.0
 offset_bottom = 111.0
 theme_override_colors/font_color = Color(0.239216, 0.239216, 0.239216, 1)
+theme_override_fonts/font = ExtResource("5_5mk3u")
 theme_override_font_sizes/font_size = 28
-text = "(claim: press e)"
+text = "Press E to claim"
 horizontal_alignment = 1
 
 [node name="animation_player" type="AnimationPlayer" parent="top_right/quest_container/press_x_to_upgrade"]
@@ -160,19 +166,20 @@ theme_override_constants/margin_bottom = 60
 [node name="panel" type="PanelContainer" parent="bottom_left"]
 offset_left = 60.0
 offset_right = 250.0
-offset_bottom = 270.0
+offset_bottom = 268.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7qcq0")
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel"]
 offset_right = 190.0
-offset_bottom = 270.0
+offset_bottom = 268.0
 
 [node name="vsplit" type="VBoxContainer" parent="bottom_left/panel/margin"]
 offset_right = 190.0
-offset_bottom = 270.0
+offset_bottom = 268.0
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel/margin/vsplit"]
 offset_right = 190.0
-offset_bottom = 110.0
+offset_bottom = 108.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -183,7 +190,8 @@ custom_minimum_size = Vector2i(150, 0)
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
-offset_bottom = 90.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("5_5mk3u")
 theme_override_font_sizes/font_size = 48
 text = "5"
 vertical_alignment = 1
@@ -192,7 +200,8 @@ vertical_alignment = 1
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
-offset_bottom = 90.0
+offset_bottom = 88.0
+theme_override_fonts/font = ExtResource("5_5mk3u")
 theme_override_font_sizes/font_size = 48
 text = "80"
 horizontal_alignment = 2
@@ -202,26 +211,27 @@ vertical_alignment = 1
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 170.0
-offset_bottom = 90.0
+offset_bottom = 88.0
 
 [node name="clip_label2" type="Label" parent="bottom_left/panel/margin/vsplit/margin/CenterContainer"]
-offset_left = 65.0
-offset_right = 84.0
-offset_bottom = 70.0
+offset_left = 67.0
+offset_right = 83.0
+offset_bottom = 68.0
+theme_override_fonts/font = ExtResource("5_5mk3u")
 theme_override_font_sizes/font_size = 48
 text = "/"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="bottom_left/panel/margin/vsplit"]
-offset_top = 114.0
+offset_top = 112.0
 offset_right = 190.0
-offset_bottom = 118.0
+offset_bottom = 116.0
 
 [node name="margin2" type="MarginContainer" parent="bottom_left/panel/margin/vsplit"]
-offset_top = 122.0
+offset_top = 120.0
 offset_right = 190.0
-offset_bottom = 270.0
+offset_bottom = 268.0
 
 [node name="margin" type="MarginContainer" parent="bottom_left/panel/margin/vsplit/margin2"]
 offset_right = 190.0
@@ -257,7 +267,7 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="overlay" type="TextureRect" parent="bottom_left/panel/margin/vsplit/margin2"]
-modulate = Color(0.513726, 1, 0.560784, 0.32549)
+modulate = Color(1, 0.870588, 0.235294, 0.32549)
 offset_top = 147.0
 offset_right = 190.0
 offset_bottom = 148.0

@@ -1,17 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://fj76k2ap1q30"]
+[gd_scene load_steps=8 format=3 uid="uid://fj76k2ap1q30"]
 
 [ext_resource type="Texture2D" uid="uid://cirddxfne7swp" path="res://assets/gun_reward_icon.png" id="1_kvlyu"]
 [ext_resource type="Script" path="res://weapon_display.gd" id="1_vihu6"]
 [ext_resource type="StyleBox" uid="uid://b3c1dut1sapdf" path="res://weapon_display_panel_mat.tres" id="3_p65p4"]
 [ext_resource type="Texture2D" uid="uid://bfaney0p34lxa" path="res://assets/gun_reward_icon_top.png" id="3_y5c2q"]
 [ext_resource type="PackedScene" uid="uid://docvd2mhlftl" path="res://mod_row.tscn" id="4_82kod"]
+[ext_resource type="FontFile" uid="uid://c4p41p37lal62" path="res://assets/RobotoCondensed-Regular.ttf" id="5_ueohs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p30he"]
-bg_color = Color(0.533333, 0.611765, 0.678431, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+bg_color = Color(0.6622, 0.747913, 0.86, 1)
 
 [node name="weapon_display" type="PanelContainer"]
 offset_right = 40.0
@@ -23,45 +20,55 @@ script = ExtResource("1_vihu6")
 [node name="tooltip_canvas" type="CanvasLayer" parent="."]
 
 [node name="split" type="HSplitContainer" parent="."]
-offset_right = 463.0
-offset_bottom = 256.0
+offset_right = 451.0
+offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
 dragger_visibility = 2
 
 [node name="margin" type="MarginContainer" parent="split"]
-offset_right = 256.0
-offset_bottom = 256.0
+offset_right = 266.0
+offset_bottom = 266.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="gun_icon" type="TextureRect" parent="split/margin"]
-offset_right = 256.0
-offset_bottom = 256.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 261.0
+offset_bottom = 261.0
 texture = ExtResource("1_kvlyu")
 
 [node name="gun_icon2" type="TextureRect" parent="split/margin"]
-offset_right = 256.0
-offset_bottom = 256.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 261.0
+offset_bottom = 261.0
 texture = ExtResource("3_y5c2q")
 
 [node name="margin" type="MarginContainer" parent="split/margin"]
 visible = false
-offset_right = 256.0
-offset_bottom = 256.0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 261.0
+offset_bottom = 261.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
 [node name="panel" type="PanelContainer" parent="split/margin/margin"]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 246.0
-offset_bottom = 246.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 251.0
+offset_bottom = 251.0
 theme_override_styles/panel = ExtResource("3_p65p4")
 
 [node name="margin" type="MarginContainer" parent="split/margin/margin/panel"]
-offset_right = 236.0
-offset_bottom = 236.0
+offset_right = 246.0
+offset_bottom = 246.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -70,9 +77,10 @@ theme_override_constants/margin_bottom = 10
 [node name="description" type="Label" parent="split/margin/margin/panel/margin"]
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 226.0
-offset_bottom = 226.0
+offset_right = 236.0
+offset_bottom = 236.0
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("5_ueohs")
 theme_override_font_sizes/font_size = 24
 text = "Reload twice as fast"
 horizontal_alignment = 1
@@ -80,22 +88,22 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="panel" type="MarginContainer" parent="split"]
-offset_left = 256.0
-offset_right = 463.0
-offset_bottom = 256.0
+offset_left = 266.0
+offset_right = 451.0
+offset_bottom = 266.0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="scroll" type="ScrollContainer" parent="split/panel"]
 offset_top = 10.0
-offset_right = 197.0
-offset_bottom = 246.0
+offset_right = 175.0
+offset_bottom = 256.0
 theme_override_styles/panel = ExtResource("3_p65p4")
 horizontal_scroll_mode = 0
 
 [node name="margin" type="MarginContainer" parent="split/panel/scroll"]
-offset_right = 189.0
+offset_right = 167.0
 offset_bottom = 59.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -105,16 +113,16 @@ theme_override_constants/margin_bottom = 10
 [node name="center" type="CenterContainer" parent="split/panel/scroll/margin"]
 offset_left = 10.0
 offset_top = 10.0
-offset_right = 179.0
+offset_right = 157.0
 offset_bottom = 49.0
 size_flags_horizontal = 3
 
 [node name="vbox" type="VBoxContainer" parent="split/panel/scroll/margin/center"]
-offset_right = 169.0
+offset_right = 147.0
 offset_bottom = 39.0
 
 [node name="margin" type="MarginContainer" parent="split/panel/scroll/margin/center/vbox"]
-offset_right = 169.0
+offset_right = 147.0
 offset_bottom = 39.0
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
@@ -122,11 +130,12 @@ theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 7
 
 [node name="hsplit" parent="split/panel/scroll/margin/center/vbox/margin" instance=ExtResource("4_82kod")]
+offset_right = 147.0
 
 [node name="highlight" type="ColorRect" parent="."]
 visible = false
-offset_right = 463.0
-offset_bottom = 256.0
+offset_right = 451.0
+offset_bottom = 266.0
 mouse_filter = 2
 color = Color(1, 1, 1, 0.109804)
 
@@ -145,8 +154,9 @@ theme_override_constants/margin_left = 32
 
 [node name="x" type="Label" parent="highlight/margin"]
 offset_left = 32.0
-offset_right = 463.0
-offset_bottom = 402.0
+offset_top = 5.0
+offset_right = 451.0
+offset_bottom = 407.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(544, 96)
@@ -157,8 +167,8 @@ vertical_alignment = 1
 
 [node name="unselectable" type="ColorRect" parent="."]
 visible = false
-offset_right = 463.0
-offset_bottom = 256.0
+offset_right = 451.0
+offset_bottom = 266.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.490196)
 
@@ -170,6 +180,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(544, 96)
 theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_fonts/font = ExtResource("5_ueohs")
 theme_override_font_sizes/font_size = 73
 text = "MAX 
 UPGRADES"

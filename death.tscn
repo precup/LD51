@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ddj1hyyopimqs"]
+[gd_scene load_steps=7 format=3 uid="uid://ddj1hyyopimqs"]
 
 [ext_resource type="Script" path="res://death.gd" id="1_5hfj0"]
+[ext_resource type="FontFile" uid="uid://c4p41p37lal62" path="res://assets/RobotoCondensed-Regular.ttf" id="2_vledf"]
 
 [sub_resource type="Animation" id="Animation_4afb4"]
 length = 0.001
@@ -129,6 +130,7 @@ offset_top = 234.0
 offset_right = 2010.0
 offset_bottom = 517.0
 theme_override_colors/font_color = Color(1, 1, 0.956863, 1)
+theme_override_fonts/font = ExtResource("2_vledf")
 theme_override_font_sizes/font_size = 200
 text = "You Died"
 horizontal_alignment = 1
@@ -139,6 +141,7 @@ offset_top = 666.0
 offset_right = 2008.0
 offset_bottom = 744.0
 theme_override_colors/font_color = Color(0.4, 0.4, 0.380392, 1)
+theme_override_fonts/font = ExtResource("2_vledf")
 theme_override_font_sizes/font_size = 50
-text = "Press e to continue"
+text = "Press E to continue"
 horizontal_alignment = 1
