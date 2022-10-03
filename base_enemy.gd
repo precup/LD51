@@ -24,9 +24,6 @@ var _item_drop_type = "common"
 func _ready() -> void:
   graphic.material.set_shader_parameter("solid_color", Color.TRANSPARENT)
 
-func _process(__delta: float) -> void:
-  health_bar.update(_health, _max_health)
-
 func _physics_process(delta: float) -> void:
   var speed_multiplier: float = 1.0
   var i: int = 0

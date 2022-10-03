@@ -20,7 +20,7 @@ animations = [{
 "frames": [SubResource("AtlasTexture_bs71a"), SubResource("AtlasTexture_nwqbd"), SubResource("AtlasTexture_vujr3")],
 "loop": true,
 "name": &"default",
-"speed": 40.0
+"speed": 20.0
 }]
 
 [node name="hitsprite" type="Node2D"]

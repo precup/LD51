@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c377nj22nsru2"]
+[gd_scene load_steps=7 format=3 uid="uid://c377nj22nsru2"]
 
 [ext_resource type="Texture2D" uid="uid://evrsev5shq4q" path="res://assets/barrel.png" id="1_dhndc"]
 [ext_resource type="Script" path="res://barrel.gd" id="1_l1avd"]
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_l4shq"]
-[ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_cw0x7"]
 
 [sub_resource type="Shader" id="Shader_0m0ln"]
 code = "shader_type canvas_item;
@@ -40,5 +39,3 @@ shape = SubResource("RectangleShape2D_gjycc")
 
 [node name="base_enemy" type="Node2D" parent="."]
 script = ExtResource("3_l4shq")
-
-[node name="health_bar" parent="." instance=ExtResource("4_cw0x7")]

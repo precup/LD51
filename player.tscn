@@ -36,7 +36,8 @@ position = Vector2(31.5, 32)
 shape = SubResource("RectangleShape2D_kkfjx")
 
 [node name="filler_image" type="Sprite2D" parent="."]
-position = Vector2(31, 33)
+position = Vector2(74.5, 76.5)
+scale = Vector2(2.35938, 2.35938)
 texture = ExtResource("2_kdxou")
 
 [node name="animation_player" type="AnimationPlayer" parent="."]
