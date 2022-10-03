@@ -173,7 +173,7 @@ func _roll_new_quest():
   
   # remove excess children
   while (quest_container.get_child_count() - 1 > MAX_CONCURRENT_QUESTS):
-    var removed_quest = quest_container.get_child(MAX_CONCURRENT_QUESTS - 1)
+    var removed_quest = quest_container.get_child(MAX_CONCURRENT_QUESTS)
     if (!removed_quest.is_completed):
       if DEBUG_MODE:
         quest_complete(removed_quest, removed_quest.reward)
