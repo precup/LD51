@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://51j5hrxg5vhb"]
+
+[ext_resource type="Script" path="res://win_trigger.gd" id="1_icvfj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pmh7"]
+size = Vector2(1791, 1501)
+
+[node name="win_trigger" type="Area2D"]
+position = Vector2(-4093, -2981)
+script = ExtResource("1_icvfj")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+position = Vector2(885.5, 740.5)
+shape = SubResource("RectangleShape2D_0pmh7")
+
+[connection signal="body_entered" from="." to="." method="_on_win_trigger_body_entered"]

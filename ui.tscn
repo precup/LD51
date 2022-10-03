@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dmnrsfv3p2o4p"]
+[gd_scene load_steps=17 format=3 uid="uid://dmnrsfv3p2o4p"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_hmor5"]
 [ext_resource type="Script" path="res://health_container.gd" id="3_bryk1"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://duug21557oo01" path="res://intro_menu.tscn" id="8_2bwm4"]
 [ext_resource type="PackedScene" uid="uid://byemrvuxtdp31" path="res://dialog.tscn" id="8_16qvw"]
 [ext_resource type="PackedScene" uid="uid://ddj1hyyopimqs" path="res://death.tscn" id="9_61fl0"]
+[ext_resource type="PackedScene" uid="uid://rd1b7rff0rh5" path="res://game_over.tscn" id="12_5n6rb"]
 
 [sub_resource type="StyleBox" id="StyleBox_l1c8y"]
 resource_local_to_scene = false
@@ -284,3 +285,5 @@ visible = false
 
 [node name="death" parent="." instance=ExtResource("9_61fl0")]
 visible = false
+
+[node name="game_over" parent="." instance=ExtResource("12_5n6rb")]
