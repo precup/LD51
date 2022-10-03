@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://bj8orutgvtbex"]
+
+[ext_resource type="Script" path="res://npc.gd" id="1_em57j"]
+[ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_emytp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu3hx"]
+size = Vector2(430, 392)
+
+[sub_resource type="Animation" id="Animation_kssjs"]
+resource_name = "pulse"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("position/click_to_talk_label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.307786, 2.63902, 1),
+"update": 0,
+"values": [Vector2(-33, 111), Vector2(-33, 50), Vector2(-33, 111)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dc5d"]
+_data = {
+"pulse": SubResource("Animation_kssjs")
+}
+
+[node name="npc" type="Area2D"]
+position = Vector2(346, -3857)
+script = ExtResource("1_em57j")
+
+[node name="area" type="CollisionShape2D" parent="."]
+position = Vector2(63, 182)
+shape = SubResource("RectangleShape2D_uu3hx")
+
+[node name="graphic" type="Sprite2D" parent="."]
+position = Vector2(63, 190)
+texture = ExtResource("2_emytp")
+
+[node name="position" type="Node2D" parent="."]
+position = Vector2(-27, -21)
+
+[node name="click_to_talk_label" type="Label" parent="position"]
+offset_left = -33.0
+offset_top = 69.0766
+offset_right = 246.0
+offset_bottom = 139.077
+theme_override_font_sizes/font_size = 48
+text = "Click to talk!"
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6dc5d")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_npc_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_npc_body_exited"]

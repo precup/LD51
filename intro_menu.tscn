@@ -21,7 +21,6 @@ grow_vertical = 2
 script = ExtResource("1_ft6qf")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,7 +28,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-layout_mode = 2
 offset_left = 431.0
 offset_top = 213.0
 offset_right = 1489.0
@@ -37,7 +35,6 @@ offset_bottom = 867.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0rawa")
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
-layout_mode = 2
 offset_right = 1058.0
 offset_bottom = 654.0
 theme_override_constants/margin_left = 60
@@ -46,14 +43,12 @@ theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 60
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
 offset_left = 60.0
 offset_top = 60.0
 offset_right = 998.0
 offset_bottom = 594.0
 
 [node name="Label" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
 offset_right = 938.0
 offset_bottom = 70.0
 theme_override_font_sizes/font_size = 48
@@ -62,7 +57,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer3" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
 offset_top = 74.0
 offset_right = 938.0
 offset_bottom = 128.0
@@ -70,13 +64,11 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_bottom = 20
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
-layout_mode = 2
 offset_top = 30.0
 offset_right = 938.0
 offset_bottom = 34.0
 
 [node name="Label2" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
 offset_top = 132.0
 offset_right = 938.0
 offset_bottom = 169.0
@@ -86,7 +78,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
 offset_top = 173.0
 offset_right = 938.0
 offset_bottom = 469.0
@@ -94,33 +85,28 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="HSplitContainer" type="HSplitContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
 offset_top = 20.0
 offset_right = 938.0
 offset_bottom = 276.0
 
 [node name="weapon_display" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HSplitContainer" instance=ExtResource("1_o87b0")]
-layout_mode = 2
 offset_right = 463.0
 offset_bottom = 256.0
 CLICKABLE = false
 
 [node name="weapon_display2" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/HSplitContainer" instance=ExtResource("1_o87b0")]
-layout_mode = 2
 offset_left = 475.0
 offset_right = 938.0
 offset_bottom = 256.0
 CLICKABLE = false
 
 [node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
 offset_top = 473.0
 offset_right = 938.0
 offset_bottom = 534.0
 
 [node name="Button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2i(147, 45)
-layout_mode = 2
 offset_left = 791.0
 offset_right = 938.0
 offset_bottom = 61.0

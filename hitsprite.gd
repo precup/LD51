@@ -10,3 +10,7 @@ func _process(delta):
 func _on_animated_sprite_animation_finished():
   queue_free()
  
+
+
+func _on_npc_body_exited(body):
+  pass # Replace with function body.
