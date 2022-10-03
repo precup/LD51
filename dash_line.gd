@@ -18,8 +18,8 @@ func stop():
   var line: Line2D = $dash_line
   stopped = true
   
-  for x in range(10, 0, -1):
-    line.default_color.a = float(x) / 10.0
+  for x in range(15, 0, -1):
+    line.default_color.a = float(x) / 15.0
     await get_tree().process_frame
     
   queue_free()
