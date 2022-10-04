@@ -78,13 +78,14 @@ func _physics_process(delta):
   
   if is_colliding():
     if get_collider() == player:
-      if tick > last_hit + 100:
-        player.damage(-1, (player.global_position - global_position).normalized())
-      
-        var instance = hitsprite.instantiate()
-        get_tree().root.add_child(instance)
-        instance.global_position = get_collision_point()
-        last_hit = tick
+      if tick > last_hit + 50:
+        if not get_tree().get_first_node_in_group("player").dashing:
+          player.damage(-1, (player.global_position - global_position).normalized())
+        
+          var instance = hitsprite.instantiate()
+          get_tree().root.add_child(instance)
+          instance.global_position = get_collision_point()
+          last_hit = tick
     
     collision_particles.visible = true
     collision_particles.global_rotation = get_collision_normal().angle()

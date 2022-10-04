@@ -86,6 +86,7 @@ process_material = SubResource("ParticleProcessMaterial_n53g5")
 texture = ExtResource("2_ehbe1")
 
 [node name="body" type="StaticBody2D" parent="."]
+collision_layer = 16
 
 [node name="shape" type="CollisionShape2D" parent="body"]
 position = Vector2(328.5, 87)

@@ -14,6 +14,7 @@ func start_dialog(dialog_text: Array[String]) -> void:
         await get_tree().process_frame
         if Input.is_action_just_pressed("shoot"):
           await get_tree().process_frame
+          $"/root/root/sfx/ui_confirm".play()
           
           break_all = true
           break
@@ -26,6 +27,7 @@ func start_dialog(dialog_text: Array[String]) -> void:
       await get_tree().process_frame
       
       if Input.is_action_just_pressed("shoot"):
+        $"/root/root/sfx/ui_confirm".play()
         break
         
   visible = false

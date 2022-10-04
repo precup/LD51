@@ -20,6 +20,7 @@ var _speed_multiplier = 1.0
 var WAKE_UP_DISTANCE = 2000
 var SLEEP_DISTANCE = 4000
 var _active = false
+var _invuln = false
 
 # "trash", "common", "rare", "epic", "legendary"
 # (This is unused currently.)
@@ -89,6 +90,9 @@ func get_speed_multiplier() -> float:
 func _hit_animation() -> void:
   # flash white
   
+  if _invuln:
+    return
+  
   for t in active_tweens:
     t.kill()
   active_tweens = []
@@ -118,8 +122,6 @@ func _hit_animation() -> void:
   active_tweens.append(t)
   
   r.set_trans(Tween.TRANS_QUAD)
-  
-  
 
 func apply_condition(new_condition: Array) -> void:
   for condition in _conditions:
@@ -174,11 +176,16 @@ func damage(amount: float, weapon_id: int = -1, bullet_vector: Vector2 = Vector2
     _hit_animation()
 
 func destroy():
+  if _invuln:
+    return
+  
+  print(get_parent().name)
+  
   if get_parent().name == "boss":
     for n in get_tree().get_nodes_in_group("boss_1_gate"):
       n.queue_free()
     
-  if get_parent().name == "boss_2":
+  if get_parent().name == "boss2":
     for n in get_tree().get_nodes_in_group("boss_2_gate"):
       n.queue_free()
   
@@ -192,7 +199,7 @@ var heart_pickup = preload("res://heart_pickup.tscn")
 func drop_random_item():
   # for now we just disregard the rarity entirely, but eventually we should use
   # enemy_rarity rather than tossing it in the garbage as we do
-  if randi() % 10 < 3:
+  if randi() % 10 < 8:
     return
 
   var potential_pickups = [

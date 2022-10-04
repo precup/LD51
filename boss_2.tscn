@@ -128,7 +128,7 @@ texture = ExtResource("2_ko8yy")
 [node name="line" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 500, 0)
 width = 25.0
-default_color = Color(0.647059, 0.901961, 1, 1)
+default_color = Color(0.819608, 0.533333, 1, 1)
 
 [node name="graphic" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_wxri1")

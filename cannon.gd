@@ -18,6 +18,7 @@ var ticks_to_next_shot = 0
 func _ready():
   $base_enemy._max_health = 4
   $base_enemy._health = 4
+  $base_enemy._invuln = true
   $base_enemy._item_drop_type = "trash"
   rotate_cannon()
 

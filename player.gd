@@ -3,7 +3,7 @@ class_name Player
 
 var INVULN_LENGTH = 60
 @export var PROJECTILE_NODE: Node2D
-@export var SPEED: float = 600.0
+@export var SPEED: float = 900.0
 @export var MAX_HEALTH: int = 8
 const BULLET_SCENE: PackedScene = preload("res://bullet.tscn")
 const GUN_COUNT = 2
@@ -19,8 +19,6 @@ var _knockback: Vector2 = Vector2.ZERO
 var _invuln_frames = 0
 
 func _ready() -> void:
-  _health -= 2 # just for debugging  
-  
   # Instantiate starter guns
   var gun_index = 0
   for i in range(GUN_COUNT):
@@ -51,7 +49,7 @@ func get_active_gun():
 var boosted_speed = SPEED
 const BOOSTED_SPEED_MULTIPLIER = 5
 const BOOSTED_SPEED_DURATION = .15
-const DASH_COOLDOWN = 2
+const DASH_COOLDOWN = 1
 var dash_cooldown_counter = 0
 var dashing :bool = false
 var step_state: int = 0
@@ -217,7 +215,7 @@ func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
 func pickup(item: String) -> void:
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_PICKUP_ITEM)
   if item == "heart":
-    heal(1)
+    heal(0.5)
 
 func gun_was_fired() -> void:
   var animation_player: AnimationPlayer = $animation_player
