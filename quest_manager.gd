@@ -20,7 +20,7 @@ var quest_rarity_weights : Dictionary = {
 
 # Affects the distribution of incoming quest reward types
 var quest_reward_type_weights : Dictionary = {
-  QuestGlobals.RewardType.REWARD_GUN: 25,
+  QuestGlobals.RewardType.REWARD_GUN: 20,
   QuestGlobals.RewardType.REWARD_MOD: 25,
   QuestGlobals.RewardType.REWARD_OTHER: 0, 
 }
@@ -288,7 +288,9 @@ func quest_complete(quest, reward):
     hyper_speed_quest_accrual = true
   
   var random_rarity_to_increase_rate_of = randi_range(quest.quest_rarity, min(quest.quest_rarity+1, QuestGlobals.Rarity.RARITY_LEGENDARY)) # Add weights to the current tier or one tier higher
-  quest_rarity_weights[random_rarity_to_increase_rate_of] +=  1 + randi_range(0,quest.quest_rarity) * randi_range(1,(MAX_CONCURRENT_QUESTS - len(active_quests))) # bonus for how many quests you currently have completed
+  quest_rarity_weights[random_rarity_to_increase_rate_of] += 1
+  for i in range(randi_range(1,(MAX_CONCURRENT_QUESTS - len(active_quests)))):
+    quest_rarity_weights[random_rarity_to_increase_rate_of] +=  randi_range(0, quest.quest_rarity)   # bonus for how many quests you currently have completed
   
   # TODO: Track the completion after reward from prior has been given? Right now this results in one reward being lost. If we add a slight delay here it should pause until after UI done?
   quest_count_progress(QuestGlobals.StatTrack.STAT_COMPLETE_QUEST)
