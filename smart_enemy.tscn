@@ -6,10 +6,10 @@
 [ext_resource type="Script" path="res://base_enemy.gd" id="3_8sucg"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="4_px8to"]
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="6_13ydc"]
-[ext_resource type="Material" uid="uid://7u0dxi4ff1j7" path="res://flash_material.tres" id="6_cihyy"]
-[ext_resource type="Texture2D" uid="uid://byphovm74wivc" path="res://assets/gunnerback.png" id="6_nsq4q"]
-[ext_resource type="Texture2D" uid="uid://drn4a72kkwgs3" path="res://assets/gunnerfront.png" id="7_e4s33"]
-[ext_resource type="Texture2D" uid="uid://dgc7nytoq511q" path="res://assets/gunnerside.png" id="8_dtudo"]
+[ext_resource type="Material" uid="uid://csrfyuew7hml7" path="res://flash_material.tres" id="6_cihyy"]
+[ext_resource type="Texture2D" uid="uid://b073dgxifhcpm" path="res://assets/gunnerback.png" id="6_nsq4q"]
+[ext_resource type="Texture2D" uid="uid://dmmujbpfup308" path="res://assets/gunnerfront.png" id="7_e4s33"]
+[ext_resource type="Texture2D" uid="uid://ne5yunrcvr16" path="res://assets/gunnerside.png" id="8_dtudo"]
 
 [sub_resource type="Shader" id="Shader_0m0ln"]
 code = "shader_type canvas_item;

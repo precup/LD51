@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/enemyland.mp3-94943931d19972db6c960bc3f720a8d
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

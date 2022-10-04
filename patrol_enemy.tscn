@@ -6,9 +6,9 @@
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="3_6nmas"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="4_m862p"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_x0nn2"]
-[ext_resource type="Material" uid="uid://7u0dxi4ff1j7" path="res://flash_material.tres" id="7_wvuio"]
-[ext_resource type="Texture2D" uid="uid://d0fnsmifmsjkn" path="res://assets/patrolback.png" id="8_7rnys"]
-[ext_resource type="Texture2D" uid="uid://m5iojako752x" path="res://assets/patrolfront.png" id="9_8hd4q"]
+[ext_resource type="Material" uid="uid://csrfyuew7hml7" path="res://flash_material.tres" id="7_wvuio"]
+[ext_resource type="Texture2D" uid="uid://ceqb3wbsx8moq" path="res://assets/patrolback.png" id="8_7rnys"]
+[ext_resource type="Texture2D" uid="uid://v127ev30qcpo" path="res://assets/patrolfront.png" id="9_8hd4q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(134, 175)

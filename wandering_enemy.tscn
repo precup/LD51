@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_r5rv8"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="3_edrfm"]
 [ext_resource type="Texture2D" uid="uid://bxmgjndmfmeij" path="res://assets/wander.png" id="5_antnr"]
-[ext_resource type="Material" uid="uid://7u0dxi4ff1j7" path="res://flash_material.tres" id="7_c5y4g"]
+[ext_resource type="Material" uid="uid://csrfyuew7hml7" path="res://flash_material.tres" id="7_c5y4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(169, 188)

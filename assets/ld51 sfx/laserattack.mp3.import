@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/laserattack.mp3-e766e69087afc5cd2d5382a6c32ff
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/gunshot3.mp3-ee2fed6a93de784b0304ffd730f72c4d
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
 bpm=0
 beat_count=0

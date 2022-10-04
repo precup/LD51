@@ -83,7 +83,9 @@ func _physics_process(delta) -> void:
   
   $sprite.scale.y = 1 if abs(global_rotation) > PI / 2 else -1
   
-  if _reload_left > 0:
+  if Input.is_action_just_pressed("reload"):
+    start_reload()
+  elif _reload_left > 0:
     _reload_left -= delta
     if _reload_left <= 0:
       reload()
@@ -206,9 +208,9 @@ func fire(free: bool = false, start = null, target = Vector2.ZERO, chain_value =
     PROJECTILE_NODE.add_child(bullet)
     bullet.global_position = BULLET_SPAWN.global_position if not free else start
     if target != Vector2.ZERO:
-      bullet.get_node("sprite").global_rotation = bullet.get_angle_to(target)
+      bullet.get_node("sprite").global_rotation = bullet.get_angle_to(target) + arc_angle
     else:
-      bullet.get_node("sprite").global_rotation = bullet.get_angle_to(get_global_mouse_position())
+      bullet.get_node("sprite").global_rotation = bullet.get_angle_to(get_global_mouse_position()) + arc_angle
     if ignore_box != null:
       bullet.add_collision_exception_with(ignore_box.get_parent())
     bullet.scale = Vector2(scale, scale)

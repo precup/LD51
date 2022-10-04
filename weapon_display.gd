@@ -77,7 +77,7 @@ func _display_weapon(gun, can_max_out: bool, is_gun_time: bool, mod: Modifiers.G
 
 func _input(event):
   if event is InputEventMouseButton:
-    if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and CLICKABLE and not maxed_out and $highlight.visible:
+    if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and CLICKABLE and not maxed_out and get_node("highlight").visible:
       emit_signal("clicked")
 
 func clear_highlights():

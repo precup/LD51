@@ -156,13 +156,15 @@ func close_menu() -> void:
 
 
 func _on_weapon_1_clicked():
-  print("You clicked gun 1")
-  apply_to_weapon(0)
+  if visible:
+    print("You clicked gun 1")
+    apply_to_weapon(0)
 
 
 func _on_weapon_2_clicked():
-  print("You clicked gun 2")
-  apply_to_weapon(1)
+  if visible:
+    print("You clicked gun 2")
+    apply_to_weapon(1)
 
 
 func apply_to_weapon(i):
@@ -183,11 +185,12 @@ func apply_to_weapon(i):
   close_menu()
 
 func _on_trash_clicked():
-  print("You clicked trash")
-  $"/root/root/sfx/ui_cancel".play()
-  if not _upgrade_mode:
-    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_TRASH_GUN) 
-    _gun.visible = false
-  else:    
-    quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_TRASH_GUN_MODULE) 
-  close_menu()
+  if visible:
+    print("You clicked trash")
+    $"/root/root/sfx/ui_cancel".play()
+    if not _upgrade_mode:
+      quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_TRASH_GUN) 
+      _gun.visible = false
+    else:
+      quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_TRASH_GUN_MODULE) 
+    close_menu()

@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_q638r"]
 [ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="4_sftgi"]
 [ext_resource type="PackedScene" uid="uid://k3xhl0u2v0og" path="res://health_bar.tscn" id="5_1mj2p"]
-[ext_resource type="Material" path="res://laser_enemy.tres" id="6_4s7vw"]
+[ext_resource type="Material" uid="uid://drek4vtfr8vlf" path="res://laser_enemy.tres" id="6_4s7vw"]
 [ext_resource type="Script" path="res://laser_raycast.gd" id="6_ag5w6"]
 [ext_resource type="Texture2D" uid="uid://dcuma3xobg2bd" path="res://assets/particle.png" id="7_1lgc7"]
-[ext_resource type="Texture2D" uid="uid://cq1lqtckbqyyw" path="res://assets/laser.png" id="10_fxgkx"]
+[ext_resource type="Texture2D" uid="uid://b47t8iwf05aer" path="res://assets/laser.png" id="10_fxgkx"]
 [ext_resource type="Shader" path="res://white_flash.gdshader" id="11_mslgs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cahch1ibpmcxl" path="res://assets/char_front.png" id="2_af2l0"]
 [ext_resource type="Texture2D" uid="uid://dsegm8vcvo5r0" path="res://assets/shadow.png" id="2_tcgbw"]
 [ext_resource type="Texture2D" uid="uid://dm8athdwrt4aw" path="res://assets/char_back.png" id="3_0rn5p"]
-[ext_resource type="PackedScene" uid="uid://c0e81sxlwyt51" path="res://dash_line.tscn" id="5_yg8l2"]
+[ext_resource type="PackedScene" path="res://dash_line.tscn" id="5_yg8l2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kkfjx"]
 size = Vector2(112, 157)

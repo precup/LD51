@@ -215,7 +215,7 @@ func damage(amount: float, knockback: Vector2 = Vector2.ZERO) -> void:
 func pickup(item: String) -> void:
   quest_manager.quest_count_progress(QuestGlobals.StatTrack.STAT_PICKUP_ITEM)
   if item == "heart":
-    heal(0.5)
+    heal(1)
 
 func gun_was_fired() -> void:
   var animation_player: AnimationPlayer = $animation_player

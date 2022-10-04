@@ -20,7 +20,7 @@ var quest_rarity_weights : Dictionary = {
 
 # Affects the distribution of incoming quest reward types
 var quest_reward_type_weights : Dictionary = {
-  QuestGlobals.RewardType.REWARD_GUN: 15,
+  QuestGlobals.RewardType.REWARD_GUN: 25,
   QuestGlobals.RewardType.REWARD_MOD: 25,
   QuestGlobals.RewardType.REWARD_OTHER: 0, 
 }
