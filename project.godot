@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="LudumDare51"
-run/main_scene="res://root.tscn"
+run/main_scene="res://luny_root2_backup.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -119,5 +119,6 @@ action={
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0, 0, 0.054902, 1)
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/screen_space_aa=1

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bj8orutgvtbex"]
 
 [ext_resource type="Script" path="res://npc.gd" id="1_em57j"]
-[ext_resource type="Texture2D" uid="uid://bfsb85o2bm58k" path="res://assets/white_square_64x64.png" id="2_emytp"]
+[ext_resource type="Texture2D" uid="uid://gy45lvny5w4c" path="res://assets/npc.png" id="2_3vu0u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu3hx"]
 size = Vector2(430, 392)
@@ -37,17 +37,18 @@ position = Vector2(63, 182)
 shape = SubResource("RectangleShape2D_uu3hx")
 
 [node name="graphic" type="Sprite2D" parent="."]
-position = Vector2(63, 190)
-texture = ExtResource("2_emytp")
+position = Vector2(64, 192)
+texture = ExtResource("2_3vu0u")
 
 [node name="position" type="Node2D" parent="."]
-position = Vector2(-27, -21)
+position = Vector2(-116, -187)
 
 [node name="click_to_talk_label" type="Label" parent="position"]
 offset_left = -33.0
 offset_top = 111.0
 offset_right = 246.0
 offset_bottom = 181.0
+scale = Vector2(1.5, 1.5)
 theme_override_font_sizes/font_size = 48
 text = "Click to talk!"
 

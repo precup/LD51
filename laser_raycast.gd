@@ -15,12 +15,12 @@ func pulse():
   
   while true:
     for new_width in range(800, 1000, 1):
-      line.width = 10 + float(new_width) / 70.0
+      line.width = 50 + float(new_width) / 70.0
       
       await get_tree().process_frame
     
     for new_width in range(1000, 800, -1):
-      line.width = 10 + float(new_width) / 70.0
+      line.width = 50 + float(new_width) / 70.0
       
       await get_tree().process_frame
 
@@ -30,20 +30,20 @@ func sweep():
   var end_vector = Vector2.ZERO
 
   if direction_vector == Vector2.DOWN:
-    start_vector = Vector2(-300, 1000)
-    end_vector = Vector2(300, 1000)
+    start_vector = Vector2(-300, 4000)
+    end_vector = Vector2(300, 4000)
   
   if direction_vector == Vector2.UP:
-    start_vector = Vector2(300, -1000)
-    end_vector = Vector2(-300, -1000)
+    start_vector = Vector2(300, -4000)
+    end_vector = Vector2(-300, -4000)
 
   if direction_vector == Vector2.RIGHT:
-    start_vector = Vector2(1000, -300)
-    end_vector = Vector2(1000, 300)
+    start_vector = Vector2(4000, -300)
+    end_vector = Vector2(4000, 300)
 
   if direction_vector == Vector2.LEFT:
-    start_vector = Vector2(-1000, 300)
-    end_vector = Vector2(-1000, -300)
+    start_vector = Vector2(-4000, 300)
+    end_vector = Vector2(-4000, -300)
 
   var line: Line2D = $"../line"
   

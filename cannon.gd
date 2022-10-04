@@ -34,11 +34,11 @@ func rotate_cannon():
   
   if direction == Direction.LEFT:
     $side.visible = true
-    $side.scale = Vector2(1, 1)
+    $side.scale = Vector2(-1, 1)
   
   if direction == Direction.RIGHT:
     $side.visible = true
-    $side.scale = Vector2(-1, 1)
+    $side.scale = Vector2(1, 1)
   
   if direction == Direction.UP:
     $back.visible = true
@@ -79,9 +79,9 @@ func get_direction_vector() -> Vector2:
   var direction_vector = Vector2(0, 0)
 
   if direction == Direction.LEFT:
-    direction_vector = Vector2(1, 0)
-  elif direction == Direction.RIGHT:
     direction_vector = Vector2(-1, 0)
+  elif direction == Direction.RIGHT:
+    direction_vector = Vector2(1, 0)
   elif direction == Direction.UP:
     direction_vector = Vector2(0, -1)
   elif direction == Direction.DOWN:

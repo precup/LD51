@@ -17,8 +17,8 @@ var _health: float = 5.0
 var active_tweens = []
 var _speed_multiplier = 1.0
 
-var WAKE_UP_DISTANCE = 750
-var SLEEP_DISTANCE = 1500
+var WAKE_UP_DISTANCE = 2000
+var SLEEP_DISTANCE = 4000
 var _active = false
 
 # "trash", "common", "rare", "epic", "legendary"
