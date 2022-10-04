@@ -287,8 +287,7 @@ bullet_speed = 600.0
 max_time_between_shots = 200.0
 
 [node name="cannon11" parent="level_1/doodads" instance=ExtResource("11_je3km")]
-position = Vector2(9277, -11152)
-direction = 0
+position = Vector2(8517, -11454)
 bullet_speed = 600.0
 max_time_between_shots = 200.0
 
