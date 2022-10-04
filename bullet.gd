@@ -185,7 +185,7 @@ func _physics_process(delta):
       if _richocets > 0:
         _richocets -= 1
         _make_hitspark("wall", true)
-        look_at(global_position + direction.bounce(collision.get_normal()))
+        $sprite.look_at($sprite.global_position + direction.bounce(collision.get_normal()))
       else:
         _destroy("wall")
     
