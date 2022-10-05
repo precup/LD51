@@ -21,9 +21,11 @@ var quest_rarity_weights : Dictionary = {
 # Affects the distribution of incoming quest reward types
 var quest_reward_type_weights : Dictionary = {
   QuestGlobals.RewardType.REWARD_GUN: 20,
-  QuestGlobals.RewardType.REWARD_MOD: 25,
+  QuestGlobals.RewardType.REWARD_MOD: 0,
   QuestGlobals.RewardType.REWARD_OTHER: 0, 
 }
+
+var quest_mod_drop_scalar: float = 10
 
 const quest_scn = preload("res://quest.tscn")
 @onready var quest_container = $"/root/root/ui/top_right/quest_container"
@@ -56,6 +58,11 @@ func _get_next_quest_rarity():
   
 # Pulls a reward type based on weights
 func _get_next_quest_reward_type():
+  var guns = get_tree().get_first_node_in_group("player").get_active_gun().get_parent()
+  var empty_slots = 0
+  for gun in guns.get_children():
+    empty_slots += gun.MAX_MODIFIERS - len(gun.UPGRADES)
+  quest_reward_type_weights[QuestGlobals.RewardType.REWARD_MOD] = int(quest_mod_drop_scalar * empty_slots)
   var total = quest_reward_type_weights.values().reduce(func(i,accum): return accum + i)
   var my_random_number = rng.randi_range(0, total-1)
   

@@ -3,7 +3,7 @@
 <head>
 	<meta charset='utf-8' />
 	<meta name='viewport' content='width=device-width, user-scalable=no' />
-	<title>LudumDare51</title>
+	<title>HocusPoQuest</title>
 	<style type='text/css'>
 
 		body {
@@ -139,7 +139,7 @@
 	<script type='text/javascript' src='hocus_poquest.js'></script>
 	<script type='text/javascript'>//<![CDATA[
 
-		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"hocus_poquest","experimentalVK":false,"fileSizes":{"hocus_poquest.pck":6307536,"hocus_poquest.wasm":21074684},"focusCanvas":true,"gdnativeLibs":[]};
+		const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"hocus_poquest","experimentalVK":false,"fileSizes":{"hocus_poquest.pck":6378544,"hocus_poquest.wasm":21074684},"focusCanvas":true,"gdnativeLibs":[]};
 		var engine = new Engine(GODOT_CONFIG);
 
 		(function() {
